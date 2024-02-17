@@ -4,6 +4,7 @@ namespace PHPAuth;
 
 use PDO;
 use PDOException;
+use PHPAuth\Exceptions\PHPAuthException;
 use RuntimeException;
 
 /**
@@ -29,6 +30,11 @@ class Config implements ConfigInterface
     public $config_table = 'phpauth_config';
 
     /**
+     * @var string
+     */
+    public $config_type;
+
+    /**
      * Custom E-Mail validator callback
      *
      * @var callable
@@ -50,6 +56,16 @@ class Config implements ConfigInterface
     public $customMailer;
 
     /**
+     * @var callable
+     */
+    public $customCaptchaValidator;
+
+    /**
+     * @var array
+     */
+    public $customCaptchaConfig;
+
+    /**
      * Config::__construct()
      *
      * Create config class for PHPAuth\Auth.
@@ -67,10 +83,11 @@ class Config implements ConfigInterface
      * @param string $config_type -- default empty (means config in SQL table phpauth_config), possible values: 'sql', 'ini', 'array'
      * @param string $config_site_language -- declare site language, empty value means 'en_GB'
      */
-    public function __construct(PDO $dbh, $config_source = null, string $config_type = self::CONFIG_TYPE_SQL, string $config_site_language = '')
+    public function __construct($dbh, $config_source = null, string $config_type = self::CONFIG_TYPE_SQL, string $config_site_language = '')
     {
-        $config_type = strtolower($config_type);
+        $this->config_type = $config_type = strtolower($config_type);
 
+        // This check is left in case the library was included manually, and not through the composer
         if (PHP_VERSION_ID < 70200) {
             die('PHPAuth: PHP 7.2.0+ required for PHPAuth engine!');
         }
@@ -86,7 +103,7 @@ class Config implements ConfigInterface
                 }
 
                 // replace beginner '$' in filepath to application root directory
-                $source = preg_replace('/^\$/', getcwd(), $config_source);
+                $source = self::resolveAppRootPath($config_source);
 
                 if (!is_readable($source)) {
                     throw new RuntimeException("PHPAuth: config type is FILE, declared as {$source}, but file not readable or not exist");
@@ -128,7 +145,7 @@ class Config implements ConfigInterface
 
                 $this->config = $this
                     ->dbh
-                    ->query("SELECT `setting`, `value` FROM {$this->config_table} ORDER BY `setting`")
+                    ->query("SELECT setting, value FROM {$this->config_table} ORDER BY setting")
                     ->fetchAll(PDO::FETCH_KEY_PAIR);
 
                 break;
@@ -157,9 +174,7 @@ class Config implements ConfigInterface
         }
 
         // Determine site language
-        $site_language = (empty($config_site_language))
-            ? $this->config['site_language'] ?? 'en_GB'
-            : $config_site_language;
+        $site_language = (empty($config_site_language)) ? $this->config['site_language'] ?? 'en_GB' : $config_site_language;
 
         // set default 'en_GB' dictionary
         $this->config['dictionary'] = self::getForgottenDictionary();
@@ -213,25 +228,7 @@ class Config implements ConfigInterface
         $this->config['recaptcha'] = $config_recaptcha;
     }
 
-    public function setEMailValidator(callable $callable = null):Config
-    {
-        if (!is_null($callable) && is_callable($callable)) {
-            $this->emailValidator = $callable;
-        }
-
-        return $this;
-    }
-
-    public function setPasswordValidator(callable $callable = null):Config
-    {
-        if (!is_null($callable) && is_callable($callable)) {
-            $this->passwordValidator = $callable;
-        }
-
-        return $this;
-    }
-
-    public function setLocalization(array $dictionary):Config
+    public function setLocalization(array $dictionary = []):Config
     {
         $dictionary_default = self::getForgottenDictionary();
 
@@ -240,25 +237,11 @@ class Config implements ConfigInterface
                 $dictionary_default[$key] = $dictionary[$key];
             }
         }
-        $this->config['dictionary'] = $dictionary;
+        $this->config['dictionary'] = $dictionary_default;
 
         return $this;
     }
 
-    /**
-     *
-     *
-     * @param callable|null $callable
-     * @return $this
-     */
-    public function setCustomMailer(callable $callable = null):Config
-    {
-        if (!is_null($callable) && is_callable($callable)) {
-            $this->customMailer = $callable;
-        }
-
-        return $this;
-    }
 
     /**
      * Config::__get()
@@ -268,7 +251,7 @@ class Config implements ConfigInterface
      */
     public function __get(string $setting)
     {
-        return array_key_exists($setting, $this->config) ? $this->config[$setting] : null;
+        return array_key_exists($setting, $this->config) ? $this->config[ $setting ] : null;
     }
 
     public function getAll(): array
@@ -286,12 +269,16 @@ class Config implements ConfigInterface
      */
     public function __set(string $setting, $value)
     {
-        $query_prepared = $this->dbh->prepare("UPDATE {$this->config_table} SET value = :value WHERE setting = :setting");
+        if ($this->config_type === self::CONFIG_TYPE_SQL /* && $this->config['update_config_to_db'] */) {
+            $query_prepared = $this->dbh->prepare("UPDATE {$this->config_table} SET value = :value WHERE setting = :setting");
 
-        if ($query_prepared->execute(['value' => $value, 'setting' => $setting])) {
-            $this->config[$setting] = $value;
+            if ($query_prepared->execute(['value' => $value, 'setting' => $setting])) {
+                $this->config[ $setting ] = $value;
 
-            return true;
+                return true;
+            }
+        } else {
+            $this->config[ $setting ] = $value;
         }
 
         return false;
@@ -340,6 +327,13 @@ class Config implements ConfigInterface
         $this->repairConfigValue('mail_charset', 'UTF-8');
 
         $this->repairConfigValue('allow_concurrent_sessions', false);
+
+        // new V 1.4.6
+        $this->repairConfigValue('verify_email_valid', true); // use FILTER_VALIDATE_EMAIL for email validation, @todo: add to config ?
+        $this->repairConfigValue('verify_email_use_banlist', true);
+
+        // 1.5.0+
+        $this->repairConfigValue('verify_email_with_custom', 0); // instead of [verify_email_use_banlist]
     }
 
     /**
@@ -369,7 +363,7 @@ class Config implements ConfigInterface
 
         switch ($this->dbh->getAttribute(PDO::ATTR_DRIVER_NAME)) {
             case 'pgsql': {
-                $sth = $this->dbh->query("SELECT FROM pg_tables WHERE tablename = '{$table}' ;");
+                $sth = $this->dbh->query("SELECT * FROM pg_tables WHERE tablename = '{$table}' ;");
                 return (bool)$sth->rowCount();
                 break;
             }
@@ -396,4 +390,124 @@ class Config implements ConfigInterface
 
         return false;
     }
+
+    /**
+     * Converts `$` at beginning of filename to Application Root Path
+     *
+     * @param $filename
+     * @return string|string[]|null
+     */
+    protected static function resolveAppRootPath($filename)
+    {
+        return preg_replace('/^\$/', getcwd(), $filename);
+    }
+
+    /* ============================= */
+    /* ==== Set custom handlers ==== */
+    /* ============================= */
+
+    public function setEMailValidator(callable $callable = null):Config
+    {
+        if (is_callable($callable)) {
+            $this->emailValidator = $callable;
+        }
+
+        return $this;
+    }
+
+    public function setPasswordValidator(callable $callable = null):Config
+    {
+        if (is_callable($callable)) {
+            $this->passwordValidator = $callable;
+        }
+
+        return $this;
+    }
+
+    /**
+     *
+     *
+     * @param callable|null $callable
+     * @return $this
+     */
+    public function setCustomMailer(callable $callable = null):Config
+    {
+        if (is_callable($callable)) {
+            $this->customMailer = $callable;
+        }
+
+        return $this;
+    }
+
+    /**
+     * Set captcha validator handler
+     *
+     * @param callable|null $callable
+     * @param array $captcha_config
+     * @return $this
+     */
+    public function setCaptchaValidator(callable $callable = null, array $captcha_config = []):Config
+    {
+        if (is_callable($callable)) {
+            $this->customCaptchaValidator = $callable;
+            $this->customCaptchaConfig = $captcha_config;
+        }
+
+        return $this;
+    }
+
+    /* ============================== */
+    /* ======= Config loaders ======= */
+    /* ============================== */
+
+    /**
+     * Load PHPAuth config from array structure
+     *
+     * @param array $dataset
+     * @return $this
+     * @throws PHPAuthException
+     */
+    /*public function loadArray(array $dataset):self
+    {
+        if (empty($dataset)) {
+            throw new PHPAuthException( 'PHPAuth Config: given EMPTY config array data' );
+        }
+
+        $this->config->set($dataset);
+        $this->config_type = self::CONFIG_TYPE_ARRAY;
+
+        return $this;
+    }*/
+
+    /**
+     * @param $dbh
+     * @param string $table
+     * @return $this
+     * @throws PHPAuthException
+     * @throws PDOException
+     */
+    /*public function loadDB($dbh = null, string $table = 'phpauth_config'):self
+    {
+        if (is_null($dbh)) {
+            $dbh = $this->dbh;
+        }
+
+        $this->db_config_table = $table;
+
+        if (empty($this->db_config_table)) {
+            throw new PHPAuthException( 'PHPAuth Config: Empty config table name given' );
+        }
+
+        if (!$this->checkTableExists($table)) {
+            throw new PHPAuthException("PHPAuth Config: SQL Config table {$table} does not exist");
+        }
+
+        $sth = $dbh->query("SELECT setting, value FROM {$this->db_config_table} ORDER BY setting");
+        $config = $sth->fetchAll(\PDO::FETCH_KEY_PAIR);
+
+        $this->config->set($config);
+
+        return $this;
+    }*/
+
 }

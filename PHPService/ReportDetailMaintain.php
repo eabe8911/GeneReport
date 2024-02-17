@@ -57,7 +57,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
                 }
                 $ReportID = $_POST['ReportID'];
                 $ReportName = $_POST['ReportName'];
-                // $HospitalList = $_POST['HospitalList'];
                 $HospitalList = $_POST['HospitalList'];
                 $TemplateID = $_POST['TemplateID'];
                 if ($ReportType == '1') {
@@ -70,6 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
                 $DueDate = $_POST['DueDate'];
                 $CustomerName = $_POST['CustomerName'];
                 $CustomerEmail = $_POST['CustomerEmail'];
+                $ccemail = $_POST['ccemail'];
                 $CustomerPhone = $_POST['CustomerPhone'];
                 if ($ReportStatus == '0' || $ReportStatus == '') {
                     $ReportStatus = '報告未上傳';
@@ -77,25 +77,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
                     $ReportStatus = '報告已上傳，未審核';
                 }
 
-                // $RejectReason = $_POST['RejectReason'];
+                $addlog = "報告編號：" . $ReportID . "已新增" . "\n" . "報告名稱：" . $ReportName . "\n" . "報告描述：" . $HospitalList . "\n" . 
+                "送檢單位：" . $ReportType . "\n" . "報告模板：" . $TemplateID . "\n" . "TAT最終日：" . $DueDate . "\n" . "客戶姓名：" . $CustomerName . 
+                "\n" . "客戶信箱：" . $CustomerEmail . "\n" . "聯絡人信箱：" . $ccemail . "\n" ."客戶連絡電話：" . $CustomerPhone;
 
-                // $logData = array(
-                //     '操作狀態：' =>$ReportMode,
-                //     '報告編號：' => $ReportID,
-                //     '報告名稱：' => $ReportName,
-                //     '報告描述：' => $HospitalList,
-                //     '送檢單位：' => $ReportType ,
-                //     '報告模板：' => $TemplateID,
-                //     'TAT最終日：' => $DueDate,
-                //     '客戶姓名：' => $CustomerName,
-                //     '客戶信箱：' => $CustomerEmail,
-                //     '客戶連絡電話：' => $CustomerPhone,
-                //     '報告狀態：' => $ReportStatus
-                // );
-
-                $addlog = "報告編號：" . $ReportID . "已新增" . "\n" . "報告名稱：" . $ReportName . "\n" . "報告描述：" . $HospitalList . "\n" . "送檢單位：" . $ReportType . "\n" . "報告模板：" . $TemplateID . "\n" . "TAT最終日：" . $DueDate . "\n" . "客戶姓名：" . $CustomerName . "\n" . "客戶信箱：" . $CustomerEmail . "\n" . "客戶連絡電話：" . $CustomerPhone;
-
-                // $logDataJson = json_encode($logData, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
                 CheckPDF($_FILES);
                 $_SESSION['ReportID'] = $_POST['ReportID'];
                 $log->SaveLog("ADD", $Username, "UpdateReportInfo", date("Y-m-d H:i:s"), $addlog);
@@ -103,7 +88,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
                     'report_id' => $_POST['ReportID'],
                     'status' => 'new'
                 ];
-                // publishMessage('report_add', $messageData);
                 sendNotificationToTeams("ADD", "新增一筆報告: " . $_POST['ReportID'] . ' ' . $_POST['ReportName'] . " by " . $DisplayName);
                 break;
             case 'EDIT':
@@ -115,13 +99,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
                     }
                     $ReportID = $_POST['ReportID'];
                     $ReportName = $_POST['ReportName'];
-                    // $HospitalList = $_POST['HospitalList'];
                     $HospitalList = $_POST['HospitalList'];
                     $ReportType = $_POST['ReportType'];
                     $TemplateID = $_POST['TemplateID'];
                     $DueDate = $_POST['DueDate'];
                     $CustomerName = $_POST['CustomerName'];
                     $CustomerEmail = $_POST['CustomerEmail'];
+                    $ccemail = $_POST['ccemail'];
                     $CustomerPhone = $_POST['CustomerPhone'];
                     //if ReportUploadPDF click ReportStaus = 1
                     if (!empty($_FILES['ReportUploadPDF']['name'])) {
@@ -138,23 +122,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
                         $Role = "YL_Lab_ISO";
                     }
 
-                    // $logData = array(
-                    //     '操作狀態：' =>$ReportMode,
-                    //     '報告編號：' => $ReportID,
-                    //     '報告名稱：' => $ReportName,
-                    //     '報告描述：' => $HospitalList,
-                    //     '送檢單位：' => $ReportType ,
-                    //     '報告模板：' => $TemplateID,
-                    //     'TAT最終日：' => $DueDate,
-                    //     '客戶姓名：' => $CustomerName,
-                    //     '客戶信箱：' => $CustomerEmail,
-                    //     '客戶連絡電話：' => $CustomerPhone,
-                    //     '報告狀態：' => $ReportStatus
-                    // );
 
-                    $updatelog = "報告編號：" . $ReportID . "\n" . "報告名稱：" . $ReportName . "\n" . "報告描述：" . $HospitalList . "\n" . "送檢單位：" . $ReportType . "\n" . "報告模板：" . $TemplateID . "\n" . "TAT最終日：" . $DueDate . "\n" . "客戶姓名：" . $CustomerName . "\n" . "客戶信箱：" . $CustomerEmail . "\n" . "客戶連絡電話：" . $CustomerPhone . "\n" . "報告狀態：" . $ReportStatus;
 
-                    // $logDataJson = json_encode($logData, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+                    $updatelog = "報告編號：" . $ReportID . "\n" . "報告名稱：" . $ReportName . "\n" . "報告描述：" . $HospitalList . "\n" . 
+                    "送檢單位：" . $ReportType . "\n" . "報告模板：" . $TemplateID . "\n" . "TAT最終日：" . $DueDate . "\n" . 
+                    "客戶姓名：" . $CustomerName . "\n" . "客戶信箱：" . $CustomerEmail . "\n" . "聯絡人信箱：" . $ccemail . "\n" . "客戶連絡電話：" . $CustomerPhone . "\n" . "報告狀態：" . $ReportStatus;
+
 
                     CheckPDF($_FILES);
                     $log->SaveLog("UPDATE", $Username, "UpdateReportInfo", date("Y-m-d H:i:s"), $updatelog);
@@ -163,7 +136,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
                     'report_id' => $_POST['ReportID'],
                     'status' => 'update'
                 ];
-                // publishMessage('report_update', $messageData);
                 sendNotificationToTeams("EDIT", "修改一筆報告: " . $_POST['ReportID'] . ' ' . $_POST['ReportName'] . " by " . $DisplayName);
                 break;
             case 'DELETE':
@@ -176,44 +148,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
                     }
                     $ReportID = $_POST['ReportID'];
                     $ReportName = $_POST['ReportName'];
-                    // $HospitalList = $_POST['HospitalList'];
-                    // $ReportType = $_POST['ReportType'];
-                    // $TemplateID = $_POST['TemplateID'];
+
                     $DueDate = $_POST['DueDate'];
                     $CustomerName = $_POST['CustomerName'];
                     $CustomerEmail = $_POST['CustomerEmail'];
+                    $ccemail = $_POST['ccemail'];
                     $CustomerPhone = $_POST['CustomerPhone'];
                     $ReportStatus = $_POST['ReportStatus'];
-                    // $RejectReason = $_POST['RejectReason'];
 
-                    // $logData = array(
-                    //     '操作狀態：' =>$ReportMode,
-                    //     '報告編號：' => $ReportID,
-                    //     '報告名稱：' => $ReportName,
-                    //     '報告描述：' => $HospitalList,
-                    //     '送檢單位：' => $ReportType ,
-                    //     '報告模板：' => $TemplateID,
-                    //     'TAT最終日：' => $DueDate,
-                    //     '客戶姓名：' => $CustomerName,
-                    //     '客戶信箱：' => $CustomerEmail,
-                    //     '客戶連絡電話：' => $CustomerPhone,
-                    //     '報告狀態：' => $ReportStatus,
-                    //     '退回原因：' => $RejectReason
-                    // );
 
                     $deletelog = "報告編號" . $ReportID . "已刪除";
 
-                    // $logDataJson = json_encode($logData, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 
                     $log->SaveLog("DELETE", $Username, "UpdateReportInfo", date("Y-m-d H:i:s"), $deletelog);
 
-                    // $log->SaveLog("DELETE", $Username, "UpdateReportInfo", date("Y-m-d H:i:s"), json_encode($_POST));
                 }
                 $messageData = [
                     'report_id' => $_POST['ReportID'],
                     'status' => 'delete'
                 ];
-                // publishMessage('report_delete', $messageData);
                 sendNotificationToTeams("DELETE", "刪除一筆報告: " . $_POST['ReportID'] . ' ' . $_POST['ReportName'] . " by " . $DisplayName);
                 break;
             default:
@@ -283,7 +236,6 @@ $smarty->assign("Hiddenfield3", "<input type='hidden' id='FileName' name='FileNa
 $smarty->assign("Hiddenfield4", "<input type='hidden' id='Permission' name='Permission' value=" . $Permission . ">");
 $smarty->assign("Hiddenfield5", "<input type='hidden' id='ID' name='ID' value=" . $ID . ">");
 $smarty->assign("Hiddenfield6", "<input type='hidden' id='Account' name='Account' value=" . $Account . ">");
-// $smarty->assign("Hiddenfield7", "<input type='hidden' id='ReportStatus' name='ReportStatus' value=" . $ReportStatus . ">");
 // Error Message
 $smarty->assign("ErrorMessage", $ErrorMessage);
 if ($ErrorMessage == '') {
@@ -351,6 +303,7 @@ $smarty->assign('TemplateSelect', $TemplateID, true);
 $smarty->assign("DueDate", $report->ReportInfo('DueDate'), true);
 $smarty->assign("CustomerName", $report->ReportInfo('CustomerName'), true);
 $smarty->assign("CustomerEmail", $report->ReportInfo('CustomerEmail'), true);
+$smarty->assign("ccemail", $report->ReportInfo('ccemail'), true);
 $smarty->assign("CustomerPhone", $report->ReportInfo('CustomerPhone'), true);
 $smarty->assign("ReportStatus", $ReportStatus, true);
 $smarty->assign("Permission", $Permission, true);
@@ -363,6 +316,7 @@ $smarty->assign("rcdate", $report->ReportInfo('rcdate'), true);
 
 $ReportName = $report->ReportInfo('ReportName');
 $CustomerEmail = $report->ReportInfo('CustomerEmail');
+$ccemail = $report->ReportInfo('ccemail');
 $CustomerName = $report->ReportInfo('CustomerName');
 // echo $ReportStatus;
 // Display PDF File if empty show error message
@@ -387,6 +341,7 @@ if ($PDFFile == '') {
                 <input type="hidden" name="ReportID" value="' . $ReportID . '">
                 <input type="hidden" name="ReportName" value="' . $ReportName . '">
                 <input type="hidden" name="CustomerEmail" value="' . $CustomerEmail . '">
+                <input type="hidden" name="ccemail" value="' . $ccemail . '">
                 <input type="hidden" name="CustomerName" value="' . $CustomerName . '">
                 <input type="hidden" name="PDFFile" value="' . $PDFFile . '">
                 <input type="submit" style="margin-left: 10px;height: 40px;" name="BtnSendPDF" id="BtnSendPDF" class="btn btn-primary" value="' . $ReportID . ', Send E-mail">
@@ -408,7 +363,6 @@ if ($PDFFile == '') {
 
     echo '<div id="pdf-output">' . $output . '</div>';
 
-    // $Email->SendEmail($ReportID, $CustomerEmail, $CustomerName);
 }
 // Display Smarty Template
 $smarty->assign("IncludePage", "ReportDetailMaintain.tpl");
@@ -418,7 +372,8 @@ echo '<script>
     const pdfOutput = document.getElementById("pdf-output");
     document.body.appendChild(pdfOutput);
     document.getElementById("email_report").addEventListener("submit", function(event){
-        const confirmMessage = confirm(`確定要寄出報告嗎?\n請再確認資訊是否正確：\n報告編號：' . $ReportID . '\n客戶姓名：' . $CustomerName . '\n客戶信箱：' . $CustomerEmail . '`);
+        const confirmMessage = 
+            confirm(`確定要寄出報告嗎?\n請再確認資訊是否正確：\n報告編號：' . $ReportID . '\n客戶姓名：' . $CustomerName . '\n客戶信箱：' . $CustomerEmail . '\n聯絡人信箱：' . $ccemail .'`);
         if(!confirmMessage){
             event.preventDefault();
         }

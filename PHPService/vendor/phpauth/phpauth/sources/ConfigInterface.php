@@ -31,7 +31,7 @@ interface ConfigInterface
      * @param string $config_type -- default empty (means config in SQL table phpauth_config), possible values: 'sql', 'ini', 'array'
      * @param string $config_site_language -- declare site language, empty value means 'en_GB'
      */
-    public function __construct(PDO $dbh, $config_source = null, string $config_type = '', string $config_site_language = '');
+    public function __construct($dbh, $config_source = null, string $config_type = '', string $config_site_language = '');
 
     /**
      * Return all config keys
@@ -75,6 +75,15 @@ interface ConfigInterface
      * @todo: change return type to self at PHP 7.4
      */
     public function setCustomMailer(callable $callable = null):Config;
+
+    /**
+     * set Captcha Validator
+     *
+     * @param callable|null $callable
+     * @return $this
+     * @todo: change return type to self at PHP 7.4
+     */
+    public function setCaptchaValidator(callable $callable = null):Config;
 
 
 }

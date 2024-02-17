@@ -1,0 +1,27 @@
+{
+    "require-dev": {
+        "phpunit/phpunit": "^10.0"
+    },
+    "require": {
+        "microsoft/microsoft-graph": "^1.94",
+        "phpoffice/phpspreadsheet": "^1.28",
+        "phpauth/phpauth": "^1.4",
+        "php-amqplib/php-amqplib": "*",
+        "mpdf/mpdf": "*",
+        "symfony/flex": "*",
+        "smarty/smarty": "*",
+        "setasign/fpdi": "*",
+        "tecnickcom/tcpdf": "*",
+        "guzzlehttp/guzzle": "*"
+    },
+    "config": {
+        "allow-plugins": {
+            "symfony/flex": true
+        }
+    },
+    "extra": {
+        "symfony": {
+            "allow-contrib": true
+        }
+    }
+}

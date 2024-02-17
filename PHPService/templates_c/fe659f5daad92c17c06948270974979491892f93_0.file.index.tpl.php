@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.1, created on 2024-02-17 09:51:15
+/* Smarty version 4.3.4, created on 2024-02-17 10:03:33
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
-  'version' => '4.3.1',
-  'unifunc' => 'content_65d01113059f44_64518937',
+  'version' => '4.3.4',
+  'unifunc' => 'content_65d013f592dc14_67631291',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'fe659f5daad92c17c06948270974979491892f93' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\index.tpl',
-      1 => 1708073496,
+      1 => 1692610028,
       2 => 'file',
     ),
   ),
@@ -23,10 +23,10 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:indexheader.tpl' => 1,
   ),
 ),false)) {
-function content_65d01113059f44_64518937 (Smarty_Internal_Template $_smarty_tpl) {
+function content_65d013f592dc14_67631291 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
-<title>麗寶基因報告查詢系統</title>
+<title>麗寶基因報告系統</title>
     <head>
         <?php $_smarty_tpl->_subTemplateRender("file:indexdesign.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>

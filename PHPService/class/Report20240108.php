@@ -37,7 +37,7 @@ class Report implements ReportInterface
                 'ReportType' => $data['ReportType'] ?? '',
                 'TemplateID' => $data['TemplateID'] ?? '',
                 'FileName' => $data['FileName'] ?? '',
-                'ReportDescription' => $data['ReportDescription'] ?? '',
+                'HospitalList' => $data['HospitalList'] ?? '',
                 'ReportStatus' => $data['ReportStatus'] ?? '',
                 'CreatedAt' => $data['CreatedAt'] ?? '',
                 'UpdatedAt' => $data['UpdatedAt'] ?? '',
@@ -171,14 +171,58 @@ class Report implements ReportInterface
         }
         return true;
     }
+    // public function AddReport($ReportInfo)
+    // {
+    //     try {
+    //         // check if ID exists
+    //         if ($this->_CheckReport($ReportInfo['ReportID'])) {
+    //             $this->_errorMessage = "此編號已存在，請重新輸入";
+    //             return false;
+    //         }
+    //         if (empty($ReportInfo['FileName'])) { // if no file uploaded
+    //             $ReportStatus = '0';
+    //         } else {
+    //             $ReportStatus = '1';
+    //         }
+    //         $now = date("Y-m-d H:i:s");
+    //         $sql = "INSERT INTO Report (
+    //             ReportID, ReportName, FileName, ReportType, TemplateID, HospitalList, ReportStatus,
+    //             CreatedAt, CustomerName, CustomerEmail, CustomerPhone, DueDate
+    //             ) VALUES (
+    //             :ReportID, :ReportName, :FileName, :ReportType, :TemplateID, :HospitalList, :ReportStatus,
+    //             :CreatedAt, :CustomerName, :CustomerEmail, :CustomerPhone, :DueDate
+    //             )";
+    //         $stmt = $this->_conn->prepare($sql);
+    //         $stmt->bindParam(':ReportID', $ReportInfo['ReportID']);
+    //         $stmt->bindParam(':ReportName', $ReportInfo['ReportName']);
+    //         $stmt->bindValue(':FileName', $ReportInfo['ReportID'] . '.pdf');
+    //         //ReportType 只取第一個數字
+    //         $ReportInfo['ReportType'] = substr($ReportInfo['ReportType'], 0, 1);
+    //         $stmt->bindParam(':ReportType', $ReportInfo['ReportType']);
+
+    //         $stmt->bindParam(':TemplateID', $ReportInfo['TemplateID']);
+    //         $stmt->bindParam(':HospitalList', $ReportInfo['HospitalList']);
+    //         $stmt->bindParam(':ReportStatus', $ReportStatus);
+    //         $stmt->bindParam(':CreatedAt', $now);
+    //         $stmt->bindParam(':CustomerName', $ReportInfo['CustomerName']);
+    //         $stmt->bindParam(':CustomerEmail', $ReportInfo['CustomerEmail']);
+    //         $stmt->bindParam(':CustomerPhone', $ReportInfo['CustomerPhone']);
+    //         $stmt->bindParam(':DueDate', $ReportInfo['DueDate']);
+    //         $stmt->execute();
+    //     } catch (PDOException | Exception $th) {
+    //         throw new Exception($th->getMessage(), $th->getCode());
+    //     }
+    //     return true;
+    // }
+
     public function AddReport($ReportInfo)
     {
         try {
-            // check if ID exists
+            // check if ID exists don't add
             if ($this->_CheckReport($ReportInfo['ReportID'])) {
-                $this->_errorMessage = "此編號已存在，請重新輸入";
-                return false;
+                throw new Exception($ReportInfo['ReportID']."此報告編號已存在", 1);
             }
+            // check if file exists
             if (empty($ReportInfo['FileName'])) { // if no file uploaded
                 $ReportStatus = '0';
             } else {
@@ -186,22 +230,28 @@ class Report implements ReportInterface
             }
             $now = date("Y-m-d H:i:s");
             $sql = "INSERT INTO Report (
-                ReportID, ReportName, FileName, ReportType, TemplateID, ReportDescription, ReportStatus,
+                ReportID, ReportName, FileName, ReportType, TemplateID, HospitalList, ReportStatus,
                 CreatedAt, CustomerName, CustomerEmail, CustomerPhone, DueDate
                 ) VALUES (
-                :ReportID, :ReportName, :FileName, :ReportType, :TemplateID, :ReportDescription, :ReportStatus,
+                :ReportID, :ReportName, :FileName, :ReportType, :TemplateID, :HospitalList, :ReportStatus,
                 :CreatedAt, :CustomerName, :CustomerEmail, :CustomerPhone, :DueDate
                 )";
             $stmt = $this->_conn->prepare($sql);
             $stmt->bindParam(':ReportID', $ReportInfo['ReportID']);
             $stmt->bindParam(':ReportName', $ReportInfo['ReportName']);
-            $stmt->bindValue(':FileName', $ReportInfo['ReportID'] . '.pdf');
+            //如果沒有上傳檔案，就不要寫入檔案名稱
+            if (empty($ReportInfo['FileName'])) {
+                $stmt->bindValue(':FileName', '');
+            } else {
+                $stmt->bindValue(':FileName', $ReportInfo['ReportID'] . '.pdf');
+            }
+            // $stmt->bindValue(':FileName', $ReportInfo['ReportID'] . '.pdf');
             //ReportType 只取第一個數字
             $ReportInfo['ReportType'] = substr($ReportInfo['ReportType'], 0, 1);
             $stmt->bindParam(':ReportType', $ReportInfo['ReportType']);
 
             $stmt->bindParam(':TemplateID', $ReportInfo['TemplateID']);
-            $stmt->bindParam(':ReportDescription', $ReportInfo['ReportDescription']);
+            $stmt->bindParam(':HospitalList', $ReportInfo['HospitalList']);
             $stmt->bindParam(':ReportStatus', $ReportStatus);
             $stmt->bindParam(':CreatedAt', $now);
             $stmt->bindParam(':CustomerName', $ReportInfo['CustomerName']);
@@ -214,6 +264,8 @@ class Report implements ReportInterface
         }
         return true;
     }
+
+
     public function UpdateReportFileName($ID, $FileName)
     {
         try {
@@ -275,7 +327,7 @@ class Report implements ReportInterface
                 FileName=:FileName, 
                 ReportType=:ReportType,
                 TemplateID=:TemplateID,
-                ReportDescription=:ReportDescription, 
+                HospitalList=:HospitalList, 
                 ReportStatus=:ReportStatus, 
                 UpdatedAt=:UpdatedAt,
                 DueDate=:DueDate,
@@ -289,7 +341,7 @@ class Report implements ReportInterface
             $stmt->bindValue(':FileName', $ReportInfo['ReportID'] . '.pdf');
             $stmt->bindParam(':ReportType', $ReportInfo['ReportType']);
             $stmt->bindParam(':TemplateID', $ReportInfo['TemplateID']);
-            $stmt->bindParam(':ReportDescription', $ReportInfo['ReportDescription']);
+            $stmt->bindParam(':HospitalList', $ReportInfo['HospitalList']);
             $stmt->bindParam(':ReportStatus', $ReportStatus);
             $stmt->bindParam(':UpdatedAt', $now);
             $stmt->bindParam(':DueDate', $ReportInfo['DueDate']);

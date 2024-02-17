@@ -3,11 +3,16 @@ class DBConnect
 {
     private $_db_param = [
         'server' => '192.168.2.23',
-        'dbname' => 'libodb',
+        'dbname' => 'libodb_test',
         'port' => '3306',
         'user' => 'root',
         'password' => 'Libobio@16653688'
-          ];
+        // 'server' => 'maxcheng.tw',
+        // 'dbname' => 'libodb',
+        // 'port' => '3307',
+        // 'user' => 'root',
+        // 'password' => ',-4,4p-2'
+    ];
 
     function __construct()
     {

@@ -36,6 +36,8 @@ $smarty->assign("addReport", "ReportDetailMaintain.php?ReportMode=ADD");
 $smarty->assign("RejectReport", "ReportDetailApprove.php?ApproveMode=REJECT");
 $smarty->assign("ApproveReport", "ReportDetailApprove.php?ApproveMode=PASS");
 $smarty->assign("ImportReport", "ReportImportData.php");
+$smarty->assign("log_table", "log_table.php");
+// $smarty->assign("addTemplate", "ReportDetailMaintain.php?ReportMode=ADDT");
 
 // JQGRID TABLE
 $smarty->assign("Search", "SearchTable", true);

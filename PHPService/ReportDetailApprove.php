@@ -131,22 +131,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewApproveDetail") {
                     }elseif ($Role == '3'){
                         $Role = "YL_Lab_ISO";
                     }
-    
-                    // $logData = array(
-                    //     '操作狀態：' => $ApproveMode,
-                    //     '報告編號：' => $ReportID,
-                    //     '報告名稱：' => $ReportName,
-                    //     '送檢單位：' => $ReportType ,
-                    //     '客戶姓名：' => $CustomerName,
-                    //     '客戶信箱：' => $CustomerEmail,
-                    //     '客戶連絡電話：' => $CustomerPhone,
-                    //     '審核醫檢師：' => $Approved1,
-                    //     '審核醫師：' => $Approved2,
-                    //     '報告狀態：' => $ReportStatus
-                    // );
 
-                    $passlog = "報告編號：" . $ReportID . "已審核" . "\n"  . "報告名稱：" . $ReportName . "\n" . "送檢單位：" . $Role . "\n" . "客戶姓名：" . $CustomerName . "\n" . "客戶信箱：" . $CustomerEmail . "\n" . "客戶連絡電話：" . $CustomerPhone . "\n";
-
+                    $passlog = "報告編號：" . $ReportID . "已審核" . "\n"  . "報告名稱：" . $ReportName . "\n" . "送檢單位：" . $Role . "\n" 
+                    . "客戶姓名：" . $CustomerName . "\n" . "客戶信箱：" . $CustomerEmail . "\n" . "客戶連絡電話：" . $CustomerPhone . "\n";
 
                     // $logDataJson = json_encode($logData, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
                     $log->SaveLog("PASS", $Username, "ReportDetailApprove", date("Y-m-d H:i:s"), $passlog);

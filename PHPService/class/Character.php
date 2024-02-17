@@ -47,28 +47,9 @@ class Character
         $user = new User();
         $member = new Member();
         if ($user->ChangePassword($Account, $OldPassword, $NewPassword)) {
-            // $UserData = $user->getUserInfo();
             return true;
-            // $_SESSION['UserID'] = $UserData['id'];
-            // $_SESSION['DisplayName'] = $UserData['username'];
-            // $_SESSION['Account'] = $UserData['username'];
-            // ;
-            // $_SESSION['AUTH'] = true;
-            // $_SESSION['Permission'] = $UserData['permission'];
-            // $_SESSION['Role'] = $UserData['role'];
-            // $_SESSION['Character'] = "User";
-
         } else if ($member->ChangePassword($Account, $OldPassword, $NewPassword)) {
-            // $UserData = $member->getUserInfo();
             return true;
-            //登入成功，先記錄登入資料
-            // $_SESSION['UserID'] = $UserData['UUID'];
-            // $_SESSION['Account'] = $UserData['Email'];
-            // $_SESSION['DisplayName'] = $UserData['CustomerName'];
-            // $_SESSION['AUTH'] = true;
-            // $_SESSION['Permission'] = '0';
-            // $_SESSION['Role'] = '0';
-            // $_SESSION['Character'] = "Member";
         } else {
             $ErrorMessage = "舊密碼錯誤!";
             throw new Exception($ErrorMessage, 1);
