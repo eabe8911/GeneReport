@@ -234,10 +234,11 @@ class Report implements ReportInterface
                     $rcdate_date = null;
 
                 } else {
+                    // $DueDate = DateTime::createFromFormat('d/m/Y', $ReportInfo['DueDate']);
+                    // $DueDate_date = $DueDate->format('Y-m-d');
                     $DueDate = DateTime::createFromFormat('d/m/Y', $ReportInfo['DueDate']);
-                    $DueDate_date = $DueDate->format('Y-m-d');
-                    $DueDate = DateTime::createFromFormat('d/m/Y', $ReportInfo['DueDate']);
-                    $DueDate_date = $DueDate->format('Y-m-d');
+                    // echo $ReportInfo['DueDate']; die;
+                    $DueDate_date = $ReportInfo['DueDate']->format('Y-m-d');
                     $scdate = DateTime::createFromFormat('d/m/Y', $ReportInfo['scdate']);
                     $scdate_date = $scdate->format('Y-m-d');
                     $rcdate = DateTime::createFromFormat('d/m/Y', $ReportInfo['rcdate']);
