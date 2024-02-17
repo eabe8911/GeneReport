@@ -1,0 +1,14 @@
+{
+    "name": "tina.xue/gene-report",
+    "autoload": {
+        "psr-4": {
+            "TinaXue\\GeneReport\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Tina Xue"
+        }
+    ],
+    "require": {}
+}
