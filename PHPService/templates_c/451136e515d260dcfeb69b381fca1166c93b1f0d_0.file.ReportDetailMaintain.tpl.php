@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-02-17 10:47:23
+/* Smarty version 4.3.4, created on 2024-02-17 17:01:29
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\ReportDetailMaintain.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_65d01e3bceb802_86762746',
+  'unifunc' => 'content_65d075e9abeb01_44441870',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '451136e515d260dcfeb69b381fca1166c93b1f0d' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\ReportDetailMaintain.tpl',
-      1 => 1707987509,
+      1 => 1708160488,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_65d01e3bceb802_86762746 (Smarty_Internal_Template $_smarty_tpl) {
+function content_65d075e9abeb01_44441870 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\vendor\\smarty\\smarty\\libs\\plugins\\function.html_options.php','function'=>'smarty_function_html_options',),));
 ?>
 <!--POP UP MODAL TO VIEW MEMBER DETAILS AND RESULTS FOR Member Information-->
@@ -127,7 +127,8 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                 <div class="form-group">
                                     <label for="scID" class="col-md-3 control-label">採檢單號</label>
                                     <div class="col-md-8">
-                                        <input type="text" id="scID" name="scID" class="form-control" required value="<?php echo $_smarty_tpl->tpl_vars['scID']->value;?>
+                                        <input type="text" id="scID" name="scID" class="form-control" required
+                                            value="<?php echo $_smarty_tpl->tpl_vars['scID']->value;?>
 ">
                                     </div>
                                 </div>
@@ -185,7 +186,7 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                     <label for="ccemail" class="col-md-3 control-label">聯絡人郵件:</label>
                                     <div class="col-md-8">
                                         <input type="text" id="ccemail" name="ccemail" class="form-control"
-                                             value="<?php echo $_smarty_tpl->tpl_vars['ccemail']->value;?>
+                                            value="<?php echo $_smarty_tpl->tpl_vars['ccemail']->value;?>
 ">
                                     </div>
                                 </div>
@@ -227,10 +228,19 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                     <center>
                                         <label type="button" class="btn btn-primary btn-block"
                                             style="font-weight:bold;font-size:20px;width:40%;;margin:30px;">
-                                            <input id="ReportUploadPDF" name="ReportUploadPDF[]" style="display:none;"
-                                                type="file" accept="application/pdf" multiple/>
-                                            <i class="fa fa-file-pdf"></i> 上 傳 報 告
+                                            <input id="ReportUploadPDF" name="ReportUploadPDF" style="display:none;"
+                                                type="file" accept="application/pdf" />
+                                            <i class="fa fa-file-pdf"></i> 上傳報告結果
                                         </label>
+                                        <label type="button" class="btn btn-primary btn-block"
+                                            style="font-weight:bold;font-size:20px;width:40%;;margin:30px;">
+                                            <input id="ReportApply" name="ReportApply" style="display:none;" type="file"
+                                                accept="application/pdf" />
+                                            <i class="fa fa-file-pdf"></i> 上傳申請單
+                                        </label>
+                                        
+                                        <!-- <input type="file" id="Apply" name="Apply" /> -->
+
                                     </center>
                                 </div>
                             </div>

@@ -32,7 +32,7 @@ $DisplayName = $_SESSION['DisplayName'];
 $Permission = $_SESSION['Permission'];
 $Role = $_SESSION['Role'];
 $FormName = filter_input(INPUT_POST, 'FormName');
-$ApproveMode = $ReportID = $PDFFile = $ID = $ReportStatus = "";
+$ApproveMode = $ReportID = $PDFFile = $ReportApply = $ID = $ReportStatus = "";
 $ErrorMessage = '';
 
 $report = new Report($_POST);
@@ -77,26 +77,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewApproveDetail") {
                     $ReportStatus = '報告已退回';
                 } 
 
-                // $logData = array(
-                //     '操作狀態：' => $ApproveMode,
-                //     '報告編號：' => $ReportID,
-                //     '報告名稱：' => $ReportName,
-                //     '送檢單位：' => $Role ,
-                //     '客戶姓名：' => $CustomerName,
-                //     '客戶信箱：' => $CustomerEmail,
-                //     '客戶連絡電話：' => $CustomerPhone,
-                //     '退回醫檢師：' => $Reject1,
-                //     '退回醫師：' => $Reject2,
-                //     // '報告狀態：' => $ReportStatus,
-                //     '退回原因：' => $RejectReason
-                // );
-
                 $rejectlog = "報告編號：" . $ReportID . "已被退回" . "\n" . "退回原因：" . $RejectReason . "\n"  . "報告名稱：" . $ReportName . "\n" . "送檢單位：" . $Role . "\n" . "客戶姓名：" . $CustomerName . "\n" . "客戶信箱：" . $CustomerEmail . "\n" . "客戶連絡電話：" . $CustomerPhone . "\n";
             
 
-                // $logDataJson = json_encode($logData, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
                 $log->SaveLog("REJECT", $Username, "ReportDetailApprove", date("Y-m-d H:i:s"),  $rejectlog);
-                // $log->SaveLog("REJECT", $Username, "ReportDetailApprove", date("Y-m-d H:i:s"), json_encode($_POST));
 
                 $messageData = [
                     'report_id' => $_POST['ReportID'],
@@ -177,6 +161,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewApproveDetail") {
     if (!empty($reportInfo['FileName'])) {
         // $PDFFile = "./uploads/" . $reportInfo['FileName'];
         $PDFFile = "./uploads/" . $ReportID . "/" . $reportInfo['FileName'];
+        $ReportApply = "./uploads/" . $ReportID . "/" . $reportInfo['ReportApply'];  //報告申請單        
         // $PDFFile = "./uploads/" . $reportInfo['FileName'];
         // $PDFFile = "./uploads/" . $ReportID . "/" . $filename;
 
@@ -242,6 +227,7 @@ $smarty->assign("Approved2At", $report->ReportInfo('Approved2At'), true);
 $smarty->assign("DueDate", $report->ReportInfo('DueDate'), true);
 $smarty->assign("CustomerName", $report->ReportInfo('CustomerName'), true);
 $smarty->assign("CustomerEmail", $report->ReportInfo('CustomerEmail'), true);
+$smarty->assign("ccemail", $report->ReportInfo('ccemail'), true);
 $smarty->assign("CustomerPhone", $report->ReportInfo('CustomerPhone'), true);
 $smarty->assign("Reject1", $report->ReportInfo('Reject1'), true);
 $smarty->assign("Reject1At", $report->ReportInfo('Reject1At'), true);
@@ -254,8 +240,10 @@ $smarty->assign("scID", $report->ReportInfo('scID'), true);
 $smarty->assign("scdate", $report->ReportInfo('scdate'), true);
 $smarty->assign("rcdate", $report->ReportInfo('rcdate'), true);
 // Display PDF File
+
 if ($PDFFile == '') {
     $smarty->assign("PDFPreview", "");
+
 } else {
     // $smarty->assign("PDFPreview", $PDFFile);
     if (file_exists($PDFFile)) {

@@ -146,6 +146,7 @@
       $('#HospitalList').prop('disabled', state);
       $('#CustomerName').prop('readonly', state);
       $('#CustomerEmail').prop('readonly', state);
+      $('#ccemail').prop('readonly', state);
       $('#CustomerPhone').prop('readonly', state);
       $('#ReportType').prop('disabled', state);
       $('#SampleID').prop('disabled', state);

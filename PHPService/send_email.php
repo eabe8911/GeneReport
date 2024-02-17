@@ -15,6 +15,7 @@ $report = new Report($_POST);
 // Get the ReportID, CustomerEmail, ReportName,and CustomerName values from the form
 $ReportID = $_POST['ReportID'];
 $CustomerEmail = $_POST['CustomerEmail'];
+$ccemail = $_POST['ccemail'];
 $CustomerName = $_POST['CustomerName'];
 $PDFFile = $_POST['PDFFile'];
 $ReportName = $_POST['ReportName'];
@@ -23,7 +24,7 @@ $Username = $_SESSION['DisplayName'];
 // Create a new instance of the Email class
 
 // Send the email
-if ($email->SendEmail($ReportID, $Username, $CustomerEmail, $CustomerName, $PDFFile, $ReportName)) {
+if ($email->SendEmail($ReportID, $Username, $CustomerEmail, $ccemail, $CustomerName, $PDFFile, $ReportName)) {
     
     $report->UpdateReportStatus($ReportID, 8);
 

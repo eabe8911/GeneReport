@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-02-17 10:47:23
+/* Smarty version 4.3.4, created on 2024-02-17 16:34:00
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\js_ReportDetail.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_65d01e3bca84d6_95660048',
+  'unifunc' => 'content_65d06f78e288b6_09411018',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '9dc2a2755c788183a0b94980392c5a85ac9efbe8' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\js_ReportDetail.tpl',
-      1 => 1706860423,
+      1 => 1708158838,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_65d01e3bca84d6_95660048 (Smarty_Internal_Template $_smarty_tpl) {
+function content_65d06f78e288b6_09411018 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
  type="text/javascript">
   
@@ -170,6 +170,7 @@ echo '<script'; ?>
       $('#HospitalList').prop('disabled', state);
       $('#CustomerName').prop('readonly', state);
       $('#CustomerEmail').prop('readonly', state);
+      $('#ccemail').prop('readonly', state);
       $('#CustomerPhone').prop('readonly', state);
       $('#ReportType').prop('disabled', state);
       $('#SampleID').prop('disabled', state);

@@ -37,12 +37,13 @@ class Email
         $this->_mail = new PHPMailer(true); // Passing `true` enables exceptions
     }
 
-    public function SendEmail($ReportID, $ReportName, $CustomerEmail, $CustomerName, $PDFFile, $Username): bool
+    public function SendEmail($ReportID, $ReportName, $CustomerEmail, $ccemail, $CustomerName, $PDFFile, $Username): bool
     {
         $report = new Report($_POST);
         $ReportID = filter_input(INPUT_POST, 'ReportID');
         $ReportName = filter_input(INPUT_POST, 'ReportName');
         $CustomerEmail = filter_input(INPUT_POST, 'CustomerEmail');
+        $ccemail = filter_input(INPUT_POST, 'ccemail');
         $CustomerName = filter_input(INPUT_POST, 'CustomerName');
         $PDFFile = filter_input(INPUT_POST, 'PDFFile');
         // $Role = $_SESSION['Role'];
@@ -77,7 +78,7 @@ class Email
             // Set sender alias based on user permission
 
             $_mail->addAddress($CustomerEmail, 'ToEmail');
-            $_mail->addCC('eabe8911@gmail.com');
+            $_mail->addCC($ccemail);
             $_mail->addBCC('tina.xue@libobio.com');
 
             $_mail->isHTML(true); // Set email format to HTML

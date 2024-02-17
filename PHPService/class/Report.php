@@ -48,6 +48,7 @@ class Report implements ReportInterface
                 'DueDate' => $data['DueDate'] ?? '',
                 'CustomerName' => $data['CustomerName'] ?? '',
                 'CustomerEmail' => $data['CustomerEmail'] ?? '',
+                'ccemail' => $data['ccemail'] ?? '',
                 'CustomerPhone' => $data['CustomerPhone'] ?? '',
                 'ReportSendStatus' => $data['ReportSendStatus'] ?? '',
                 'Editable' => $data['Editable'] ?? '',
@@ -213,10 +214,10 @@ class Report implements ReportInterface
                 }
                 $now = date("Y-m-d H:i:s");
                 $sql = "INSERT INTO Report (
-                ReportID, ReportName, FileName, ReportType, TemplateID, HospitalList, ReportStatus,
+                ReportID, ReportName, FileName, ReportType, TemplateID, ccemail, HospitalList, ReportStatus,
                 CreatedAt, CustomerName, CustomerEmail, CustomerPhone, DueDate, SampleID, PatientID, scID, scdate, rcdate
                 ) VALUES (
-                :ReportID, :ReportName, :FileName, :ReportType, :TemplateID, :HospitalList, :ReportStatus,
+                :ReportID, :ReportName, :FileName, :ReportType, :TemplateID, :ccemail, :HospitalList, :ReportStatus,
                 :CreatedAt, :CustomerName, :CustomerEmail, :CustomerPhone, :DueDate, :SampleID, :PatientID, :scID, :scdate, :rcdate
                 )";
                 $stmt = $this->_conn->prepare($sql);
@@ -234,14 +235,13 @@ class Report implements ReportInterface
                     $rcdate_date = null;
 
                 } else {
-                    // $DueDate = DateTime::createFromFormat('d/m/Y', $ReportInfo['DueDate']);
-                    // $DueDate_date = $DueDate->format('Y-m-d');
-                    $DueDate = DateTime::createFromFormat('d/m/Y', $ReportInfo['DueDate']);
-                    // echo $ReportInfo['DueDate']; die;
-                    $DueDate_date = $ReportInfo['DueDate']->format('Y-m-d');
-                    $scdate = DateTime::createFromFormat('d/m/Y', $ReportInfo['scdate']);
+
+                    $DueDate = DateTime::createFromFormat('Y-m-d', $ReportInfo['DueDate']);
+                    $DueDate_date = $DueDate->format('Y-m-d');
+                    
+                    $scdate = DateTime::createFromFormat('Y-m-d', $ReportInfo['scdate']);
                     $scdate_date = $scdate->format('Y-m-d');
-                    $rcdate = DateTime::createFromFormat('d/m/Y', $ReportInfo['rcdate']);
+                    $rcdate = DateTime::createFromFormat('Y-m-d', $ReportInfo['rcdate']);
                     $rcdate_date = $rcdate->format('Y-m-d');
                 }
 
@@ -252,6 +252,7 @@ class Report implements ReportInterface
 
                 $stmt->bindParam(':ReportType', $ReportInfo['ReportType']);
                 $stmt->bindParam(':TemplateID', $ReportInfo['TemplateID']);
+                $stmt->bindParam(':ccemail', $ReportInfo['ccemail']);
                 $stmt->bindParam(':HospitalList', $ReportInfo['HospitalList']);
                 $stmt->bindParam(':ReportStatus', $ReportStatus);
                 $stmt->bindParam(':CreatedAt', $now);
@@ -335,6 +336,7 @@ class Report implements ReportInterface
                 FileName=:FileName, 
                 ReportType=:ReportType,
                 TemplateID=:TemplateID,
+                ccemail=:ccemail,
                 HospitalList=:HospitalList, 
                 ReportStatus=:ReportStatus, 
                 UpdatedAt=:UpdatedAt,
@@ -354,6 +356,7 @@ class Report implements ReportInterface
             $stmt->bindValue(':FileName', $ReportInfo['ReportID'] . '.pdf');
             $stmt->bindParam(':ReportType', $ReportInfo['ReportType']);
             $stmt->bindParam(':TemplateID', $ReportInfo['TemplateID']);
+            $stmt->bindParam(':ccemail', $ReportInfo['ccemail']);
             $stmt->bindParam(':HospitalList', $ReportInfo['HospitalList']);
             $stmt->bindParam(':ReportStatus', $ReportStatus);
             $stmt->bindParam(':UpdatedAt', $now);

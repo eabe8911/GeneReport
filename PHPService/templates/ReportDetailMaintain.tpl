@@ -91,7 +91,8 @@
                                 <div class="form-group">
                                     <label for="scID" class="col-md-3 control-label">採檢單號</label>
                                     <div class="col-md-8">
-                                        <input type="text" id="scID" name="scID" class="form-control" required value="{$scID}">
+                                        <input type="text" id="scID" name="scID" class="form-control" required
+                                            value="{$scID}">
                                     </div>
                                 </div>
                                 <!---- 採集日期 ---->
@@ -143,7 +144,7 @@
                                     <label for="ccemail" class="col-md-3 control-label">聯絡人郵件:</label>
                                     <div class="col-md-8">
                                         <input type="text" id="ccemail" name="ccemail" class="form-control"
-                                             value="{$ccemail}">
+                                            value="{$ccemail}">
                                     </div>
                                 </div>
 
@@ -181,10 +182,19 @@
                                     <center>
                                         <label type="button" class="btn btn-primary btn-block"
                                             style="font-weight:bold;font-size:20px;width:40%;;margin:30px;">
-                                            <input id="ReportUploadPDF" name="ReportUploadPDF[]" style="display:none;"
-                                                type="file" accept="application/pdf" multiple/>
-                                            <i class="fa fa-file-pdf"></i> 上 傳 報 告
+                                            <input id="ReportUploadPDF" name="ReportUploadPDF" style="display:none;"
+                                                type="file" accept="application/pdf" />
+                                            <i class="fa fa-file-pdf"></i> 上傳報告結果
                                         </label>
+                                        <label type="button" class="btn btn-primary btn-block"
+                                            style="font-weight:bold;font-size:20px;width:40%;;margin:30px;">
+                                            <input id="ReportApply" name="ReportApply" style="display:none;" type="file"
+                                                accept="application/pdf" />
+                                            <i class="fa fa-file-pdf"></i> 上傳申請單
+                                        </label>
+                                        
+                                        <!-- <input type="file" id="Apply" name="Apply" /> -->
+
                                     </center>
                                 </div>
                             </div>
