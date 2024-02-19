@@ -107,6 +107,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
                     $CustomerEmail = $_POST['CustomerEmail'];
                     $ccemail = $_POST['ccemail'];
                     $CustomerPhone = $_POST['CustomerPhone'];
+                    
                     //if ReportUploadPDF click ReportStaus = 1
                     if (!empty($_FILES['ReportUploadPDF']['name'])) {
                         $ReportStatus = '報告已上傳，未審核';

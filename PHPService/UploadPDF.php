@@ -9,6 +9,9 @@
 function CheckPDF($FILES)
 {
     try {
+        if ($FILES['ReportUploadPDF']['type'] != "application/pdf") {
+            throw new Exception("檔案格式錯誤，請上傳PDF檔案。", 1);
+        }
         if ($FILES['ReportUploadPDF']['error'] == 0) {
             $pdf_name = $FILES['ReportUploadPDF']['name'];
             $pdf_tmp_name = $FILES['ReportUploadPDF']['tmp_name'];
