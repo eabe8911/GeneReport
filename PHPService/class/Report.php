@@ -37,6 +37,7 @@ class Report implements ReportInterface
                 'ReportType' => $data['ReportType'] ?? '',
                 'TemplateID' => $data['TemplateID'] ?? '',
                 'FileName' => $data['FileName'] ?? '',
+                'apply_pdf' => $data['apply_pdf'] ?? '',
                 'HospitalList' => $data['HospitalList'] ?? '',
                 'ReportStatus' => $data['ReportStatus'] ?? '',
                 'CreatedAt' => $data['CreatedAt'] ?? '',

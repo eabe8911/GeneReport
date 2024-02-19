@@ -33,7 +33,7 @@ $DisplayName = $_SESSION['DisplayName'];
 $Permission = $_SESSION['Permission'];
 $Role = $_SESSION['Role'];
 $FormName = filter_input(INPUT_POST, 'FormName');
-$ReportMode = $ReportID = $PDFFile = $ID = $ReportStatus = "";
+$ReportMode = $ReportID = $PDFFile = $ApplyFile = $ID = $ReportStatus = "";
 $ErrorMessage = '';
 
 //檢查是否第二次進入
@@ -197,6 +197,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
             $ReportID = $reportInfo['ReportID'];
             if (!empty($reportInfo['FileName'])) {
                 $PDFFile = "./uploads/" . $ReportID . "/" . $reportInfo['FileName'];
+                $ApplyFile = "./uploads/" . $ReportID . "/" . $reportInfo['apply_pdf'];
             }
             // set maintain button area to Maintain mode
             $ReportMode = "VIEW";
@@ -209,6 +210,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
             $ReportID = $reportInfo['ReportID'];
             if (!empty($reportInfo['FileName'])) {
                 $PDFFile = "./uploads/" . $ReportID . "/" . $reportInfo['FileName'];
+                $ApplyFile = "./uploads/" . $ReportID . "/" . $reportInfo['apply_pdf'];
             }
             // set maintain button area to Maintain mode
             $ReportMode = "QUERY";
