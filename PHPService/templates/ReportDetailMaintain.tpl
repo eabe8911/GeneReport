@@ -192,7 +192,7 @@
                                                 accept="application/pdf" />
                                             <i class="fa fa-file-pdf"></i> 上傳申請單
                                         </label>
-                                        
+
                                         <!-- <input type="file" id="Apply" name="Apply" /> -->
 
                                     </center>
@@ -258,10 +258,19 @@
                             </div>
                         </div>
                     </div>
-
+                    <br>
+                    <br>
+                    <!---- Apply Preview -->
+                    <div class="row" id="ApplyArea">
+                        <div class="form-horizontal" role="form">
+                            <div class="col-md-12">
+                                <embed id='ApplyFile' name='ApplyFile' src='{$ApplyFile}'
+                                    type='application/pdf' width='100%' height='1000px' />
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
 </form>
 
 <!---------------------------End----------------------------->

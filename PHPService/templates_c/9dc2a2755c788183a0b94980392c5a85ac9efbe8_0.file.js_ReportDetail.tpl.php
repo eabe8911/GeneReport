@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-02-17 16:34:00
+/* Smarty version 4.3.4, created on 2024-02-20 11:44:26
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\js_ReportDetail.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_65d06f78e288b6_09411018',
+  'unifunc' => 'content_65d4201a33b048_74732489',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '9dc2a2755c788183a0b94980392c5a85ac9efbe8' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\js_ReportDetail.tpl',
-      1 => 1708158838,
+      1 => 1708400664,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_65d06f78e288b6_09411018 (Smarty_Internal_Template $_smarty_tpl) {
+function content_65d4201a33b048_74732489 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
  type="text/javascript">
   
@@ -161,6 +161,17 @@ echo '<script'; ?>
           }
         }
       });
+      $("#ReportApply").change(function() {
+        if (this.files && this.files[0]) {
+          var reader = new FileReader();
+          reader.readAsDataURL(this.files[0]);
+          $('#apply_pdf').val(this.files[0].name);
+          reader.onload = function(e) {
+            $('#ApplyFile').attr('src', e.target.result);
+          }
+        }
+      });
+      
     });
 
     // set fields to readonly

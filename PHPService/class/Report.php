@@ -32,33 +32,33 @@ class Report implements ReportInterface
 
             $this->_ReportInfo = [
                 'ID' => $data['ID'] ?? '',
-                'ReportID' => $data['ReportID'] ?? '',
-                'ReportName' => $data['ReportName'] ?? '',
-                'ReportType' => $data['ReportType'] ?? '',
-                'TemplateID' => $data['TemplateID'] ?? '',
-                'FileName' => $data['FileName'] ?? '',
-                'apply_pdf' => $data['apply_pdf'] ?? '',
-                'HospitalList' => $data['HospitalList'] ?? '',
-                'ReportStatus' => $data['ReportStatus'] ?? '',
-                'CreatedAt' => $data['CreatedAt'] ?? '',
-                'UpdatedAt' => $data['UpdatedAt'] ?? '',
-                'Approved1' => $data['Approved1'] ?? '',
-                'Approved1At' => $data['Approved1At'] ?? '',
-                'Approved2' => $data['Approved2'] ?? '',
-                'Approved2At' => $data['Approved2At'] ?? '',
-                'DueDate' => $data['DueDate'] ?? '',
-                'CustomerName' => $data['CustomerName'] ?? '',
-                'CustomerEmail' => $data['CustomerEmail'] ?? '',
-                'ccemail' => $data['ccemail'] ?? '',
-                'CustomerPhone' => $data['CustomerPhone'] ?? '',
-                'ReportSendStatus' => $data['ReportSendStatus'] ?? '',
-                'Editable' => $data['Editable'] ?? '',
-                'RejectReason' => $data['RejectReason'] ?? '',
-                'SampleID' => $data['SampleID'] ?? '',                       //檢體編號
-                'PatientID' => $data['PatientID'] ?? '',                     //病歷號
-                'scID' => $data['scID'] ?? '',                               //採檢單號
-                'scdate' => $data['scdate'] ?? '',                           //採集日期
-                'rcdate' => $data['rcdate'] ?? '',                           //收檢日期
+                'ReportID' => $data['ReportID'] ?? '',                  //報告編號
+                'ReportName' => $data['ReportName'] ?? '',              //報告名稱
+                'ReportType' => $data['ReportType'] ?? '',              //報告類型
+                'TemplateID' => $data['TemplateID'] ?? '',              //範本編號
+                'FileName' => $data['FileName'] ?? '',                  //檔案名稱
+                'apply_pdf' => $data['apply_pdf'] ?? '',                //申請檔案
+                'HospitalList' => $data['HospitalList'] ?? '',          //醫院名稱
+                'ReportStatus' => $data['ReportStatus'] ?? '',          //報告狀態
+                'CreatedAt' => $data['CreatedAt'] ?? '',                //建立時間
+                'UpdatedAt' => $data['UpdatedAt'] ?? '',                //更新時間
+                'Approved1' => $data['Approved1'] ?? '',                //醫檢師簽核
+                'Approved1At' => $data['Approved1At'] ?? '',            //醫檢師簽核時間
+                'Approved2' => $data['Approved2'] ?? '',                //醫師簽核
+                'Approved2At' => $data['Approved2At'] ?? '',            //醫師簽核時間
+                'DueDate' => $data['DueDate'] ?? '',                    //截止日期
+                'CustomerName' => $data['CustomerName'] ?? '',          //客戶名稱
+                'CustomerEmail' => $data['CustomerEmail'] ?? '',        //客戶Email
+                'ccemail' => $data['ccemail'] ?? '',                    //副本Email
+                'CustomerPhone' => $data['CustomerPhone'] ?? '',        //客戶電話
+                'ReportSendStatus' => $data['ReportSendStatus'] ?? '',  //報告寄送狀態
+                'Editable' => $data['Editable'] ?? '',                  //是否可編輯
+                'RejectReason' => $data['RejectReason'] ?? '',          //拒絕原因
+                'SampleID' => $data['SampleID'] ?? '',                  //檢體編號
+                'PatientID' => $data['PatientID'] ?? '',                //病歷號
+                'scID' => $data['scID'] ?? '',                          //採檢單號
+                'scdate' => $data['scdate'] ?? '',                      //採集日期
+                'rcdate' => $data['rcdate'] ?? '',                      //收檢日期
             ];
         } catch (PDOException | Exception $th) {
             throw new Exception($th->getMessage(), $th->getCode());
@@ -216,10 +216,10 @@ class Report implements ReportInterface
                 $now = date("Y-m-d H:i:s");
                 $sql = "INSERT INTO Report (
                 ReportID, ReportName, FileName, ReportType, TemplateID, ccemail, HospitalList, ReportStatus,
-                CreatedAt, CustomerName, CustomerEmail, CustomerPhone, DueDate, SampleID, PatientID, scID, scdate, rcdate
+                CreatedAt, CustomerName, CustomerEmail, CustomerPhone, DueDate, SampleID, PatientID, scID, scdate, rcdate, apply_pdf
                 ) VALUES (
                 :ReportID, :ReportName, :FileName, :ReportType, :TemplateID, :ccemail, :HospitalList, :ReportStatus,
-                :CreatedAt, :CustomerName, :CustomerEmail, :CustomerPhone, :DueDate, :SampleID, :PatientID, :scID, :scdate, :rcdate
+                :CreatedAt, :CustomerName, :CustomerEmail, :CustomerPhone, :DueDate, :SampleID, :PatientID, :scID, :scdate, :rcdate, :apply_pdf
                 )";
                 $stmt = $this->_conn->prepare($sql);
                 $stmt->bindParam(':ReportID', $ReportInfo['ReportID']);
@@ -229,6 +229,12 @@ class Report implements ReportInterface
                     $stmt->bindValue(':FileName', '');
                 } else {
                     $stmt->bindValue(':FileName', $ReportInfo['ReportID'] . '.pdf');
+                }
+                //如果沒有上傳檔案，就不要寫入apply_pdf檔案名稱
+                if (empty($ReportInfo['apply_pdf'])) {
+                    $stmt->bindValue(':apply_pdf', '');
+                } else {
+                    $stmt->bindValue(':apply_pdf', $_FILES['ReportApply']['name'] . '.pdf');
                 }
                 if (empty($ReportInfo['DueDate']) || $ReportInfo['DueDate'] == '') {
                     $DueDate_date = null;
@@ -335,6 +341,7 @@ class Report implements ReportInterface
             $sql = "UPDATE Report SET
                 ReportName=:ReportName, 
                 FileName=:FileName, 
+                apply_pdf=:apply_pdf,
                 ReportType=:ReportType,
                 TemplateID=:TemplateID,
                 ccemail=:ccemail,
@@ -355,6 +362,7 @@ class Report implements ReportInterface
             $stmt = $this->_conn->prepare($sql);
             $stmt->bindParam(':ReportName', $ReportInfo['ReportName']);
             $stmt->bindValue(':FileName', $ReportInfo['ReportID'] . '.pdf');
+            $stmt->bindParam(':apply_pdf', $_FILES['ReportApply']['name'] );
             $stmt->bindParam(':ReportType', $ReportInfo['ReportType']);
             $stmt->bindParam(':TemplateID', $ReportInfo['TemplateID']);
             $stmt->bindParam(':ccemail', $ReportInfo['ccemail']);

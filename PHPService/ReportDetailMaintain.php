@@ -197,6 +197,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
             $ReportID = $reportInfo['ReportID'];
             if (!empty($reportInfo['FileName'])) {
                 $PDFFile = "./uploads/" . $ReportID . "/" . $reportInfo['FileName'];
+            }
+            if (!empty($reportInfo['apply_pdf'])) {
                 $ApplyFile = "./uploads/" . $ReportID . "/" . $reportInfo['apply_pdf'];
             }
             // set maintain button area to Maintain mode
@@ -210,6 +212,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
             $ReportID = $reportInfo['ReportID'];
             if (!empty($reportInfo['FileName'])) {
                 $PDFFile = "./uploads/" . $ReportID . "/" . $reportInfo['FileName'];
+            }
+            if (!empty($reportInfo['apply_pdf'])) {
                 $ApplyFile = "./uploads/" . $ReportID . "/" . $reportInfo['apply_pdf'];
             }
             // set maintain button area to Maintain mode
@@ -316,6 +320,16 @@ $smarty->assign("PatientID", $report->ReportInfo('PatientID'), true);
 $smarty->assign("scID", $report->ReportInfo('scID'), true);
 $smarty->assign("scdate", $report->ReportInfo('scdate'), true);
 $smarty->assign("rcdate", $report->ReportInfo('rcdate'), true);
+
+if($ApplyFile == ''){
+    $smarty->assign("ApplyFile", "", true);
+    $output_apply = '<br><h4 style="justify-content: center; display: flex;color:#FF0000">請上傳申請單</h4>';
+    echo '<div id="pdf-output">' . $output_apply . '</div>';
+
+} else {
+    $smarty->assign("ApplyFile", $ApplyFile, true);
+}
+
 
 $ReportName = $report->ReportInfo('ReportName');
 $CustomerEmail = $report->ReportInfo('CustomerEmail');

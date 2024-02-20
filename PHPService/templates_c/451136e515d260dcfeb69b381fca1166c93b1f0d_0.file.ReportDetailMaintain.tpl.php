@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-02-17 17:01:29
+/* Smarty version 4.3.4, created on 2024-02-20 11:34:06
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\ReportDetailMaintain.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_65d075e9abeb01_44441870',
+  'unifunc' => 'content_65d41dae6f62a2_49515702',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '451136e515d260dcfeb69b381fca1166c93b1f0d' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\ReportDetailMaintain.tpl',
-      1 => 1708160488,
+      1 => 1708399937,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_65d075e9abeb01_44441870 (Smarty_Internal_Template $_smarty_tpl) {
+function content_65d41dae6f62a2_49515702 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\vendor\\smarty\\smarty\\libs\\plugins\\function.html_options.php','function'=>'smarty_function_html_options',),));
 ?>
 <!--POP UP MODAL TO VIEW MEMBER DETAILS AND RESULTS FOR Member Information-->
@@ -238,7 +238,7 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                                 accept="application/pdf" />
                                             <i class="fa fa-file-pdf"></i> 上傳申請單
                                         </label>
-                                        
+
                                         <!-- <input type="file" id="Apply" name="Apply" /> -->
 
                                     </center>
@@ -307,10 +307,20 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                             </div>
                         </div>
                     </div>
-
+                    <br>
+                    <br>
+                    <!---- Apply Preview -->
+                    <div class="row" id="ApplyArea">
+                        <div class="form-horizontal" role="form">
+                            <div class="col-md-12">
+                                <embed id='ApplyFile' name='ApplyFile' src='<?php echo $_smarty_tpl->tpl_vars['ApplyFile']->value;?>
+'
+                                    type='application/pdf' width='100%' height='1000px' />
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
 </form>
 
 <!---------------------------End-----------------------------><?php }

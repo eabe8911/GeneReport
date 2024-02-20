@@ -137,6 +137,17 @@
           }
         }
       });
+      $("#ReportApply").change(function() {
+        if (this.files && this.files[0]) {
+          var reader = new FileReader();
+          reader.readAsDataURL(this.files[0]);
+          $('#apply_pdf').val(this.files[0].name);
+          reader.onload = function(e) {
+            $('#ApplyFile').attr('src', e.target.result);
+          }
+        }
+      });
+      
     });
 
     // set fields to readonly
