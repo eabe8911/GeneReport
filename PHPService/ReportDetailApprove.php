@@ -161,9 +161,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewApproveDetail") {
     if (!empty($reportInfo['FileName'])) {
         // $PDFFile = "./uploads/" . $reportInfo['FileName'];
         $PDFFile = "./uploads/" . $ReportID . "/" . $reportInfo['FileName'];
-        $ReportApply = "./uploads/" . $ReportID . "/" . $reportInfo['ReportApply'];  //報告申請單        
-        // $PDFFile = "./uploads/" . $reportInfo['FileName'];
-        // $PDFFile = "./uploads/" . $ReportID . "/" . $filename;
+        $ApplyFile = "./uploads/" . $ReportID . "/" . $reportInfo['apply_pdf'];
+        
+        // $ReportApply = "./uploads/" . $ReportID . "/" . $reportInfo['ReportApply'];  //報告申請單        
 
     } elseif ($ReportStatus == '3') {
         $ErrorMessage = "實驗室於'$Reject1At'退回此報告</br>請管理者重新上傳報告";
@@ -240,6 +240,14 @@ $smarty->assign("scID", $report->ReportInfo('scID'), true);
 $smarty->assign("scdate", $report->ReportInfo('scdate'), true);
 $smarty->assign("rcdate", $report->ReportInfo('rcdate'), true);
 // Display PDF File
+if($ApplyFile == ''){
+    $smarty->assign("ApplyFile", "", true);
+    $output_apply = '<br><h4 style="justify-content: center; display: flex;color:#FF0000">請上傳申請單</h4>';
+    echo '<div id="pdf-output">' . $output_apply . '</div>';
+
+} else {
+    $smarty->assign("ApplyFile", $ApplyFile, true);
+}
 
 if ($PDFFile == '') {
     $smarty->assign("PDFPreview", "");
