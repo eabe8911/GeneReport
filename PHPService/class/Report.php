@@ -672,6 +672,17 @@ class Report implements ReportInterface
         return $this;
     }
 
+    public function get_ApplyFile()
+    {
+        return $this->_ApplyFile;
+    }
+
+    public function set_ApplyFile($_ApplyFile): self
+    {
+        $this->_ApplyFile = $_ApplyFile;
+        return $this;
+    }   
+
     /**
      * @return mixed
      */

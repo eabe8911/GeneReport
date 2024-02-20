@@ -37,7 +37,7 @@ class Email
         $this->_mail = new PHPMailer(true); // Passing `true` enables exceptions
     }
 
-    public function SendEmail($ReportID, $ReportName, $CustomerEmail, $ccemail, $CustomerName, $PDFFile, $Username): bool
+    public function SendEmail($ReportID, $ReportName, $CustomerEmail, $ccemail, $CustomerName, $PDFFile, $ApplyFile, $Username): bool
     {
         $report = new Report($_POST);
         $ReportID = filter_input(INPUT_POST, 'ReportID');
@@ -46,6 +46,7 @@ class Email
         $ccemail = filter_input(INPUT_POST, 'ccemail');
         $CustomerName = filter_input(INPUT_POST, 'CustomerName');
         $PDFFile = filter_input(INPUT_POST, 'PDFFile');
+        $ApplyFile = filter_input(INPUT_POST, 'ApplyFile');
         // $Role = $_SESSION['Role'];
         $ReportType = filter_input(INPUT_POST, 'ReportType');
         $Username = $_SESSION['DisplayName'];
@@ -105,9 +106,11 @@ class Email
 
             $_mail->CharSet = 'UTF-8';
 
-            if (!empty($PDFFile)) {
+            if (!empty($PDFFile) || !empty($ApplyFile)) {
                 $_mail->addAttachment($PDFFile); // Add attachments
+                $_mail->addAttachment($ApplyFile); // Add attachments
             } else {
+
             }
 
             $_mail->send();
@@ -115,7 +118,7 @@ class Email
 
             echo '<script>
                     alert("Message has been sent");
-                    window.location.href = "../home.php";
+                    window.location.href = "home.php";
                 </script>';
 
 

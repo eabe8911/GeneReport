@@ -1,6 +1,6 @@
 <?php
-// function sendNotificationToTeams($Action, $message = "test message from Report System")
-// {
+function sendNotificationToTeams($Action, $message = "test message from Report System")
+{
 //     $WebHookURL = "";
 //     switch ($Action) {
 //         case 'ADD':
@@ -47,5 +47,5 @@
 //     curl_close($ch);
 
 //     return $result;
-// }
+}
 ?>

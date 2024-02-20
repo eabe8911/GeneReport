@@ -243,6 +243,7 @@ $smarty->assign("Hiddenfield3", "<input type='hidden' id='FileName' name='FileNa
 $smarty->assign("Hiddenfield4", "<input type='hidden' id='Permission' name='Permission' value=" . $Permission . ">");
 $smarty->assign("Hiddenfield5", "<input type='hidden' id='ID' name='ID' value=" . $ID . ">");
 $smarty->assign("Hiddenfield6", "<input type='hidden' id='Account' name='Account' value=" . $Account . ">");
+$smarty->assign("Hiddenfield7", "<input type='hidden' id='ApplyFile' name='ApplyFile' value=" . $ApplyFile . ">");
 // Error Message
 $smarty->assign("ErrorMessage", $ErrorMessage);
 if ($ErrorMessage == '') {
@@ -361,6 +362,7 @@ if ($PDFFile == '') {
                 <input type="hidden" name="ccemail" value="' . $ccemail . '">
                 <input type="hidden" name="CustomerName" value="' . $CustomerName . '">
                 <input type="hidden" name="PDFFile" value="' . $PDFFile . '">
+                <input type="hidden" name="ApplyFile" value="' . $ApplyFile . '">
                 <input type="submit" style="margin-left: 10px;height: 40px;" name="BtnSendPDF" id="BtnSendPDF" class="btn btn-primary" value="' . $ReportID . ', Send E-mail">
             </form>
             <button style="margin-left: 10px;height: 40px;" class="btn btn-primary" type="button">
