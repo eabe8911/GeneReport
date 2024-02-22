@@ -216,6 +216,7 @@
                                 <button type="button" class="btn btn-danger btn-md" id="BtnReportViewExit"
                                     style="font-weight:bold;font-size:20px;margin:30px;">
                                     <i class="fa fa-eject"></i> 離 開</button>
+
                             </p>
                             {if $Permission != 4}
                             <p id="ReportQueryButton">
@@ -235,6 +236,9 @@
                                 <button type="button" class="btn btn-danger btn-md" id="BtnReportExit"
                                     style="font-weight:bold;font-size:20px;margin:30px;">
                                     <i class="fa fa-eject"></i> 離 開</button>
+                                    <button type="button" class="btn btn-danger btn-md" id="BtnReportEditccemail"
+                                    style="font-weight:bold;font-size:20px;margin:30px;">
+                                    <i class="fa fa-edit"></i> 修改郵件</button>
                             </p>
                             {/if}
                             <!--SUBMIT BUTTON IS CONNECTED TO HOME.PHP-->
@@ -264,8 +268,8 @@
                     <div class="row" id="ApplyArea">
                         <div class="form-horizontal" role="form">
                             <div class="col-md-12">
-                                <embed id='ApplyFile' name='ApplyFile' src='{$ApplyFile}'
-                                    type='application/pdf' width='100%' height='1000px' />
+                                <embed id='ApplyFile' name='ApplyFile' src='{$ApplyFile}' type='application/pdf'
+                                    width='100%' height='1000px' />
                             </div>
                         </div>
                     </div>

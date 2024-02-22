@@ -32,7 +32,7 @@ $DisplayName = $_SESSION['DisplayName'];
 $Permission = $_SESSION['Permission'];
 $Role = $_SESSION['Role'];
 $FormName = filter_input(INPUT_POST, 'FormName');
-$ApproveMode = $ReportID = $PDFFile = $ReportApply = $ID = $ReportStatus = "";
+$ApproveMode = $ReportID = $PDFFile = $ReportApply = $ApplyFile = $ID = $ReportStatus = "";
 $ErrorMessage = '';
 
 $report = new Report($_POST);

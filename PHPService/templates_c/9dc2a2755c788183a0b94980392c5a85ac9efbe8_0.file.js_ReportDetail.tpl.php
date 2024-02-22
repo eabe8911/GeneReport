@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-02-20 11:44:26
+/* Smarty version 4.3.4, created on 2024-02-22 16:05:31
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\js_ReportDetail.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_65d4201a33b048_74732489',
+  'unifunc' => 'content_65d7004b84e749_42214930',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '9dc2a2755c788183a0b94980392c5a85ac9efbe8' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\js_ReportDetail.tpl',
-      1 => 1708400664,
+      1 => 1708589125,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_65d4201a33b048_74732489 (Smarty_Internal_Template $_smarty_tpl) {
+function content_65d7004b84e749_42214930 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
  type="text/javascript">
   
@@ -29,7 +29,7 @@ echo '<script'; ?>
     //建立日期 : 2023/01/04 09:38
     //建立人員 : Max Cheng
     //修改日期 : 
-    //修改人員 : Max Cheng
+    //修改人員 : Tina
     //----------------------------------
     $(document).ready(function() {
       // check the permission of user
@@ -105,6 +105,16 @@ echo '<script'; ?>
         $('#ReportQueryButton').hide();
         $('#ReportConfirmButton').show();
         setFieldsReadonly(false);
+      });
+
+      $('#BtnReportEditccemail').click(function() {
+        $('#ReportMode').val('EDIT');
+        // set button for confirm
+        $('#ReportQueryButton').hide();
+        $('#ReportConfirmButton').show();
+        // setFieldsReadonly(false);
+        setFieldsEditable(false);
+
       });
 
       $('#BtnReportCancel').click(function() {
@@ -194,6 +204,12 @@ echo '<script'; ?>
       $('#TemplateID').prop('disabled', state);
       $('#ReportStatus').prop('readonly', state);
       $('#DisplayUploadButton').prop('hidden', state);
+    }
+
+    //set email editable
+    function setFieldsEditable(state) {
+      $('#CustomerEmail').prop('readonly', state);
+      $('#ccemail').prop('readonly', state);
     }
 
     // 設定 jQuery 日期選擇器

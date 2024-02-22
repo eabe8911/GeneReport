@@ -5,7 +5,7 @@
     //建立日期 : 2023/01/04 09:38
     //建立人員 : Max Cheng
     //修改日期 : 
-    //修改人員 : Max Cheng
+    //修改人員 : Tina
     //----------------------------------
     $(document).ready(function() {
       // check the permission of user
@@ -81,6 +81,16 @@
         $('#ReportQueryButton').hide();
         $('#ReportConfirmButton').show();
         setFieldsReadonly(false);
+      });
+
+      $('#BtnReportEditccemail').click(function() {
+        $('#ReportMode').val('EDIT');
+        // set button for confirm
+        $('#ReportQueryButton').hide();
+        $('#ReportConfirmButton').show();
+        // setFieldsReadonly(false);
+        setFieldsEditable(false);
+
       });
 
       $('#BtnReportCancel').click(function() {
@@ -170,6 +180,12 @@
       $('#TemplateID').prop('disabled', state);
       $('#ReportStatus').prop('readonly', state);
       $('#DisplayUploadButton').prop('hidden', state);
+    }
+
+    //set email editable
+    function setFieldsEditable(state) {
+      $('#CustomerEmail').prop('readonly', state);
+      $('#ccemail').prop('readonly', state);
     }
 
     // 設定 jQuery 日期選擇器
