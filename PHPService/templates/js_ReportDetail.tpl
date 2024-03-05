@@ -184,7 +184,7 @@
 
     //set email editable
     function setFieldsEditable(state) {
-      $('#CustomerEmail').prop('readonly', state);
+      // $('#CustomerEmail').prop('readonly', state);
       $('#ccemail').prop('readonly', state);
     }
 

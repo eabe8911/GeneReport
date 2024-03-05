@@ -32,33 +32,33 @@ class Report implements ReportInterface
 
             $this->_ReportInfo = [
                 'ID' => $data['ID'] ?? '',
-                'ReportID' => $data['ReportID'] ?? '',                  //報告編號
-                'ReportName' => $data['ReportName'] ?? '',              //報告名稱
-                'ReportType' => $data['ReportType'] ?? '',              //報告類型
-                'TemplateID' => $data['TemplateID'] ?? '',              //範本編號
-                'FileName' => $data['FileName'] ?? '',                  //檔案名稱
-                'apply_pdf' => $data['apply_pdf'] ?? '',                //申請檔案
-                'HospitalList' => $data['HospitalList'] ?? '',          //醫院名稱
-                'ReportStatus' => $data['ReportStatus'] ?? '',          //報告狀態
-                'CreatedAt' => $data['CreatedAt'] ?? '',                //建立時間
-                'UpdatedAt' => $data['UpdatedAt'] ?? '',                //更新時間
-                'Approved1' => $data['Approved1'] ?? '',                //醫檢師簽核
-                'Approved1At' => $data['Approved1At'] ?? '',            //醫檢師簽核時間
-                'Approved2' => $data['Approved2'] ?? '',                //醫師簽核
-                'Approved2At' => $data['Approved2At'] ?? '',            //醫師簽核時間
-                'DueDate' => $data['DueDate'] ?? '',                    //截止日期
-                'CustomerName' => $data['CustomerName'] ?? '',          //客戶名稱
-                'CustomerEmail' => $data['CustomerEmail'] ?? '',        //客戶Email
-                'ccemail' => $data['ccemail'] ?? '',                    //副本Email
-                'CustomerPhone' => $data['CustomerPhone'] ?? '',        //客戶電話
-                'ReportSendStatus' => $data['ReportSendStatus'] ?? '',  //報告寄送狀態
-                'Editable' => $data['Editable'] ?? '',                  //是否可編輯
-                'RejectReason' => $data['RejectReason'] ?? '',          //拒絕原因
-                'SampleID' => $data['SampleID'] ?? '',                  //檢體編號
-                'PatientID' => $data['PatientID'] ?? '',                //病歷號
-                'scID' => $data['scID'] ?? '',                          //採檢單號
-                'scdate' => $data['scdate'] ?? '',                      //採集日期
-                'rcdate' => $data['rcdate'] ?? '',                      //收檢日期
+                'ReportID' => $data['ReportID'] ?? '', //報告編號
+                'ReportName' => $data['ReportName'] ?? '', //報告名稱
+                'ReportType' => $data['ReportType'] ?? '', //報告類型
+                'TemplateID' => $data['TemplateID'] ?? '', //範本編號
+                'FileName' => $data['FileName'] ?? '', //檔案名稱
+                'apply_pdf' => $data['apply_pdf'] ?? '', //申請檔案
+                'HospitalList' => $data['HospitalList'] ?? '', //醫院名稱
+                'ReportStatus' => $data['ReportStatus'] ?? '', //報告狀態
+                'CreatedAt' => $data['CreatedAt'] ?? '', //建立時間
+                'UpdatedAt' => $data['UpdatedAt'] ?? '', //更新時間
+                'Approved1' => $data['Approved1'] ?? '', //醫檢師簽核
+                'Approved1At' => $data['Approved1At'] ?? '', //醫檢師簽核時間
+                'Approved2' => $data['Approved2'] ?? '', //醫師簽核
+                'Approved2At' => $data['Approved2At'] ?? '', //醫師簽核時間
+                'DueDate' => $data['DueDate'] ?? '', //截止日期
+                'CustomerName' => $data['CustomerName'] ?? '', //客戶名稱
+                'CustomerEmail' => $data['CustomerEmail'] ?? '', //客戶Email
+                'ccemail' => $data['ccemail'] ?? '', //副本Email
+                'CustomerPhone' => $data['CustomerPhone'] ?? '', //客戶電話
+                'ReportSendStatus' => $data['ReportSendStatus'] ?? '', //報告寄送狀態
+                'Editable' => $data['Editable'] ?? '', //是否可編輯
+                'RejectReason' => $data['RejectReason'] ?? '', //拒絕原因
+                'SampleID' => $data['SampleID'] ?? '', //檢體編號
+                'PatientID' => $data['PatientID'] ?? '', //病歷號
+                'scID' => $data['scID'] ?? '', //採檢單號
+                'scdate' => $data['scdate'] ?? '', //採集日期
+                'rcdate' => $data['rcdate'] ?? '', //收檢日期
             ];
         } catch (PDOException | Exception $th) {
             throw new Exception($th->getMessage(), $th->getCode());
@@ -141,8 +141,6 @@ class Report implements ReportInterface
             throw new Exception($th->getMessage(), $th->getCode());
         }
     }
-
-
 
     // Get Template List
     public function getTemplateList()
@@ -245,7 +243,7 @@ class Report implements ReportInterface
 
                     $DueDate = DateTime::createFromFormat('Y-m-d', $ReportInfo['DueDate']);
                     $DueDate_date = $DueDate->format('Y-m-d');
-                    
+
                     $scdate = DateTime::createFromFormat('Y-m-d', $ReportInfo['scdate']);
                     $scdate_date = $scdate->format('Y-m-d');
                     $rcdate = DateTime::createFromFormat('Y-m-d', $ReportInfo['rcdate']);
@@ -337,16 +335,17 @@ class Report implements ReportInterface
             if (!empty($_FILES['ReportUploadPDF']['name'])) {
                 $ReportStatus = '1';
             }
+
             $now = date("Y-m-d H:i:s");
             $sql = "UPDATE Report SET
-                ReportName=:ReportName, 
-                FileName=:FileName, 
+                ReportName=:ReportName,
+                FileName=:FileName,
                 apply_pdf=:apply_pdf,
                 ReportType=:ReportType,
                 TemplateID=:TemplateID,
                 ccemail=:ccemail,
-                HospitalList=:HospitalList, 
-                ReportStatus=:ReportStatus, 
+                HospitalList=:HospitalList,
+                ReportStatus=:ReportStatus,
                 UpdatedAt=:UpdatedAt,
                 DueDate=:DueDate,
                 CustomerName=:CustomerName,
@@ -362,7 +361,7 @@ class Report implements ReportInterface
             $stmt = $this->_conn->prepare($sql);
             $stmt->bindParam(':ReportName', $ReportInfo['ReportName']);
             $stmt->bindValue(':FileName', $ReportInfo['ReportID'] . '.pdf');
-            $stmt->bindParam(':apply_pdf', $_FILES['ReportApply']['name'] );
+            $stmt->bindValue(':apply_pdf', $_FILES['ReportApply']['name'] . '.pdf');
             $stmt->bindParam(':ReportType', $ReportInfo['ReportType']);
             $stmt->bindParam(':TemplateID', $ReportInfo['TemplateID']);
             $stmt->bindParam(':ccemail', $ReportInfo['ccemail']);
@@ -382,7 +381,7 @@ class Report implements ReportInterface
             $stmt->bindParam(':id', $ReportInfo['ID']);
             $stmt->execute();
         } catch (PDOException | Exception $th) {
-            throw new Exception($th->getMessage(), $th->getCode());
+            throw new Exception($th->getMessage() . ' Error code: ' . $th->getCode());
         }
         return true;
     }
@@ -526,7 +525,6 @@ class Report implements ReportInterface
         }
     }
 
-
     private function ApproveBy1($ID, $ApprovedBy, $FileName)
     {
         try {
@@ -553,7 +551,7 @@ class Report implements ReportInterface
     private function RejectBy1($ReportInfo, $UserInfo)
     {
         try {
-            //Rename the PDF file 
+            //Rename the PDF file
             if (!empty($ReportInfo['FileName'])) {
                 $FileName_Reject = "Reject_" . $ReportInfo["FileName"];
                 $oldPath = __DIR__ . '/../uploads/' . $ReportInfo['ReportID'] . "/" . $ReportInfo['FileName'];
@@ -577,8 +575,6 @@ class Report implements ReportInterface
             $stmt->bindParam(':ID', $ID);
             $stmt->execute();
 
-
-
             // Delete the PDF file from the server
             // if (!empty($ReportInfo['PDFFilename'])) {
             //     if (file_exists(__DIR__ . '/../uploads/' . $ReportInfo['PDFFilename'])) {
@@ -590,7 +586,6 @@ class Report implements ReportInterface
         }
         return true;
     }
-
 
     private function ApproveBy2($ID, $ApprovedBy, $FileName)
     {
@@ -663,7 +658,7 @@ class Report implements ReportInterface
     }
 
     /**
-     * @param mixed $_PDFFile 
+     * @param mixed $_PDFFile
      * @return self
      */
     public function set_PDFFile($_PDFFile): self
@@ -681,7 +676,7 @@ class Report implements ReportInterface
     {
         $this->_ApplyFile = $_ApplyFile;
         return $this;
-    }   
+    }
 
     /**
      * @return mixed
@@ -713,6 +708,4 @@ class Report implements ReportInterface
         return true;
     }
 
-
 }
-?>
