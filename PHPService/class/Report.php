@@ -232,7 +232,7 @@ class Report implements ReportInterface
                 if (empty($ReportInfo['apply_pdf'])) {
                     $stmt->bindValue(':apply_pdf', '');
                 } else {
-                    $stmt->bindValue(':apply_pdf', $_FILES['ReportApply']['name'] . '.pdf');
+                    $stmt->bindValue(':apply_pdf', $_FILES['ReportApply']['name']);
                 }
                 if (empty($ReportInfo['DueDate']) || $ReportInfo['DueDate'] == '') {
                     $DueDate_date = null;
@@ -332,9 +332,6 @@ class Report implements ReportInterface
                 $ReportStatus = '1';
                 $RejectReason = '';
             }
-            if (!empty($_FILES['ReportUploadPDF']['name'])) {
-                $ReportStatus = '1';
-            }
 
             $now = date("Y-m-d H:i:s");
             $sql = "UPDATE Report SET
@@ -360,8 +357,11 @@ class Report implements ReportInterface
                 WHERE id=:id";
             $stmt = $this->_conn->prepare($sql);
             $stmt->bindParam(':ReportName', $ReportInfo['ReportName']);
-            $stmt->bindValue(':FileName', $ReportInfo['ReportID'] . '.pdf');
-            $stmt->bindValue(':apply_pdf', $_FILES['ReportApply']['name'] . '.pdf');
+            if (!empty($_FILES['ReportUploadPDF']['name'])) {
+                $ReportStatus = '1';
+                $stmt->bindValue(':FileName', $ReportInfo['ReportID'] . '.pdf');
+            }
+            $stmt->bindValue(':apply_pdf', $_FILES['ReportApply']['name']);
             $stmt->bindParam(':ReportType', $ReportInfo['ReportType']);
             $stmt->bindParam(':TemplateID', $ReportInfo['TemplateID']);
             $stmt->bindParam(':ccemail', $ReportInfo['ccemail']);

@@ -77,6 +77,7 @@
                     <option value="">會員管理</option>
                     <option value="changePassword.php">更改密碼</option>
                     <option value="log_table.php">紀錄查詢</option>
+                    <option value="Statistics.php">統計管理</option>
                     <option value="index.php">登出</option>
                 </select>
             </li>
@@ -86,6 +87,7 @@
                     <option value="">會員管理</option>
                     <option value="changePassword.php">更改密碼</option>
                     <option value="log_table.php">紀錄查詢</option>
+                    <option value="Statistics.php">統計管理</option>
                     <option value="index.php">登出</option>
                 </select>
             </li>

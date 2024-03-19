@@ -33,7 +33,52 @@ class Searchinfo
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
+    }
 
+    public function SearchListDisplay($HospitalList, $StartDate, $EndDate)
+    {
+        $sql = "SELECT * FROM Report WHERE HospitalList = :HospitalList AND rcdate >= :StartDate AND rcdate <= :EndDate;";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindValue(":HospitalList", $HospitalList);
+        $stmt->bindValue(":StartDate", $StartDate);
+        $stmt->bindValue(":EndDate", $EndDate);
+        $stmt->execute();
+        $result1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result1;
+    }
+
+    public function SearchListbydate($HospitalList, $StartDate, $EndDate)
+    {
+        $sql = "SELECT count(*) FROM Report WHERE HospitalList = :HospitalList AND rcdate >= :StartDate AND rcdate <= :EndDate;";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindValue(":HospitalList", $HospitalList);
+        $stmt->bindValue(":StartDate", $StartDate);
+        $stmt->bindValue(":EndDate", $EndDate);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function SearchListbyDueDate($HospitalList, $DueDate)
+    {
+        $sql = "SELECT count(*) FROM Report WHERE HospitalList = :HospitalList AND DueDate >= :DueDate;";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindValue(":HospitalList", $HospitalList);
+        $stmt->bindValue(":DueDate", $DueDate);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function SearchListDisplaybyDueDate($HospitalList, $DueDate)
+    {
+        $sql = "SELECT * FROM Report WHERE HospitalList = :HospitalList AND DueDate >= :DueDate;";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindValue(":HospitalList", $HospitalList);
+        $stmt->bindValue(":DueDate", $DueDate);
+        $stmt->execute();
+        $result2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result2;
     }
 
     public function __destruct()

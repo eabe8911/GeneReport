@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>統計管理查詢</title>
+</head>
+
+<body>
+    <form action="Searchinfo.php" id="search" name="search" method="post">
+        <label for="List">送檢單位：</label>
+        <!-- 下拉式選單搜尋DB HostpitalList欄位 -->
+        <select name="List" id="List">
+            <option value="1">台大雲林分院</option>
+            <option value="2">台北市立聯合醫院</option>
+            <option value="3">台南市立醫院</option>
+            <option value="4">台南新樓醫院</option>
+            <option value="5">竹山秀傳</option>
+            <option value="6">屏基醫院</option>
+            <option value="7">恩主公醫院</option>
+            <option value="8">國軍803</option>
+            <option value="9">國泰醫院</option>
+            <option value="10">統誠醫療</option>
+            <option value="11">麻豆新樓醫院</option>
+            <option value="12">彰化秀傳</option>
+            <option value="13">彰濱秀傳</option>
+            <option value="14">輔大醫院</option>
+            <option value="15">泓采診所</option>
+        </select>
+        <br>
+
+
+        <input type="submit" value="查詢">
+    </form>
+    <br>
+    <!-- 接收php回傳 -->
+    <div id="result">總收檢數量：<?php echo $result;?></div>
+    <br>
+
+
+    <script>
+        document.getElementById('search').addEventListener('submit', function (e) {
+           
+            var start = document.getElementById('start').value;
+            var end = document.getElementById('end').value;
+
+            alert('起始日期：' + start + ' 結束日期：' + end);
+
+        })
+    </script>
+</body>
+
+
+</html>

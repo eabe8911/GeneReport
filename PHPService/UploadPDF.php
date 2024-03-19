@@ -38,20 +38,18 @@ function CheckPDF($FILES)
             return $pdf_name;
         }
 
-                //申請單上傳
-                $apply_name = $FILES['ReportApply']['name'];
-                $apply_tmp_name = $FILES['ReportApply']['tmp_name'];
-                $apply_size = $FILES['ReportApply']['size'];
-                $apply_type = $FILES['ReportApply']['type'];
-                move_uploaded_file($apply_tmp_name, $dirName . '/' . $apply_name);
-                exec("chown libobioadmin . $dirName ." . '/' . $apply_name); // Change file owner to libobioadmin
-                exec("chmod 777 . $dirName ." . '/' . $apply_name); // Change file mode to 777
-                return $apply_name;
-
+        //申請單上傳
+        $apply_name = $FILES['ReportApply']['name'];
+        $apply_tmp_name = $FILES['ReportApply']['tmp_name'];
+        $apply_size = $FILES['ReportApply']['size'];
+        $apply_type = $FILES['ReportApply']['type'];
+        move_uploaded_file($apply_tmp_name, $dirName . '/' . $apply_name);
+        exec("chown libobioadmin . $dirName ." . '/' . $apply_name); // Change file owner to libobioadmin
+        exec("chmod 777 . $dirName ." . '/' . $apply_name); // Change file mode to 777
+        return $apply_name;
 
         return false;
     } catch (Exception $th) {
         throw new Exception("檔案無法更改屬性，請通知資訊處處理。" . $th->getMessage(), 1);
     }
 }
-?>
