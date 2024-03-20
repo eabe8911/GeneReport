@@ -49,6 +49,14 @@
             background-color: #ddd;
             margin-bottom: 15px;
         }
+
+        .form-hint {
+            color: rgb(255, 0, 0);
+            display: block;
+            margin-bottom: 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
     </style>
 </head>
 
@@ -61,49 +69,43 @@
         <!-- 送檢單位 -->
 
         <div class="form-group col-md-3">
-
             <br>
+            <!-- 提醒日期為必填欄位 -->
+            <span class="form-hint">*日期區間為必填欄位</span>
+
             <label for="StartDate">起始日期:</label>
-            <input type="date" id="StartDate" name="StartDate" class="form-control" >
+            <input type="date" id="StartDate" name="StartDate" class="form-control" required="required">
             <label for="EndDate">結束日期:</label>
-            <input type="date" id="EndDate" name="EndDate" class="form-control" >
-            <!-- </div>
-        <div class="form-group col-md-2"> -->
+            <input type="date" id="EndDate" name="EndDate" class="form-control" required="required">
+
             <br>
-            <!-- <label for="HospitalList" >&nbsp;&nbsp;&nbsp;&nbsp;送檢單位:</label> -->
+            {html_options name=ReportTypeList id=ReportTypeList options=['' => '請選擇檢測單位'] + $ReportListOptions
+            selected=$ReportListSelect class="form-control" }
+
+            <br>
             {html_options name=HospitalList id=HospitalList options=['' => '請選擇送檢單位'] + $HospitalListOptions
-            selected=$HospitalListSelect class="form-control" required="required"}
+            selected=$HospitalListSelect class="form-control" }
 
-            <!-- <input type="submit" value="查詢"> -->
+
             <br>
-            <label for="DueDate">Due Date:</label>
-            <input type="date" id="DueDate" name="DueDate" class="form-control" >
-
             <div style="text-align: right;">
                 <input type="submit" name="Search" class="btn btn-primary" value="Search" tabindex=2>
             </div>
             <br>
-            <!-- <label>&nbsp;&nbsp;&nbsp;&nbsp;總收檢數量：{$result}</label> -->
             <label>&nbsp;&nbsp;&nbsp;&nbsp;總收檢數量：{$result} <br> &nbsp;&nbsp;&nbsp;&nbsp;(日期範圍：{$StartDate} - {$EndDate})
                 ({$HospitalList})</label>
-            <br>
-            <label>&nbsp;&nbsp;&nbsp;&nbsp;DueDate：{$result_DueDate}</label>
-            <!-- <label>&nbsp;&nbsp;&nbsp;&nbsp;報告編號：
-                {foreach from=$result1 item=reportId name=reportId}
 
-                <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {$reportId@iteration}.
-                <a href="ReportDetailMaintain.php?id={$id}" target="_blank">{$reportId}</a><br>
-                {/foreach} <br>
-            </label> -->
             <label>&nbsp;&nbsp;&nbsp;&nbsp;報告編號：
                 {foreach from=$result1 item=item}
                 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                {$item@iteration}. <a href="ReportDetailMaintain.php?id={$item.id}" target="_blank">{$item.ReportID}</a>
+                {$item@iteration}. <a href="ReportDetailMaintain.php?id={$item.id}"
+                    target="_blank">{$item.ReportID}</a><br>
                 {/foreach} <br>
             </label>
         </div>
     </form>
 
+    <!-- 如果有回傳值接收php回傳 -->
 
 </body>
 

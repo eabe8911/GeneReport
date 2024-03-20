@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-03-07 17:16:32
+/* Smarty version 4.3.4, created on 2024-03-20 10:44:04
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\search.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_65e985f0663982_66321911',
+  'unifunc' => 'content_65fa4d747578c3_95391910',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'aab3e39dc6c3c6e12f255d9b29453885d75c8b0b' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\search.tpl',
-      1 => 1709802963,
+      1 => 1710902642,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_65e985f0663982_66321911 (Smarty_Internal_Template $_smarty_tpl) {
+function content_65fa4d747578c3_95391910 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\vendor\\smarty\\smarty\\libs\\plugins\\function.html_options.php','function'=>'smarty_function_html_options',),));
 ?>
 <!DOCTYPE html>
@@ -74,6 +74,14 @@ $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\Users\\tina.xue\\Documen
             background-color: #ddd;
             margin-bottom: 15px;
         }
+
+        .form-hint {
+            color: rgb(255, 0, 0);
+            display: block;
+            margin-bottom: 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
     </style>
 </head>
 
@@ -86,61 +94,36 @@ $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\Users\\tina.xue\\Documen
         <!-- 送檢單位 -->
 
         <div class="form-group col-md-3">
-
             <br>
+            <!-- 提醒日期為必填欄位 -->
+            <span class="form-hint">*日期區間為必填欄位</span>
+
             <label for="StartDate">起始日期:</label>
-            <input type="date" id="StartDate" name="StartDate" class="form-control" >
+            <input type="date" id="StartDate" name="StartDate" class="form-control" required="required">
             <label for="EndDate">結束日期:</label>
-            <input type="date" id="EndDate" name="EndDate" class="form-control" >
-            <!-- </div>
-        <div class="form-group col-md-2"> -->
+            <input type="date" id="EndDate" name="EndDate" class="form-control" required="required">
+
             <br>
-            <!-- <label for="HospitalList" >&nbsp;&nbsp;&nbsp;&nbsp;送檢單位:</label> -->
-            <?php echo smarty_function_html_options(array('name'=>'HospitalList','id'=>'HospitalList','options'=>array(''=>'請選擇送檢單位')+$_smarty_tpl->tpl_vars['HospitalListOptions']->value,'selected'=>$_smarty_tpl->tpl_vars['HospitalListSelect']->value,'class'=>"form-control",'required'=>"required"),$_smarty_tpl);?>
+            <?php echo smarty_function_html_options(array('name'=>'ReportTypeList','id'=>'ReportTypeList','options'=>array(''=>'請選擇檢測單位')+$_smarty_tpl->tpl_vars['ReportListOptions']->value,'selected'=>$_smarty_tpl->tpl_vars['ReportListSelect']->value,'class'=>"form-control"),$_smarty_tpl);?>
 
 
-            <!-- <input type="submit" value="查詢"> -->
             <br>
-            <label for="DueDate">Due Date:</label>
-            <input type="date" id="DueDate" name="DueDate" class="form-control" >
+            <?php echo smarty_function_html_options(array('name'=>'HospitalList','id'=>'HospitalList','options'=>array(''=>'請選擇送檢單位')+$_smarty_tpl->tpl_vars['HospitalListOptions']->value,'selected'=>$_smarty_tpl->tpl_vars['HospitalListSelect']->value,'class'=>"form-control"),$_smarty_tpl);?>
 
+
+
+            <br>
             <div style="text-align: right;">
                 <input type="submit" name="Search" class="btn btn-primary" value="Search" tabindex=2>
             </div>
             <br>
-            <!-- <label>&nbsp;&nbsp;&nbsp;&nbsp;總收檢數量：<?php echo $_smarty_tpl->tpl_vars['result']->value;?>
-</label> -->
             <label>&nbsp;&nbsp;&nbsp;&nbsp;總收檢數量：<?php echo $_smarty_tpl->tpl_vars['result']->value;?>
  <br> &nbsp;&nbsp;&nbsp;&nbsp;(日期範圍：<?php echo $_smarty_tpl->tpl_vars['StartDate']->value;?>
  - <?php echo $_smarty_tpl->tpl_vars['EndDate']->value;?>
 )
                 (<?php echo $_smarty_tpl->tpl_vars['HospitalList']->value;?>
 )</label>
-            <br>
-            <label>&nbsp;&nbsp;&nbsp;&nbsp;DueDate：<?php echo $_smarty_tpl->tpl_vars['result_DueDate']->value;?>
-</label>
-            <!-- <label>&nbsp;&nbsp;&nbsp;&nbsp;報告編號：
-                <?php
-$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['result1']->value, 'reportId', false, NULL, 'reportId', array (
-));
-$_smarty_tpl->tpl_vars['reportId']->iteration = 0;
-$_smarty_tpl->tpl_vars['reportId']->do_else = true;
-if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['reportId']->value) {
-$_smarty_tpl->tpl_vars['reportId']->do_else = false;
-$_smarty_tpl->tpl_vars['reportId']->iteration++;
-$__foreach_reportId_0_saved = $_smarty_tpl->tpl_vars['reportId'];
-?>
 
-                <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $_smarty_tpl->tpl_vars['reportId']->iteration;?>
-.
-                <a href="ReportDetailMaintain.php?id=<?php echo $_smarty_tpl->tpl_vars['id']->value;?>
-" target="_blank"><?php echo $_smarty_tpl->tpl_vars['reportId']->value;?>
-</a><br>
-                <?php
-$_smarty_tpl->tpl_vars['reportId'] = $__foreach_reportId_0_saved;
-}
-$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?> <br>
-            </label> -->
             <label>&nbsp;&nbsp;&nbsp;&nbsp;報告編號：
                 <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['result1']->value, 'item');
@@ -149,21 +132,23 @@ $_smarty_tpl->tpl_vars['item']->do_else = true;
 if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['item']->value) {
 $_smarty_tpl->tpl_vars['item']->do_else = false;
 $_smarty_tpl->tpl_vars['item']->iteration++;
-$__foreach_item_1_saved = $_smarty_tpl->tpl_vars['item'];
+$__foreach_item_0_saved = $_smarty_tpl->tpl_vars['item'];
 ?>
                 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <?php echo $_smarty_tpl->tpl_vars['item']->iteration;?>
 . <a href="ReportDetailMaintain.php?id=<?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
-" target="_blank"><?php echo $_smarty_tpl->tpl_vars['item']->value['ReportID'];?>
-</a>
+"
+                    target="_blank"><?php echo $_smarty_tpl->tpl_vars['item']->value['ReportID'];?>
+</a><br>
                 <?php
-$_smarty_tpl->tpl_vars['item'] = $__foreach_item_1_saved;
+$_smarty_tpl->tpl_vars['item'] = $__foreach_item_0_saved;
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?> <br>
             </label>
         </div>
     </form>
 
+    <!-- 如果有回傳值接收php回傳 -->
 
 </body>
 

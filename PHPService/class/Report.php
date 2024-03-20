@@ -142,6 +142,7 @@ class Report implements ReportInterface
         }
     }
 
+
     // Get Template List
     public function getTemplateList()
     {
