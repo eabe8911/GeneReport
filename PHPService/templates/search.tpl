@@ -73,19 +73,20 @@
             <!-- 提醒日期為必填欄位 -->
             <span class="form-hint">*日期區間為必填欄位</span>
 
-            <label for="StartDate">起始日期:</label>
+            <label for="StartDate"><span style="color: red;">*</span>起始日期:</label>
             <input type="date" id="StartDate" name="StartDate" class="form-control" required="required">
-            <label for="EndDate">結束日期:</label>
+            <label for="EndDate"><span style="color: red;">*</span>結束日期:</label>
             <input type="date" id="EndDate" name="EndDate" class="form-control" required="required">
 
             <br>
             {html_options name=ReportTypeList id=ReportTypeList options=['' => '請選擇檢測單位'] + $ReportListOptions
             selected=$ReportListSelect class="form-control" }
-
             <br>
             {html_options name=HospitalList id=HospitalList options=['' => '請選擇送檢單位'] + $HospitalListOptions
             selected=$HospitalListSelect class="form-control" }
-
+            <br>
+            {html_options name=Approved1 id=Approved1 options=['' => '請選擇簽核醫檢師'] + $ApprovedOptions
+            selected=$ApprovedSelect class="form-control" }
 
             <br>
             <div style="text-align: right;">

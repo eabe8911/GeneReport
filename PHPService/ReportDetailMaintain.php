@@ -93,7 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
             case 'EDIT':
                 if ($report->UpdateReport($_POST)) {
                     $ReportMode = $_POST['ReportMode'];
-                    //if ReportMode = ADD, 將"新增"帶到ReportMode
+             
                     if ($ReportMode == 'EDIT') {
                         $ReportMode = "修改報告";
                     }

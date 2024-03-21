@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-03-20 10:44:04
+/* Smarty version 4.3.4, created on 2024-03-20 16:00:05
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\search.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_65fa4d747578c3_95391910',
+  'unifunc' => 'content_65fa978508fb60_46223659',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'aab3e39dc6c3c6e12f255d9b29453885d75c8b0b' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\search.tpl',
-      1 => 1710902642,
+      1 => 1710921596,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_65fa4d747578c3_95391910 (Smarty_Internal_Template $_smarty_tpl) {
+function content_65fa978508fb60_46223659 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\vendor\\smarty\\smarty\\libs\\plugins\\function.html_options.php','function'=>'smarty_function_html_options',),));
 ?>
 <!DOCTYPE html>
@@ -98,18 +98,19 @@ $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\Users\\tina.xue\\Documen
             <!-- 提醒日期為必填欄位 -->
             <span class="form-hint">*日期區間為必填欄位</span>
 
-            <label for="StartDate">起始日期:</label>
+            <label for="StartDate"><span style="color: red;">*</span>起始日期:</label>
             <input type="date" id="StartDate" name="StartDate" class="form-control" required="required">
-            <label for="EndDate">結束日期:</label>
+            <label for="EndDate"><span style="color: red;">*</span>結束日期:</label>
             <input type="date" id="EndDate" name="EndDate" class="form-control" required="required">
 
             <br>
             <?php echo smarty_function_html_options(array('name'=>'ReportTypeList','id'=>'ReportTypeList','options'=>array(''=>'請選擇檢測單位')+$_smarty_tpl->tpl_vars['ReportListOptions']->value,'selected'=>$_smarty_tpl->tpl_vars['ReportListSelect']->value,'class'=>"form-control"),$_smarty_tpl);?>
 
-
             <br>
             <?php echo smarty_function_html_options(array('name'=>'HospitalList','id'=>'HospitalList','options'=>array(''=>'請選擇送檢單位')+$_smarty_tpl->tpl_vars['HospitalListOptions']->value,'selected'=>$_smarty_tpl->tpl_vars['HospitalListSelect']->value,'class'=>"form-control"),$_smarty_tpl);?>
 
+            <br>
+            <?php echo smarty_function_html_options(array('name'=>'Approved1','id'=>'Approved1','options'=>array(''=>'請選擇簽核醫檢師')+$_smarty_tpl->tpl_vars['ApprovedOptions']->value,'selected'=>$_smarty_tpl->tpl_vars['ApprovedSelect']->value,'class'=>"form-control"),$_smarty_tpl);?>
 
 
             <br>

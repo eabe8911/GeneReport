@@ -142,7 +142,6 @@ class Report implements ReportInterface
         }
     }
 
-
     // Get Template List
     public function getTemplateList()
     {
@@ -160,6 +159,24 @@ class Report implements ReportInterface
             throw new Exception($th->getMessage(), $th->getCode());
         }
     }
+
+    // Get libodn.user Permission=2 List
+    public function getUserList()
+    {
+        try {
+            $sql = "SELECT id, username FROM users WHERE permission = 2";
+            $stmt = $this->_conn->prepare($sql);
+            $stmt->execute();
+            $response = $stmt->fetchAll(PDO::FETCH_KEY_PAIR);
+            if ($response) {
+                return $response;
+            } else {
+                return false;
+            }
+        } catch (PDOException | Exception $th) {
+            throw new Exception($th->getMessage(), $th->getCode());
+        }
+    }   
 
     // Get PDF file from server
     public function GetPDFFile($FileName)
@@ -323,7 +340,7 @@ class Report implements ReportInterface
         }
     }
 
-    public function updateReport($ReportInfo)
+    public function UpdateReport($ReportInfo)
     {
         try {
             if (empty($ReportInfo['FileName'])) {
@@ -355,13 +372,16 @@ class Report implements ReportInterface
                 scID=:scID,
                 scdate=:scdate,
                 rcdate=:rcdate
-                WHERE id=:id";
+                WHERE ID=:ID";
             $stmt = $this->_conn->prepare($sql);
             $stmt->bindParam(':ReportName', $ReportInfo['ReportName']);
             if (!empty($_FILES['ReportUploadPDF']['name'])) {
                 $ReportStatus = '1';
-                $stmt->bindValue(':FileName', $ReportInfo['ReportID'] . '.pdf');
+                $FileName = $ReportInfo['ReportID'] . '.pdf';
+            }else{
+                $FileName = null;
             }
+            $stmt->bindValue(':FileName', $FileName);
             $stmt->bindValue(':apply_pdf', $_FILES['ReportApply']['name']);
             $stmt->bindParam(':ReportType', $ReportInfo['ReportType']);
             $stmt->bindParam(':TemplateID', $ReportInfo['TemplateID']);
@@ -379,7 +399,7 @@ class Report implements ReportInterface
             $stmt->bindParam(':scID', $ReportInfo['scID']);
             $stmt->bindParam(':scdate', $ReportInfo['scdate']);
             $stmt->bindParam(':rcdate', $ReportInfo['rcdate']);
-            $stmt->bindParam(':id', $ReportInfo['ID']);
+            $stmt->bindParam(':ID', $ReportInfo['ID']);
             $stmt->execute();
         } catch (PDOException | Exception $th) {
             throw new Exception($th->getMessage() . ' Error code: ' . $th->getCode());
