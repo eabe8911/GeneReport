@@ -54,8 +54,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $Approved1 = 'dick';
     }
 
-    $Statistics = $Searchinfo->SearchList($HospitalList);
-    $TypeList = $Searchinfo->ReportTypeList($ReportTypeList);
 
     if ($StartDate != '' && $EndDate != '') {
         if ($ReportTypeList != '' && $HospitalList != '' && $Approved1 != '') {
@@ -126,12 +124,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    $smarty->assign('Statistics', $Statistics);
-    $smarty->assign('TypeList', $TypeList);
+
+    
 }
 
 $smarty->assign("HospitalList", $report->ReportInfo('HospitalList'), true);
-$smarty->assign("ReportTypeList", $report->ReportInfo('ReportTypeList'), true);
+$smarty->assign("ReportTypeList", $ReportTypeList, true);
 $smarty->assign("Approved1", $report->ReportInfo('Approved1'), true);
 
 $List = $report->getHospitalList();
@@ -139,7 +137,6 @@ $ReportList = $report->getReportTypeList();
 $Approved1 = $report->getUserList();
 
 $HospitalList = $report->ReportInfo('HospitalList');
-$ReportTypeList = $report->ReportInfo('ReportTypeList');
 $Approved_User = $report->ReportInfo('Approved1');
 
 $smarty->assign('result', $result);

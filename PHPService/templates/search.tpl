@@ -80,21 +80,27 @@
 
             <br>
             {html_options name=ReportTypeList id=ReportTypeList options=['' => '請選擇檢測單位'] + $ReportListOptions
-            selected=$ReportListSelect class="form-control" }
+             class="form-control" }
             <br>
             {html_options name=HospitalList id=HospitalList options=['' => '請選擇送檢單位'] + $HospitalListOptions
-            selected=$HospitalListSelect class="form-control" }
+             class="form-control" }
             <br>
             {html_options name=Approved1 id=Approved1 options=['' => '請選擇簽核醫檢師'] + $ApprovedOptions
-            selected=$ApprovedSelect class="form-control" }
+             class="form-control" }
 
             <br>
             <div style="text-align: right;">
                 <input type="submit" name="Search" class="btn btn-primary" value="Search" tabindex=2>
             </div>
             <br>
-            <label>&nbsp;&nbsp;&nbsp;&nbsp;總收檢數量：{$result} <br> &nbsp;&nbsp;&nbsp;&nbsp;(日期範圍：{$StartDate} - {$EndDate})
-                ({$HospitalList})</label>
+            <label>
+                &nbsp;&nbsp;&nbsp;&nbsp;總收檢數量：{$result} <br> &nbsp;&nbsp;&nbsp;&nbsp;
+                                            <搜尋條件如下> <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            日期範圍：{$StartDate} - {$EndDate} <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            檢測單位：{$ReportTypeList} <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            送檢單位：{$HospitalList} <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            簽核醫檢師：{$Approved1}
+            </label>
 
             <label>&nbsp;&nbsp;&nbsp;&nbsp;報告編號：
                 {foreach from=$result1 item=item}

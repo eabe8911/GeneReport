@@ -111,9 +111,9 @@ class Searchinfo
 
     public function ListDisplay1($StartDate, $EndDate, $ReportTypeList)
     {
-        $sql = "SELECT * FROM Report WHERE ReportTypeList = :ReportTypeList AND rcdate >= :StartDate AND rcdate <= :EndDate;";
+        $sql = "SELECT * FROM Report WHERE ReportType = :ReportType AND rcdate >= :StartDate AND rcdate <= :EndDate;";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindValue(":ReportTypeList", $ReportTypeList);
+        $stmt->bindValue(":ReportType", $ReportTypeList);
         $stmt->bindValue(":StartDate", $StartDate);
         $stmt->bindValue(":EndDate", $EndDate);
         $stmt->execute();
@@ -236,9 +236,9 @@ class Searchinfo
 
     public function Listbydate1($StartDate, $EndDate, $ReportTypeList)
     {
-        $sql = "SELECT count(*) FROM Report WHERE ReportTypeList = :ReportTypeList AND rcdate >= :StartDate AND rcdate <= :EndDate;";
+        $sql = "SELECT count(*) FROM Report WHERE ReportType = :ReportType AND rcdate >= :StartDate AND rcdate <= :EndDate;";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindValue(":ReportTypeList", $ReportTypeList);
+        $stmt->bindValue(":ReportType", $ReportTypeList);
         $stmt->bindValue(":StartDate", $StartDate);
         $stmt->bindValue(":EndDate", $EndDate);
         $stmt->execute();
