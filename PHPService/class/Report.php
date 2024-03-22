@@ -378,11 +378,23 @@ class Report implements ReportInterface
             if (!empty($_FILES['ReportUploadPDF']['name'])) {
                 $ReportStatus = '1';
                 $FileName = $ReportInfo['ReportID'] . '.pdf';
+                $stmt->bindValue(':FileName', $FileName);
+
             }else{
                 $FileName = null;
+                $stmt->bindValue(':FileName', $ReportInfo['FileName']);
+
             }
-            $stmt->bindValue(':FileName', $FileName);
-            $stmt->bindValue(':apply_pdf', $_FILES['ReportApply']['name']);
+
+            if(!empty($_FILES['ReportApply']['name'])){
+                $ReportApplyName = $_FILES['ReportApply']['name'] ;
+                $stmt->bindValue(':apply_pdf', $_FILES['ReportApply']['name']);
+
+            }else{
+                $ReportApplyName = null;
+                $stmt->bindValue(':apply_pdf', $ReportInfo['apply_pdf']);
+            }
+
             $stmt->bindParam(':ReportType', $ReportInfo['ReportType']);
             $stmt->bindParam(':TemplateID', $ReportInfo['TemplateID']);
             $stmt->bindParam(':ccemail', $ReportInfo['ccemail']);

@@ -39,14 +39,16 @@ function CheckPDF($FILES)
         }
 
         //申請單上傳
-        $apply_name = $FILES['ReportApply']['name'];
-        $apply_tmp_name = $FILES['ReportApply']['tmp_name'];
-        $apply_size = $FILES['ReportApply']['size'];
-        $apply_type = $FILES['ReportApply']['type'];
-        move_uploaded_file($apply_tmp_name, $dirName . '/' . $apply_name);
-        exec("chown libobioadmin . $dirName ." . '/' . $apply_name); // Change file owner to libobioadmin
-        exec("chmod 777 . $dirName ." . '/' . $apply_name); // Change file mode to 777
-        return $apply_name;
+        if ($FILES['ReportApply']['error'] == 0) {
+            $apply_name = $FILES['ReportApply']['name'];
+            $apply_tmp_name = $FILES['ReportApply']['tmp_name'];
+            $apply_size = $FILES['ReportApply']['size'];
+            $apply_type = $FILES['ReportApply']['type'];
+            move_uploaded_file($apply_tmp_name, $dirName . '/' . $apply_name);
+            exec("chown libobioadmin . $dirName ." . '/' . $apply_name); // Change file owner to libobioadmin
+            exec("chmod 777 . $dirName ." . '/' . $apply_name); // Change file mode to 777
+            return $apply_name;
+        }
 
         return false;
     } catch (Exception $th) {
