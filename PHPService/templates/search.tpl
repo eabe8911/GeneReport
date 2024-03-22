@@ -97,9 +97,9 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;總收檢數量：{$result} <br> &nbsp;&nbsp;&nbsp;&nbsp;
                                             <搜尋條件如下> <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             日期範圍：{$StartDate} - {$EndDate} <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            檢測單位：{$ReportTypeList} <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            送檢單位：{$HospitalList} <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            簽核醫檢師：{$Approved1}
+                                            檢測單位：{$ReportTypeName} <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            送檢單位：{$HospitalListName} <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            簽核醫檢師：{$Approved1Name}
             </label>
 
             <label>&nbsp;&nbsp;&nbsp;&nbsp;報告編號：

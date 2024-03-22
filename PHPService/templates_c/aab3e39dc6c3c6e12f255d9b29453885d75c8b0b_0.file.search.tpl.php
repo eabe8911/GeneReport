@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-03-21 17:04:32
+/* Smarty version 4.3.4, created on 2024-03-22 10:52:37
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\search.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_65fbf82009c522_99287297',
+  'unifunc' => 'content_65fcf2755f4139_12155739',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'aab3e39dc6c3c6e12f255d9b29453885d75c8b0b' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\search.tpl',
-      1 => 1711011866,
+      1 => 1711075954,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_65fbf82009c522_99287297 (Smarty_Internal_Template $_smarty_tpl) {
+function content_65fcf2755f4139_12155739 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\vendor\\smarty\\smarty\\libs\\plugins\\function.html_options.php','function'=>'smarty_function_html_options',),));
 ?>
 <!DOCTYPE html>
@@ -125,11 +125,11 @@ $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\Users\\tina.xue\\Documen
                                             日期範圍：<?php echo $_smarty_tpl->tpl_vars['StartDate']->value;?>
  - <?php echo $_smarty_tpl->tpl_vars['EndDate']->value;?>
  <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            檢測單位：<?php echo $_smarty_tpl->tpl_vars['ReportTypeList']->value;?>
+                                            檢測單位：<?php echo $_smarty_tpl->tpl_vars['ReportTypeName']->value;?>
  <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            送檢單位：<?php echo $_smarty_tpl->tpl_vars['HospitalList']->value;?>
+                                            送檢單位：<?php echo $_smarty_tpl->tpl_vars['HospitalListName']->value;?>
  <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            簽核醫檢師：<?php echo $_smarty_tpl->tpl_vars['Approved1']->value;?>
+                                            簽核醫檢師：<?php echo $_smarty_tpl->tpl_vars['Approved1Name']->value;?>
 
             </label>
 

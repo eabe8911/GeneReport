@@ -160,7 +160,7 @@ class Report implements ReportInterface
         }
     }
 
-    // Get libodn.user Permission=2 List
+    // Get libodb.user Permission=2 List
     public function getUserList()
     {
         try {

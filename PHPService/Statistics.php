@@ -23,7 +23,7 @@ $conn = new DBConnect();
 $smarty = new Smarty();
 $Searchinfo = new Searchinfo();
 //get search.tpl data
-$result = $resultbydate = $StartDate = $EndDate = $DueDate = $HospitalList = $ReportTypeList = '';
+$result = $resultbydate = $StartDate = $EndDate = $DueDate = $HospitalList = $ReportTypeList = $HospitalListName = $ReportTypeName = $Approved1Name ='';
 $result1 = $resultID = $resultIDString = array();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -33,26 +33,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $HospitalList = $_POST['HospitalList'];
     $ReportTypeList = $_POST['ReportTypeList'];
     $Approved1 = $_POST['Approved1'];
-
+    $conn = $conn->connect();
     if ($HospitalList == '') {
         $HospitalList = '';
+        $HospitalListName = '';
     } else {
         $HospitalList = $_POST['HospitalList'];
+        $stmt = $conn->prepare("SELECT Name FROM HospitalList WHERE id = :id");
+        $stmt->bindValue(":id", $HospitalList);
+        $stmt->execute();
+        $HospitalListName = $stmt->fetchColumn();
     }
 
     if ($ReportTypeList == '') {
         $ReportTypeList = '';
+        $ReportTypeName = '';
     } else {
         $ReportTypeList = $_POST['ReportTypeList'];
+        $stmt = $conn->prepare("SELECT Name FROM ReportType WHERE id = :id");
+        $stmt->bindValue(":id", $ReportTypeList);
+        $stmt->execute();
+        $ReportTypeName = $stmt->fetchColumn();
     }
 
+    //簽核醫檢師
     if ($Approved1 == '') {
         $Approved1 = '';
-    } elseif ($Approved1 == '19') {
-        $Approved1 = 'ivan';
-    } elseif ($Approved1 == '10') {
-        $Approved1 = 'dick';
+        $Approved1Name = '';
+    } else {
+        $Approved1 = $_POST['Approved1'];
+        $stmt = $conn->prepare("SELECT username FROM users WHERE id = :id");
+        $stmt->bindValue(":id", $Approved1);
+        $stmt->execute();
+        $Approved1Name = $stmt->fetchColumn();
     }
+
+
+
+
+
 
 
     if ($StartDate != '' && $EndDate != '') {
@@ -145,12 +164,16 @@ $smarty->assign('resultID', $resultID);
 
 $smarty->assign('HospitalListOptions', $List, true);
 $smarty->assign('HospitalListSelect', $HospitalList, true);
+$smarty->assign('HospitalListName', $HospitalListName, true);
+
 
 $smarty->assign('ReportListOptions', $ReportList, true);
 $smarty->assign('ReportListSelect', $ReportTypeList, true);
+$smarty->assign('ReportTypeName', $ReportTypeName, true);
 
 $smarty->assign('ApprovedOptions', $Approved1, true);
 $smarty->assign('ApprovedSelect', $Approved_User, true);
+$smarty->assign('Approved1Name', $Approved1Name, true);
 
 $smarty->assign('StartDate', $StartDate);
 $smarty->assign('EndDate', $EndDate);
