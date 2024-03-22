@@ -69,45 +69,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
 
-
-
-
-
-
     if ($StartDate != '' && $EndDate != '') {
-        if ($ReportTypeList != '' && $HospitalList != '' && $Approved1 != '') {
-            $SearchListbydate = $Searchinfo->AllListbydate($HospitalList, $ReportTypeList, $StartDate, $EndDate, $Approved1);
+        if ($ReportTypeList != '' && $HospitalList != '' && $Approved1Name != '') {
+            $SearchListbydate = $Searchinfo->AllListbydate($HospitalList, $ReportTypeList, $StartDate, $EndDate, $Approved1Name);
             $result = $SearchListbydate[0]['count(*)'];
-            $SearchListbydate1 = $Searchinfo->SearchAllListDisplay($HospitalList, $ReportTypeList, $StartDate, $EndDate, $Approved1);
+            $SearchListbydate1 = $Searchinfo->SearchAllListDisplay($HospitalList, $ReportTypeList, $StartDate, $EndDate, $Approved1Name);
             foreach ($SearchListbydate1 as $key => $value) {
                 $result1[] = array('id' => $value['id'], 'ReportID' => $value['ReportID']);
             }
             $smarty->assign('SearchListbydate', $SearchListbydate);
-        } elseif ($ReportTypeList != '' && $HospitalList == '' && $Approved1 != '') {
-            $SearchListbydate = $Searchinfo->ReportListbydate($ReportTypeList, $StartDate, $EndDate, $Approved1);
+        } elseif ($ReportTypeList != '' && $HospitalList == '' && $Approved1Name != '') {
+            $SearchListbydate = $Searchinfo->ReportListbydate($ReportTypeList, $StartDate, $EndDate, $Approved1Name);
             $result = $SearchListbydate[0]['count(*)'];
-            $SearchListbydate1 = $Searchinfo->SearchReportListDisplay($ReportTypeList, $StartDate, $EndDate, $Approved1);
+            $SearchListbydate1 = $Searchinfo->SearchReportListDisplay($ReportTypeList, $StartDate, $EndDate, $Approved1Name);
             foreach ($SearchListbydate1 as $key => $value) {
                 $result1[] = array('id' => $value['id'], 'ReportID' => $value['ReportID']);
             }
             $smarty->assign('SearchListbydate', $SearchListbydate);
-        } elseif ($ReportTypeList == '' && $HospitalList != '' && $Approved1 != '') {
-            $SearchListbydate = $Searchinfo->HospitalListbydate($HospitalList, $StartDate, $EndDate, $Approved1);
+        } elseif ($ReportTypeList == '' && $HospitalList != '' && $Approved1Name != '') {
+            $SearchListbydate = $Searchinfo->HospitalListbydate($HospitalList, $StartDate, $EndDate, $Approved1Name);
             $result = $SearchListbydate[0]['count(*)'];
-            $SearchListbydate1 = $Searchinfo->SearchHospitalListDisplay($HospitalList, $StartDate, $EndDate, $Approved1);
+            $SearchListbydate1 = $Searchinfo->SearchHospitalListDisplay($HospitalList, $StartDate, $EndDate, $Approved1Name);
             foreach ($SearchListbydate1 as $key => $value) {
                 $result1[] = array('id' => $value['id'], 'ReportID' => $value['ReportID']);
             }
             $smarty->assign('SearchListbydate', $SearchListbydate);
-        } elseif ($ReportTypeList == '' && $HospitalList == '' && $Approved1 != '') {
-            $SearchListbydate = $Searchinfo->Listbydate($StartDate, $EndDate, $Approved1);
+        } elseif ($ReportTypeList == '' && $HospitalList == '' && $Approved1Name != '') {
+            $SearchListbydate = $Searchinfo->Listbydate($StartDate, $EndDate, $Approved1Name);
             $result = $SearchListbydate[0]['count(*)'];
-            $SearchListbydate1 = $Searchinfo->ListDisplay($StartDate, $EndDate, $Approved1);
+            $SearchListbydate1 = $Searchinfo->ListDisplay($StartDate, $EndDate, $Approved1Name);
             foreach ($SearchListbydate1 as $key => $value) {
                 $result1[] = array('id' => $value['id'], 'ReportID' => $value['ReportID']);
             }
             $smarty->assign('SearchListbydate', $SearchListbydate);
-        } elseif ($ReportTypeList != '' && $HospitalList != '' && $Approved1 == '') {
+        } elseif ($ReportTypeList != '' && $HospitalList != '' && $Approved1Name == '') {
             $SearchListbydate = $Searchinfo->AllListbydate1($HospitalList, $ReportTypeList, $StartDate, $EndDate);
             $result = $SearchListbydate[0]['count(*)'];
             $SearchListbydate1 = $Searchinfo->SearchAllListDisplay1($HospitalList, $ReportTypeList, $StartDate, $EndDate);
@@ -115,7 +110,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $result1[] = array('id' => $value['id'], 'ReportID' => $value['ReportID']);
             }
             $smarty->assign('SearchListbydate', $SearchListbydate);
-        } elseif ($ReportTypeList != '' && $HospitalList == '' && $Approved1 == '') {
+        } elseif ($ReportTypeList != '' && $HospitalList == '' && $Approved1Name == '') {
             $SearchListbydate = $Searchinfo->Listbydate1($StartDate, $EndDate , $ReportTypeList);
             $result = $SearchListbydate[0]['count(*)'];
             $SearchListbydate1 = $Searchinfo->ListDisplay1($StartDate, $EndDate, $ReportTypeList);
@@ -123,7 +118,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $result1[] = array('id' => $value['id'], 'ReportID' => $value['ReportID']);
             }
             $smarty->assign('SearchListbydate', $SearchListbydate);
-        } elseif ($ReportTypeList == '' && $HospitalList != '' && $Approved1 == '') {
+        } elseif ($ReportTypeList == '' && $HospitalList != '' && $Approved1Name == '') {
             $SearchListbydate = $Searchinfo->Listbydate2($StartDate, $EndDate , $HospitalList);
             $result = $SearchListbydate[0]['count(*)'];
             $SearchListbydate1 = $Searchinfo->ListDisplay2($StartDate, $EndDate, $HospitalList);
@@ -131,10 +126,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $result1[] = array('id' => $value['id'], 'ReportID' => $value['ReportID']);
             }
             $smarty->assign('SearchListbydate', $SearchListbydate);
-        } elseif ($ReportTypeList == '' && $HospitalList == '' && $Approved1 == '') {
+        } elseif ($ReportTypeList == '' && $HospitalList == '' && $Approved1Name == '') {
             $SearchListbydate = $Searchinfo->Listbydatenone($StartDate, $EndDate);
-            // $result = $SearchListbydate[0]['count(*)'];
-            $result = isset($SearchListbydate[0]['count(*)']) ? $SearchListbydate[0]['count(*)'] : 0;
+            $result = $SearchListbydate[0]['count(*)'];
+            // $result = isset($SearchListbydate[0]['count(*)']) ? $SearchListbydate[0]['count(*)'] : 0;
             $SearchListbydate1 = $Searchinfo->ListDisplaynone($StartDate, $EndDate);
             foreach ($SearchListbydate1 as $key => $value) {
                 $result1[] = array('id' => $value['id'], 'ReportID' => $value['ReportID']);
@@ -165,7 +160,6 @@ $smarty->assign('resultID', $resultID);
 $smarty->assign('HospitalListOptions', $List, true);
 $smarty->assign('HospitalListSelect', $HospitalList, true);
 $smarty->assign('HospitalListName', $HospitalListName, true);
-
 
 $smarty->assign('ReportListOptions', $ReportList, true);
 $smarty->assign('ReportListSelect', $ReportTypeList, true);

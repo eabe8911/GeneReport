@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-03-22 10:52:37
+/* Smarty version 4.3.4, created on 2024-03-22 13:51:50
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\search.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_65fcf2755f4139_12155739',
+  'unifunc' => 'content_65fd1c76969376_98153292',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'aab3e39dc6c3c6e12f255d9b29453885d75c8b0b' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\search.tpl',
-      1 => 1711075954,
+      1 => 1711086708,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_65fcf2755f4139_12155739 (Smarty_Internal_Template $_smarty_tpl) {
+function content_65fd1c76969376_98153292 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\vendor\\smarty\\smarty\\libs\\plugins\\function.html_options.php','function'=>'smarty_function_html_options',),));
 ?>
 <!DOCTYPE html>
@@ -93,11 +93,10 @@ $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\Users\\tina.xue\\Documen
     <form action="Statistics.php" id="search" name="search" method="post">
         <!-- 送檢單位 -->
 
-        <div class="form-group col-md-3">
+        <div class="form-group col-md-4">
             <br>
             <!-- 提醒日期為必填欄位 -->
             <span class="form-hint">*日期區間為必填欄位</span>
-
             <label for="StartDate"><span style="color: red;">*</span>起始日期:</label>
             <input type="date" id="StartDate" name="StartDate" class="form-control" required="required">
             <label for="EndDate"><span style="color: red;">*</span>結束日期:</label>
@@ -118,21 +117,23 @@ $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\Users\\tina.xue\\Documen
                 <input type="submit" name="Search" class="btn btn-primary" value="Search" tabindex=2>
             </div>
             <br>
+        </div>
+        <div class="form-group col-md-4">
             <label>
-                &nbsp;&nbsp;&nbsp;&nbsp;總收檢數量：<?php echo $_smarty_tpl->tpl_vars['result']->value;?>
- <br> &nbsp;&nbsp;&nbsp;&nbsp;
-                                            <搜尋條件如下> <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            日期範圍：<?php echo $_smarty_tpl->tpl_vars['StartDate']->value;?>
+                <br> 
+                <h3>統計結果數量：<?php echo $_smarty_tpl->tpl_vars['result']->value;?>
+</h3> 
+                <ul>
+                    <li>日期範圍：<?php echo $_smarty_tpl->tpl_vars['StartDate']->value;?>
  - <?php echo $_smarty_tpl->tpl_vars['EndDate']->value;?>
- <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            檢測單位：<?php echo $_smarty_tpl->tpl_vars['ReportTypeName']->value;?>
- <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            送檢單位：<?php echo $_smarty_tpl->tpl_vars['HospitalListName']->value;?>
- <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            簽核醫檢師：<?php echo $_smarty_tpl->tpl_vars['Approved1Name']->value;?>
-
-            </label>
-
+</li>
+                    <li>檢測單位：<?php echo $_smarty_tpl->tpl_vars['ReportTypeName']->value;?>
+</li>
+                    <li>送檢單位：<?php echo $_smarty_tpl->tpl_vars['HospitalListName']->value;?>
+</li>
+                    <li>簽核醫檢師：<?php echo $_smarty_tpl->tpl_vars['Approved1Name']->value;?>
+</li>
+                </ul>
             <label>&nbsp;&nbsp;&nbsp;&nbsp;報告編號：
                 <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['result1']->value, 'item');

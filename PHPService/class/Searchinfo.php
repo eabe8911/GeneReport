@@ -1,4 +1,3 @@
-
 <?php
 // Enable Xdebug
 if (extension_loaded('xdebug')) {
@@ -45,13 +44,13 @@ class Searchinfo
         return $result;
     }
 
-    public function SearchAllListDisplay($HospitalList, $ReportType, $StartDate, $EndDate, $Approved1)
+    public function SearchAllListDisplay($HospitalList, $ReportType, $StartDate, $EndDate, $Approved1Name)
     {
         $sql = "SELECT * FROM Report WHERE HospitalList = :HospitalList  AND ReportType = :ReportType AND Approved1 = :Approved1 AND rcdate >= :StartDate AND rcdate <= :EndDate;";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindValue(":HospitalList", $HospitalList);
         $stmt->bindValue(":ReportType", $ReportType);
-        $stmt->bindValue(":Approved1", $Approved1);
+        $stmt->bindValue(":Approved1", $Approved1Name);
         $stmt->bindValue(":StartDate", $StartDate);
         $stmt->bindValue(":EndDate", $EndDate);
         $stmt->execute();
@@ -72,12 +71,12 @@ class Searchinfo
         return $result1;
     }
 
-    public function SearchReportListDisplay($ReportType, $StartDate, $EndDate, $Approved1)
+    public function SearchReportListDisplay($ReportType, $StartDate, $EndDate, $Approved1Name)
     {
         $sql = "SELECT * FROM Report WHERE  ReportType = :ReportType AND Approved1 = :Approved1 AND rcdate >= :StartDate AND rcdate <= :EndDate;";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindValue(":ReportType", $ReportType);
-        $stmt->bindValue(":Approved1", $Approved1);
+        $stmt->bindValue(":Approved1", $Approved1Name);
         $stmt->bindValue(":StartDate", $StartDate);
         $stmt->bindValue(":EndDate", $EndDate);
         $stmt->execute();
@@ -85,23 +84,23 @@ class Searchinfo
         return $result1;
     }
 
-    public function SearchHospitalListDisplay($HospitalList, $StartDate, $EndDate, $Approved1)
+    public function SearchHospitalListDisplay($HospitalList, $StartDate, $EndDate, $Approved1Name)
     {
         $sql = "SELECT * FROM Report WHERE  HospitalList = :HospitalList AND Approved1 = :Approved1 AND rcdate >= :StartDate AND rcdate <= :EndDate;";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindValue(":HospitalList", $HospitalList);
-        $stmt->bindValue(":Approved1", $Approved1);
+        $stmt->bindValue(":Approved1", $Approved1Name);
         $stmt->bindValue(":StartDate", $StartDate);
         $stmt->bindValue(":EndDate", $EndDate);
         $stmt->execute();
         $result1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result1;
     }
-    public function ListDisplay($StartDate, $EndDate, $Approved1)
+    public function ListDisplay($StartDate, $EndDate, $Approved1Name)
     {
         $sql = "SELECT * FROM Report WHERE Approved1 = :Approved1 AND rcdate >= :StartDate AND rcdate <= :EndDate;";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindValue(":Approved1", $Approved1);
+        $stmt->bindValue(":Approved1", $Approved1Name);
         $stmt->bindValue(":StartDate", $StartDate);
         $stmt->bindValue(":EndDate", $EndDate);
         $stmt->execute();
@@ -157,6 +156,17 @@ class Searchinfo
         return $result1;
     }
 
+    public function Listbydatenone($StartDate, $EndDate)
+    {
+        $sql = "SELECT count(*) FROM Report WHERE rcdate >= :StartDate AND rcdate <= :EndDate;";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindValue(":StartDate", $StartDate);
+        $stmt->bindValue(":EndDate", $EndDate);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function SearchListbydate($HospitalList, $StartDate, $EndDate)
     {
         $sql = "SELECT count(*) FROM Report WHERE HospitalList = :HospitalList AND rcdate >= :StartDate AND rcdate <= :EndDate;";
@@ -169,13 +179,13 @@ class Searchinfo
         return $result;
     }
 
-    public function AllListbydate($HospitalList, $ReportType, $StartDate, $EndDate, $Approved1) 
+    public function AllListbydate($HospitalList, $ReportType, $StartDate, $EndDate, $Approved1Name) 
     {
         $sql = "SELECT count(*) FROM Report WHERE HospitalList=:HospitalList AND ReportType = :ReportType AND Approved1 = :Approved1 AND rcdate >= :StartDate AND rcdate <= :EndDate;";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindValue(":HospitalList", $HospitalList);
         $stmt->bindValue(":ReportType", $ReportType);
-        $stmt->bindValue(":Approved1", $Approved1);
+        $stmt->bindValue(":Approved1", $Approved1Name);
         $stmt->bindValue(":StartDate", $StartDate);
         $stmt->bindValue(":EndDate", $EndDate);
         $stmt->execute();
@@ -196,12 +206,12 @@ class Searchinfo
         return $result;
     }
 
-    public function ReportListbydate($ReportType, $StartDate, $EndDate, $Approved1)
+    public function ReportListbydate($ReportType, $StartDate, $EndDate, $Approved1Name)
     {
         $sql = "SELECT count(*) FROM Report WHERE ReportType = :ReportType AND Approved1 = :Approved1 AND rcdate >= :StartDate AND rcdate <= :EndDate;";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindValue(":ReportType", $ReportType);
-        $stmt->bindValue(":Approved1", $Approved1);
+        $stmt->bindValue(":Approved1", $Approved1Name);
         $stmt->bindValue(":StartDate", $StartDate);
         $stmt->bindValue(":EndDate", $EndDate);
         $stmt->execute();
@@ -209,12 +219,12 @@ class Searchinfo
         return $result;
     }
 
-    public function HospitalListbydate($HospitalList, $StartDate, $EndDate, $Approved1)
+    public function HospitalListbydate($HospitalList, $StartDate, $EndDate, $Approved1Name)
     {
         $sql = "SELECT count(*) FROM Report WHERE HospitalList = :HospitalList AND Approved1 = :Approved1 AND rcdate >= :StartDate AND rcdate <= :EndDate;";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindValue(":HospitalList", $HospitalList);
-        $stmt->bindValue(":Approved1", $Approved1);
+        $stmt->bindValue(":Approved1", $Approved1Name);
         $stmt->bindValue(":StartDate", $StartDate);
         $stmt->bindValue(":EndDate", $EndDate);
         $stmt->execute();
@@ -222,11 +232,11 @@ class Searchinfo
         return $result;
     }
 
-    public function Listbydate($StartDate, $EndDate, $Approved1)
+    public function Listbydate($StartDate, $EndDate, $Approved1Name)
     {
         $sql = "SELECT count(*) FROM Report WHERE Approved1 = :Approved1 AND rcdate >= :StartDate AND rcdate <= :EndDate;";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindValue(":Approved1", $Approved1);
+        $stmt->bindValue(":Approved1", $Approved1Name);
         $stmt->bindValue(":StartDate", $StartDate);
         $stmt->bindValue(":EndDate", $EndDate);
         $stmt->execute();
@@ -260,16 +270,7 @@ class Searchinfo
 
 
 
-    public function Listbydatenone($StartDate, $EndDate)
-    {
-        $sql = "SELECT * FROM Report WHERE rcdate >= :StartDate AND rcdate <= :EndDate;";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bindValue(":StartDate", $StartDate);
-        $stmt->bindValue(":EndDate", $EndDate);
-        $stmt->execute();
-        $result2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $result2;
-    }
+
 
 
 

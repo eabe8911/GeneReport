@@ -68,11 +68,10 @@
     <form action="Statistics.php" id="search" name="search" method="post">
         <!-- 送檢單位 -->
 
-        <div class="form-group col-md-3">
+        <div class="form-group col-md-4">
             <br>
             <!-- 提醒日期為必填欄位 -->
             <span class="form-hint">*日期區間為必填欄位</span>
-
             <label for="StartDate"><span style="color: red;">*</span>起始日期:</label>
             <input type="date" id="StartDate" name="StartDate" class="form-control" required="required">
             <label for="EndDate"><span style="color: red;">*</span>結束日期:</label>
@@ -93,15 +92,17 @@
                 <input type="submit" name="Search" class="btn btn-primary" value="Search" tabindex=2>
             </div>
             <br>
+        </div>
+        <div class="form-group col-md-4">
             <label>
-                &nbsp;&nbsp;&nbsp;&nbsp;總收檢數量：{$result} <br> &nbsp;&nbsp;&nbsp;&nbsp;
-                                            <搜尋條件如下> <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            日期範圍：{$StartDate} - {$EndDate} <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            檢測單位：{$ReportTypeName} <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            送檢單位：{$HospitalListName} <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            簽核醫檢師：{$Approved1Name}
-            </label>
-
+                <br> 
+                <h3>統計結果數量：{$result}</h3> 
+                <ul>
+                    <li>日期範圍：{$StartDate} - {$EndDate}</li>
+                    <li>檢測單位：{$ReportTypeName}</li>
+                    <li>送檢單位：{$HospitalListName}</li>
+                    <li>簽核醫檢師：{$Approved1Name}</li>
+                </ul>
             <label>&nbsp;&nbsp;&nbsp;&nbsp;報告編號：
                 {foreach from=$result1 item=item}
                 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
