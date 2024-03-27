@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-02-17 10:47:23
+/* Smarty version 4.3.4, created on 2024-03-26 15:48:47
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\ViewReportDetail.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_65d01e3bc8e041_00828083',
+  'unifunc' => 'content_66027ddf7dbbf7_39648269',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c4a88acf51444ce898e5bf2d3cef15ec6a52f360' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\ViewReportDetail.tpl',
-      1 => 1706168089,
+      1 => 1711439310,
       2 => 'file',
     ),
   ),
@@ -23,7 +23,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:header.tpl' => 1,
   ),
 ),false)) {
-function content_65d01e3bc8e041_00828083 (Smarty_Internal_Template $_smarty_tpl) {
+function content_66027ddf7dbbf7_39648269 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <title>麗寶基因報告系統</title>
 <html>

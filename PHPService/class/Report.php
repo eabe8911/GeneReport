@@ -59,6 +59,13 @@ class Report implements ReportInterface
                 'scID' => $data['scID'] ?? '', //採檢單號
                 'scdate' => $data['scdate'] ?? '', //採集日期
                 'rcdate' => $data['rcdate'] ?? '', //收檢日期
+                'Submitdate' => $data['Submitdate'] ?? '', //送檢日期
+                'SampleNo' => $data['SampleNo'] ?? '', //樣本編號
+                'SampleType' => $data['SampleType'] ?? '', //樣本類型
+                'ReceivingDate' => $data['ReceivingDate'] ?? '', //收檢日期
+                'Receiving' => $data['Receiving'] ?? '', //收檢人員
+                'Sampleglass' => $data['Sampleglass'] ?? '', //樣本容器
+                'quantity' => $data['quantity'] ?? '', //樣本數量
             ];
         } catch (PDOException | Exception $th) {
             throw new Exception($th->getMessage(), $th->getCode());
@@ -232,10 +239,10 @@ class Report implements ReportInterface
                 $now = date("Y-m-d H:i:s");
                 $sql = "INSERT INTO Report (
                 ReportID, ReportName, FileName, ReportType, TemplateID, ccemail, HospitalList, ReportStatus,
-                CreatedAt, CustomerName, CustomerEmail, CustomerPhone, DueDate, SampleID, PatientID, scID, scdate, rcdate, apply_pdf
+                CreatedAt, CustomerName, CustomerEmail, CustomerPhone, DueDate, SampleID, PatientID, scID, scdate, rcdate, apply_pdf, Submitdate ,SampleNo, SampleType,ReceivingDate,  Receiving,Sampleglass, quantity
                 ) VALUES (
                 :ReportID, :ReportName, :FileName, :ReportType, :TemplateID, :ccemail, :HospitalList, :ReportStatus,
-                :CreatedAt, :CustomerName, :CustomerEmail, :CustomerPhone, :DueDate, :SampleID, :PatientID, :scID, :scdate, :rcdate, :apply_pdf
+                :CreatedAt, :CustomerName, :CustomerEmail, :CustomerPhone, :DueDate, :SampleID, :PatientID, :scID, :scdate, :rcdate, :apply_pdf, :Submitdate, :SampleNo, :SampleType, :ReceivingDate, :Receiving, :Sampleglass, :quantity
                 )";
                 $stmt = $this->_conn->prepare($sql);
                 $stmt->bindParam(':ReportID', $ReportInfo['ReportID']);
@@ -256,22 +263,34 @@ class Report implements ReportInterface
                     $DueDate_date = null;
                     $scdate_date = null;
                     $rcdate_date = null;
+                    $Submit_date = null;
+                    $ReceivingDate_date = null;
 
                 } else {
 
-                    $DueDate = DateTime::createFromFormat('Y-m-d', $ReportInfo['DueDate']);
-                    $DueDate_date = $DueDate->format('Y-m-d');
-
-                    $scdate = DateTime::createFromFormat('Y-m-d', $ReportInfo['scdate']);
+                    $DueDate = DateTime::createFromFormat('n/j/Y', $ReportInfo['DueDate']);
+                    // $DueDate_date = $DueDate->format('Y-m-d');
+                    if ($DueDate === false) {
+                        $DueDate_date = null;
+                    } else {
+                        $DueDate_date = $DueDate->format('Y-m-d');
+                    }
+                    $scdate = DateTime::createFromFormat('n/j/Y', $ReportInfo['scdate']);
                     $scdate_date = $scdate->format('Y-m-d');
-                    $rcdate = DateTime::createFromFormat('Y-m-d', $ReportInfo['rcdate']);
+                    $rcdate = DateTime::createFromFormat('n/j/Y', $ReportInfo['rcdate']);
                     $rcdate_date = $rcdate->format('Y-m-d');
+                    $Submitdate = DateTime::createFromFormat('n/j/Y', $ReportInfo['Submitdate']);
+                    $Submit_date = $Submitdate->format('Y-m-d');
+                    $ReceivingDate = DateTime::createFromFormat('n/j/Y', $ReportInfo['ReceivingDate']);
+                    $ReceivingDate_date = $ReceivingDate->format('Y-m-d');
+
                 }
 
                 // $stmt->bindValue(':FileName', $ReportInfo['ReportID'] . '.pdf');
                 //ReportType 只取第一個數字
                 $ReportInfo['ReportType'] = substr($ReportInfo['ReportType'], 0, 1);
                 $ReportInfo['TemplateID'] = substr($ReportInfo['TemplateID'], 0, 1);
+                $ReportInfo['HospitalList'] = substr($ReportInfo['HospitalList'], 0, 1);
 
                 $stmt->bindParam(':ReportType', $ReportInfo['ReportType']);
                 $stmt->bindParam(':TemplateID', $ReportInfo['TemplateID']);
@@ -288,6 +307,13 @@ class Report implements ReportInterface
                 $stmt->bindParam(':scID', $ReportInfo['scID']);
                 $stmt->bindParam(':scdate', $scdate_date);
                 $stmt->bindParam(':rcdate', $rcdate_date);
+                $stmt->bindParam(':Submitdate', $Submit_date);
+                $stmt->bindParam(':SampleNo', $ReportInfo['SampleNo']);
+                $stmt->bindParam(':SampleType', $ReportInfo['SampleType']);
+                $stmt->bindParam(':ReceivingDate', $ReceivingDate_date);
+                $stmt->bindParam(':Receiving', $ReportInfo['Receiving']);
+                $stmt->bindParam(':Sampleglass', $ReportInfo['Sampleglass']);
+                $stmt->bindParam(':quantity', $ReportInfo['quantity']);
                 $stmt->execute();
             }
         } catch (PDOException | Exception $th) {
@@ -418,6 +444,22 @@ class Report implements ReportInterface
         }
         return true;
     }
+
+
+    public function Updateccemail($ReportInfo)
+    {
+        try {
+            $sql = "UPDATE Report SET ccemail=:ccemail WHERE id=:ID";
+            $stmt = $this->_conn->prepare($sql);
+            $stmt->bindParam(':ccemail', $ReportInfo['ccemail']);
+            $stmt->bindParam(':ID', $ReportInfo['ID']);
+            $stmt->execute();
+        } catch (PDOException | Exception $th) {
+            throw new Exception($th->getMessage(), $th->getCode());
+        }
+        return true;
+    }
+
     public function deleteReport($ReportInfo)
     {
         try {

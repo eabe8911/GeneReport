@@ -89,7 +89,7 @@
                                 </div>
                                 <!---- 採檢單號 ---->
                                 <div class="form-group">
-                                    <label for="scID" class="col-md-3 control-label">採檢單號</label>
+                                    <label for="scID" class="col-md-3 control-label">採檢單號:</label>
                                     <div class="col-md-8">
                                         <input type="text" id="scID" name="scID" class="form-control" required
                                             value="{$scID}">
@@ -159,7 +159,7 @@
                                 <!---- 報告發送狀態 ---->
 
                                 <div class="form-group">
-                                    <label for="ReportStatus" class="col-md-3 control-label">報告進度</label>
+                                    <label for="ReportStatus" class="col-md-3 control-label">報告進度:</label>
                                     <div class="col-md-8">
                                         <input type="text" id="ReportStatus" name="ReportStatus" class="form-control"
                                             value="{$ReportStatus}">
@@ -236,7 +236,10 @@
                                 <button type="button" class="btn btn-danger btn-md" id="BtnReportExit"
                                     style="font-weight:bold;font-size:20px;margin:30px;">
                                     <i class="fa fa-eject"></i> 離 開</button>
-                                    <button type="button" class="btn btn-danger btn-md" id="BtnReportEditccemail"
+                                    <!-- <button type="button" class="btn btn-danger btn-md" id="BtnReportEditccemail"
+                                    style="font-weight:bold;font-size:20px;margin:30px;">
+                                    <i class="fa fa-edit"></i> 修改郵件</button> -->
+                                    <button type="button" class="btn btn-danger btn-md" id="BtnReportEdit"
                                     style="font-weight:bold;font-size:20px;margin:30px;">
                                     <i class="fa fa-edit"></i> 修改郵件</button>
                             </p>
