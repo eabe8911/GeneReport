@@ -57,6 +57,11 @@
             font-size: 18px;
             font-weight: bold;
         }
+        .report-link {
+            margin-bottom: -15px;  /* 调整行间距 */
+            margin-right: -15px;  /* 调整列间距 */
+        }
+
     </style>
 </head>
 
@@ -105,9 +110,11 @@
                 </ul>
             <label>&nbsp;&nbsp;&nbsp;&nbsp;報告編號：
                 {foreach from=$result1 item=item}
+                <div class="report-link">
                 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 {$item@iteration}. <a href="ReportDetailMaintain.php?id={$item.id}"
                     target="_blank">{$item.ReportID}</a><br>
+                </div>
                 {/foreach} <br>
             </label>
         </div>
