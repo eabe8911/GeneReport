@@ -267,7 +267,7 @@ class Report implements ReportInterface
                     $ReceivingDate_date = null;
 
                 } else {
-
+                    // $ReportInfo['DueDate'] = $date->format('Y-m-d');
                     $DueDate = DateTime::createFromFormat('n/j/Y', $ReportInfo['DueDate']);
                     // $DueDate_date = $DueDate->format('Y-m-d');
                     if ($DueDate === false) {
@@ -283,7 +283,6 @@ class Report implements ReportInterface
                     $Submit_date = $Submitdate->format('Y-m-d');
                     $ReceivingDate = DateTime::createFromFormat('n/j/Y', $ReportInfo['ReceivingDate']);
                     $ReceivingDate_date = $ReceivingDate->format('Y-m-d');
-
                 }
 
                 // $stmt->bindValue(':FileName', $ReportInfo['ReportID'] . '.pdf');

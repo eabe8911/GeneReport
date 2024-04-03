@@ -36,8 +36,8 @@ switch ($Character) {
         // 如果 Permission 是 9, 代表是最大管理者, 可以看到所有資料，不用設定 Where
         if ($Permission == 9) {
             $where = "";
-        }elseif ($Permission == 4) { //Permission =4 只能看到Reportstatus=4的資料
-            $where = " WHERE ReportStatus='1' or ReportStatus='2' or ReportStatus='4' or ReportStatus='8' ";
+        }elseif ($Permission == 4) { //Permission =4 只能看到Reportstatus=4、8的資料
+            $where = " WHERE  ReportStatus='4' or ReportStatus='8' ";
         }elseif ($Permission == 0) { //抓到Report裡面的CustomerName資料
             $where = " WHERE CustomerEmail='" . $Email . "' ";    
         } 

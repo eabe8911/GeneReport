@@ -21,11 +21,13 @@ $PDFFile = $_POST['PDFFile'];
 $ApplyFile = $_POST['ApplyFile'];
 $ReportName = $_POST['ReportName'];
 $Username = $_SESSION['DisplayName'];
+$scID = $_POST['scID'];
+$scdate = $_POST['scdate'];
 
 // Create a new instance of the Email class
 
 // Send the email
-if ($email->SendEmail($ReportID, $Username, $CustomerEmail, $ccemail, $CustomerName, $PDFFile, $ApplyFile, $ReportName)) {
+if ($email->SendEmail($ReportID, $Username, $CustomerEmail, $ccemail, $CustomerName, $PDFFile, $ApplyFile, $ReportName,$scID,$scdate)) {
     
     $report->UpdateReportStatus($ReportID, 8);
 

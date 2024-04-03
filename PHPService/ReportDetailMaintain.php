@@ -1,6 +1,6 @@
 <?php
 
-ob_start(); 
+ob_start();
 // Enable Xdebug
 if (extension_loaded('xdebug')) {
     ini_set('xdebug.remote_enable', 1);
@@ -93,9 +93,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
                 sendNotificationToTeams("ADD", "新增一筆報告: " . $_POST['ReportID'] . ' ' . $_POST['ReportName'] . " by " . $DisplayName);
                 break;
             case 'EDIT':
-                if ($report->UpdateReport($_POST)) {
+                //permission =4 use Updateccemail
+                if ($Permission == 4) {
+                    $report->Updateccemail($_POST);
+
+                    $ReportID = $_POST['ReportID'];
+                    $CustomerName = $_POST['CustomerName'];
+                    $CustomerEmail = $_POST['CustomerEmail'];
+                    $ccemail = $_POST['ccemail'];
+                    $CustomerPhone = $_POST['CustomerPhone'];
+                    $ReportStatus = $_POST['ReportStatus'];
+                    
+
+                    $updatelog = "報告編號：" . $ReportID . "\n" . "客戶姓名：" . $CustomerName . "\n" . "客戶信箱：" . $CustomerEmail . "\n" . "聯絡人信箱：" . $ccemail . "\n" . "客戶連絡電話：" . $CustomerPhone . "\n" . "報告狀態：" . $ReportStatus;
+                    $log->SaveLog("UPDATECCEMAIL", $Username, "UpdateReportInfo", date("Y-m-d H:i:s"), $updatelog);
+
+                } elseif ($report->UpdateReport($_POST)) {
                     $ReportMode = $_POST['ReportMode'];
-             
+
                     if ($ReportMode == 'EDIT') {
                         $ReportMode = "修改報告";
                     }
@@ -173,7 +188,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
                 break;
         }
         header("Location: home.php");
-        ob_end_flush(); 
+        ob_end_flush();
 
     } catch (Exception $e) {
         $ErrorMessage = $e->getMessage();
@@ -221,7 +236,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
                     $ApplyFile = "./uploads/" . $ReportID . "/" . $reportInfo['apply_pdf'];
                 }
                 // set maintain button area to Maintain mode
-                $ReportMode = "CHECK";}
+                $ReportMode = "CHECK";
+            }
             break;
         default:
             $ID = filter_input(INPUT_GET, 'id');

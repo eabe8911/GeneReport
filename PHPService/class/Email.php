@@ -37,7 +37,7 @@ class Email
         $this->_mail = new PHPMailer(true); // Passing `true` enables exceptions
     }
 
-    public function SendEmail($ReportID, $ReportName, $CustomerEmail, $ccemail, $CustomerName, $PDFFile, $ApplyFile, $Username): bool
+    public function SendEmail($ReportID, $ReportName, $CustomerEmail, $ccemail, $CustomerName, $PDFFile, $ApplyFile, $Username,$scID,$scdate): bool
     {
         $report = new Report($_POST);
         $ReportID = filter_input(INPUT_POST, 'ReportID');
@@ -90,14 +90,20 @@ class Email
             附件為送檢的兩份基因檢測報告及服務申請單，煩請您查收，<br>
             檢測報告資訊如下所示 :<br>
             麗寶報告編號 : ' . $ReportID . '<br>
-            檢測項目 : ' . $ReportName . '<br><br>
+            採檢編號 : ' . $scID . '<br>
+            檢測項目 : ' . $ReportName . '<br>
+            採檢日期 : ' . $scdate . '<br><br>
             
-             
-            如有需要提供紙本檔案，再麻煩通知，<br>
+            另承蒙貴院的支持，讓我們有機會服務，為了使我們能持續提供良好的服務品質給貴院<br>
+            需懇請貴單位幫忙填寫以下連結之表單內容，煩請提供我們寶貴的反饋及評量，讓我們能改善及提供更完善的服務給貴院，<br>
+            表單連結請點選 :<a href="http://localhost/genereport/PHPService/submit_survey.php?ccemail=' . urlencode($CustomerEmail) . '&HospitalList=' . urlencode($HospitalList) . '&ReportID=' . urlencode($ReportID) . '&SampleNo=' . urlencode($SampleNo) . '&ReportName=' . urlencode($ReportName) . '">【醫療院所滿意度調查表】</a>' . '<br><br>
+            (備註說明 : 為了能及時知曉貴院對本司檢測服務的反饋建議，從今日起本司提供給貴院檢測報告時，<br>
+            會同步提供「滿意度調查表單」連結，在煩請醫師協助填寫，使本司提供最好的服務給您。)<br><br> 
+
              
             如有任何問題，煩請不吝告知。<br>
              
-            非常感謝您!!<br><br><br>
+            非常感謝!!<br><br><br>
              
             麗寶生醫股份有限公司<br>
             分子檢測服務處 董昕恬<br>
@@ -131,5 +137,7 @@ class Email
         }
         return true;
     }
+
+
 }
 ?>

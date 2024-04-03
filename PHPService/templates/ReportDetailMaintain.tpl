@@ -236,12 +236,12 @@
                                 <button type="button" class="btn btn-danger btn-md" id="BtnReportExit"
                                     style="font-weight:bold;font-size:20px;margin:30px;">
                                     <i class="fa fa-eject"></i> 離 開</button>
-                                    <!-- <button type="button" class="btn btn-danger btn-md" id="BtnReportEditccemail"
-                                    style="font-weight:bold;font-size:20px;margin:30px;">
-                                    <i class="fa fa-edit"></i> 修改郵件</button> -->
-                                    <button type="button" class="btn btn-danger btn-md" id="BtnReportEdit"
+                                    <button type="button" class="btn btn-danger btn-md" id="BtnReportEditccemail"
                                     style="font-weight:bold;font-size:20px;margin:30px;">
                                     <i class="fa fa-edit"></i> 修改郵件</button>
+                                    <!-- <button type="button" class="btn btn-danger btn-md" id="BtnReportEdit"
+                                    style="font-weight:bold;font-size:20px;margin:30px;">
+                                    <i class="fa fa-edit"></i> 修改郵件</button> -->
                             </p>
                             {/if}
                             <!--SUBMIT BUTTON IS CONNECTED TO HOME.PHP-->
