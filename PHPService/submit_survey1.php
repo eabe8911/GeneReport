@@ -1,7 +1,7 @@
 <?php
 
 
-require_once __DIR__ . "../class/DBConnect.php";
+require_once __DIR__ . "/class/DBConnect.php";
 // Check connection
 
 

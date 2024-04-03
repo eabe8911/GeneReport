@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-03-22 13:51:50
+/* Smarty version 4.3.4, created on 2024-04-03 16:24:35
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\search.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_65fd1c76969376_98153292',
+  'unifunc' => 'content_660d124380c967_47518882',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'aab3e39dc6c3c6e12f255d9b29453885d75c8b0b' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\search.tpl',
-      1 => 1711086708,
+      1 => 1712132673,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_65fd1c76969376_98153292 (Smarty_Internal_Template $_smarty_tpl) {
+function content_660d124380c967_47518882 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\vendor\\smarty\\smarty\\libs\\plugins\\function.html_options.php','function'=>'smarty_function_html_options',),));
 ?>
 <!DOCTYPE html>
@@ -82,6 +82,11 @@ $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\Users\\tina.xue\\Documen
             font-size: 18px;
             font-weight: bold;
         }
+        .report-link {
+            margin-bottom: -15px;  /* 调整行间距 */
+            margin-right: -15px;  /* 调整列间距 */
+        }
+
     </style>
 </head>
 
@@ -144,12 +149,14 @@ $_smarty_tpl->tpl_vars['item']->do_else = false;
 $_smarty_tpl->tpl_vars['item']->iteration++;
 $__foreach_item_0_saved = $_smarty_tpl->tpl_vars['item'];
 ?>
+                <div class="report-link">
                 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <?php echo $_smarty_tpl->tpl_vars['item']->iteration;?>
 . <a href="ReportDetailMaintain.php?id=<?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
 "
                     target="_blank"><?php echo $_smarty_tpl->tpl_vars['item']->value['ReportID'];?>
 </a><br>
+                </div>
                 <?php
 $_smarty_tpl->tpl_vars['item'] = $__foreach_item_0_saved;
 }
