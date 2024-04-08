@@ -144,9 +144,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
                         "送檢單位：" . $ReportType . "\n" . "報告模板：" . $TemplateID . "\n" . "TAT最終日：" . $DueDate . "\n" .
                         "客戶姓名：" . $CustomerName . "\n" . "客戶信箱：" . $CustomerEmail . "\n" . "聯絡人信箱：" . $ccemail . "\n" . "客戶連絡電話：" . $CustomerPhone . "\n" . "報告狀態：" . $ReportStatus;
 
+                }
                     CheckPDF($_FILES);
                     $log->SaveLog("UPDATE", $Username, "UpdateReportInfo", date("Y-m-d H:i:s"), $updatelog);
-                }
+
+
                 $messageData = [
                     'report_id' => $_POST['ReportID'],
                     'status' => 'update',

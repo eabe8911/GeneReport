@@ -37,7 +37,7 @@ switch ($Character) {
         if ($Permission == 9) {
             $where = "";
         }elseif ($Permission == 4) { //Permission =4 只能看到Reportstatus=4、8的資料
-            $where = " WHERE  ReportStatus='4' or ReportStatus='8' ";
+            $where = " WHERE  ReportStatus='2' or ReportStatus='8' ";
         }elseif ($Permission == 0) { //抓到Report裡面的CustomerName資料
             $where = " WHERE CustomerEmail='" . $Email . "' ";    
         } 

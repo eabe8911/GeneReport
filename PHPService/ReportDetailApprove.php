@@ -13,7 +13,7 @@ header("Cache-Control: post-check=0, pre-check=0", false);
 header("Pragma: no-cache");
 require __DIR__ . "/vendor/autoload.php";
 
-if ($_SESSION["AUTH"] != TRUE) {
+if ($_SESSION["AUTH"] != true) {
     header("Location: index.php");
     session_unset();
     die();
@@ -65,26 +65,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewApproveDetail") {
                 if ($ApproveMode == 'REJECT') {
                     $ApproveMode = "退回報告";
                 }
-                if ($Role == '1'){
+                if ($Role == '1') {
                     $Role = "JB_Lab_ISO";
-                }elseif ($Role == '2'){
+                } elseif ($Role == '2') {
                     $Role = "JB_Lab_LDTS";
-                }elseif ($Role == '3'){
+                } elseif ($Role == '3') {
                     $Role = "YL_Lab_ISO";
                 }
 
                 if ($ReportStatus == '3' || $ReportStatus == '5') {
                     $ReportStatus = '報告已退回';
-                } 
+                }
 
-                $rejectlog = "報告編號：" . $ReportID . "已被退回" . "\n" . "退回原因：" . $RejectReason . "\n"  . "報告名稱：" . $ReportName . "\n" . "送檢單位：" . $Role . "\n" . "客戶姓名：" . $CustomerName . "\n" . "客戶信箱：" . $CustomerEmail . "\n" . "客戶連絡電話：" . $CustomerPhone . "\n";
-            
+                $rejectlog = "報告編號：" . $ReportID . "已被退回" . "\n" . "退回原因：" . $RejectReason . "\n" . "報告名稱：" . $ReportName . "\n" . "送檢單位：" . $Role . "\n" . "客戶姓名：" . $CustomerName . "\n" . "客戶信箱：" . $CustomerEmail . "\n" . "客戶連絡電話：" . $CustomerPhone . "\n";
 
-                $log->SaveLog("REJECT", $Username, "ReportDetailApprove", date("Y-m-d H:i:s"),  $rejectlog);
+                $log->SaveLog("REJECT", $Username, "ReportDetailApprove", date("Y-m-d H:i:s"), $rejectlog);
 
                 $messageData = [
                     'report_id' => $_POST['ReportID'],
-                    'status' => 'reject'
+                    'status' => 'reject',
                 ];
 
                 sendNotificationToTeams("REJECT", "退回一筆報告: " . $_POST['ReportID'] . ' ' . $_POST['ReportName'] . " by " . $DisplayName);
@@ -93,45 +92,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewApproveDetail") {
             case 'PASS':
                 // save signature data into database and put signature image into PDF file
                 // if ($report->Approve($_POST, $_SESSION)) {
-                    // $ReportInfo = $report->get_ReportInfo();
-                    $report->Approve($_POST, $_SESSION);
-                    $$ReportID = $_POST['ReportID'];
-                    $ReportName = $_POST['ReportName'];
-                    $HospitalList = $_POST['HospitalList'];
-                    // $ReportType = $_POST['ReportType'];
-                    $CustomerName = $_POST['CustomerName'];
-                    $CustomerEmail = $_POST['CustomerEmail'];
-                    $CustomerPhone = $_POST['CustomerPhone'];
-                    // $ReportStatus = $_POST['ReportStatus'];
-                    $Approved1 = $_POST['Approved1'];
-                    $Approved2 = $_POST['Approved2'];
-    
-                    if ($ApproveMode == 'PASS') {
-                        $ApproveMode = "簽核報告";
-                    }
-                    if ($Role == '1'){
-                        $Role = "JB_Lab_ISO";
-                    }elseif ($Role == '2'){
-                        $Role = "JB_Lab_LDTS";
-                    }elseif ($Role == '3'){
-                        $Role = "YL_Lab_ISO";
-                    }
+                // $ReportInfo = $report->get_ReportInfo();
+                $report->Approve($_POST, $_SESSION);
+                $$ReportID = $_POST['ReportID'];
+                $ReportName = $_POST['ReportName'];
+                $HospitalList = $_POST['HospitalList'];
+                // $ReportType = $_POST['ReportType'];
+                $CustomerName = $_POST['CustomerName'];
+                $CustomerEmail = $_POST['CustomerEmail'];
+                $CustomerPhone = $_POST['CustomerPhone'];
+                // $ReportStatus = $_POST['ReportStatus'];
+                $Approved1 = $_POST['Approved1'];
+                $Approved2 = $_POST['Approved2'];
 
-                    $passlog = "報告編號：" . $ReportID . "已審核" . "\n"  . "報告名稱：" . $ReportName . "\n" . "送檢單位：" . $HospitalList . "\n" 
+                if ($ApproveMode == 'PASS') {
+                    $ApproveMode = "簽核報告";
+                }
+                if ($Role == '1') {
+                    $Role = "JB_Lab_ISO";
+                } elseif ($Role == '2') {
+                    $Role = "JB_Lab_LDTS";
+                } elseif ($Role == '3') {
+                    $Role = "YL_Lab_ISO";
+                }
+
+                $passlog = "報告編號：" . $ReportID . "已審核" . "\n" . "報告名稱：" . $ReportName . "\n" . "送檢單位：" . $HospitalList . "\n"
                     . "客戶姓名：" . $CustomerName . "\n" . "客戶信箱：" . $CustomerEmail . "\n" . "客戶連絡電話：" . $CustomerPhone . "\n";
 
-                    // $logDataJson = json_encode($logData, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
-                    $log->SaveLog("PASS", $Username, "ReportDetailApprove", date("Y-m-d H:i:s"), $passlog);
-    
-                    // $log->SaveLog("PASS", $Username, "ReportDetailApprove", date("Y-m-d H:i:s"), json_encode($_POST));
-                    $messageData = [
-                        'report_id' => $_POST['ReportID'],
-                        'status' => 'pass'
-                    ];
-                    // publishMessage('report_pass', $messageData);
-                    sendNotificationToTeams("APPROVED", "核准一筆報告: " . $_POST['ReportID'] . ' ' . $_POST['ReportName'] . " by " . $DisplayName);
-                    // email notification to customer
-                    // $report->SendEmail($ReportInfo, $Account, $Permission);
+                // $logDataJson = json_encode($logData, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+                $log->SaveLog("PASS", $Username, "ReportDetailApprove", date("Y-m-d H:i:s"), $passlog);
+
+                // $log->SaveLog("PASS", $Username, "ReportDetailApprove", date("Y-m-d H:i:s"), json_encode($_POST));
+                $messageData = [
+                    'report_id' => $_POST['ReportID'],
+                    'status' => 'pass',
+                ];
+                // publishMessage('report_pass', $messageData);
+                sendNotificationToTeams("APPROVED", "核准一筆報告: " . $_POST['ReportID'] . ' ' . $_POST['ReportName'] . " by " . $DisplayName);
+                // email notification to customer
+                // $report->SendEmail($ReportInfo, $Account, $Permission);
                 // }
                 break;
             default:
@@ -160,12 +159,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewApproveDetail") {
     $filename = $report->ReportInfo('FileName');
 
     if (!empty($reportInfo['FileName'])) {
-        // $PDFFile = "./uploads/" . $reportInfo['FileName'];
         $PDFFile = "./uploads/" . $ReportID . "/" . $reportInfo['FileName'];
-        $ApplyFile = "./uploads/" . $ReportID . "/" . $reportInfo['apply_pdf'];
-        
-        // $ReportApply = "./uploads/" . $ReportID . "/" . $reportInfo['ReportApply'];  //報告申請單        
-
     } elseif ($ReportStatus == '3') {
         $ErrorMessage = "實驗室於'$Reject1At'退回此報告</br>請管理者重新上傳報告";
     } elseif ($ReportStatus == '5') {
@@ -173,6 +167,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewApproveDetail") {
     } else {
         $ErrorMessage = "尚未有報告資料上傳";
     }
+    
+    if (!empty($reportInfo['apply_pdf'])) {
+        $ApplyFile = "./uploads/" . $ReportID . "/" . $reportInfo['apply_pdf'];
+    } 
 }
 
 $smarty = new Smarty;
@@ -214,10 +212,12 @@ $ReportType = $report->ReportInfo('ReportType');
 $Type = $report->getReportTypeList();
 $List = $report->getHospitalList();
 $HospitalList = $report->ReportInfo('HospitalList');
-if (empty($ReportType))
+if (empty($ReportType)) {
     $ReportType = '0';
-    $smarty->assign('HospitalListOptions', $List, true);
-    $smarty->assign('HospitalListSelect', $HospitalList, true);
+}
+
+$smarty->assign('HospitalListOptions', $List, true);
+$smarty->assign('HospitalListSelect', $HospitalList, true);
 $smarty->assign('ReportTypeOptions', $Type, true);
 $smarty->assign('ReportTypeSelect', $ReportType, true);
 $smarty->assign("FileName", $report->ReportInfo('FileName'), true);
@@ -241,7 +241,7 @@ $smarty->assign("scID", $report->ReportInfo('scID'), true);
 $smarty->assign("scdate", $report->ReportInfo('scdate'), true);
 $smarty->assign("rcdate", $report->ReportInfo('rcdate'), true);
 // Display PDF File
-if($ApplyFile == ''){
+if ($ApplyFile == '') {
     $smarty->assign("ApplyFile", "", true);
     $output_apply = '<br><h4 style="justify-content: center; display: flex;color:#FF0000">請上傳申請單</h4>';
     echo '<div id="pdf-output">' . $output_apply . '</div>';
