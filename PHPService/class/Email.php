@@ -37,7 +37,7 @@ class Email
         $this->_mail = new PHPMailer(true); // Passing `true` enables exceptions
     }
 
-    public function SendEmail($ReportID, $ReportName, $CustomerEmail, $ccemail, $CustomerName, $PDFFile, $ApplyFile, $Username,$scID,$scdate): bool
+    public function SendEmail($ReportID, $ReportName, $CustomerEmail, $ccemail, $CustomerName, $PDFFile, $ApplyFile, $Username): bool
     {
         $report = new Report($_POST);
         $ReportID = filter_input(INPUT_POST, 'ReportID');
@@ -47,6 +47,8 @@ class Email
         $CustomerName = filter_input(INPUT_POST, 'CustomerName');
         $PDFFile = filter_input(INPUT_POST, 'PDFFile');
         $ApplyFile = filter_input(INPUT_POST, 'ApplyFile');
+        $scID = filter_input(INPUT_POST, 'scID');
+        $scdate = filter_input(INPUT_POST, 'scdate');
         // $Role = $_SESSION['Role'];
         $ReportType = filter_input(INPUT_POST, 'ReportType');
         $Username = $_SESSION['DisplayName'];
@@ -112,11 +114,19 @@ class Email
 
             $_mail->CharSet = 'UTF-8';
 
-            if (!empty($PDFFile) || !empty($ApplyFile)) {
-                $_mail->addAttachment($PDFFile); // Add attachments
-                $_mail->addAttachment($ApplyFile); // Add attachments
-            } else {
+            // if (!empty($PDFFile) || !empty($ApplyFile)) {
+            //     $_mail->addAttachment($PDFFile); // Add attachments
+            //     $_mail->addAttachment($ApplyFile); // Add attachments
+            // } else {
 
+            // }
+
+            if (!empty($PDFFile)) {
+                $_mail->addAttachment($PDFFile); // Add PDF attachment
+            }
+            
+            if (!empty($ApplyFile)) {
+                $_mail->addAttachment($ApplyFile); // Add ApplyFile attachment
             }
 
             $_mail->send();

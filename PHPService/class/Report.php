@@ -449,6 +449,25 @@ class Report implements ReportInterface
     {
         try {
             $sql = "UPDATE Report SET ccemail=:ccemail WHERE id=:ID";
+            if (!empty($_FILES['ReportUploadPDF']['name'])) {
+                $ReportStatus = '1';
+                $FileName = $ReportInfo['ReportID'] . '.pdf';
+                $stmt->bindValue(':FileName', $FileName);
+
+            }else{
+                $FileName = null;
+                $stmt->bindValue(':FileName', $ReportInfo['FileName']);
+
+            }
+
+            if(!empty($_FILES['ReportApply']['name'])){
+                $ReportApplyName = $_FILES['ReportApply']['name'] ;
+                $stmt->bindValue(':apply_pdf', $_FILES['ReportApply']['name']);
+
+            }else{
+                $ReportApplyName = null;
+                $stmt->bindValue(':apply_pdf', $ReportInfo['apply_pdf']);
+            }
             $stmt = $this->_conn->prepare($sql);
             $stmt->bindParam(':ccemail', $ReportInfo['ccemail']);
             $stmt->bindParam(':ID', $ReportInfo['ID']);

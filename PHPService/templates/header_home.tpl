@@ -78,6 +78,7 @@
                     <option value="changePassword.php">更改密碼</option>
                     <option value="log_table.php">紀錄查詢</option>
                     <option value="Statistics.php">統計管理</option>
+                    <option value="download.html">下載滿意度問卷</option>
                     <option value="index.php">登出</option>
                 </select>
             </li>
@@ -88,9 +89,20 @@
                     <option value="changePassword.php">更改密碼</option>
                     <option value="log_table.php">紀錄查詢</option>
                     <option value="Statistics.php">統計管理</option>
+                    <option value="download.html">下載滿意度問卷</option>
                     <option value="index.php">登出</option>
                 </select>
             </li>
+            {elseif $Permission eq 4}
+            <li style="display: inline-block;">
+                <select id="userOptions" name="userOptions" onchange="location = this.value;">
+                    <option value="">會員管理</option>
+                    <option value="changePassword.php">更改密碼</option>
+                    <option value="download.html">下載滿意度問卷</option>
+                    <option value="index.php">登出</option>
+                </select>
+            </li>
+
 
             {else}
 

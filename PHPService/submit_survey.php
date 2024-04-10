@@ -4,11 +4,14 @@ require_once __DIR__ . "/class/DBConnect.php";
 require_once __DIR__ . "/class/Log.php";
 require_once __DIR__ . "/class/Report.php";
 require_once __DIR__ . "/class/Email.php";
-
+// $ReportID = $_GET['ReportID'];
 $db = new DBConnect();
 $log = new Log();
 $Email = new Email();
 $report = new Report($_POST);
+$path = $_SERVER['PATH_INFO'];
+$segments = explode('/', $path);
+$ReportID = end($segments);
 $email = $HospitalList = $ReportID = $CustomerEmail = $SampleNo = $ReportName = $other_comments = $error ='';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $ReportID = $_POST['ReportID'];
