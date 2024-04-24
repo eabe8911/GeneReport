@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-02-17 16:58:36
+/* Smarty version 4.3.4, created on 2024-04-19 15:55:16
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\ViewReportImport.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_65d0753ca1f429_89768306',
+  'unifunc' => 'content_66222364af0b34_78883570',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'fca0661967592b8a19cc6d89935ce12208d510c4' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\ViewReportImport.tpl',
-      1 => 1706866164,
+      1 => 1713513313,
       2 => 'file',
     ),
   ),
@@ -23,7 +23,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:header.tpl' => 1,
   ),
 ),false)) {
-function content_65d0753ca1f429_89768306 (Smarty_Internal_Template $_smarty_tpl) {
+function content_66222364af0b34_78883570 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <title>麗寶基因報告系統</title>
 <html>
@@ -56,7 +56,7 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield3']->value;?>
                 <!-- <a href="template.xlsx" download>
                     <h3>下載Excel範本檔</h3>
                 </a> -->
-                <a href="template2023.xlsx" download>
+                <a href="template2024_sample.xlsx" download>
                     <h3>下載Excel範本檔</h3>
                 </a>
             </div>

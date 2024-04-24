@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-04-10 10:17:12
+/* Smarty version 4.3.4, created on 2024-04-10 11:11:22
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\header_home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_66164b087782a5_33475136',
+  'unifunc' => 'content_661657ba7eb237_46076379',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '72709b614568c486ecb409360a8ed7cd772c3200' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\header_home.tpl',
-      1 => 1712737030,
+      1 => 1712738352,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_66164b087782a5_33475136 (Smarty_Internal_Template $_smarty_tpl) {
+function content_661657ba7eb237_46076379 (Smarty_Internal_Template $_smarty_tpl) {
 ?><header style="border-bottom: 1px solid #ccc; display: flex; padding: 0.5em 1em; justify-content: space-between;">
     <div class="member-site-identity">
         <?php echo $_smarty_tpl->tpl_vars['Logo']->value;?>
@@ -125,6 +125,16 @@ function content_66164b087782a5_33475136 (Smarty_Internal_Template $_smarty_tpl)
                     <option value="index.php">登出</option>
                 </select>
             </li>
+            <?php } elseif ($_smarty_tpl->tpl_vars['Permission']->value == 4) {?>
+            <li style="display: inline-block;">
+                <select id="userOptions" name="userOptions" onchange="location = this.value;">
+                    <option value="">會員管理</option>
+                    <option value="changePassword.php">更改密碼</option>
+                    <option value="download.html">下載滿意度問卷</option>
+                    <option value="index.php">登出</option>
+                </select>
+            </li>
+
 
             <?php } else { ?>
 

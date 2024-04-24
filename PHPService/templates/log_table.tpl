@@ -86,6 +86,7 @@
     <!-- <button class="btn btn-danger btn-md"> <a href="home.php">回首頁</a></button> -->
     <button class="btn btn-primary btn-md" onclick="location.href='home.php'">回首頁</button>
     <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search" style="float: right;">
+    <input type="date" id="myDateInput" onchange="myFunction()" style="float: right;">
     <br><br>
     <table id="log_table" border='1' style="text-align: center;">
         <tr style="text-align: center;">

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-04-02 16:27:20
+/* Smarty version 4.3.4, created on 2024-04-18 16:11:40
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\ReportDetailMaintain.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_660bc168c35058_71005681',
+  'unifunc' => 'content_6620d5bc8f9c27_93605867',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '451136e515d260dcfeb69b381fca1166c93b1f0d' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\ReportDetailMaintain.tpl',
-      1 => 1712046437,
+      1 => 1713427898,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_660bc168c35058_71005681 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6620d5bc8f9c27_93605867 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\vendor\\smarty\\smarty\\libs\\plugins\\function.html_options.php','function'=>'smarty_function_html_options',),));
 ?>
 <!--POP UP MODAL TO VIEW MEMBER DETAILS AND RESULTS FOR Member Information-->
@@ -234,10 +234,16 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                         </label>
                                         <label type="button" class="btn btn-primary btn-block"
                                             style="font-weight:bold;font-size:20px;width:40%;;margin:30px;">
-                                            <input id="ReportApply" name="ReportApply" style="display:none;" type="file"
+                                            <input id="ReportUploadLogoPDF" name="ReportUploadLogoPDF" style="display:none;" type="file"
                                                 accept="application/pdf" />
-                                            <i class="fa fa-file-pdf"></i> 上傳申請單
+                                            <i class="fa fa-file-pdf"></i> 上傳院所版本
                                         </label>
+                                        <label type="button" class="btn btn-primary btn-block"
+                                        style="font-weight:bold;font-size:20px;width:40%;;margin:30px;">
+                                        <input id="ReportApply" name="ReportApply" style="display:none;" type="file"
+                                            accept="application/pdf" />
+                                        <i class="fa fa-file-pdf"></i> 上傳申請單
+                                    </label>
 
                                         <!-- <input type="file" id="Apply" name="Apply" /> -->
 
@@ -326,7 +332,18 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                             </div>
                         </div>
                     </div>
-                </div>
+                    <br>
+                    <br>
+                    <!---- LooPDF Preview -->
+                    <div class="row" id="LogoPDFArea">
+                        <div class="form-horizontal" role="form">
+                            <div class="col-md-12">
+                                <embed id='LogoFile' name='LogoFile' src='<?php echo $_smarty_tpl->tpl_vars['LogoFile']->value;?>
+' type='application/pdf'
+                                    width='100%' height='1000px' />
+                            </div>
+                        </div>
+                    </div>
             </div>
 </form>
 

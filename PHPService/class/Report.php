@@ -37,6 +37,7 @@ class Report implements ReportInterface
                 'ReportType' => $data['ReportType'] ?? '', //報告類型
                 'TemplateID' => $data['TemplateID'] ?? '', //範本編號
                 'FileName' => $data['FileName'] ?? '', //檔案名稱
+                'LogoFile' => $data['LogoFile'] ?? '', //院所logo檔案名稱
                 'apply_pdf' => $data['apply_pdf'] ?? '', //申請檔案
                 'HospitalList' => $data['HospitalList'] ?? '', //醫院名稱
                 'ReportStatus' => $data['ReportStatus'] ?? '', //報告狀態
@@ -238,10 +239,10 @@ class Report implements ReportInterface
                 }
                 $now = date("Y-m-d H:i:s");
                 $sql = "INSERT INTO Report (
-                ReportID, ReportName, FileName, ReportType, TemplateID, ccemail, HospitalList, ReportStatus,
+                ReportID, ReportName, FileName, LogoFile, ReportType, TemplateID, ccemail, HospitalList, ReportStatus,
                 CreatedAt, CustomerName, CustomerEmail, CustomerPhone, DueDate, SampleID, PatientID, scID, scdate, rcdate, apply_pdf, Submitdate ,SampleNo, SampleType,ReceivingDate,  Receiving,Sampleglass, quantity
                 ) VALUES (
-                :ReportID, :ReportName, :FileName, :ReportType, :TemplateID, :ccemail, :HospitalList, :ReportStatus,
+                :ReportID, :ReportName, :FileName, :LogoFile, :ReportType, :TemplateID, :ccemail, :HospitalList, :ReportStatus,
                 :CreatedAt, :CustomerName, :CustomerEmail, :CustomerPhone, :DueDate, :SampleID, :PatientID, :scID, :scdate, :rcdate, :apply_pdf, :Submitdate, :SampleNo, :SampleType, :ReceivingDate, :Receiving, :Sampleglass, :quantity
                 )";
                 $stmt = $this->_conn->prepare($sql);
@@ -259,6 +260,14 @@ class Report implements ReportInterface
                 } else {
                     $stmt->bindValue(':apply_pdf', $_FILES['ReportApply']['name']);
                 }
+
+                //如果沒有上傳檔案，就不要寫入Logo_File檔案名稱
+                if (empty($ReportInfo['LogoFile'])) {
+                    $stmt->bindValue(':LogoFile', '');
+                } else {
+                    $stmt->bindValue(':LogoFile', $ReportInfo['LogoFile']);
+                }
+
                 if (empty($ReportInfo['DueDate']) || $ReportInfo['DueDate'] == '') {
                     $DueDate_date = null;
                     $scdate_date = null;
@@ -381,6 +390,7 @@ class Report implements ReportInterface
                 ReportName=:ReportName,
                 FileName=:FileName,
                 apply_pdf=:apply_pdf,
+                LogoFile=:LogoFile,
                 ReportType=:ReportType,
                 TemplateID=:TemplateID,
                 ccemail=:ccemail,
@@ -418,6 +428,14 @@ class Report implements ReportInterface
             }else{
                 $ReportApplyName = null;
                 $stmt->bindValue(':apply_pdf', $ReportInfo['apply_pdf']);
+            }
+
+            if(!empty($_FILES['LogoFile']['name'])){
+                $LogoFile = $_FILES['LogoFile']['name'] ;
+                $stmt->bindValue(':LogoFile', $_FILES['LogoFile']['name']);
+            }else{
+                $LogoFile = null;
+                $stmt->bindValue(':LogoFile', $ReportInfo['LogoFile']);
             }
 
             $stmt->bindParam(':ReportType', $ReportInfo['ReportType']);

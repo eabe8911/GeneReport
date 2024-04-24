@@ -188,10 +188,16 @@
                                         </label>
                                         <label type="button" class="btn btn-primary btn-block"
                                             style="font-weight:bold;font-size:20px;width:40%;;margin:30px;">
-                                            <input id="ReportApply" name="ReportApply" style="display:none;" type="file"
+                                            <input id="ReportUploadLogoPDF" name="ReportUploadLogoPDF" style="display:none;" type="file"
                                                 accept="application/pdf" />
-                                            <i class="fa fa-file-pdf"></i> 上傳申請單
+                                            <i class="fa fa-file-pdf"></i> 上傳院所版本
                                         </label>
+                                        <label type="button" class="btn btn-primary btn-block"
+                                        style="font-weight:bold;font-size:20px;width:40%;;margin:30px;">
+                                        <input id="ReportApply" name="ReportApply" style="display:none;" type="file"
+                                            accept="application/pdf" />
+                                        <i class="fa fa-file-pdf"></i> 上傳申請單
+                                    </label>
 
                                         <!-- <input type="file" id="Apply" name="Apply" /> -->
 
@@ -276,7 +282,17 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                    <br>
+                    <br>
+                    <!---- LooPDF Preview -->
+                    <div class="row" id="LogoPDFArea">
+                        <div class="form-horizontal" role="form">
+                            <div class="col-md-12">
+                                <embed id='LogoFile' name='LogoFile' src='{$LogoFile}' type='application/pdf'
+                                    width='100%' height='1000px' />
+                            </div>
+                        </div>
+                    </div>
             </div>
 </form>
 

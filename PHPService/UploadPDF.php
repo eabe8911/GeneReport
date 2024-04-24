@@ -50,6 +50,18 @@ function CheckPDF($FILES)
             return $apply_name;
         }
 
+        //上傳院所logo版本報告
+        if ($FILES['ReportUploadLogoPDF']['error'] == 0 ) {
+            $Logo_name = $FILES['ReportUploadLogoPDF']['name'];
+            $Logo_tmp_name = $FILES['ReportUploadLogoPDF']['tmp_name'];
+            $Logo_size = $FILES['ReportUploadLogoPDF']['size'];
+            $Logo_type = $FILES['ReportUploadLogoPDF']['type'];
+            move_uploaded_file($Logo_tmp_name, $dirName . '/' . $Logo_name);
+            exec("chown libobioadmin . $dirName ." . '/' . $Logo_name); // Change file owner to libobioadmin
+            exec("chmod 777 . $dirName ." . '/' . $Logo_name); // Change file mode to 777
+            return $Logo_name;
+        }
+
         return false;
     } catch (Exception $th) {
         throw new Exception("檔案無法更改屬性，請通知資訊處處理。" . $th->getMessage(), 1);

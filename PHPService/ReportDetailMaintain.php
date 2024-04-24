@@ -35,7 +35,7 @@ $DisplayName = $_SESSION['DisplayName'];
 $Permission = $_SESSION['Permission'];
 $Role = $_SESSION['Role'];
 $FormName = filter_input(INPUT_POST, 'FormName');
-$ReportMode = $ReportID = $PDFFile = $ApplyFile = $ID = $ReportStatus = "";
+$ReportMode = $ReportID = $PDFFile = $ApplyFile = $LogoFile = $ID = $ReportStatus = "";
 $ErrorMessage = '';
 $result1 = $resultID = array();
 //檢查是否第二次進入
@@ -216,6 +216,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
             if (!empty($reportInfo['apply_pdf'])) {
                 $ApplyFile = "./uploads/" . $ReportID . "/" . $reportInfo['apply_pdf'];
             }
+            if (!empty($reportInfo['LogoFile'])) {
+                $LogoFile = "./uploads/" . $ReportID . "/" . $reportInfo['LogoFile'];
+            }
             // set maintain button area to Maintain mode
             $ReportMode = "VIEW";
             break;
@@ -237,6 +240,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
                 if (!empty($reportInfo['apply_pdf'])) {
                     $ApplyFile = "./uploads/" . $ReportID . "/" . $reportInfo['apply_pdf'];
                 }
+                if (!empty($reportInfo['LogoFile'])) {
+                    $LogoFile = "./uploads/" . $ReportID . "/" . $reportInfo['LogoFile'];
+                }
                 // set maintain button area to Maintain mode
                 $ReportMode = "CHECK";
             }
@@ -252,6 +258,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
             }
             if (!empty($reportInfo['apply_pdf'])) {
                 $ApplyFile = "./uploads/" . $ReportID . "/" . $reportInfo['apply_pdf'];
+            }
+            if (!empty($reportInfo['LogoFile'])) {
+                $LogoFile = "./uploads/" . $ReportID . "/" . $reportInfo['LogoFile'];
             }
             // set maintain button area to Maintain mode
             $ReportMode = "QUERY";
@@ -281,6 +290,7 @@ $smarty->assign("Hiddenfield4", "<input type='hidden' id='Permission' name='Perm
 $smarty->assign("Hiddenfield5", "<input type='hidden' id='ID' name='ID' value=" . $ID . ">");
 $smarty->assign("Hiddenfield6", "<input type='hidden' id='Account' name='Account' value=" . $Account . ">");
 $smarty->assign("Hiddenfield7", "<input type='hidden' id='ApplyFile' name='ApplyFile' value=" . $ApplyFile . ">");
+$smarty->assign("Hiddenfield8", "<input type='hidden' id='LogoFile' name='LogoFile' value=" . $LogoFile . ">");
 // Error Message
 $smarty->assign("ErrorMessage", $ErrorMessage);
 if ($ErrorMessage == '') {
@@ -369,6 +379,15 @@ if ($ApplyFile == '') {
     $smarty->assign("ApplyFile", $ApplyFile, true);
 }
 
+if ($LogoFile == '') {
+    $smarty->assign("LogoFile", "", true);
+    $output_apply = '<br><h4 style="justify-content: center; display: flex;color:#FF0000">請上傳申請單</h4>';
+    echo '<div id="pdf-output">' . $output_apply . '</div>';
+
+} else {
+    $smarty->assign("LogoFile", $LogoFile, true);
+}
+
 $ReportName = $report->ReportInfo('ReportName');
 $CustomerEmail = $report->ReportInfo('CustomerEmail');
 $ccemail = $report->ReportInfo('ccemail');
@@ -400,6 +419,7 @@ if ($PDFFile == '') {
                 <input type="hidden" name="CustomerName" value="' . $CustomerName . '">
                 <input type="hidden" name="PDFFile" value="' . $PDFFile . '">
                 <input type="hidden" name="ApplyFile" value="' . $ApplyFile . '">
+                <input type="hidden" name="LogoFile" value="' . $LogoFile . '">
                 <input type="submit" style="margin-left: 10px;height: 40px;" name="BtnSendPDF" id="BtnSendPDF" class="btn btn-primary" value="' . $ReportID . ', Send E-mail">
             </form>
             <button style="margin-left: 10px;height: 40px;" class="btn btn-primary" type="button">

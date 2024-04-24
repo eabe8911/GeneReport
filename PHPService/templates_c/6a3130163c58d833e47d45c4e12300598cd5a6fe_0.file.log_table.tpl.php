@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-02-20 17:12:34
+/* Smarty version 4.3.4, created on 2024-04-10 17:11:27
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\log_table.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_65d46d022687b2_18836646',
+  'unifunc' => 'content_661657bfd01529_66939899',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '6a3130163c58d833e47d45c4e12300598cd5a6fe' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\log_table.tpl',
-      1 => 1705643976,
+      1 => 1712740270,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_65d46d022687b2_18836646 (Smarty_Internal_Template $_smarty_tpl) {
+function content_661657bfd01529_66939899 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 
@@ -111,6 +111,7 @@ function content_65d46d022687b2_18836646 (Smarty_Internal_Template $_smarty_tpl)
     <!-- <button class="btn btn-danger btn-md"> <a href="home.php">回首頁</a></button> -->
     <button class="btn btn-primary btn-md" onclick="location.href='home.php'">回首頁</button>
     <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search" style="float: right;">
+    <input type="date" id="myDateInput" onchange="myFunction()" style="float: right;">
     <br><br>
     <table id="log_table" border='1' style="text-align: center;">
         <tr style="text-align: center;">

@@ -23,7 +23,7 @@
                 <!-- <a href="template.xlsx" download>
                     <h3>下載Excel範本檔</h3>
                 </a> -->
-                <a href="template2023.xlsx" download>
+                <a href="template2024_sample.xlsx" download>
                     <h3>下載Excel範本檔</h3>
                 </a>
             </div>
