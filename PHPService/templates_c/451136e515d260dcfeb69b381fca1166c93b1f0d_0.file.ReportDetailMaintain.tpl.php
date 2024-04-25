@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-04-18 16:11:40
+/* Smarty version 4.3.4, created on 2024-04-25 16:36:05
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\ReportDetailMaintain.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_6620d5bc8f9c27_93605867',
+  'unifunc' => 'content_662a15f525c4b1_53938717',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '451136e515d260dcfeb69b381fca1166c93b1f0d' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\ReportDetailMaintain.tpl',
-      1 => 1713427898,
+      1 => 1714034159,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6620d5bc8f9c27_93605867 (Smarty_Internal_Template $_smarty_tpl) {
+function content_662a15f525c4b1_53938717 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\vendor\\smarty\\smarty\\libs\\plugins\\function.html_options.php','function'=>'smarty_function_html_options',),));
 ?>
 <!--POP UP MODAL TO VIEW MEMBER DETAILS AND RESULTS FOR Member Information-->
@@ -234,16 +234,17 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                         </label>
                                         <label type="button" class="btn btn-primary btn-block"
                                             style="font-weight:bold;font-size:20px;width:40%;;margin:30px;">
-                                            <input id="ReportUploadLogoPDF" name="ReportUploadLogoPDF" style="display:none;" type="file"
+                                            <input id="ReportApply" name="ReportApply" style="display:none;" type="file"
                                                 accept="application/pdf" />
-                                            <i class="fa fa-file-pdf"></i> 上傳院所版本
+                                            <i class="fa fa-file-pdf"></i> 上傳申請單
                                         </label>
                                         <label type="button" class="btn btn-primary btn-block"
-                                        style="font-weight:bold;font-size:20px;width:40%;;margin:30px;">
-                                        <input id="ReportApply" name="ReportApply" style="display:none;" type="file"
-                                            accept="application/pdf" />
-                                        <i class="fa fa-file-pdf"></i> 上傳申請單
-                                    </label>
+                                            style="font-weight:bold;font-size:20px;width:40%;;margin:30px;">
+                                            <input id="ReportUploadLogoPDF" name="ReportUploadLogoPDF"
+                                                style="display:none;" type="file" accept="application/pdf" />
+                                            <i class="fa fa-file-pdf"></i> 上傳院所版本
+                                        </label>
+
 
                                         <!-- <input type="file" id="Apply" name="Apply" /> -->
 
@@ -290,10 +291,10 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                 <button type="button" class="btn btn-danger btn-md" id="BtnReportExit"
                                     style="font-weight:bold;font-size:20px;margin:30px;">
                                     <i class="fa fa-eject"></i> 離 開</button>
-                                    <button type="button" class="btn btn-danger btn-md" id="BtnReportEditccemail"
+                                <button type="button" class="btn btn-danger btn-md" id="BtnReportEditccemail"
                                     style="font-weight:bold;font-size:20px;margin:30px;">
                                     <i class="fa fa-edit"></i> 修改郵件</button>
-                                    <!-- <button type="button" class="btn btn-danger btn-md" id="BtnReportEdit"
+                                <!-- <button type="button" class="btn btn-danger btn-md" id="BtnReportEdit"
                                     style="font-weight:bold;font-size:20px;margin:30px;">
                                     <i class="fa fa-edit"></i> 修改郵件</button> -->
                             </p>
@@ -344,7 +345,10 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                             </div>
                         </div>
                     </div>
+                </div>
             </div>
+        </div>
+    </div>
 </form>
 
 <!---------------------------End-----------------------------><?php }

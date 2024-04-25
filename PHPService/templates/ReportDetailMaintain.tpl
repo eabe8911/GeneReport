@@ -188,16 +188,17 @@
                                         </label>
                                         <label type="button" class="btn btn-primary btn-block"
                                             style="font-weight:bold;font-size:20px;width:40%;;margin:30px;">
-                                            <input id="ReportUploadLogoPDF" name="ReportUploadLogoPDF" style="display:none;" type="file"
+                                            <input id="ReportApply" name="ReportApply" style="display:none;" type="file"
                                                 accept="application/pdf" />
-                                            <i class="fa fa-file-pdf"></i> 上傳院所版本
+                                            <i class="fa fa-file-pdf"></i> 上傳申請單
                                         </label>
                                         <label type="button" class="btn btn-primary btn-block"
-                                        style="font-weight:bold;font-size:20px;width:40%;;margin:30px;">
-                                        <input id="ReportApply" name="ReportApply" style="display:none;" type="file"
-                                            accept="application/pdf" />
-                                        <i class="fa fa-file-pdf"></i> 上傳申請單
-                                    </label>
+                                            style="font-weight:bold;font-size:20px;width:40%;;margin:30px;">
+                                            <input id="ReportUploadLogoPDF" name="ReportUploadLogoPDF"
+                                                style="display:none;" type="file" accept="application/pdf" />
+                                            <i class="fa fa-file-pdf"></i> 上傳院所版本
+                                        </label>
+
 
                                         <!-- <input type="file" id="Apply" name="Apply" /> -->
 
@@ -242,10 +243,10 @@
                                 <button type="button" class="btn btn-danger btn-md" id="BtnReportExit"
                                     style="font-weight:bold;font-size:20px;margin:30px;">
                                     <i class="fa fa-eject"></i> 離 開</button>
-                                    <button type="button" class="btn btn-danger btn-md" id="BtnReportEditccemail"
+                                <button type="button" class="btn btn-danger btn-md" id="BtnReportEditccemail"
                                     style="font-weight:bold;font-size:20px;margin:30px;">
                                     <i class="fa fa-edit"></i> 修改郵件</button>
-                                    <!-- <button type="button" class="btn btn-danger btn-md" id="BtnReportEdit"
+                                <!-- <button type="button" class="btn btn-danger btn-md" id="BtnReportEdit"
                                     style="font-weight:bold;font-size:20px;margin:30px;">
                                     <i class="fa fa-edit"></i> 修改郵件</button> -->
                             </p>
@@ -293,7 +294,10 @@
                             </div>
                         </div>
                     </div>
+                </div>
             </div>
+        </div>
+    </div>
 </form>
 
 <!---------------------------End----------------------------->

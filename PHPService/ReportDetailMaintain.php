@@ -45,10 +45,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
         $ReportMode = filter_input(INPUT_POST, 'ReportMode');
         $ReportID = filter_input(INPUT_POST, 'ReportID');
         $Username = $_SESSION['DisplayName'];
+        $reportInfo = $report->get_ReportInfo();
 
         switch ($ReportMode) {
             case 'ADD':
-                $report->AddReport($_POST);
+                $report->AddReport1($_POST);
                 $ReportMode = $_POST['ReportMode'];
                 $ReportStatus = $_POST['ReportStatus'];
                 $ReportType = $_POST['ReportType'];
