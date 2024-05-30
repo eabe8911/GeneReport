@@ -61,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ReportImportData") {
             } else {
                 //add data
                 foreach ($datas as $data) {
-                    $report->AddReport($data);
+                    $report->AddReport1($data);
                 }
 
             }

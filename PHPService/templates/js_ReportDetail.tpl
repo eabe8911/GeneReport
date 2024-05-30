@@ -175,7 +175,10 @@
     // set fields to readonly
     function setFieldsReadonly(state) {
       // $('#ReportID').prop('readonly', state);
-      $('#ReportName').prop('readonly', state);
+      
+      $('#main-menu').prop('disabled', state);
+
+      $('#ReportName').prop('disabled', state);
       $('#HospitalList').prop('disabled', state);
       $('#CustomerName').prop('readonly', state);
       $('#CustomerEmail').prop('readonly', state);

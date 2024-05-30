@@ -37,7 +37,7 @@ class Email
         $this->_mail = new PHPMailer(true); // Passing `true` enables exceptions
     }
 
-    public function SendEmail($ReportID, $ReportName, $CustomerEmail, $ccemail, $CustomerName, $PDFFile, $ApplyFile, $Username): bool
+    public function SendEmail($ReportID, $ReportName, $CustomerEmail, $ccemail, $CustomerName, $PDFFile, $ApplyFile, $Username, $PatientID, $scID, $scdate, $rcdate): bool
     {
         $report = new Report($_POST);
         $ReportID = filter_input(INPUT_POST, 'ReportID');
@@ -52,6 +52,10 @@ class Email
         // $Role = $_SESSION['Role'];
         $ReportType = filter_input(INPUT_POST, 'ReportType');
         $Username = $_SESSION['DisplayName'];
+        $PatientID = filter_input(INPUT_POST, 'PatientID');
+        $rcdate = filter_input(INPUT_POST, 'rcdate');
+        
+
 
         $_mail = new PHPMailer(true); // Passing `true` enables exceptions
 
@@ -67,7 +71,7 @@ class Email
             $_mail->SMTPAuth = true;
             // sender email setting
             $_mail->Username = 'Report@libobio.com';
-            $_mail->Password = '863$Gmd$16535Ad';
+            $_mail->Password = '5836@dhnbg';
             if ($ReportType == 1) {
                 $_mail->SetFrom('Report@libobio.com', 'JB_Lab_ISO');
             } elseif ($ReportType == 2) {
@@ -87,25 +91,32 @@ class Email
             $_mail->isHTML(true); // Set email format to HTML
             $_mail->Subject = $CustomerName . '_麗寶生醫基因檢測報告' . $ReportID;
 
-            $_mail->Body = $CustomerName . '您好:<br><br>
+            $_mail->Body = $CustomerName . '先生/女士 您好：<br><br>
  
-            附件為送檢的兩份基因檢測報告及服務申請單，煩請您查收，<br>
-            檢測報告資訊如下所示 :<br>
+            非常感謝貴院委檢本司施作基因檢測服務，<br>
+            附件檔案為送檢的基因檢測報告及服務申請單，煩請您查收，<br>
+
+            此次的檢測報告資訊如下所示：<br>
             麗寶報告編號 : ' . $ReportID . '<br>
-            採檢編號 : ' . $scID . '<br>
+            病歷編號 : ' . $PatientID . '<br>
+            採檢單號 : ' . $scID . '<br>
             檢測項目 : ' . $ReportName . '<br>
-            採檢日期 : ' . $scdate . '<br><br>
+            採集日期 : ' . $scdate . '<br>
+            收檢日期 : ' . $rcdate . '<br><br>
             
-            另承蒙貴院的支持，讓我們有機會服務，為了使我們能持續提供良好的服務品質給貴院<br>
-            需懇請貴單位幫忙填寫以下連結之表單內容，煩請提供我們寶貴的反饋及評量，讓我們能改善及提供更完善的服務給貴院，<br>
-            表單連結請點選 :<a href="http://app.libobio.com/submit_survey.php">【醫療院所滿意度調查表】</a>' . '<br><br>
-            (備註說明 : 為了能及時知曉貴院對本司檢測服務的反饋建議，從今日起本司提供給貴院檢測報告時，<br>
-            會同步提供「滿意度調查表單」連結，在煩請醫師協助填寫，使本司提供最好的服務給您。)<br><br> 
+            為了使我們能持續提供良好的服務品質給貴院，懇請「送檢醫師/送檢單位」幫忙填寫以下連結之表單(表示黃底處)內容，<br>
+            煩請提供我們寶貴的反饋與評量，讓我們能改善及提供更完善的服務給貴院。<br>
+
+            表單連結請點選 :<a href="http://app.libobio.com/submit_survey.php">
+                            <span style="font-size: 33px; background-color: rgba(255, 252, 47, 0.815);">
+                            <strong>【醫療院所滿意度調查表】</strong>
+                            </span>
+                            </a>
+                            <br><br>
 
              
             如有任何問題，煩請不吝告知。<br>
-             
-            非常感謝!!<br><br><br>
+            再次感謝您!!<br><br><br>
              
             麗寶生醫股份有限公司<br>
             分子檢測服務處 董昕恬<br>

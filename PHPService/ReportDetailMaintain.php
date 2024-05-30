@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
 
         switch ($ReportMode) {
             case 'ADD':
-                $report->AddReport1($_POST);
+                $report->AddReport($_POST);
                 $ReportMode = $_POST['ReportMode'];
                 $ReportStatus = $_POST['ReportStatus'];
                 $ReportType = $_POST['ReportType'];
@@ -382,8 +382,8 @@ if ($ApplyFile == '') {
 
 if ($LogoFile == '') {
     $smarty->assign("LogoFile", "", true);
-    $output_apply = '<br><h4 style="justify-content: center; display: flex;color:#FF0000">請上傳申請單</h4>';
-    echo '<div id="pdf-output">' . $output_apply . '</div>';
+    // $output_apply = '<br><h4 style="justify-content: center; display: flex;color:#FF0000">請上傳申請單</h4>';
+    // echo '<div id="pdf-output">' . $output_apply . '</div>';
 
 } else {
     $smarty->assign("LogoFile", $LogoFile, true);
@@ -393,6 +393,10 @@ $ReportName = $report->ReportInfo('ReportName');
 $CustomerEmail = $report->ReportInfo('CustomerEmail');
 $ccemail = $report->ReportInfo('ccemail');
 $CustomerName = $report->ReportInfo('CustomerName');
+$PatientID = $report->ReportInfo('PatientID');
+$scID = $report->ReportInfo('scID');
+$scdate = $report->ReportInfo('scdate');
+$rcdate = $report->ReportInfo('rcdate');
 // echo $ReportStatus;
 // Display PDF File if empty show error message
 
@@ -421,6 +425,11 @@ if ($PDFFile == '') {
                 <input type="hidden" name="PDFFile" value="' . $PDFFile . '">
                 <input type="hidden" name="ApplyFile" value="' . $ApplyFile . '">
                 <input type="hidden" name="LogoFile" value="' . $LogoFile . '">
+                <input type="hidden" name="PatientID" value="' . $PatientID . '">
+                <input type="hidden" name="scID" value="' . $scID . '">
+                <input type="hidden" name="scdate" value="' . $scdate . '">
+                <input type="hidden" name="rcdate" value="' . $rcdate . '">
+                
                 <input type="submit" style="margin-left: 10px;height: 40px;" name="BtnSendPDF" id="BtnSendPDF" class="btn btn-primary" value="' . $ReportID . ', Send E-mail">
             </form>
             <button style="margin-left: 10px;height: 40px;" class="btn btn-primary" type="button">

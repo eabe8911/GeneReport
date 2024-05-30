@@ -34,6 +34,12 @@
                             <center>{$ErrorMessage}</center>
                         </strong>
                     </div>
+                    <!-- success message -->
+                    <div class="alert alert-success alert-container" id="success" {$Message}>
+                        <strong>
+                            <center>{$Message}</center>
+                        </strong>
+                    </div>
                     <!-- Account -->
                     <div class="form-group">
                         <div class="col-xs-12">

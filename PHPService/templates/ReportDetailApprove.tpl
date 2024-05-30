@@ -145,7 +145,7 @@
                                 <!---- 客戶名稱 ---->
                                 <div class="form-group">
                                     <!--PRINCIPAL NAME FIELD , THIS FIELD IS CONNECTED TO HOME.PHP-->
-                                    <label for="CustomerName" class="col-md-3 control-label">客戶名稱:</label>
+                                    <label for="CustomerName" class="col-md-3 control-label">聯絡人名稱:</label>
                                     <div class="col-md-8">
                                         <input type="text" id="CustomerName" name=CustomerName class="form-control"
                                             readonly value="{$CustomerName}">
@@ -154,7 +154,7 @@
                                 <!---- 客戶郵件 ---->
                                 <div class="form-group">
                                     <!--PRINCIPAL NAME FIELD , THIS FIELD IS CONNECTED TO HOME.PHP-->
-                                    <label for="CustomerEmail" class="col-md-3 control-label">客戶郵件:</label>
+                                    <label for="CustomerEmail" class="col-md-3 control-label">聯絡人郵件:</label>
                                     <div class="col-md-8">
                                         <input type="text" id="CustomerEmail" name=CustomerEmail class="form-control"
                                             readonly value="{$CustomerEmail}">
@@ -162,7 +162,7 @@
                                 </div>
                                 <!---- 客戶電話 ---->
                                 <div class="form-group">
-                                    <label for="CustomerPhone" class="col-md-3 control-label">客戶電話:</label>
+                                    <label for="CustomerPhone" class="col-md-3 control-label">聯絡電話:</label>
                                     <div class="col-md-8">
                                         <input type="text" id="CustomerPhone" name="CustomerPhone" class="form-control"
                                             readonly value="{$CustomerPhone}">

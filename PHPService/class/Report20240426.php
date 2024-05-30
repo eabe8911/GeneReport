@@ -268,104 +268,6 @@ class Report implements ReportInterface
 
                 } else {
                     // $ReportInfo['DueDate'] = $date->format('Y-m-d');
-                    $DueDate =  $ReportInfo['DueDate'];
-                    // $DueDate_date = $DueDate->format('Y-m-d');
-                    // if ($DueDate === false) {
-                    //     $DueDate_date = null;
-                    // } else {
-                    //     $DueDate_date = $DueDate->format('Y-m-d');
-                    // }
-                    $scdate =  $ReportInfo['scdate'];
-                    // $scdate_date = $scdate->format('Y-m-d');
-                    $rcdate = $ReportInfo['rcdate'];
-                    // $rcdate_date = $rcdate->format('Y-m-d');
-                    $Submitdate =  $ReportInfo['Submitdate'];
-                    // $Submit_date = $Submitdate->format('Y-m-d');
-                    $ReceivingDate =  $ReportInfo['ReceivingDate'];
-                    // $ReceivingDate_date = $ReceivingDate->format('Y-m-d');
-                }
-
-                // $stmt->bindValue(':FileName', $ReportInfo['ReportID'] . '.pdf');
-                //ReportType 只取第一個數字
-                $ReportInfo['ReportType'] = substr($ReportInfo['ReportType'], 0, 1);
-                $ReportInfo['TemplateID'] = substr($ReportInfo['TemplateID'], 0, 1);
-                $ReportInfo['HospitalList'] = substr($ReportInfo['HospitalList'], 0, 1);
-
-                $stmt->bindParam(':ReportType', $ReportInfo['ReportType']);
-                $stmt->bindParam(':TemplateID', $ReportInfo['TemplateID']);
-                $stmt->bindParam(':ccemail', $ReportInfo['ccemail']);
-                $stmt->bindParam(':HospitalList', $ReportInfo['HospitalList']);
-                $stmt->bindParam(':ReportStatus', $ReportStatus);
-                $stmt->bindParam(':CreatedAt', $now);
-                $stmt->bindParam(':CustomerName', $ReportInfo['CustomerName']);
-                $stmt->bindParam(':CustomerEmail', $ReportInfo['CustomerEmail']);
-                $stmt->bindParam(':CustomerPhone', $ReportInfo['CustomerPhone']);
-                $stmt->bindParam(':DueDate', $DueDate);
-                $stmt->bindParam(':SampleID', $ReportInfo['SampleID']);
-                $stmt->bindParam(':PatientID', $ReportInfo['PatientID']);
-                $stmt->bindParam(':scID', $ReportInfo['scID']);
-                $stmt->bindParam(':scdate', $scdate);
-                $stmt->bindParam(':rcdate', $rcdate);
-                $stmt->bindParam(':Submitdate', $Submitdate);
-                $stmt->bindParam(':SampleNo', $ReportInfo['SampleNo']);
-                $stmt->bindParam(':SampleType', $ReportInfo['SampleType']);
-                $stmt->bindParam(':ReceivingDate', $ReceivingDate);
-                $stmt->bindParam(':Receiving', $ReportInfo['Receiving']);
-                $stmt->bindParam(':Sampleglass', $ReportInfo['Sampleglass']);
-                $stmt->bindParam(':quantity', $ReportInfo['quantity']);
-                $stmt->execute();
-            }
-        } catch (PDOException | Exception $th) {
-            throw new Exception($th->getMessage(), $th->getCode());
-        }
-        return true;
-    }
-
-    public function AddReport1($ReportInfo)
-    {
-        try {
-            // 重複編號
-            if ($this->_CheckReport($ReportInfo['ReportID'])) {
-                throw new Exception("此報告編號已存在", 1);
-            } else {
-                // check if file exists
-                if (empty($ReportInfo['FileName'])) { // if no file uploaded
-                    $ReportStatus = '0';
-                } else {
-                    $ReportStatus = '1';
-                }
-                $now = date("Y-m-d H:i:s");
-                $sql = "INSERT INTO Report (
-                ReportID, ReportName, FileName, ReportType, TemplateID, ccemail, HospitalList, ReportStatus,
-                CreatedAt, CustomerName, CustomerEmail, CustomerPhone, DueDate, SampleID, PatientID, scID, scdate, rcdate, apply_pdf, Submitdate ,SampleNo, SampleType,ReceivingDate,  Receiving,Sampleglass, quantity
-                ) VALUES (
-                :ReportID, :ReportName, :FileName, :ReportType, :TemplateID, :ccemail, :HospitalList, :ReportStatus,
-                :CreatedAt, :CustomerName, :CustomerEmail, :CustomerPhone, :DueDate, :SampleID, :PatientID, :scID, :scdate, :rcdate, :apply_pdf, :Submitdate, :SampleNo, :SampleType, :ReceivingDate, :Receiving, :Sampleglass, :quantity
-                )";
-                $stmt = $this->_conn->prepare($sql);
-                $stmt->bindParam(':ReportID', $ReportInfo['ReportID']);
-                $stmt->bindParam(':ReportName', $ReportInfo['ReportName']);
-                //如果沒有上傳檔案，就不要寫入檔案名稱
-                if (empty($ReportInfo['FileName'])) {
-                    $stmt->bindValue(':FileName', '');
-                } else {
-                    $stmt->bindValue(':FileName', $ReportInfo['ReportID'] . '.pdf');
-                }
-                //如果沒有上傳檔案，就不要寫入apply_pdf檔案名稱
-                if (empty($ReportInfo['apply_pdf'])) {
-                    $stmt->bindValue(':apply_pdf', '');
-                } else {
-                    $stmt->bindValue(':apply_pdf', $_FILES['ReportApply']['name']);
-                }
-                if (empty($ReportInfo['DueDate']) || $ReportInfo['DueDate'] == '') {
-                    $DueDate_date = null;
-                    $scdate_date = null;
-                    $rcdate_date = null;
-                    $Submit_date = null;
-                    $ReceivingDate_date = null;
-
-                } else {
-                    // $ReportInfo['DueDate'] = $date->format('Y-m-d');
                     $DueDate = DateTime::createFromFormat('n/j/Y', $ReportInfo['DueDate']);
                     // $DueDate_date = $DueDate->format('Y-m-d');
                     if ($DueDate === false) {
@@ -382,7 +284,6 @@ class Report implements ReportInterface
                     $ReceivingDate = DateTime::createFromFormat('n/j/Y', $ReportInfo['ReceivingDate']);
                     $ReceivingDate_date = $ReceivingDate->format('Y-m-d');
                 }
-
 
                 // $stmt->bindValue(':FileName', $ReportInfo['ReportID'] . '.pdf');
                 //ReportType 只取第一個數字

@@ -56,20 +56,4 @@ class Character
         }
 
     }
-    //Permission
-    public function Permission($Account, $Permission)
-    {
-        $user = new User();
-        $member = new Member();
-        if ($user->Permission($Account, $Permission)) {
-            //display success message
-            $Message = "權限更改成功，請使用者重新登入！";
-            return $Message;
-        } else if ($member->Permission($Account, $Permission)) {
-            return true;
-        } else {
-            $ErrorMessage = "權限更改失敗!";
-            throw new Exception($ErrorMessage, 1);
-        }
-    }
 }

@@ -37,7 +37,9 @@ class Report implements ReportInterface
                 'ReportType' => $data['ReportType'] ?? '', //報告類型
                 'TemplateID' => $data['TemplateID'] ?? '', //範本編號
                 'FileName' => $data['FileName'] ?? '', //檔案名稱
+                'LogoFile' => $data['LogoFile'] ?? '', //院所logo檔案名稱
                 'apply_pdf' => $data['apply_pdf'] ?? '', //申請檔案
+                
                 'HospitalList' => $data['HospitalList'] ?? '', //醫院名稱
                 'ReportStatus' => $data['ReportStatus'] ?? '', //報告狀態
                 'CreatedAt' => $data['CreatedAt'] ?? '', //建立時間
@@ -238,10 +240,10 @@ class Report implements ReportInterface
                 }
                 $now = date("Y-m-d H:i:s");
                 $sql = "INSERT INTO Report (
-                ReportID, ReportName, FileName, ReportType, TemplateID, ccemail, HospitalList, ReportStatus,
+                ReportID, ReportName, FileName, LogoFile, ReportType, TemplateID, ccemail, HospitalList, ReportStatus,
                 CreatedAt, CustomerName, CustomerEmail, CustomerPhone, DueDate, SampleID, PatientID, scID, scdate, rcdate, apply_pdf, Submitdate ,SampleNo, SampleType,ReceivingDate,  Receiving,Sampleglass, quantity
                 ) VALUES (
-                :ReportID, :ReportName, :FileName, :ReportType, :TemplateID, :ccemail, :HospitalList, :ReportStatus,
+                :ReportID, :ReportName, :FileName, :LogoFile, :ReportType, :TemplateID, :ccemail, :HospitalList, :ReportStatus,
                 :CreatedAt, :CustomerName, :CustomerEmail, :CustomerPhone, :DueDate, :SampleID, :PatientID, :scID, :scdate, :rcdate, :apply_pdf, :Submitdate, :SampleNo, :SampleType, :ReceivingDate, :Receiving, :Sampleglass, :quantity
                 )";
                 $stmt = $this->_conn->prepare($sql);
@@ -259,6 +261,14 @@ class Report implements ReportInterface
                 } else {
                     $stmt->bindValue(':apply_pdf', $_FILES['ReportApply']['name']);
                 }
+
+                //如果沒有上傳檔案，就不要寫入Logo_File檔案名稱
+                if (empty($ReportInfo['LogoFile'])) {
+                    $stmt->bindValue(':LogoFile', '');
+                } else {
+                    $stmt->bindValue(':LogoFile', $ReportInfo['LogoFile']);
+                }
+
                 if (empty($ReportInfo['DueDate']) || $ReportInfo['DueDate'] == '') {
                     $DueDate_date = null;
                     $scdate_date = null;
@@ -268,21 +278,21 @@ class Report implements ReportInterface
 
                 } else {
                     // $ReportInfo['DueDate'] = $date->format('Y-m-d');
-                    $DueDate =  $ReportInfo['DueDate'];
+                    $DueDate = DateTime::createFromFormat('n/j/Y', $ReportInfo['DueDate']);
                     // $DueDate_date = $DueDate->format('Y-m-d');
-                    // if ($DueDate === false) {
-                    //     $DueDate_date = null;
-                    // } else {
-                    //     $DueDate_date = $DueDate->format('Y-m-d');
-                    // }
-                    $scdate =  $ReportInfo['scdate'];
-                    // $scdate_date = $scdate->format('Y-m-d');
-                    $rcdate = $ReportInfo['rcdate'];
-                    // $rcdate_date = $rcdate->format('Y-m-d');
-                    $Submitdate =  $ReportInfo['Submitdate'];
-                    // $Submit_date = $Submitdate->format('Y-m-d');
-                    $ReceivingDate =  $ReportInfo['ReceivingDate'];
-                    // $ReceivingDate_date = $ReceivingDate->format('Y-m-d');
+                    if ($DueDate === false) {
+                        $DueDate_date = null;
+                    } else {
+                        $DueDate_date = $DueDate->format('Y-m-d');
+                    }
+                    $scdate = DateTime::createFromFormat('n/j/Y', $ReportInfo['scdate']);
+                    $scdate_date = $scdate->format('Y-m-d');
+                    $rcdate = DateTime::createFromFormat('n/j/Y', $ReportInfo['rcdate']);
+                    $rcdate_date = $rcdate->format('Y-m-d');
+                    $Submitdate = DateTime::createFromFormat('n/j/Y', $ReportInfo['Submitdate']);
+                    $Submit_date = $Submitdate->format('Y-m-d');
+                    $ReceivingDate = DateTime::createFromFormat('n/j/Y', $ReportInfo['ReceivingDate']);
+                    $ReceivingDate_date = $ReceivingDate->format('Y-m-d');
                 }
 
                 // $stmt->bindValue(':FileName', $ReportInfo['ReportID'] . '.pdf');
@@ -300,16 +310,16 @@ class Report implements ReportInterface
                 $stmt->bindParam(':CustomerName', $ReportInfo['CustomerName']);
                 $stmt->bindParam(':CustomerEmail', $ReportInfo['CustomerEmail']);
                 $stmt->bindParam(':CustomerPhone', $ReportInfo['CustomerPhone']);
-                $stmt->bindParam(':DueDate', $DueDate);
+                $stmt->bindParam(':DueDate', $DueDate_date);
                 $stmt->bindParam(':SampleID', $ReportInfo['SampleID']);
                 $stmt->bindParam(':PatientID', $ReportInfo['PatientID']);
                 $stmt->bindParam(':scID', $ReportInfo['scID']);
-                $stmt->bindParam(':scdate', $scdate);
-                $stmt->bindParam(':rcdate', $rcdate);
-                $stmt->bindParam(':Submitdate', $Submitdate);
+                $stmt->bindParam(':scdate', $scdate_date);
+                $stmt->bindParam(':rcdate', $rcdate_date);
+                $stmt->bindParam(':Submitdate', $Submit_date);
                 $stmt->bindParam(':SampleNo', $ReportInfo['SampleNo']);
                 $stmt->bindParam(':SampleType', $ReportInfo['SampleType']);
-                $stmt->bindParam(':ReceivingDate', $ReceivingDate);
+                $stmt->bindParam(':ReceivingDate', $ReceivingDate_date);
                 $stmt->bindParam(':Receiving', $ReportInfo['Receiving']);
                 $stmt->bindParam(':Sampleglass', $ReportInfo['Sampleglass']);
                 $stmt->bindParam(':quantity', $ReportInfo['quantity']);
@@ -336,10 +346,10 @@ class Report implements ReportInterface
                 }
                 $now = date("Y-m-d H:i:s");
                 $sql = "INSERT INTO Report (
-                ReportID, ReportName, FileName, ReportType, TemplateID, ccemail, HospitalList, ReportStatus,
+                ReportID, ReportName, FileName, LogoFile, ReportType, TemplateID, ccemail, HospitalList, ReportStatus,
                 CreatedAt, CustomerName, CustomerEmail, CustomerPhone, DueDate, SampleID, PatientID, scID, scdate, rcdate, apply_pdf, Submitdate ,SampleNo, SampleType,ReceivingDate,  Receiving,Sampleglass, quantity
                 ) VALUES (
-                :ReportID, :ReportName, :FileName, :ReportType, :TemplateID, :ccemail, :HospitalList, :ReportStatus,
+                :ReportID, :ReportName, :FileName, :LogoFile, :ReportType, :TemplateID, :ccemail, :HospitalList, :ReportStatus,
                 :CreatedAt, :CustomerName, :CustomerEmail, :CustomerPhone, :DueDate, :SampleID, :PatientID, :scID, :scdate, :rcdate, :apply_pdf, :Submitdate, :SampleNo, :SampleType, :ReceivingDate, :Receiving, :Sampleglass, :quantity
                 )";
                 $stmt = $this->_conn->prepare($sql);
@@ -357,6 +367,14 @@ class Report implements ReportInterface
                 } else {
                     $stmt->bindValue(':apply_pdf', $_FILES['ReportApply']['name']);
                 }
+
+                //如果沒有上傳檔案，就不要寫入Logo_File檔案名稱
+                if (empty($ReportInfo['LogoFile'])) {
+                    $stmt->bindValue(':LogoFile', '');
+                } else {
+                    $stmt->bindValue(':LogoFile', $ReportInfo['LogoFile']);
+                }
+
                 if (empty($ReportInfo['DueDate']) || $ReportInfo['DueDate'] == '') {
                     $DueDate_date = null;
                     $scdate_date = null;
@@ -365,23 +383,43 @@ class Report implements ReportInterface
                     $ReceivingDate_date = null;
 
                 } else {
-                    // $ReportInfo['DueDate'] = $date->format('Y-m-d');
-                    $DueDate = DateTime::createFromFormat('n/j/Y', $ReportInfo['DueDate']);
-                    // $DueDate_date = $DueDate->format('Y-m-d');
-                    if ($DueDate === false) {
-                        $DueDate_date = null;
-                    } else {
-                        $DueDate_date = $DueDate->format('Y-m-d');
-                    }
-                    $scdate = DateTime::createFromFormat('n/j/Y', $ReportInfo['scdate']);
+
+                    $DueDate = DateTime::createFromFormat('Y-m-d', $ReportInfo['DueDate']);
+                    $DueDate_date = $DueDate->format('Y-m-d');
+                    $scdate = DateTime::createFromFormat('Y-m-d', $ReportInfo['scdate']);
                     $scdate_date = $scdate->format('Y-m-d');
-                    $rcdate = DateTime::createFromFormat('n/j/Y', $ReportInfo['rcdate']);
+                    $rcdate = DateTime::createFromFormat('Y-m-d', $ReportInfo['rcdate']);
                     $rcdate_date = $rcdate->format('Y-m-d');
-                    $Submitdate = DateTime::createFromFormat('n/j/Y', $ReportInfo['Submitdate']);
-                    $Submit_date = $Submitdate->format('Y-m-d');
-                    $ReceivingDate = DateTime::createFromFormat('n/j/Y', $ReportInfo['ReceivingDate']);
-                    $ReceivingDate_date = $ReceivingDate->format('Y-m-d');
+
+
                 }
+
+
+                // if (empty($ReportInfo['DueDate']) || $ReportInfo['DueDate'] == '') {
+                //     $DueDate_date = null;
+                //     $scdate_date = null;
+                //     $rcdate_date = null;
+                //     $Submit_date = null;
+                //     $ReceivingDate_date = null;
+
+                // } else {
+                //     // $ReportInfo['DueDate'] = $date->format('Y-m-d');
+                //     $DueDate = DateTime::createFromFormat('n/j/Y', $ReportInfo['DueDate']);
+                //     // $DueDate_date = $DueDate->format('Y-m-d');
+                //     if ($DueDate === false) {
+                //         $DueDate_date = null;
+                //     } else {
+                //         $DueDate_date = $DueDate->format('Y-m-d');
+                //     }
+                //     $scdate = DateTime::createFromFormat('n/j/Y', $ReportInfo['scdate']);
+                //     $scdate_date = $scdate->format('Y-m-d');
+                //     $rcdate = DateTime::createFromFormat('n/j/Y', $ReportInfo['rcdate']);
+                //     $rcdate_date = $rcdate->format('Y-m-d');
+                //     $Submitdate = DateTime::createFromFormat('n/j/Y', $ReportInfo['Submitdate']);
+                //     $Submit_date = $Submitdate->format('Y-m-d');
+                //     $ReceivingDate = DateTime::createFromFormat('n/j/Y', $ReportInfo['ReceivingDate']);
+                //     $ReceivingDate_date = $ReceivingDate->format('Y-m-d');
+                // }
 
 
                 // $stmt->bindValue(':FileName', $ReportInfo['ReportID'] . '.pdf');
@@ -480,6 +518,7 @@ class Report implements ReportInterface
                 ReportName=:ReportName,
                 FileName=:FileName,
                 apply_pdf=:apply_pdf,
+                LogoFile=:LogoFile,
                 ReportType=:ReportType,
                 TemplateID=:TemplateID,
                 ccemail=:ccemail,
@@ -507,16 +546,20 @@ class Report implements ReportInterface
             }else{
                 $FileName = null;
                 $stmt->bindValue(':FileName', $ReportInfo['FileName']);
-
             }
 
             if(!empty($_FILES['ReportApply']['name'])){
                 $ReportApplyName = $_FILES['ReportApply']['name'] ;
                 $stmt->bindValue(':apply_pdf', $_FILES['ReportApply']['name']);
 
+            }
+
+            if(!empty($_FILES['LogoFile']['name'])){
+                $LogoFile = $_FILES['LogoFile']['name'] ;
+                $stmt->bindValue(':LogoFile', $_FILES['ReportUploadLogoPDF']['name']);
             }else{
-                $ReportApplyName = null;
-                $stmt->bindValue(':apply_pdf', $ReportInfo['apply_pdf']);
+                $LogoFile = null;
+                $stmt->bindValue(':LogoFile', $_FILES['ReportUploadLogoPDF']['name']);
             }
 
             $stmt->bindParam(':ReportType', $ReportInfo['ReportType']);

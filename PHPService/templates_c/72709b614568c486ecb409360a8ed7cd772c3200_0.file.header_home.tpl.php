@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-04-10 11:11:22
+/* Smarty version 4.3.4, created on 2024-05-28 03:12:13
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\header_home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_661657ba7eb237_46076379',
+  'unifunc' => 'content_66552f6dad67c4_60362212',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '72709b614568c486ecb409360a8ed7cd772c3200' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\header_home.tpl',
-      1 => 1712738352,
+      1 => 1716858710,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_661657ba7eb237_46076379 (Smarty_Internal_Template $_smarty_tpl) {
+function content_66552f6dad67c4_60362212 (Smarty_Internal_Template $_smarty_tpl) {
 ?><header style="border-bottom: 1px solid #ccc; display: flex; padding: 0.5em 1em; justify-content: space-between;">
     <div class="member-site-identity">
         <?php echo $_smarty_tpl->tpl_vars['Logo']->value;?>
@@ -93,7 +93,7 @@ function content_661657ba7eb237_46076379 (Smarty_Internal_Template $_smarty_tpl)
             <!-- <li style="display: inline-block;"><h3><?php echo $_smarty_tpl->tpl_vars['DisplayName']->value;?>
  您好</h3></li> -->
 
-            <?php if ($_smarty_tpl->tpl_vars['Permission']->value == 1 || $_smarty_tpl->tpl_vars['Permission']->value == 9) {?>
+            <?php if ($_smarty_tpl->tpl_vars['Permission']->value == 1 || $_smarty_tpl->tpl_vars['Permission']->value == 9 || $_smarty_tpl->tpl_vars['Permission']->value == 2) {?>
             <li style="display: inline-block;"><a id="addReport" name="addReport" href="<?php echo $_smarty_tpl->tpl_vars['addReport']->value;?>
 ">
                     <h3>新增報告</h3>

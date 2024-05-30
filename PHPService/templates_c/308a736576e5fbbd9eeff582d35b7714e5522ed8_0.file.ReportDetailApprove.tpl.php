@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-02-20 13:34:11
+/* Smarty version 4.3.4, created on 2024-05-30 10:03:33
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\ReportDetailApprove.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_65d439d3946571_39389569',
+  'unifunc' => 'content_6657de75812905_92860651',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '308a736576e5fbbd9eeff582d35b7714e5522ed8' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\ReportDetailApprove.tpl',
-      1 => 1708407249,
+      1 => 1716875834,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_65d439d3946571_39389569 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6657de75812905_92860651 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\vendor\\smarty\\smarty\\libs\\plugins\\function.html_options.php','function'=>'smarty_function_html_options',),));
 ?>
 <!--POP UP MODAL TO VIEW MEMBER DETAILS AND RESULTS FOR Member Information-->
@@ -192,7 +192,7 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield7']->value;?>
                                 <!---- 客戶名稱 ---->
                                 <div class="form-group">
                                     <!--PRINCIPAL NAME FIELD , THIS FIELD IS CONNECTED TO HOME.PHP-->
-                                    <label for="CustomerName" class="col-md-3 control-label">客戶名稱:</label>
+                                    <label for="CustomerName" class="col-md-3 control-label">聯絡人名稱:</label>
                                     <div class="col-md-8">
                                         <input type="text" id="CustomerName" name=CustomerName class="form-control"
                                             readonly value="<?php echo $_smarty_tpl->tpl_vars['CustomerName']->value;?>
@@ -202,7 +202,7 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield7']->value;?>
                                 <!---- 客戶郵件 ---->
                                 <div class="form-group">
                                     <!--PRINCIPAL NAME FIELD , THIS FIELD IS CONNECTED TO HOME.PHP-->
-                                    <label for="CustomerEmail" class="col-md-3 control-label">客戶郵件:</label>
+                                    <label for="CustomerEmail" class="col-md-3 control-label">聯絡人郵件:</label>
                                     <div class="col-md-8">
                                         <input type="text" id="CustomerEmail" name=CustomerEmail class="form-control"
                                             readonly value="<?php echo $_smarty_tpl->tpl_vars['CustomerEmail']->value;?>
@@ -211,7 +211,7 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield7']->value;?>
                                 </div>
                                 <!---- 客戶電話 ---->
                                 <div class="form-group">
-                                    <label for="CustomerPhone" class="col-md-3 control-label">客戶電話:</label>
+                                    <label for="CustomerPhone" class="col-md-3 control-label">聯絡電話:</label>
                                     <div class="col-md-8">
                                         <input type="text" id="CustomerPhone" name="CustomerPhone" class="form-control"
                                             readonly value="<?php echo $_smarty_tpl->tpl_vars['CustomerPhone']->value;?>

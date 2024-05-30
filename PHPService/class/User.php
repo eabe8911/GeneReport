@@ -82,5 +82,23 @@ class User
         }
         return true;
     }
+
+    //change Permission
+    public function Permission($Account, $Permission)
+    {
+        try {
+            $sql = "UPDATE users SET permission=:permission WHERE username=:username";
+            $stmt = $this->_conn->prepare($sql);
+            $stmt->bindParam(':permission', $Permission);
+            $stmt->bindParam(':username', $Account);
+            $stmt->execute();
+            
+
+        } catch (PDOException | Exception $th) {
+            throw new Exception($th->getMessage(), $th->getCode());
+        
+            }
+        return true;
+    }
 }
 ?>

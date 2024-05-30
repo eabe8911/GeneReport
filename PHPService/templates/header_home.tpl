@@ -63,7 +63,7 @@
 
             <!-- <li style="display: inline-block;"><h3>{$DisplayName} 您好</h3></li> -->
 
-            {if $Permission eq 1 or $Permission eq 9 }
+            {if $Permission eq 1 or $Permission eq 9 or $Permission eq 2}
             <li style="display: inline-block;"><a id="addReport" name="addReport" href="{$addReport}">
                     <h3>新增報告</h3>
                 </a></li>

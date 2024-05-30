@@ -77,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewApproveDetail") {
                     $ReportStatus = '報告已退回';
                 }
 
-                $rejectlog = "報告編號：" . $ReportID . "已被退回" . "\n" . "退回原因：" . $RejectReason . "\n" . "報告名稱：" . $ReportName . "\n" . "送檢單位：" . $Role . "\n" . "客戶姓名：" . $CustomerName . "\n" . "客戶信箱：" . $CustomerEmail . "\n" . "客戶連絡電話：" . $CustomerPhone . "\n";
+                $rejectlog = "報告編號：" . $ReportID . "已被退回" . "\n" . "退回原因：" . $RejectReason . "\n" . "報告名稱：" . $ReportName . "\n" . "送檢單位：" . $Role . "\n" . "聯絡人姓名：" . $CustomerName . "\n" . "聯絡人信箱：" . $CustomerEmail . "\n" . "聯絡電話：" . $CustomerPhone . "\n";
 
                 $log->SaveLog("REJECT", $Username, "ReportDetailApprove", date("Y-m-d H:i:s"), $rejectlog);
 

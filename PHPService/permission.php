@@ -17,42 +17,39 @@ header("Pragma: no-cache");
 $Logo = "<img src='./images/Libobio-Logo@2x.png' alt='LiboBio Logo' height='70'>";
 $LogoName = "";
 $log = new Log();
-$ErrorMessage = '';
-$Account = $Password = '';
-$OldPassword = $NewPassword = '';
+$ErrorMessage  = $SuccessMessage = $Message = '';
+$Account = $Password = $Permission = '';
 $UserMode = $AppointMode = '';
-// try {
-//     //檢查是否第二次進入
-//     if ($_SERVER["REQUEST_METHOD"] == "POST" && $_REQUEST["FormName"] == "ChangePassword") {
-//         $Account = filter_input(INPUT_POST, "Account");
-//         $OldPassword = filter_input(INPUT_POST, "OldPassword");
-//         $NewPassword = filter_input(INPUT_POST, "NewPassword");
-//         // 先檢查 member 再檢查 user
-//         $character = new Character();
-//         // if ($character->Login($Account, $OldPassword)) {
-//         // Old password is correct, change to new password
-//         if ($character->ChangePassword($Account, $OldPassword, $NewPassword)) {
-//             $ErrorMessage = "";
-//             $log->SaveLog("changepw", $Account, "ChangePassword", date("Y-m-d H:i:s"),  "已變更密碼");
+try{
+    //檢查是否第二次進入
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && $_REQUEST["FormName"] == "Permission") {
+        $Account = filter_input(INPUT_POST, "Account");
+        $Permission = filter_input(INPUT_POST, "Permission");
+        $character = new Character();
+        if ($character->Permission($Account, $Permission)) {
+            $Message = "權限更改成功，請使用者重新登入！";
+            $ErrorMessage = "";
+            $log->SaveLog("Permission", $Account, "Permission", date("Y-m-d H:i:s"),  "已變更權限, 權限為: $Permission");
+            // header("Location: home.php");
+            //顯示 $Message 訊息
 
-//             header("Location: home.php");
-//         } else {
-//             $ErrorMessage = "密碼更改失敗!";
-//             $log->SaveLog("ERROR", $Account, "ChangePassword", date("Y-m-d H:i:s"), $ErrorMessage);
-//         }
-//         // } else {
-//         //     $ErrorMessage = "舊密碼錯誤!";
-//         //     $log->SaveLog("ERROR", $Account, "ChangePassword", date("Y-m-d H:i:s"), $ErrorMessage);
-//         // }
-//     } else {
-//         // Unset all of the session variables
-//         $_SESSION = array();
-//     }
-// } catch (Exception $e) {
-//     // Handle exception
-//     $ErrorMessage = "更改密碼時出現錯誤: " . $e->getMessage();
-//     $log->SaveLog("ERROR", $Account, "ChangePassword", date("Y-m-d H:i:s"), $ErrorMessage);
-// }
+
+
+        } else {
+            $ErrorMessage = "權限更改失敗!";
+            $log->SaveLog("ERROR", $Account, "Permission", date("Y-m-d H:i:s"), $ErrorMessage);
+        }
+    } else {
+        // Unset all of the session variables
+        $_SESSION = array();
+    }
+} catch (Exception $e) {
+    // Handle exception
+    $ErrorMessage = "更改權限時出現錯誤: " . $e->getMessage();
+    $log->SaveLog("ERROR", $Account, "Permission", date("Y-m-d H:i:s"), $ErrorMessage);
+
+}
+
 
 $smarty = new Smarty;
 
@@ -60,17 +57,25 @@ $smarty = new Smarty;
 $smarty->assign("Logo", $Logo);
 $smarty->assign("LogoName", $LogoName);
 $smarty->assign("FormAction", $_SERVER['PHP_SELF']);
-$smarty->assign("Hiddenfield", "<input type='hidden' id='FormName' name='FormName' value='ChangePassword'>");
+$smarty->assign("Hiddenfield", "<input type='hidden' id='FormName' name='FormName' value='Permission'>");
 // set form fields value
 $smarty->assign("Account", $Account);
-$smarty->assign("OldPassword", $OldPassword);
-$smarty->assign("NewPassword", $NewPassword);
+$smarty->assign("Permission", $Permission);
+ //顯示 $Message 訊息
+$smarty->assign("Message", $Message);
 // Error Message
 $smarty->assign("ErrorMessage", $ErrorMessage);
+
 if ($ErrorMessage == '') {
     $smarty->assign("ShowErrorMessage", 'hidden');
 } else {
     $smarty->assign("ShowErrorMessage", '');
+}
+
+if ($SuccessMessage == '') {
+    $smarty->assign("ShowSuccessMessage", 'hidden');
+} else {
+    $smarty->assign("ShowSuccessMessage", '');
 }
 
 $smarty->display('permission.tpl');

@@ -9,10 +9,10 @@ $db = new DBConnect();
 $log = new Log();
 $Email = new Email();
 $report = new Report($_POST);
-$path = $_SERVER['PATH_INFO'];
-$segments = explode('/', $path);
-$ReportID = end($segments);
-$email = $HospitalList = $ReportID = $CustomerEmail = $SampleNo = $ReportName = $other_comments = $error ='';
+// $path = $_SERVER['PATH_INFO'];
+// $segments = explode('/', $path);
+// $ReportID = end($segments);
+$email = $HospitalList = $HospitalList1 = $ReportID = $CustomerEmail = $SampleNo = $ReportName = $other_comments = $error = $SampleID = $PatientID = $scID = '';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $ReportID = $_POST['ReportID'];
     $stmt = $db->connect()->prepare("SELECT * FROM Report WHERE ReportID = :ReportID");
@@ -39,34 +39,97 @@ $reports = $stmt->fetchAll(PDO::FETCH_ASSOC);
 foreach ($reports as $report) {
     $ReportID = $report['ReportID'];
     $CustomerEmail = $report['CustomerEmail'];
-    $HospitalList = $report['HospitalList'];
+    $HospitalList1 = $report['HospitalList'];
     $SampleNo = $report['SampleNo'];
     $ReportName = $report['ReportName'];
+    $SampleID = $report['SampleID'];
+    $PatientID = $report['PatientID'];
+    $scID = $report['scID'];
+    
 }
+
+    switch ($HospitalList1) {
+        case '1':
+            $HospitalList = '台大雲林分院';
+            break;
+        case '2':
+            $HospitalList = '台北市立聯合醫院';
+            break;
+        case '3':
+            $HospitalList = '台南市立醫院';
+            break;
+        case '4':
+            $HospitalList = '台南新樓醫院';
+            break;
+        case '5':
+            $HospitalList = '竹山秀傳';
+            break;
+        case '6':
+            $HospitalList = '屏基醫院';
+            break;
+        case '7':
+            $HospitalList = '恩主公醫院';
+            break;
+        case '8':
+            $HospitalList = '國軍803';
+            break;
+        case '9':
+            $HospitalList = '國泰醫院';
+            break;
+        case '10':
+            $HospitalList = '統誠醫療';
+            break;
+        case '11':
+            $HospitalList = '麻豆新樓醫院';
+            break;
+        case '12':
+            $HospitalList = '彰化秀傳';
+            break;
+        case '13':
+            $HospitalList = '彰濱秀傳';
+            break;
+        case '14':
+            $HospitalList = '輔大醫院';
+            break;
+        case '15':
+            $HospitalList = '泓采診所';
+            break;
+        case '16':
+            $HospitalList = '麗寶生醫(自來客)';
+            break;
+        case '17':
+            $HospitalList = '其他';
+            break;
+        default:
+            $HospitalList = '';
+            break;
+    }
+
+
 
 ?>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
 <h1><b>麗寶醫事檢驗所-顧客滿意度調查表</b></h1>
 <p>SJ4-QC-019（試行版 2024.03.08）
-承蒙您的支持，讓我們有機會為您提供服務。請就本次敝實驗室所
-提供的服務，懇請賜予指導，</p>
+    承蒙您的支持，讓我們有機會為您提供服務。請就本次敝實驗室所
+    提供的服務，懇請賜予指導，</p>
 <p>您的寶貴意見將成為我們改善服務品質的指標，感謝您熱情的參與！</p>
-    <table>
-        <form action="submit_survey.php" method="post">
-            <tr >
-                <th><span style="color:red;">*</span>請先輸入您的報告編號：</th>
-                <td><input type="text" name="ReportID" value="<?php echo $ReportID ;?>" required autofocus></td>
-                <td ><input type="submit" value="Submit"></td>
-                <!-- 顯示$error -->
-                <td><span style="color:red;"><?php echo $error; ?></span></td>
-            </tr>
-        </form>
-    </table>
-<div id="survey_form" >
+<table>
+    <form action="submit_survey.php" method="post">
+        <tr>
+            <th><span style="color:red;">*</span>請先輸入您的報告編號：</th>
+            <td><input type="text" name="ReportID" value="<?php echo $ReportID ;?>" required autofocus></td>
+            <td><input type="submit" value="Submit"></td>
+            <!-- 顯示$error -->
+            <td><span style="color:red;"><?php echo $error; ?></span></td>
+        </tr>
+    </form>
+</table>
+<div id="survey_form">
     <table>
         <form action="submit_survey1.php" method="post">
-        <tr>
+            <tr>
                 <th hidden>報告編號</th>
                 <td><input type="text" name="ReportID" value="<?php echo $ReportID; ?>" hidden></td>
             </tr>
@@ -78,9 +141,21 @@ foreach ($reports as $report) {
                 <th>送檢單位：</th>
                 <td><input type="text" name="HospitalList" value="<?php echo $HospitalList; ?>" required></td>
             </tr>
-            <tr>
+            <!-- <tr>
                 <th>原樣本代號：</th>
                 <td><input type="text" name="SampleNo" value="<?php echo $SampleNo; ?>" required></td>
+            </tr> -->
+            <tr>
+                <th>檢體編號：</th>
+                <td><input type="text" name="SampleID" value="<?php echo $SampleID; ?>" required></td>
+            </tr>
+            <tr>
+                <th>病歷編號：</th>
+                <td><input type="text" name="PatientID" value="<?php echo $PatientID; ?>" required></td>
+            </tr>
+            <tr>
+                <th>採檢單號：</th>
+                <td><input type="text" name="scID" value="<?php echo $scID; ?>" required></td>
             </tr>
             <tr>
                 <th>檢測項目名稱：</th>
@@ -140,26 +215,26 @@ foreach ($reports as $report) {
                 <th>其他意見：</th>
                 <td><textarea name="other_comments" style="width: 500px; height: 60px;"></textarea></td>
             </tr>
-        </table>
-        <br>
+    </table>
+    <br>
 
-        <input type="submit" class="btn btn-primary" style="margin-left: 640px;" value="提　交">
+    <input type="submit" class="btn btn-primary" style="margin-left: 640px;" value="提　交">
     </form>
 </div>
 <style>
 input[type="radio"] {
     transform: scale(1.2);
 }
+
 th {
     text-align: left;
     padding: 8px;
     font-size: 18px;
 
 }
+
 body {
     margin: 15;
     padding: 15;
 }
-
-
 </style>

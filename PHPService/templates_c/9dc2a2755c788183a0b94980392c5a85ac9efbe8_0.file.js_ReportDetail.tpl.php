@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-04-18 16:13:46
+/* Smarty version 4.3.4, created on 2024-05-29 15:51:15
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\js_ReportDetail.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_6620d63aa22a10_57319739',
+  'unifunc' => 'content_6656de73317177_81977351',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '9dc2a2755c788183a0b94980392c5a85ac9efbe8' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\js_ReportDetail.tpl',
-      1 => 1713428016,
+      1 => 1716969073,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6620d63aa22a10_57319739 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6656de73317177_81977351 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
  type="text/javascript">
   
@@ -199,7 +199,10 @@ echo '<script'; ?>
     // set fields to readonly
     function setFieldsReadonly(state) {
       // $('#ReportID').prop('readonly', state);
-      $('#ReportName').prop('readonly', state);
+      
+      $('#main-menu').prop('disabled', state);
+
+      $('#ReportName').prop('disabled', state);
       $('#HospitalList').prop('disabled', state);
       $('#CustomerName').prop('readonly', state);
       $('#CustomerEmail').prop('readonly', state);
