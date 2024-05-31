@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-05-29 17:12:26
+/* Smarty version 4.3.4, created on 2024-05-31 17:21:33
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\ReportDetailMaintain.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_6656f17aa932c2_92644956',
+  'unifunc' => 'content_6659969d3e2973_81539678',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '451136e515d260dcfeb69b381fca1166c93b1f0d' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\ReportDetailMaintain.tpl',
-      1 => 1716972247,
+      1 => 1717147291,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6656f17aa932c2_92644956 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6659969d3e2973_81539678 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\vendor\\smarty\\smarty\\libs\\plugins\\function.html_options.php','function'=>'smarty_function_html_options',),));
 ?>
 <!--POP UP MODAL TO VIEW MEMBER DETAILS AND RESULTS FOR Member Information-->
@@ -55,7 +55,7 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                     <label for="main-menu" class="col-md-3 control-label">報名類型:</label>
                                     <div class="col-md-8">
 
-                                        <select id="main-menu" name="main-menu" class="form-control" 
+                                        <select id="main-menu" name="main-menu" class="form-control"
                                             onchange="populateSubmenu(this, document.getElementById('ReportName'))">
                                             <option value="">Select a category</option>
                                             <option value="M1">M1 系列</option>
@@ -79,16 +79,16 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                 </div>
                                 <div class="form-group">
 
-                                <label for="ReportName" class="col-md-3 control-label">報告名稱:</label>
-                                <div class="col-md-8">
+                                    <label for="ReportName" class="col-md-3 control-label">報告名稱:</label>
+                                    <div class="col-md-8">
 
-                                <select id="ReportName" name="ReportName" class="form-control" required>
-                                    <option value="<?php echo $_smarty_tpl->tpl_vars['ReportName']->value;?>
+                                        <select id="ReportName" name="ReportName" class="form-control" required>
+                                            <option value="<?php echo $_smarty_tpl->tpl_vars['ReportName']->value;?>
 "><?php echo $_smarty_tpl->tpl_vars['ReportName']->value;?>
 </option>
-                                </select>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
 
                                 <!---- 送檢單位 ---->
                                 <div class="form-group">
@@ -123,6 +123,7 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                 </div>
 
                                 <!---- 報告樣板 ---->
+                                <?php if ($_smarty_tpl->tpl_vars['Permission']->value == 1 || $_smarty_tpl->tpl_vars['Permission']->value == 2 || $_smarty_tpl->tpl_vars['Permission']->value == 9) {?>
                                 <div class="form-group">
                                     <label for="TemplateID" class="col-md-3 control-label">報告樣板:</label>
                                     <div class="col-md-8">
@@ -132,6 +133,7 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
 
                                     </div>
                                 </div>
+                                <?php }?>
                             </div>
                             <!---- 第二排 ---->
                             <div class="col-md-4">
@@ -256,12 +258,16 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                 <!---- 上傳報告 ---->
                                 <div class="form-group" id="DisplayUploadButton">
                                     <center>
+                                        <?php if ($_smarty_tpl->tpl_vars['Permission']->value == 1 || $_smarty_tpl->tpl_vars['Permission']->value == 9) {?>
+
                                         <label type="button" class="btn btn-primary btn-block"
                                             style="font-weight:bold;font-size:20px;width:40%;;margin:30px;">
                                             <input id="ReportUploadPDF" name="ReportUploadPDF" style="display:none;"
                                                 type="file" accept="application/pdf" />
                                             <i class="fa fa-file-pdf"></i> 上傳報告結果
                                         </label>
+                                        <?php }?>
+
                                         <label type="button" class="btn btn-primary btn-block"
                                             style="font-weight:bold;font-size:20px;width:40%;;margin:30px;">
                                             <input id="ReportApply" name="ReportApply" style="display:none;" type="file"
@@ -280,6 +286,7 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
 
                                     </center>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -303,7 +310,22 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                     <i class="fa fa-eject"></i> 離 開</button>
 
                             </p>
-                            <?php if ($_smarty_tpl->tpl_vars['Permission']->value != 4) {?>
+                            <?php if ($_smarty_tpl->tpl_vars['Permission']->value == 1) {?>
+                            <p id="ReportQueryButton">
+                                <button type="button" class="btn btn-danger btn-md" id="BtnReportExit"
+                                    style="font-weight:bold;font-size:20px;margin:30px;">
+                                    <i class="fa fa-eject"></i> 離 開</button>
+                               <button type="button" class="btn btn-danger btn-md" id="BtnReportEdit"
+                                    style="font-weight:bold;font-size:20px;margin:30px;">
+                                    <i class="fa fa-edit"></i> 修 改</button>
+                                <!--  <button type="button" class="btn btn-danger btn-md" id="BtnReportDelete"
+                                    style="font-weight:bold;font-size:20px;margin:30px;">
+                                    <i class="fa fa-trash"></i> 刪 除</button> -->
+                                <button type="button" class="btn btn-danger btn-md" id="BtnApproveReject"
+                                    name="BtnApproveReject" style="font-weight:bold;font-size:20px;margin:30px;">
+                                    <i class="fa fa-eject"></i> 退 回</button>
+                            </p>
+                            <?php } elseif ($_smarty_tpl->tpl_vars['Permission']->value == 2) {?>
                             <p id="ReportQueryButton">
                                 <button type="button" class="btn btn-danger btn-md" id="BtnReportExit"
                                     style="font-weight:bold;font-size:20px;margin:30px;">
@@ -311,12 +333,15 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                 <button type="button" class="btn btn-danger btn-md" id="BtnReportEdit"
                                     style="font-weight:bold;font-size:20px;margin:30px;">
                                     <i class="fa fa-edit"></i> 修 改</button>
+                                <button type="button" class="btn btn-danger btn-md" id="BtnApproveReject"
+                                    name="BtnApproveReject" style="font-weight:bold;font-size:20px;margin:30px;">
+                                    <i class="fa fa-eject"></i> 退 回</button>
                                 <button type="button" class="btn btn-danger btn-md" id="BtnReportDelete"
                                     style="font-weight:bold;font-size:20px;margin:30px;">
                                     <i class="fa fa-trash"></i> 刪 除</button>
-                            </p>
-                            <?php } else { ?>
 
+                            </p>
+                            <?php } elseif ($_smarty_tpl->tpl_vars['Permission']->value == 4) {?>
                             <p id="ReportQueryButton">
                                 <button type="button" class="btn btn-danger btn-md" id="BtnReportExit"
                                     style="font-weight:bold;font-size:20px;margin:30px;">
@@ -324,9 +349,9 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                 <button type="button" class="btn btn-danger btn-md" id="BtnReportEditccemail"
                                     style="font-weight:bold;font-size:20px;margin:30px;">
                                     <i class="fa fa-edit"></i> 修改郵件</button>
-                                <button type="button" class="btn btn-danger btn-md" id="BtnNoletter"
+                                <!-- <button type="button" class="btn btn-danger btn-md" id="BtnNoletter"
                                     style="font-weight:bold;font-size:20px;margin:30px;">
-                                    <i class="fa fa-edit"></i> 發送通知信</button>
+                                    <i class="fa fa-edit"></i> 發送通知信</button> -->
 
                             </p>
                             <?php }?>

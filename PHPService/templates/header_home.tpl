@@ -25,7 +25,7 @@
             </li>
             {elseif $Permission eq 1}
             <li style="display: inline-block;">
-                <h3>{$DisplayName} 您好 （身分：管理者）</h3>
+                <h3>{$DisplayName} 您好 （身分：生資人員）</h3>
             </li>
             {else}
             <li style="display: inline-block;">
@@ -63,7 +63,7 @@
 
             <!-- <li style="display: inline-block;"><h3>{$DisplayName} 您好</h3></li> -->
 
-            {if $Permission eq 1 or $Permission eq 9 or $Permission eq 2}
+            {if $Permission eq 2 or $Permission eq 9 }
             <li style="display: inline-block;"><a id="addReport" name="addReport" href="{$addReport}">
                     <h3>新增報告</h3>
                 </a></li>
@@ -79,6 +79,9 @@
                     <option value="log_table.php">紀錄查詢</option>
                     <option value="Statistics.php">統計管理</option>
                     <option value="download.html">下載滿意度問卷</option>
+                    {if $Permission eq 9 }
+                    <option value="permission.php">使用者權限管理</option>
+                    {/if}
                     <option value="index.php">登出</option>
                 </select>
             </li>

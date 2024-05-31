@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-05-30 10:03:33
+/* Smarty version 4.3.4, created on 2024-05-31 17:20:38
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\ReportDetailApprove.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_6657de75812905_92860651',
+  'unifunc' => 'content_66599666a5d3b8_19137717',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '308a736576e5fbbd9eeff582d35b7714e5522ed8' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\ReportDetailApprove.tpl',
-      1 => 1716875834,
+      1 => 1717146991,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6657de75812905_92860651 (Smarty_Internal_Template $_smarty_tpl) {
+function content_66599666a5d3b8_19137717 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\vendor\\smarty\\smarty\\libs\\plugins\\function.html_options.php','function'=>'smarty_function_html_options',),));
 ?>
 <!--POP UP MODAL TO VIEW MEMBER DETAILS AND RESULTS FOR Member Information-->
@@ -294,6 +294,10 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield7']->value;?>
                                 <button type="button" class="btn btn-danger btn-md" id="BtnApproveExit"
                                     name="BtnApproveExit" style="font-weight:bold;font-size:20px;margin:30px;">
                                     <i class="fa fa-home"></i> 離 開</button>
+                                    <button type="button" class="btn btn-danger btn-md" id="BtnApproveReject"
+                                    name="BtnApproveReject" style="font-weight:bold;font-size:20px;margin:30px;">
+                                    <i class="fa fa-eject"></i> 退 回</button>
+
                             </p>
 
                             <?php } else { ?>

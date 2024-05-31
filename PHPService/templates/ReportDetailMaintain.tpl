@@ -22,7 +22,7 @@
                                     <label for="main-menu" class="col-md-3 control-label">報名類型:</label>
                                     <div class="col-md-8">
 
-                                        <select id="main-menu" name="main-menu" class="form-control" 
+                                        <select id="main-menu" name="main-menu" class="form-control"
                                             onchange="populateSubmenu(this, document.getElementById('ReportName'))">
                                             <option value="">Select a category</option>
                                             <option value="M1">M1 系列</option>
@@ -46,14 +46,14 @@
                                 </div>
                                 <div class="form-group">
 
-                                <label for="ReportName" class="col-md-3 control-label">報告名稱:</label>
-                                <div class="col-md-8">
+                                    <label for="ReportName" class="col-md-3 control-label">報告名稱:</label>
+                                    <div class="col-md-8">
 
-                                <select id="ReportName" name="ReportName" class="form-control" required>
-                                    <option value="{$ReportName}">{$ReportName}</option>
-                                </select>
+                                        <select id="ReportName" name="ReportName" class="form-control" required>
+                                            <option value="{$ReportName}">{$ReportName}</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
 
                                 <!---- 送檢單位 ---->
                                 <div class="form-group">
@@ -87,6 +87,7 @@
                                 </div>
 
                                 <!---- 報告樣板 ---->
+                                {if $Permission eq 1 or $Permission eq 2 or $Permission eq 9 }
                                 <div class="form-group">
                                     <label for="TemplateID" class="col-md-3 control-label">報告樣板:</label>
                                     <div class="col-md-8">
@@ -97,6 +98,7 @@
                                         selected=$TemplateSelect class="form-control" required="required"}
                                     </div>
                                 </div>
+                                {/if}
                             </div>
                             <!---- 第二排 ---->
                             <div class="col-md-4">
@@ -209,12 +211,16 @@
                                 <!---- 上傳報告 ---->
                                 <div class="form-group" id="DisplayUploadButton">
                                     <center>
+                                        {if $Permission eq 1 or $Permission eq 9 }
+
                                         <label type="button" class="btn btn-primary btn-block"
                                             style="font-weight:bold;font-size:20px;width:40%;;margin:30px;">
                                             <input id="ReportUploadPDF" name="ReportUploadPDF" style="display:none;"
                                                 type="file" accept="application/pdf" />
                                             <i class="fa fa-file-pdf"></i> 上傳報告結果
                                         </label>
+                                        {/if}
+
                                         <label type="button" class="btn btn-primary btn-block"
                                             style="font-weight:bold;font-size:20px;width:40%;;margin:30px;">
                                             <input id="ReportApply" name="ReportApply" style="display:none;" type="file"
@@ -233,6 +239,7 @@
 
                                     </center>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -254,7 +261,22 @@
                                     <i class="fa fa-eject"></i> 離 開</button>
 
                             </p>
-                            {if $Permission != 4}
+                            {if $Permission == 1}
+                            <p id="ReportQueryButton">
+                                <button type="button" class="btn btn-danger btn-md" id="BtnReportExit"
+                                    style="font-weight:bold;font-size:20px;margin:30px;">
+                                    <i class="fa fa-eject"></i> 離 開</button>
+                               <button type="button" class="btn btn-danger btn-md" id="BtnReportEdit"
+                                    style="font-weight:bold;font-size:20px;margin:30px;">
+                                    <i class="fa fa-edit"></i> 修 改</button>
+                                <!--  <button type="button" class="btn btn-danger btn-md" id="BtnReportDelete"
+                                    style="font-weight:bold;font-size:20px;margin:30px;">
+                                    <i class="fa fa-trash"></i> 刪 除</button> -->
+                                <button type="button" class="btn btn-danger btn-md" id="BtnApproveReject"
+                                    name="BtnApproveReject" style="font-weight:bold;font-size:20px;margin:30px;">
+                                    <i class="fa fa-eject"></i> 退 回</button>
+                            </p>
+                            {elseif $Permission == 2}
                             <p id="ReportQueryButton">
                                 <button type="button" class="btn btn-danger btn-md" id="BtnReportExit"
                                     style="font-weight:bold;font-size:20px;margin:30px;">
@@ -262,12 +284,15 @@
                                 <button type="button" class="btn btn-danger btn-md" id="BtnReportEdit"
                                     style="font-weight:bold;font-size:20px;margin:30px;">
                                     <i class="fa fa-edit"></i> 修 改</button>
+                                <button type="button" class="btn btn-danger btn-md" id="BtnApproveReject"
+                                    name="BtnApproveReject" style="font-weight:bold;font-size:20px;margin:30px;">
+                                    <i class="fa fa-eject"></i> 退 回</button>
                                 <button type="button" class="btn btn-danger btn-md" id="BtnReportDelete"
                                     style="font-weight:bold;font-size:20px;margin:30px;">
                                     <i class="fa fa-trash"></i> 刪 除</button>
-                            </p>
-                            {else}
 
+                            </p>
+                            {elseif $Permission == 4}
                             <p id="ReportQueryButton">
                                 <button type="button" class="btn btn-danger btn-md" id="BtnReportExit"
                                     style="font-weight:bold;font-size:20px;margin:30px;">
@@ -275,9 +300,9 @@
                                 <button type="button" class="btn btn-danger btn-md" id="BtnReportEditccemail"
                                     style="font-weight:bold;font-size:20px;margin:30px;">
                                     <i class="fa fa-edit"></i> 修改郵件</button>
-                                <button type="button" class="btn btn-danger btn-md" id="BtnNoletter"
+                                <!-- <button type="button" class="btn btn-danger btn-md" id="BtnNoletter"
                                     style="font-weight:bold;font-size:20px;margin:30px;">
-                                    <i class="fa fa-edit"></i> 發送通知信</button>
+                                    <i class="fa fa-edit"></i> 發送通知信</button> -->
 
                             </p>
                             {/if}
