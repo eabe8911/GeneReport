@@ -105,6 +105,9 @@ class Report implements ReportInterface
                 if (!empty($response['FileName']) && file_exists($response['FileName'])) {
                     $this->_PDFFile = file_get_contents($response['FileName']);
                 }
+                if (!empty($response['apply_pdf']) && file_exists($response['apply_pdf'])) {
+                    $this->_PDFFile = file_get_contents($response['apply_pdf']);
+                }
             } else {
                 return false;
             }

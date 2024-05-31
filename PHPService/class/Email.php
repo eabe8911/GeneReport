@@ -37,7 +37,7 @@ class Email
         $this->_mail = new PHPMailer(true); // Passing `true` enables exceptions
     }
 
-    public function SendEmail($ReportID, $ReportName, $CustomerEmail, $ccemail, $CustomerName, $PDFFile, $ApplyFile, $Username, $PatientID, $scID, $scdate, $rcdate): bool
+    public function SendEmail($ReportID, $ReportName, $CustomerEmail, $ccemail, $CustomerName, $PDFFile, $ApplyFile, $Username, $PatientID, $scID, $scdate, $rcdate , $HospitalList): bool
     {
         $report = new Report($_POST);
         $ReportID = filter_input(INPUT_POST, 'ReportID');
@@ -54,6 +54,7 @@ class Email
         $Username = $_SESSION['DisplayName'];
         $PatientID = filter_input(INPUT_POST, 'PatientID');
         $rcdate = filter_input(INPUT_POST, 'rcdate');
+        
         
 
 
@@ -89,13 +90,13 @@ class Email
             $_mail->addBCC('tina.xue@libobio.com');
 
             $_mail->isHTML(true); // Set email format to HTML
-            $_mail->Subject = $CustomerName . '_麗寶生醫基因檢測報告' . $ReportID;
+            $_mail->Subject = '【麗寶生醫】' . $HospitalList . '檢測報告_'. $ReportName . '_' . $ReportID;
 
             $_mail->Body = $CustomerName . '先生/女士 您好：<br><br>
  
             非常感謝貴院委檢本司施作基因檢測服務，<br>
-            附件檔案為送檢的基因檢測報告及服務申請單，煩請您查收，<br>
-
+            附件檔案為送檢的基因檢測報告及服務申請單，煩請您查收。<br>
+            <br><br>
             此次的檢測報告資訊如下所示：<br>
             麗寶報告編號 : ' . $ReportID . '<br>
             病歷編號 : ' . $PatientID . '<br>

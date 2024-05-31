@@ -429,6 +429,7 @@ if ($PDFFile == '') {
                 <input type="hidden" name="scID" value="' . $scID . '">
                 <input type="hidden" name="scdate" value="' . $scdate . '">
                 <input type="hidden" name="rcdate" value="' . $rcdate . '">
+                <input type="hidden" name="HospitalList" value="' . $HospitalList . '">
                 
                 <input type="submit" style="margin-left: 10px;height: 40px;" name="BtnSendPDF" id="BtnSendPDF" class="btn btn-primary" value="' . $ReportID . ', Send E-mail">
             </form>
