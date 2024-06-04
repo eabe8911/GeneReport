@@ -501,6 +501,8 @@ class Report implements ReportInterface
                 rcdate=:rcdate
                 WHERE ID=:ID";
 
+                
+            // 無上傳申請單SQL
             $sql1 = "UPDATE Report SET
                 ReportName=:ReportName,
                 FileName=:FileName,
