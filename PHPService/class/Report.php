@@ -500,46 +500,93 @@ class Report implements ReportInterface
                 scdate=:scdate,
                 rcdate=:rcdate
                 WHERE ID=:ID";
-            $stmt = $this->_conn->prepare($sql);
-            $stmt->bindParam(':ReportName', $ReportInfo['ReportName']);
-            if (!empty($_FILES['ReportUploadPDF']['name'])) {
-                $ReportStatus = '1';
+
+            $sql1 = "UPDATE Report SET
+                ReportName=:ReportName,
+                FileName=:FileName,
+                ReportType=:ReportType,
+                TemplateID=:TemplateID,
+                ccemail=:ccemail,
+                HospitalList=:HospitalList,
+                ReportStatus=:ReportStatus,
+                UpdatedAt=:UpdatedAt,
+                DueDate=:DueDate,
+                CustomerName=:CustomerName,
+                CustomerEmail=:CustomerEmail,
+                CustomerPhone=:CustomerPhone,
+                RejectReason=:RejectReason,
+                SampleID=:SampleID,
+                PatientID=:PatientID,
+                scID=:scID,
+                scdate=:scdate,
+                rcdate=:rcdate
+                WHERE ID=:ID";
+
+
+
+
                 $FileName = $ReportInfo['ReportID'] . '.pdf';
+
+            if (!empty($_FILES['ReportApply']['name']) ) {
+                $stmt = $this->_conn->prepare($sql);
+                $stmt->bindParam(':ReportName', $ReportInfo['ReportName']);    
+                $ReportStatus = '1';
                 $stmt->bindValue(':FileName', $FileName);
-
-            }else{
-                $FileName = null;
-                $stmt->bindValue(':FileName', $ReportInfo['FileName']);
-
-            }
-
-            if(!empty($_FILES['ReportApply']['name'])){
                 $ReportApplyName = $_FILES['ReportApply']['name'] ;
                 $stmt->bindValue(':apply_pdf', $_FILES['ReportApply']['name']);
+                $stmt->bindParam(':ReportType', $ReportInfo['ReportType']);
+                $stmt->bindParam(':TemplateID', $ReportInfo['TemplateID']);
+                $stmt->bindParam(':ccemail', $ReportInfo['ccemail']);
+                $stmt->bindParam(':HospitalList', $ReportInfo['HospitalList']);
+                $stmt->bindParam(':ReportStatus', $ReportStatus);
+                $stmt->bindParam(':UpdatedAt', $now);
+                $stmt->bindParam(':DueDate', $ReportInfo['DueDate']);
+                $stmt->bindParam(':CustomerName', $ReportInfo['CustomerName']);
+                $stmt->bindParam(':CustomerEmail', $ReportInfo['CustomerEmail']);
+                $stmt->bindParam(':CustomerPhone', $ReportInfo['CustomerPhone']);
+                $stmt->bindParam(':RejectReason', $RejectReason);
+                $stmt->bindParam(':SampleID', $ReportInfo['SampleID']);
+                $stmt->bindParam(':PatientID', $ReportInfo['PatientID']);
+                $stmt->bindParam(':scID', $ReportInfo['scID']);
+                $stmt->bindParam(':scdate', $ReportInfo['scdate']);
+                $stmt->bindParam(':rcdate', $ReportInfo['rcdate']);
+                $stmt->bindParam(':ID', $ReportInfo['ID']);
+                $stmt->execute();
 
             }else{
-                $ReportApplyName = null;
-                $stmt->bindValue(':apply_pdf', $ReportInfo['apply_pdf']);
+                $stmt = $this->_conn->prepare($sql1);
+                $stmt->bindParam(':ReportName', $ReportInfo['ReportName']);    
+                $stmt->bindValue(':FileName', $FileName);
+                $stmt->bindParam(':ReportType', $ReportInfo['ReportType']);
+                $stmt->bindParam(':TemplateID', $ReportInfo['TemplateID']);
+                $stmt->bindParam(':ccemail', $ReportInfo['ccemail']);
+                $stmt->bindParam(':HospitalList', $ReportInfo['HospitalList']);
+                $stmt->bindParam(':ReportStatus', $ReportStatus);
+                $stmt->bindParam(':UpdatedAt', $now);
+                $stmt->bindParam(':DueDate', $ReportInfo['DueDate']);
+                $stmt->bindParam(':CustomerName', $ReportInfo['CustomerName']);
+                $stmt->bindParam(':CustomerEmail', $ReportInfo['CustomerEmail']);
+                $stmt->bindParam(':CustomerPhone', $ReportInfo['CustomerPhone']);
+                $stmt->bindParam(':RejectReason', $RejectReason);
+                $stmt->bindParam(':SampleID', $ReportInfo['SampleID']);
+                $stmt->bindParam(':PatientID', $ReportInfo['PatientID']);
+                $stmt->bindParam(':scID', $ReportInfo['scID']);
+                $stmt->bindParam(':scdate', $ReportInfo['scdate']);
+                $stmt->bindParam(':rcdate', $ReportInfo['rcdate']);
+                $stmt->bindParam(':ID', $ReportInfo['ID']);
+                $stmt->execute();
             }
 
-            $stmt->bindParam(':ReportType', $ReportInfo['ReportType']);
-            $stmt->bindParam(':TemplateID', $ReportInfo['TemplateID']);
-            $stmt->bindParam(':ccemail', $ReportInfo['ccemail']);
-            $stmt->bindParam(':HospitalList', $ReportInfo['HospitalList']);
-            $stmt->bindParam(':ReportStatus', $ReportStatus);
-            $stmt->bindParam(':UpdatedAt', $now);
-            $stmt->bindParam(':DueDate', $ReportInfo['DueDate']);
-            $stmt->bindParam(':CustomerName', $ReportInfo['CustomerName']);
-            $stmt->bindParam(':CustomerEmail', $ReportInfo['CustomerEmail']);
-            $stmt->bindParam(':CustomerPhone', $ReportInfo['CustomerPhone']);
-            $stmt->bindParam(':RejectReason', $RejectReason);
-            $stmt->bindParam(':SampleID', $ReportInfo['SampleID']);
-            $stmt->bindParam(':PatientID', $ReportInfo['PatientID']);
-            $stmt->bindParam(':scID', $ReportInfo['scID']);
-            $stmt->bindParam(':scdate', $ReportInfo['scdate']);
-            $stmt->bindParam(':rcdate', $ReportInfo['rcdate']);
-            $stmt->bindParam(':ID', $ReportInfo['ID']);
-            $stmt->execute();
+            // if(!empty($_FILES['ReportApply']['name'])){
+            //     $ReportApplyName = $_FILES['ReportApply']['name'] ;
+            //     $stmt->bindValue(':apply_pdf', $_FILES['ReportApply']['name']);
+
+            // }else{
+            //     $stmt = $this->_conn->prepare($sql1);
+            //     $ReportApplyName = null;
+            // }
+
+
         } catch (PDOException | Exception $th) {
             throw new Exception($th->getMessage() . ' Error code: ' . $th->getCode());
         }
