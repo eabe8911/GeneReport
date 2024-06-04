@@ -70,9 +70,9 @@
             shrinkToFit: true,
             colModel: [
                 { label: "id", name: "id", hidden: true },
-                { label: "編號", name: "ReportID", width: "5%", align: "center" },
-                { label: "客戶姓名", name: "CustomerName", width: '5%' },
-                { label: "名稱", name: "ReportName", width: '10%' },
+                { label: "編號", name: "ReportID", width: "3%", align: "center" },
+                { label: "客戶姓名", name: "CustomerName", width: '3%' },
+                { label: "名稱", name: "ReportName", width: '5%' },
                 { label: "檔案", name: "FileName", hidden: true },
                 { label: "實驗室審核", name: "Approved1", width: "4%", align: "center" , hidden: true },
                 { label: "日期", name: "Approved1At", width: '6%', align: "center", formatter: "date", formatoptions: { srcformat: "ISO8601Long", newformat: "Y-m-d H:i:s" }, hidden: true },
@@ -80,11 +80,11 @@
                 { label: "日期", name: "Approved2At", width: '6%', align: "center", formatter: "date", formatoptions: { srcformat: "ISO8601Long", newformat: "Y-m-d H:i:s" }, hidden: true },
                 { label: "檢測單位", name: "ReportTypeName", width: '4%'},
                 // { label: "檢測單位", name: "OrgName", width: '5%' },
-                { label: "TAT最終日", name: "DueDate", width: '4%', align: "center", formatter: "date", formatoptions: { srcformat: "ISO8601Long", newformat: "Y-m-d" } },
-                { label: "送檢單位", name: "HospitalList", width: '5%', align: "center" },
-                { label: "狀態", name: "ReportStatus", width: '5%', align: "center" },
+                { label: "TAT最終日", name: "DueDate", width: '3%', align: "center", formatter: "date", formatoptions: { srcformat: "ISO8601Long", newformat: "Y-m-d" } },
+                { label: "送檢單位", name: "HospitalList", width: '4%', align: "center" },
+                { label: "狀態", name: "ReportStatus", width: '4%', align: "center" },
                 { label: "建立日期", name: "CreatedAt", formatter: "date", formatoptions: { srcformat: "ISO8601Long", newformat: "Y-m-d H:i:s" }, hidden: true },
-                { label: "更新日期", name: "UpdatedAt", width: '5%', formatter: "date", formatoptions: { srcformat: "ISO8601Long", newformat: "Y-m-d H:i:s" }, hidden: true },
+                { label: "更新日期", name: "UpdatedAt", width: '10%', formatter: "date", formatoptions: { srcformat: "ISO8601Long", newformat: "Y-m-d H:i:s" }, hidden: true },
                 // 設定功能欄位，依照Permission設定為修改或審核
                 {
                     label: "功能", name: "Function", width: '5%', align: "center", formatter: function (cellvalue, options, rowObject) {
@@ -142,28 +142,29 @@
         switch (link_action) {
             case '0':
             case '6':
-                var link = "<button class='btn btn-primary' onclick='ReportView(" + ID + ");'>檢視報告</button>";
+                var link = "<button class='btn btn-primary' onclick='ReportEdit(" + ID + ");'>檢視報告</button>";
                 break;
             case '1':
+            case '4':
+            case '5':
             case '9':
-                var link = "<button class='btn btn-primary' onclick='ReportEdit(" + ID + ");'>修改報告</button>";
+                var link = "<button class='btn btn-primary' onclick='ReportEdit(" + ID + ");'>檢視報告</button>";
                 break;
             case 'Delete':
                 var link = "<button class='btn btn-primary' onclick='ReportDelete(" + ID + ");'>刪  除</button>";
                 break;
             case '2':
             case '3':
-                var link = "<button class='btn btn-primary' onclick='ReportApprove(" + ID + ");'>報告簽核</button>";
+                var link0 = "<button class='btn btn-primary' onclick='ReportApprove(" + ID + ");'>報告簽核</button>";
+                var link1 = "<button class='btn btn-primary' onclick='ReportEdit(" + ID + ");'>檢視報告</button>";
+                var link = link0 + " " + link1;                
                 break;
-            case '4':
-                var link = "<button class='btn btn-primary' onclick='ReportEdit(" + ID + ");'>報告寄送</button>";
-                break;
-
             default:
                 var link = "<button class='btn btn-primary' onclick='ViewAppointPage(" + ID + ");'>無權限</button>";
                 break;
         }
         return link;
+
     }
 
     function dump(obj) {

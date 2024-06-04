@@ -373,7 +373,13 @@ $smarty->assign("rcdate", $report->ReportInfo('rcdate'), true);
 
 if ($ApplyFile == '') {
     $smarty->assign("ApplyFile", "", true);
-    $output_apply = '<br><h4 style="justify-content: center; display: flex;color:#FF0000">請上傳申請單</h4>';
+    if($Permission == 2 or $Permission == 4 or $Permission == 5 )
+    {
+        $output_apply = '<br><h4 style="justify-content: center; display: flex;color:#FF0000">請上傳申請單</h4>';
+    }else{
+        $output_apply = '';
+    }
+
     echo '<div id="pdf-output">' . $output_apply . '</div>';
 
 } else {
@@ -403,17 +409,16 @@ $rcdate = $report->ReportInfo('rcdate');
 if ($PDFFile == '') {
     $smarty->assign("PDFPreview", "");
     $output = '<br><h4 style="justify-content: center; display: flex;color:#FF0000">請上傳PDF報告</h4>';
-    echo '<div id="pdf-output">' . $output . '</div>';
+    // echo '<div id="pdf-output">' . $output . '</div>';
 
 } elseif ($ReportStatus == "報告已上傳，未審核") {
     $smarty->assign("PDFPreview", $PDFFile);
     $output = '<br><h4 style="justify-content: center; display: flex;color:#FF0000">待醫檢師簽核</h4>';
-    echo '<div id="pdf-output">' . $output . '</div>';
+    // echo '<div id="pdf-output">' . $output . '</div>';
 
 } else {
     $smarty->assign("PDFPreview", $PDFFile);
     $output =
-        '<br><h4 style="justify-content: center; display: flex;color:#FF0000">請再次確認檢測報告資訊</h4>' .
 
         '<div style="justify-content: center; display: flex; ">
             <form id="email_report" method="post" action="send_email.php">
@@ -439,18 +444,22 @@ if ($PDFFile == '') {
           </div>';
 
     //if permission = 6 don't show email button
-    if ($Permission == 6) {
+    if ($Permission != 4) {
         $output = '<br><h4 style="justify-content: center; display: flex;color:#FF0000">請再次確認檢測報告資訊</h4>' .
             '<div style="justify-content: center; display: flex; ">
             <button style="margin-left: 10px;height: 40px;" class="btn btn-primary" type="button">
                 <a style="color:white;" href="' . $PDFFile . '" download>Download </a>
             </button>
           </div>';
+    } elseif ($Permission == 5) {
+        $output = '';
+    } 
+
+    // echo '<div id="pdf-output">' . $output . '</div>';
     }
+    $smarty->assign("output", "<input type='hidden' id='output' name='output' value=" . $output . "");
 
-    echo '<div id="pdf-output">' . $output . '</div>';
 
-}
 // Display Smarty Template
 $smarty->assign("IncludePage", "ReportDetailMaintain.tpl");
 $smarty->display("ViewReportDetail.tpl");
@@ -469,7 +478,6 @@ echo '<script>
 ?>
 
 <script>
-    const pdfOutput = document.getElementById('pdf-output');
-    document.body.appendChild(pdfOutput);
-
+const pdfOutput = document.getElementById('pdf-output');
+document.body.appendChild(pdfOutput);
 </script>

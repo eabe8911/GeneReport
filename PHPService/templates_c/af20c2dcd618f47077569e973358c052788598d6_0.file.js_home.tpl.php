@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-02-17 03:03:39
+/* Smarty version 4.3.4, created on 2024-06-04 07:59:02
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\js_home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_65d013fb350a68_75774746',
+  'unifunc' => 'content_665ead26b40b69_49203748',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'af20c2dcd618f47077569e973358c052788598d6' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\js_home.tpl',
-      1 => 1707189968,
+      1 => 1717480735,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_65d013fb350a68_75774746 (Smarty_Internal_Template $_smarty_tpl) {
+function content_665ead26b40b69_49203748 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!--THIS JQUERY AND CSS IS FOR JQGRID TABLE-->
 <?php echo '<script'; ?>
  type="text/ecmascript" src="js/prettify/prettify.js"><?php echo '</script'; ?>
@@ -138,9 +138,9 @@ function content_65d013fb350a68_75774746 (Smarty_Internal_Template $_smarty_tpl)
             shrinkToFit: true,
             colModel: [
                 { label: "id", name: "id", hidden: true },
-                { label: "編號", name: "ReportID", width: "5%", align: "center" },
-                { label: "客戶姓名", name: "CustomerName", width: '5%' },
-                { label: "名稱", name: "ReportName", width: '10%' },
+                { label: "編號", name: "ReportID", width: "3%", align: "center" },
+                { label: "客戶姓名", name: "CustomerName", width: '3%' },
+                { label: "名稱", name: "ReportName", width: '5%' },
                 { label: "檔案", name: "FileName", hidden: true },
                 { label: "實驗室審核", name: "Approved1", width: "4%", align: "center" , hidden: true },
                 { label: "日期", name: "Approved1At", width: '6%', align: "center", formatter: "date", formatoptions: { srcformat: "ISO8601Long", newformat: "Y-m-d H:i:s" }, hidden: true },
@@ -148,11 +148,11 @@ function content_65d013fb350a68_75774746 (Smarty_Internal_Template $_smarty_tpl)
                 { label: "日期", name: "Approved2At", width: '6%', align: "center", formatter: "date", formatoptions: { srcformat: "ISO8601Long", newformat: "Y-m-d H:i:s" }, hidden: true },
                 { label: "檢測單位", name: "ReportTypeName", width: '4%'},
                 // { label: "檢測單位", name: "OrgName", width: '5%' },
-                { label: "TAT最終日", name: "DueDate", width: '4%', align: "center", formatter: "date", formatoptions: { srcformat: "ISO8601Long", newformat: "Y-m-d" } },
-                { label: "送檢單位", name: "HospitalList", width: '5%', align: "center" },
-                { label: "狀態", name: "ReportStatus", width: '5%', align: "center" },
+                { label: "TAT最終日", name: "DueDate", width: '3%', align: "center", formatter: "date", formatoptions: { srcformat: "ISO8601Long", newformat: "Y-m-d" } },
+                { label: "送檢單位", name: "HospitalList", width: '4%', align: "center" },
+                { label: "狀態", name: "ReportStatus", width: '4%', align: "center" },
                 { label: "建立日期", name: "CreatedAt", formatter: "date", formatoptions: { srcformat: "ISO8601Long", newformat: "Y-m-d H:i:s" }, hidden: true },
-                { label: "更新日期", name: "UpdatedAt", width: '5%', formatter: "date", formatoptions: { srcformat: "ISO8601Long", newformat: "Y-m-d H:i:s" }, hidden: true },
+                { label: "更新日期", name: "UpdatedAt", width: '10%', formatter: "date", formatoptions: { srcformat: "ISO8601Long", newformat: "Y-m-d H:i:s" }, hidden: true },
                 // 設定功能欄位，依照Permission設定為修改或審核
                 {
                     label: "功能", name: "Function", width: '5%', align: "center", formatter: function (cellvalue, options, rowObject) {
@@ -210,28 +210,29 @@ function content_65d013fb350a68_75774746 (Smarty_Internal_Template $_smarty_tpl)
         switch (link_action) {
             case '0':
             case '6':
-                var link = "<button class='btn btn-primary' onclick='ReportView(" + ID + ");'>檢視報告</button>";
+                var link = "<button class='btn btn-primary' onclick='ReportEdit(" + ID + ");'>檢視報告</button>";
                 break;
             case '1':
+            case '4':
+            case '5':
             case '9':
-                var link = "<button class='btn btn-primary' onclick='ReportEdit(" + ID + ");'>修改報告</button>";
+                var link = "<button class='btn btn-primary' onclick='ReportEdit(" + ID + ");'>檢視報告</button>";
                 break;
             case 'Delete':
                 var link = "<button class='btn btn-primary' onclick='ReportDelete(" + ID + ");'>刪  除</button>";
                 break;
             case '2':
             case '3':
-                var link = "<button class='btn btn-primary' onclick='ReportApprove(" + ID + ");'>報告簽核</button>";
+                var link0 = "<button class='btn btn-primary' onclick='ReportApprove(" + ID + ");'>報告簽核</button>";
+                var link1 = "<button class='btn btn-primary' onclick='ReportEdit(" + ID + ");'>檢視報告</button>";
+                var link = link0 + " " + link1;                
                 break;
-            case '4':
-                var link = "<button class='btn btn-primary' onclick='ReportEdit(" + ID + ");'>報告寄送</button>";
-                break;
-
             default:
                 var link = "<button class='btn btn-primary' onclick='ViewAppointPage(" + ID + ");'>無權限</button>";
                 break;
         }
         return link;
+
     }
 
     function dump(obj) {

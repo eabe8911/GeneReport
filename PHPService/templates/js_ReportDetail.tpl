@@ -93,6 +93,16 @@
 
       });
 
+      $('#BtnReportEditPDF').click(function() {
+        $('#ReportMode').val('EDIT');
+        // set button for confirm
+        $('#ReportQueryButton').hide();
+        $('#ReportConfirmButton').show();
+        // setFieldsReadonly(false);
+        setFieldsUploadPDF(false);
+
+      });
+
       $('#BtnReportCancel').click(function() {
         $('#ReportMode').val('CANCEL');
         window.location.replace('home.php');
@@ -201,6 +211,11 @@
     function setFieldsEditable(state) {
       // $('#CustomerEmail').prop('readonly', state);
       $('#ccemail').prop('readonly', state);
+    }
+
+    // //set upload button PDF
+    function setFieldsUploadPDF(state) {
+      $('#DisplayUploadButton').prop('hidden', state);
     }
 
     // 設定 jQuery 日期選擇器

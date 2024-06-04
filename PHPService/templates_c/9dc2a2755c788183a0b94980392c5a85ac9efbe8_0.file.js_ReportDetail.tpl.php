@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-05-29 15:51:15
+/* Smarty version 4.3.4, created on 2024-06-04 13:49:06
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\js_ReportDetail.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_6656de73317177_81977351',
+  'unifunc' => 'content_665eaad2b1a608_37666489',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '9dc2a2755c788183a0b94980392c5a85ac9efbe8' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\js_ReportDetail.tpl',
-      1 => 1716969073,
+      1 => 1717480145,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6656de73317177_81977351 (Smarty_Internal_Template $_smarty_tpl) {
+function content_665eaad2b1a608_37666489 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
  type="text/javascript">
   
@@ -114,6 +114,16 @@ echo '<script'; ?>
         $('#ReportConfirmButton').show();
         // setFieldsReadonly(false);
         setFieldsEditable(false);
+
+      });
+
+      $('#BtnReportEditPDF').click(function() {
+        $('#ReportMode').val('EDIT');
+        // set button for confirm
+        $('#ReportQueryButton').hide();
+        $('#ReportConfirmButton').show();
+        // setFieldsReadonly(false);
+        setFieldsUploadPDF(false);
 
       });
 
@@ -225,6 +235,11 @@ echo '<script'; ?>
     function setFieldsEditable(state) {
       // $('#CustomerEmail').prop('readonly', state);
       $('#ccemail').prop('readonly', state);
+    }
+
+    // //set upload button PDF
+    function setFieldsUploadPDF(state) {
+      $('#DisplayUploadButton').prop('hidden', state);
     }
 
     // 設定 jQuery 日期選擇器

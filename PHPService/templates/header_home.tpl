@@ -15,17 +15,29 @@
     </style>
     <nav class="member-site-navigation">
         <ul class="nav" style="display: inline-block;">
-            {if $Permission eq 3}
+            {if $Permission eq 1}
             <li style="display: inline-block;">
-                <h3>{$DisplayName} 您好 （身分：醫師）</h3>
+                <h3>{$DisplayName} 您好 （身分：生資人員）</h3>
             </li>
             {elseif $Permission eq 2}
             <li style="display: inline-block;">
+                <h3>{$DisplayName} 您好 （身分：簽核醫檢師）</h3>
+            </li>
+            {elseif $Permission eq 3}
+            <li style="display: inline-block;">
+                <h3>{$DisplayName} 您好 （身分：醫師）</h3>
+            </li>
+            {elseif $Permission eq 4}
+            <li style="display: inline-block;">
+                <h3>{$DisplayName} 您好 （身分：實驗室專人）</h3>
+            </li>
+            {elseif $Permission eq 5}
+            <li style="display: inline-block;">
                 <h3>{$DisplayName} 您好 （身分：醫檢師）</h3>
             </li>
-            {elseif $Permission eq 1}
+            {elseif $Permission eq 6}
             <li style="display: inline-block;">
-                <h3>{$DisplayName} 您好 （身分：生資人員）</h3>
+                <h3>{$DisplayName} 您好 （身分：監控查核人員）</h3>
             </li>
             {else}
             <li style="display: inline-block;">
@@ -63,7 +75,7 @@
 
             <!-- <li style="display: inline-block;"><h3>{$DisplayName} 您好</h3></li> -->
 
-            {if $Permission eq 2 or $Permission eq 9 }
+            {if $Permission eq 9 }
             <li style="display: inline-block;"><a id="addReport" name="addReport" href="{$addReport}">
                     <h3>新增報告</h3>
                 </a></li>
@@ -97,6 +109,14 @@
                 </select>
             </li>
             {elseif $Permission eq 4}
+            <li style="display: inline-block;"><a id="addReport" name="addReport" href="{$addReport}">
+                    <h3>新增報告</h3>
+                </a></li>
+
+            <li style="display: inline-block;"><a id="ImportReport" name="ImportReport" href="{$ImportReport}">
+                    <h3>批次匯入報告</h3>
+                </a></li>
+
             <li style="display: inline-block;">
                 <select id="userOptions" name="userOptions" onchange="location = this.value;">
                     <option value="">會員管理</option>
@@ -105,6 +125,23 @@
                     <option value="index.php">登出</option>
                 </select>
             </li>
+            {elseif $Permission eq 2 or $Permission eq 5}
+            <li style="display: inline-block;"><a id="addReport" name="addReport" href="{$addReport}">
+                    <h3>新增報告</h3>
+                </a></li>
+
+            <li style="display: inline-block;"><a id="ImportReport" name="ImportReport" href="{$ImportReport}">
+                    <h3>批次匯入報告</h3>
+                </a></li>
+
+            <li style="display: inline-block;">
+                <select id="userOptions" name="userOptions" onchange="location = this.value;">
+                    <option value="">會員管理</option>
+                    <option value="changePassword.php">更改密碼</option>
+                    <option value="index.php">登出</option>
+                </select>
+            </li>
+
 
 
             {else}

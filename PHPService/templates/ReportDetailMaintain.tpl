@@ -87,7 +87,8 @@
                                 </div>
 
                                 <!---- 報告樣板 ---->
-                                {if $Permission eq 1 or $Permission eq 2 or $Permission eq 9 }
+                                {if $Permission eq 1 or $Permission eq 2 or $Permission eq 4 or $Permission eq 5 or
+                                $Permission eq 9 }
                                 <div class="form-group">
                                     <label for="TemplateID" class="col-md-3 control-label">報告樣板:</label>
                                     <div class="col-md-8">
@@ -266,15 +267,10 @@
                                 <button type="button" class="btn btn-danger btn-md" id="BtnReportExit"
                                     style="font-weight:bold;font-size:20px;margin:30px;">
                                     <i class="fa fa-eject"></i> 離 開</button>
-                               <button type="button" class="btn btn-danger btn-md" id="BtnReportEdit"
+                                <button type="button" class="btn btn-danger btn-md" id="BtnReportEditPDF"
                                     style="font-weight:bold;font-size:20px;margin:30px;">
                                     <i class="fa fa-edit"></i> 修 改</button>
-                                <!--  <button type="button" class="btn btn-danger btn-md" id="BtnReportDelete"
-                                    style="font-weight:bold;font-size:20px;margin:30px;">
-                                    <i class="fa fa-trash"></i> 刪 除</button> -->
-                                <button type="button" class="btn btn-danger btn-md" id="BtnApproveReject"
-                                    name="BtnApproveReject" style="font-weight:bold;font-size:20px;margin:30px;">
-                                    <i class="fa fa-eject"></i> 退 回</button>
+
                             </p>
                             {elseif $Permission == 2}
                             <p id="ReportQueryButton">
@@ -284,27 +280,35 @@
                                 <button type="button" class="btn btn-danger btn-md" id="BtnReportEdit"
                                     style="font-weight:bold;font-size:20px;margin:30px;">
                                     <i class="fa fa-edit"></i> 修 改</button>
-                                <button type="button" class="btn btn-danger btn-md" id="BtnApproveReject"
-                                    name="BtnApproveReject" style="font-weight:bold;font-size:20px;margin:30px;">
-                                    <i class="fa fa-eject"></i> 退 回</button>
+   
+                            </p>
+                            {elseif $Permission == 4 or $Permission == 5 or $Permission == 9}
+                            <p id="ReportQueryButton">
+                                <button type="button" class="btn btn-danger btn-md" id="BtnReportExit"
+                                    style="font-weight:bold;font-size:20px;margin:30px;">
+                                    <i class="fa fa-eject"></i> 離 開</button>
+                                <button type="button" class="btn btn-danger btn-md" id="BtnReportEdit"
+                                    style="font-weight:bold;font-size:20px;margin:30px;">
+                                    <i class="fa fa-edit"></i> 修 改</button>
+                            </p>
+                            {elseif $Permission == 6}
+                            <p id="ReportQueryButton">
+                                <button type="button" class="btn btn-danger btn-md" id="BtnReportExit"
+                                    style="font-weight:bold;font-size:20px;margin:30px;">
+                                    <i class="fa fa-eject"></i> 離 開</button>
                                 <button type="button" class="btn btn-danger btn-md" id="BtnReportDelete"
                                     style="font-weight:bold;font-size:20px;margin:30px;">
                                     <i class="fa fa-trash"></i> 刪 除</button>
-
                             </p>
-                            {elseif $Permission == 4}
+                            <!-- {elseif $Permission == 4}
                             <p id="ReportQueryButton">
                                 <button type="button" class="btn btn-danger btn-md" id="BtnReportExit"
                                     style="font-weight:bold;font-size:20px;margin:30px;">
                                     <i class="fa fa-eject"></i> 離 開</button>
                                 <button type="button" class="btn btn-danger btn-md" id="BtnReportEditccemail"
                                     style="font-weight:bold;font-size:20px;margin:30px;">
-                                    <i class="fa fa-edit"></i> 修改郵件</button>
-                                <!-- <button type="button" class="btn btn-danger btn-md" id="BtnNoletter"
-                                    style="font-weight:bold;font-size:20px;margin:30px;">
-                                    <i class="fa fa-edit"></i> 發送通知信</button> -->
+                                    <i class="fa fa-edit"></i> 修改郵件</button> -->
 
-                            </p>
                             {/if}
                             <!--SUBMIT BUTTON IS CONNECTED TO HOME.PHP-->
                             <p id="ReportConfirmButton">
@@ -338,10 +342,18 @@
                             </div>
                         </div>
                     </div>
-                    <br>
-                    <br>
-                    <!---- LooPDF Preview -->
-                    <!-- <div class="row" id="LogoPDFArea">
+                    <!-- pdf-output -->
+                    <div class="row" id="pdf-output">
+                        <div class="form-horizontal" role="form">
+                            <div class="col-md-12" style="text-align: center;">
+                                {$output}
+                            </div>
+                        </div>
+
+                        <br>
+                        <br>
+                        <!---- LooPDF Preview -->
+                        <!-- <div class="row" id="LogoPDFArea">
                         <div class="form-horizontal" role="form">
                             <div class="col-md-12">
                                 <embed id='LogoFile' name='LogoFile' src='{$LogoFile}' type='application/pdf'
@@ -349,10 +361,10 @@
                             </div>
                         </div>
                     </div> -->
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 </form>
 <script>
     function populateSubmenu(mainMenu, subMenu) {

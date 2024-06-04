@@ -152,6 +152,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewApproveDetail") {
     $report->GetReport($ID);
     $reportInfo = $report->get_ReportInfo();
     $ReportStatus = $report->ReportInfo('ReportStatus');
+    $Reject1 = $report->ReportInfo('Reject1');
+    $Reject2 = $report->ReportInfo('Reject2');
+    if ($Reject1 == 'penhua') {
+        $Reject1 = '張本樺';
+    }elseif ($Reject1 == 'ivan') {
+        $Reject1 = '陳奕勳';
+    }  
     $Reject1At = $report->ReportInfo('Reject1At');
     $Reject2At = $report->ReportInfo('Reject2At');
     $ReportID = $report->ReportInfo('ReportID');
@@ -161,9 +168,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewApproveDetail") {
     if (!empty($reportInfo['FileName'])) {
         $PDFFile = "./uploads/" . $ReportID . "/" . $reportInfo['FileName'];
     } elseif ($ReportStatus == '3') {
-        $ErrorMessage = "實驗室於'$Reject1At'退回此報告</br>請管理者重新上傳報告";
+        // $ErrorMessage = "醫檢師$Reject1.於.'$Reject1At'退回此報告</br>請重新上傳報告";
+        $ErrorMessage = "醫檢師" . $Reject1 . "於" . $Reject1At . "退回此報告</br>請重新上傳報告";
     } elseif ($ReportStatus == '5') {
-        $ErrorMessage = "醫師於'$Reject2At'退回此報告</br>請管理者重新上傳報告";
+        $ErrorMessage = "醫師於'$Reject2At'退回此報告</br>請重新上傳報告";
     } else {
         $ErrorMessage = "尚未有報告資料上傳";
     }
@@ -243,7 +251,12 @@ $smarty->assign("rcdate", $report->ReportInfo('rcdate'), true);
 // Display PDF File
 if ($ApplyFile == '') {
     $smarty->assign("ApplyFile", "", true);
-    $output_apply = '<br><h4 style="justify-content: center; display: flex;color:#FF0000">請上傳申請單</h4>';
+    if($Permission == 2 or $Permission == 4 or $Permission ==5 )
+    {
+        $output_apply = '<br><h4 style="justify-content: center; display: flex;color:#FF0000">請上傳申請單</h4>';
+    }else{
+        $output_apply = '';
+    }
     echo '<div id="pdf-output">' . $output_apply . '</div>';
 
 } else {
