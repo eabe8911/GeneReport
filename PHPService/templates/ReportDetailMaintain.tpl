@@ -18,8 +18,10 @@
                                             value="{$ReportID}">
                                     </div>
                                 </div>
+                                {if $Permission eq 1 or $Permission eq 2 or $Permission eq 4 or $Permission eq 5 or
+                                    $Permission eq 9 }
                                 <div class="form-group">
-                                    <label for="main-menu" class="col-md-3 control-label">報名類型:</label>
+                                    <label for="main-menu" class="col-md-3 control-label">報告類型:</label>
                                     <div class="col-md-8">
 
                                         <select id="main-menu" name="main-menu" class="form-control"
@@ -44,6 +46,7 @@
                                         </select>
                                     </div>
                                 </div>
+                                {/if}
                                 <div class="form-group">
 
                                     <label for="ReportName" class="col-md-3 control-label">報告名稱:</label>
