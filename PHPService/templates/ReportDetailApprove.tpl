@@ -232,15 +232,13 @@
                                 </strong>
                             </div>
                             </p>
-                            {if $ReportStatus == '8' || $ReportStatus == '0' || $ReportStatus == '3' || $ReportStatus ==
-                            '5'}
+                            {if $ReportStatus == '0'}
                             <p id="ReportApproveButton">
                                 <button type="button" class="btn btn-danger btn-md" id="BtnApproveExit"
                                     name="BtnApproveExit" style="font-weight:bold;font-size:20px;margin:30px;">
                                     <i class="fa fa-home"></i> 離 開</button>
                             </p>
-
-                            {else}
+                            {elseif $ReportStatus == '1'}
                             <p id="ReportApproveButton">
                                 <button type="button" class="btn btn-danger btn-md" id="BtnApproveExit"
                                     name="BtnApproveExit" style="font-weight:bold;font-size:20px;margin:30px;">
@@ -252,49 +250,58 @@
                                     name="BtnApprovePass" style="font-weight:bold;font-size:20px;margin:30px;">
                                     <i class="fa fa-thumbs-up"></i> 核 准</button>
                             </p>
+                            {else}
+                            <p id="ReportApproveButton">
+                                <button type="button" class="btn btn-danger btn-md" id="BtnApproveExit"
+                                    name="BtnApproveExit" style="font-weight:bold;font-size:20px;margin:30px;">
+                                    <i class="fa fa-home"></i> 離 開</button>
+                                <button type="button" class="btn btn-danger btn-md" id="BtnApproveReject"
+                                    name="BtnApproveReject" style="font-weight:bold;font-size:20px;margin:30px;">
+                                    <i class="fa fa-eject"></i> 退 回</button>
+
+                            </p>
                             {/if}
                         </div>
-                    </div>
-                    <!---- PDF Preview ---->
-                    <div class="row" id="PDFArea">
-                        <!-- <div class="form-horizontal" role="form">
+                        <!---- PDF Preview ---->
+                        <div class="row" id="PDFArea">
+                            <!-- <div class="form-horizontal" role="form">
                             <div class="col-md-12">
                                 <embed id='PDFPreview' name='PDFPreview' src='{$PDFPreview}' type='application/pdf'
                                     width='100%' height='1000px' /> -->
-                        <!-- <button type="button" class="btn btn-primary" id="BtnSendEmail">Send Email</button> -->
-
-                        <!-- </div> -->
-                        <div class="col-md-12">
-                            {if $PDFPreview neq '請再上傳一次報告'}
-                            <embed id='PDFPreview' name='PDFPreview' src='{$PDFPreview}' type='application/pdf'
-                                width='100%' height='1000px' />
-                            {else}
-                            <div class="alert alert-danger alert-container" id="alert" {$PDFPreview}>
-                                <strong>
-                                    <center>
-                                        <h1>{$PDFPreview}</h1>
-                                    </center>
-                                </strong>
-                            </div>
-                            {/if}
                             <!-- <button type="button" class="btn btn-primary" id="BtnSendEmail">Send Email</button> -->
-                        </div>
-                    </div>
-                    <br>
-                    <br>
-                    <!---- Apply Preview -->
-                    <div class="row" id="ApplyArea">
-                        <div class="form-horizontal" role="form">
+
+                            <!-- </div> -->
                             <div class="col-md-12">
-                                <embed id='ApplyFile' name='ApplyFile' src='{$ApplyFile}' type='application/pdf'
+                                {if $PDFPreview neq '請再上傳一次報告'}
+                                <embed id='PDFPreview' name='PDFPreview' src='{$PDFPreview}' type='application/pdf'
                                     width='100%' height='1000px' />
+                                {else}
+                                <div class="alert alert-danger alert-container" id="alert" {$PDFPreview}>
+                                    <strong>
+                                        <center>
+                                            <h1>{$PDFPreview}</h1>
+                                        </center>
+                                    </strong>
+                                </div>
+                                {/if}
+                                <!-- <button type="button" class="btn btn-primary" id="BtnSendEmail">Send Email</button> -->
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <!---- Apply Preview -->
+                        <div class="row" id="ApplyArea">
+                            <div class="form-horizontal" role="form">
+                                <div class="col-md-12">
+                                    <embed id='ApplyFile' name='ApplyFile' src='{$ApplyFile}' type='application/pdf'
+                                        width='100%' height='1000px' />
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 </form>
 <!---------------------------End----------------------------->

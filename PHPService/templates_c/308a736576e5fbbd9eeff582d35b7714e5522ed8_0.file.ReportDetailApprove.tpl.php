@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-06-03 14:42:04
+/* Smarty version 4.3.4, created on 2024-06-04 16:37:28
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\ReportDetailApprove.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_665d65bca734a3_13112497',
+  'unifunc' => 'content_665ed248e8ffd5_63944387',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '308a736576e5fbbd9eeff582d35b7714e5522ed8' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\ReportDetailApprove.tpl',
-      1 => 1717148168,
+      1 => 1717490242,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_665d65bca734a3_13112497 (Smarty_Internal_Template $_smarty_tpl) {
+function content_665ed248e8ffd5_63944387 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\vendor\\smarty\\smarty\\libs\\plugins\\function.html_options.php','function'=>'smarty_function_html_options',),));
 ?>
 <!--POP UP MODAL TO VIEW MEMBER DETAILS AND RESULTS FOR Member Information-->
@@ -289,14 +289,13 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield7']->value;?>
                                 </strong>
                             </div>
                             </p>
-                            <?php if ($_smarty_tpl->tpl_vars['ReportStatus']->value == '8' || $_smarty_tpl->tpl_vars['ReportStatus']->value == '0' || $_smarty_tpl->tpl_vars['ReportStatus']->value == '3' || $_smarty_tpl->tpl_vars['ReportStatus']->value == '5') {?>
+                            <?php if ($_smarty_tpl->tpl_vars['ReportStatus']->value == '0') {?>
                             <p id="ReportApproveButton">
                                 <button type="button" class="btn btn-danger btn-md" id="BtnApproveExit"
                                     name="BtnApproveExit" style="font-weight:bold;font-size:20px;margin:30px;">
                                     <i class="fa fa-home"></i> 離 開</button>
                             </p>
-
-                            <?php } else { ?>
+                            <?php } elseif ($_smarty_tpl->tpl_vars['ReportStatus']->value == '1') {?>
                             <p id="ReportApproveButton">
                                 <button type="button" class="btn btn-danger btn-md" id="BtnApproveExit"
                                     name="BtnApproveExit" style="font-weight:bold;font-size:20px;margin:30px;">
@@ -308,54 +307,63 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield7']->value;?>
                                     name="BtnApprovePass" style="font-weight:bold;font-size:20px;margin:30px;">
                                     <i class="fa fa-thumbs-up"></i> 核 准</button>
                             </p>
+                            <?php } else { ?>
+                            <p id="ReportApproveButton">
+                                <button type="button" class="btn btn-danger btn-md" id="BtnApproveExit"
+                                    name="BtnApproveExit" style="font-weight:bold;font-size:20px;margin:30px;">
+                                    <i class="fa fa-home"></i> 離 開</button>
+                                <button type="button" class="btn btn-danger btn-md" id="BtnApproveReject"
+                                    name="BtnApproveReject" style="font-weight:bold;font-size:20px;margin:30px;">
+                                    <i class="fa fa-eject"></i> 退 回</button>
+
+                            </p>
                             <?php }?>
                         </div>
-                    </div>
-                    <!---- PDF Preview ---->
-                    <div class="row" id="PDFArea">
-                        <!-- <div class="form-horizontal" role="form">
+                        <!---- PDF Preview ---->
+                        <div class="row" id="PDFArea">
+                            <!-- <div class="form-horizontal" role="form">
                             <div class="col-md-12">
                                 <embed id='PDFPreview' name='PDFPreview' src='<?php echo $_smarty_tpl->tpl_vars['PDFPreview']->value;?>
 ' type='application/pdf'
                                     width='100%' height='1000px' /> -->
-                        <!-- <button type="button" class="btn btn-primary" id="BtnSendEmail">Send Email</button> -->
-
-                        <!-- </div> -->
-                        <div class="col-md-12">
-                            <?php if ($_smarty_tpl->tpl_vars['PDFPreview']->value != '請再上傳一次報告') {?>
-                            <embed id='PDFPreview' name='PDFPreview' src='<?php echo $_smarty_tpl->tpl_vars['PDFPreview']->value;?>
-' type='application/pdf'
-                                width='100%' height='1000px' />
-                            <?php } else { ?>
-                            <div class="alert alert-danger alert-container" id="alert" <?php echo $_smarty_tpl->tpl_vars['PDFPreview']->value;?>
->
-                                <strong>
-                                    <center>
-                                        <h1><?php echo $_smarty_tpl->tpl_vars['PDFPreview']->value;?>
-</h1>
-                                    </center>
-                                </strong>
-                            </div>
-                            <?php }?>
                             <!-- <button type="button" class="btn btn-primary" id="BtnSendEmail">Send Email</button> -->
-                        </div>
-                    </div>
-                    <br>
-                    <br>
-                    <!---- Apply Preview -->
-                    <div class="row" id="ApplyArea">
-                        <div class="form-horizontal" role="form">
+
+                            <!-- </div> -->
                             <div class="col-md-12">
-                                <embed id='ApplyFile' name='ApplyFile' src='<?php echo $_smarty_tpl->tpl_vars['ApplyFile']->value;?>
+                                <?php if ($_smarty_tpl->tpl_vars['PDFPreview']->value != '請再上傳一次報告') {?>
+                                <embed id='PDFPreview' name='PDFPreview' src='<?php echo $_smarty_tpl->tpl_vars['PDFPreview']->value;?>
 ' type='application/pdf'
                                     width='100%' height='1000px' />
+                                <?php } else { ?>
+                                <div class="alert alert-danger alert-container" id="alert" <?php echo $_smarty_tpl->tpl_vars['PDFPreview']->value;?>
+>
+                                    <strong>
+                                        <center>
+                                            <h1><?php echo $_smarty_tpl->tpl_vars['PDFPreview']->value;?>
+</h1>
+                                        </center>
+                                    </strong>
+                                </div>
+                                <?php }?>
+                                <!-- <button type="button" class="btn btn-primary" id="BtnSendEmail">Send Email</button> -->
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <!---- Apply Preview -->
+                        <div class="row" id="ApplyArea">
+                            <div class="form-horizontal" role="form">
+                                <div class="col-md-12">
+                                    <embed id='ApplyFile' name='ApplyFile' src='<?php echo $_smarty_tpl->tpl_vars['ApplyFile']->value;?>
+' type='application/pdf'
+                                        width='100%' height='1000px' />
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 </form>
 <!---------------------------End-----------------------------><?php }
