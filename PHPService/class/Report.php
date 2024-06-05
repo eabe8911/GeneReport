@@ -376,10 +376,10 @@ class Report implements ReportInterface
                     } else {
                         $DueDate_date = $DueDate->format('Y-m-d');
                     }
-                    $scdate = DateTime::createFromFormat('n/j/Y', $ReportInfo['scdate']);
-                    $scdate_date = $scdate->format('Y-m-d');
-                    $rcdate = DateTime::createFromFormat('n/j/Y', $ReportInfo['rcdate']);
-                    $rcdate_date = $rcdate->format('Y-m-d');
+                    $scdate = DateTime::createFromFormat('Y/n/j g:i A', $ReportInfo['scdate']);
+                    $scdate_date = $scdate->format('Y-m-d H:i:s');
+                    $rcdate = DateTime::createFromFormat('Y/n/j g:i A', $ReportInfo['rcdate']);
+                    $rcdate_date = $rcdate->format('Y-m-d H:i:s');
                     $Submitdate = DateTime::createFromFormat('n/j/Y', $ReportInfo['Submitdate']);
                     $Submit_date = $Submitdate->format('Y-m-d');
                     $ReceivingDate = DateTime::createFromFormat('n/j/Y', $ReportInfo['ReceivingDate']);
@@ -422,13 +422,17 @@ class Report implements ReportInterface
         }
         return true;
     }
-    public function UpdateReportFileName($ID, $FileName)
+    public function UpdateReportFileName($ReportInfo)
     {
         try {
-            $sql = "UPDATE Report SET FileName=:FileName, RejectReason='' WHERE id=:ID";
+            $sql = "UPDATE Report SET FileName=:FileName, RejectReason='', ReportStatus=:ReportDtatus  WHERE ReportID=:ReportID";
+            $FileName = $ReportInfo['ReportID'] . '.pdf';
+            $ReportStatus = '1';
+
             $stmt = $this->_conn->prepare($sql);
-            $stmt->bindParam(':ID', $ID);
+            $stmt->bindParam(':ReportID', $ReportInfo['ReportID']);
             $stmt->bindParam(':FileName', $FileName);
+            $stmt->bindParam(':ReportDtatus', $ReportStatus);
             $stmt->execute();
         } catch (PDOException | Exception $th) {
             throw new Exception($th->getMessage(), $th->getCode());
@@ -473,9 +477,12 @@ class Report implements ReportInterface
             if (empty($ReportInfo['FileName'])) {
                 $ReportStatus = '0';
                 $RejectReason = $ReportInfo['RejectReason'];
+                $FileName = '';
             } else {
                 $ReportStatus = '1';
                 $RejectReason = '';
+                $FileName = $ReportInfo['ReportID'] . '.pdf';
+
             }
 
             $now = date("Y-m-d H:i:s");
@@ -524,15 +531,9 @@ class Report implements ReportInterface
                 rcdate=:rcdate
                 WHERE ID=:ID";
 
-
-
-
-                $FileName = $ReportInfo['ReportID'] . '.pdf';
-
             if (!empty($_FILES['ReportApply']['name']) ) {
                 $stmt = $this->_conn->prepare($sql);
                 $stmt->bindParam(':ReportName', $ReportInfo['ReportName']);    
-                $ReportStatus = '1';
                 $stmt->bindValue(':FileName', $FileName);
                 $ReportApplyName = $_FILES['ReportApply']['name'] ;
                 $stmt->bindValue(':apply_pdf', $_FILES['ReportApply']['name']);
@@ -553,7 +554,7 @@ class Report implements ReportInterface
                 $stmt->bindParam(':scdate', $ReportInfo['scdate']);
                 $stmt->bindParam(':rcdate', $ReportInfo['rcdate']);
                 $stmt->bindParam(':ID', $ReportInfo['ID']);
-                $stmt->execute();
+                // $stmt->execute();
 
             }else{
                 $stmt = $this->_conn->prepare($sql1);
@@ -576,7 +577,6 @@ class Report implements ReportInterface
                 $stmt->bindParam(':scdate', $ReportInfo['scdate']);
                 $stmt->bindParam(':rcdate', $ReportInfo['rcdate']);
                 $stmt->bindParam(':ID', $ReportInfo['ID']);
-                $stmt->execute();
             }
 
             // if(!empty($_FILES['ReportApply']['name'])){
@@ -588,6 +588,7 @@ class Report implements ReportInterface
             //     $ReportApplyName = null;
             // }
 
+                $stmt->execute();
 
         } catch (PDOException | Exception $th) {
             throw new Exception($th->getMessage() . ' Error code: ' . $th->getCode());

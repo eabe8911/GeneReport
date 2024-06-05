@@ -134,7 +134,7 @@
                                 <div class="form-group">
                                     <label for="scdate" class="col-md-3 control-label">採集日期:</label>
                                     <div class="col-md-8">
-                                        <input type="date" id="scdate" name="scdate" class="form-control" required
+                                        <input type="datetime-local" id="scdate" name="scdate" class="form-control" required
                                             value="{$scdate}">
                                     </div>
                                 </div>
@@ -142,7 +142,7 @@
                                 <div class="form-group">
                                     <label for="rcdate" class="col-md-3 control-label">收檢日期:</label>
                                     <div class="col-md-8">
-                                        <input type="date" id="rcdate" name="rcdate" class="form-control" required
+                                        <input type="datetime-local" id="rcdate" name="rcdate" class="form-control" required
                                             value="{$rcdate}">
                                     </div>
                                 </div>
@@ -223,7 +223,8 @@
                                                 type="file" accept="application/pdf" />
                                             <i class="fa fa-file-pdf"></i> 上傳報告結果
                                         </label>
-                                        {/if}
+                                     
+                                        {else}
 
                                         <label type="button" class="btn btn-primary btn-block"
                                             style="font-weight:bold;font-size:20px;width:40%;;margin:30px;">
@@ -231,6 +232,7 @@
                                                 accept="application/pdf" />
                                             <i class="fa fa-file-pdf"></i> 上傳申請單
                                         </label>
+                                        {/if}
                                         <!-- <label type="button" class="btn btn-primary btn-block"
                                             style="font-weight:bold;font-size:20px;width:40%;;margin:30px;">
                                             <input id="ReportUploadLogoPDF" name="ReportUploadLogoPDF"

@@ -32,7 +32,7 @@ $DisplayName = $_SESSION['DisplayName'];
 $Permission = $_SESSION['Permission'];
 $Role = $_SESSION['Role'];
 $FormName = filter_input(INPUT_POST, 'FormName');
-$ApproveMode = $ReportID = $PDFFile = $ReportApply = $ApplyFile = $ID = $ReportStatus = "";
+$ApproveMode = $ReportID = $PDFFile = $ReportApply = $ApplyFile = $ID = $ReportStatus ="";
 $ErrorMessage = '';
 
 $report = new Report($_POST);
@@ -96,7 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewApproveDetail") {
                 $report->Approve($_POST, $_SESSION);
                 $$ReportID = $_POST['ReportID'];
                 $ReportName = $_POST['ReportName'];
-                $HospitalList = $_POST['HospitalList'];
+                // $HospitalList = $_POST['HospitalList'];
                 // $ReportType = $_POST['ReportType'];
                 $CustomerName = $_POST['CustomerName'];
                 $CustomerEmail = $_POST['CustomerEmail'];
@@ -116,7 +116,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewApproveDetail") {
                     $Role = "YL_Lab_ISO";
                 }
 
-                $passlog = "報告編號：" . $ReportID . "已審核" . "\n" . "報告名稱：" . $ReportName . "\n" . "送檢單位：" . $HospitalList . "\n"
+                $passlog = "報告編號：" . $ReportID . "已審核" . "\n" . "報告名稱：" . $ReportName . "\n"  
                     . "客戶姓名：" . $CustomerName . "\n" . "客戶信箱：" . $CustomerEmail . "\n" . "客戶連絡電話：" . $CustomerPhone . "\n";
 
                 // $logDataJson = json_encode($logData, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-06-04 14:00:47
+/* Smarty version 4.3.4, created on 2024-06-05 14:16:02
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\ReportDetailMaintain.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_665ead8fcd5039_29717813',
+  'unifunc' => 'content_666002a234e002_72224786',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '451136e515d260dcfeb69b381fca1166c93b1f0d' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\ReportDetailMaintain.tpl',
-      1 => 1717480846,
+      1 => 1717568160,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_665ead8fcd5039_29717813 (Smarty_Internal_Template $_smarty_tpl) {
+function content_666002a234e002_72224786 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\vendor\\smarty\\smarty\\libs\\plugins\\function.html_options.php','function'=>'smarty_function_html_options',),));
 ?>
 <!--POP UP MODAL TO VIEW MEMBER DETAILS AND RESULTS FOR Member Information-->
@@ -51,8 +51,9 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
 ">
                                     </div>
                                 </div>
+                                <?php if ($_smarty_tpl->tpl_vars['Permission']->value == 1 || $_smarty_tpl->tpl_vars['Permission']->value == 2 || $_smarty_tpl->tpl_vars['Permission']->value == 4 || $_smarty_tpl->tpl_vars['Permission']->value == 5 || $_smarty_tpl->tpl_vars['Permission']->value == 9) {?>
                                 <div class="form-group">
-                                    <label for="main-menu" class="col-md-3 control-label">報名類型:</label>
+                                    <label for="main-menu" class="col-md-3 control-label">報告類型:</label>
                                     <div class="col-md-8">
 
                                         <select id="main-menu" name="main-menu" class="form-control"
@@ -77,6 +78,7 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                         </select>
                                     </div>
                                 </div>
+                                <?php }?>
                                 <div class="form-group">
 
                                     <label for="ReportName" class="col-md-3 control-label">報告名稱:</label>
@@ -168,7 +170,7 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                 <div class="form-group">
                                     <label for="scdate" class="col-md-3 control-label">採集日期:</label>
                                     <div class="col-md-8">
-                                        <input type="date" id="scdate" name="scdate" class="form-control" required
+                                        <input type="datetime-local" id="scdate" name="scdate" class="form-control" required
                                             value="<?php echo $_smarty_tpl->tpl_vars['scdate']->value;?>
 ">
                                     </div>
@@ -177,7 +179,7 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                 <div class="form-group">
                                     <label for="rcdate" class="col-md-3 control-label">收檢日期:</label>
                                     <div class="col-md-8">
-                                        <input type="date" id="rcdate" name="rcdate" class="form-control" required
+                                        <input type="datetime-local" id="rcdate" name="rcdate" class="form-control" required
                                             value="<?php echo $_smarty_tpl->tpl_vars['rcdate']->value;?>
 ">
                                     </div>
@@ -266,7 +268,8 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                                 type="file" accept="application/pdf" />
                                             <i class="fa fa-file-pdf"></i> 上傳報告結果
                                         </label>
-                                        <?php }?>
+                                     
+                                        <?php } else { ?>
 
                                         <label type="button" class="btn btn-primary btn-block"
                                             style="font-weight:bold;font-size:20px;width:40%;;margin:30px;">
@@ -274,6 +277,7 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                                 accept="application/pdf" />
                                             <i class="fa fa-file-pdf"></i> 上傳申請單
                                         </label>
+                                        <?php }?>
                                         <!-- <label type="button" class="btn btn-primary btn-block"
                                             style="font-weight:bold;font-size:20px;width:40%;;margin:30px;">
                                             <input id="ReportUploadLogoPDF" name="ReportUploadLogoPDF"

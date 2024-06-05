@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-04-10 16:02:53
+/* Smarty version 4.3.4, created on 2024-06-05 10:19:13
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\changePassword.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_661647ad1ee7d7_47950042',
+  'unifunc' => 'content_665fcb219f8d15_40344967',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd95c39a19700a27ed2ca83c9f1ef6501b8adefce' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\changePassword.tpl',
-      1 => 1706256244,
+      1 => 1716882590,
       2 => 'file',
     ),
   ),
@@ -23,7 +23,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:indexheader.tpl' => 1,
   ),
 ),false)) {
-function content_661647ad1ee7d7_47950042 (Smarty_Internal_Template $_smarty_tpl) {
+function content_665fcb219f8d15_40344967 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <title>麗寶基因報告系統</title>
@@ -66,6 +66,14 @@ function content_661647ad1ee7d7_47950042 (Smarty_Internal_Template $_smarty_tpl)
 >
                         <strong>
                             <center><?php echo $_smarty_tpl->tpl_vars['ErrorMessage']->value;?>
+</center>
+                        </strong>
+                    </div>
+                    <!-- success message -->
+                    <div class="alert alert-success alert-container" id="success" <?php echo $_smarty_tpl->tpl_vars['Message']->value;?>
+>
+                        <strong>
+                            <center><?php echo $_smarty_tpl->tpl_vars['Message']->value;?>
 </center>
                         </strong>
                     </div>

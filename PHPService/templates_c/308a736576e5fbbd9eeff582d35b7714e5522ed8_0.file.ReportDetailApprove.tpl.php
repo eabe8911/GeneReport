@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-06-04 16:37:28
+/* Smarty version 4.3.4, created on 2024-06-05 14:16:52
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\ReportDetailApprove.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_665ed248e8ffd5_63944387',
+  'unifunc' => 'content_666002d44bb4a0_63657226',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '308a736576e5fbbd9eeff582d35b7714e5522ed8' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\ReportDetailApprove.tpl',
-      1 => 1717490242,
+      1 => 1717568210,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_665ed248e8ffd5_63944387 (Smarty_Internal_Template $_smarty_tpl) {
+function content_666002d44bb4a0_63657226 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\vendor\\smarty\\smarty\\libs\\plugins\\function.html_options.php','function'=>'smarty_function_html_options',),));
 ?>
 <!--POP UP MODAL TO VIEW MEMBER DETAILS AND RESULTS FOR Member Information-->
@@ -161,7 +161,7 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield7']->value;?>
                                 <div class="form-group">
                                     <label for="scdate" class="col-md-3 control-label">採集日期:</label>
                                     <div class="col-md-8">
-                                        <input type="date" id="scdate" name="scdate" class="form-control" readonly
+                                        <input type="datetime-local" id="scdate" name="scdate" class="form-control" readonly
                                             value="<?php echo $_smarty_tpl->tpl_vars['scdate']->value;?>
 ">
                                     </div>
@@ -170,7 +170,7 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield7']->value;?>
                                 <div class="form-group">
                                     <label for="rcdate" class="col-md-3 control-label">收檢日期:</label>
                                     <div class="col-md-8">
-                                        <input type="date" id="rcdate" name="rcdate" class="form-control" readonly
+                                        <input type="datetime-local" id="rcdate" name="rcdate" class="form-control" readonly
                                             value="<?php echo $_smarty_tpl->tpl_vars['rcdate']->value;?>
 ">
                                     </div>

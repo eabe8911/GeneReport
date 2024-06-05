@@ -74,19 +74,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
                 $CustomerEmail = $_POST['CustomerEmail'];
                 $ccemail = $_POST['ccemail'];
                 $CustomerPhone = $_POST['CustomerPhone'];
+                $SampleID = $_POST['SampleID'];
+                $PatientID = $_POST['PatientID'];
+                $scID = $_POST['scID'];
+                $scdate = $_POST['scdate'];
+                $rcdate = $_POST['rcdate'];
+
                 if ($ReportStatus == '0' || $ReportStatus == '') {
                     $ReportStatus = '報告未上傳';
                 } elseif ($ReportStatus == '1') {
                     $ReportStatus = '報告已上傳，未審核';
                 }
 
-                $addlog = "報告編號：" . $ReportID . "已新增" . "\n" . "報告名稱：" . $ReportName . "\n" . "報告描述：" . $HospitalList . "\n" .
-                    "送檢單位：" . $ReportType . "\n" . "報告模板：" . $TemplateID . "\n" . "TAT最終日：" . $DueDate . "\n" . "客戶姓名：" . $CustomerName .
-                    "\n" . "客戶信箱：" . $CustomerEmail . "\n" . "聯絡人信箱：" . $ccemail . "\n" . "客戶連絡電話：" . $CustomerPhone;
+                $addlog = "報告編號：" . $ReportID . "已新增" . "\n"
+                        . "報告名稱：" . $ReportName . "\n" 
+                        . "送檢單位：" . $HospitalList . "\n" 
+                        . "檢測實驗室：" . $ReportType . "\n" 
+                        . "TAT最終日：" . $DueDate . "\n" 
+                        . "聯絡人名稱：" . $CustomerName ."\n" 
+                        . "聯絡人信箱：" . $CustomerEmail . "\n" 
+                        . "信箱(副本)：" . $ccemail . "\n" 
+                        . "聯絡電話：" . $CustomerPhone. "\n"
+                        . "檢體編號：" . $SampleID . "\n"
+                        . "病歷號碼：" . $PatientID . "\n"
+                        . "採檢單號：" . $scID . "\n"
+                        . "採檢日期：" . $scdate . "\n"
+                        . "收檢日期：" . $rcdate ;
 
                 CheckPDF($_FILES);
                 $_SESSION['ReportID'] = $_POST['ReportID'];
-                $log->SaveLog("ADD", $Username, "UpdateReportInfo", date("Y-m-d H:i:s"), $addlog);
+                $log->SaveLog("新增檢體資料", $Username, "UpdateReportInfo", date("Y-m-d H:i:s"), $addlog);
                 $messageData = [
                     'report_id' => $_POST['ReportID'],
                     'status' => 'new',
@@ -106,8 +123,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
                     $ReportStatus = $_POST['ReportStatus'];
                     
 
-                    $updatelog = "報告編號：" . $ReportID . "\n" . "客戶姓名：" . $CustomerName . "\n" . "客戶信箱：" . $CustomerEmail . "\n" . "聯絡人信箱：" . $ccemail . "\n" . "客戶連絡電話：" . $CustomerPhone . "\n" . "報告狀態：" . $ReportStatus;
-                    $log->SaveLog("UPDATECCEMAIL", $Username, "UpdateReportInfo", date("Y-m-d H:i:s"), $updatelog);
+                    $updatelog = "報告編號：" . $ReportID . "\n" 
+                                . "聯絡人名稱：" . $CustomerName . "\n" 
+                                . "聯絡人信箱：" . $CustomerEmail . "\n" 
+                                . "信箱(副本)：" . $ccemail . "\n" 
+                                . "聯絡電話：" . $CustomerPhone . "\n" 
+                                . "報告狀態：" . $ReportStatus;
+                    $log->SaveLog("修改信箱", $Username, "UpdateReportInfo", date("Y-m-d H:i:s"), $updatelog);
+ 
+                } elseif ($Permission == 1 ) {
+                    $report->UpdateReportFileName($_POST);
+
+                    $ReportID = $_POST['ReportID'];
+                    $ReportStatus = $_POST['ReportStatus'];
+                    if (!empty($_FILES['ReportUploadPDF']['name'])) {
+                        $ReportStatus = '報告已上傳，未審核';
+                    } else {
+                        $ReportStatus = $_POST['ReportStatus'];
+                    } // $ReportStatus = $_POST['ReportStatus'];
+
+                    CheckPDF($_FILES);
+
+                    $updatelog = "報告編號：" . $ReportID .  "報告狀態：" . $ReportStatus;
+                    $log->SaveLog("上傳報告", $Username, "UpdateReportInfo", date("Y-m-d H:i:s"), $updatelog);
+
 
                 } elseif ($report->UpdateReport($_POST)) {
                     $ReportMode = $_POST['ReportMode'];
@@ -125,6 +164,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
                     $CustomerEmail = $_POST['CustomerEmail'];
                     $ccemail = $_POST['ccemail'];
                     $CustomerPhone = $_POST['CustomerPhone'];
+                    $SampleID = $_POST['SampleID'];
+                    $PatientID = $_POST['PatientID'];
+                    $scID = $_POST['scID'];
+                    $scdate = $_POST['scdate'];
+                    $rcdate = $_POST['rcdate'];
+                    
 
                     //if ReportUploadPDF click ReportStaus = 1
                     if (!empty($_FILES['ReportUploadPDF']['name'])) {
@@ -141,13 +186,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
                         $Role = "YL_Lab_ISO";
                     }
 
-                    $updatelog = "報告編號：" . $ReportID . "\n" . "報告名稱：" . $ReportName . "\n" . "報告描述：" . $HospitalList . "\n" .
-                        "送檢單位：" . $ReportType . "\n" . "報告模板：" . $TemplateID . "\n" . "TAT最終日：" . $DueDate . "\n" .
-                        "客戶姓名：" . $CustomerName . "\n" . "客戶信箱：" . $CustomerEmail . "\n" . "聯絡人信箱：" . $ccemail . "\n" . "客戶連絡電話：" . $CustomerPhone . "\n" . "報告狀態：" . $ReportStatus;
+                    $updatelog = "報告編號：" . $ReportID . "\n" 
+                    . "報告名稱：" . $ReportName . "\n" 
+                    . "送檢單位：" . $HospitalList . "\n" 
+                    . "檢測實驗室：" . $ReportType . "\n" 
+                    . "TAT最終日：" . $DueDate . "\n" 
+                    . "聯絡人名稱：" . $CustomerName . "\n" 
+                    . "聯絡人信箱：" . $CustomerEmail . "\n" 
+                    . "信箱(副本)：" . $ccemail . "\n" 
+                    . "聯絡電話：" . $CustomerPhone . "\n" 
+                    . "檢體編號：" . $SampleID . "\n"
+                    . "病歷號碼：" . $PatientID . "\n"
+                    . "採檢單號：" . $scID . "\n"
+                    . "採檢日期：" . $scdate . "\n"
+                    . "收檢日期：" . $rcdate . "\n"
+                    . "報告狀態：" . $ReportStatus;
+                    $log->SaveLog("修改檢體資料", $Username, "UpdateReportInfo", date("Y-m-d H:i:s"), $updatelog);
 
                 }
                     CheckPDF($_FILES);
-                    $log->SaveLog("UPDATE", $Username, "UpdateReportInfo", date("Y-m-d H:i:s"), $updatelog);
 
 
                 $messageData = [
@@ -176,7 +233,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
 
                     $deletelog = "報告編號" . $ReportID . "已刪除";
 
-                    $log->SaveLog("DELETE", $Username, "UpdateReportInfo", date("Y-m-d H:i:s"), $deletelog);
+                    $log->SaveLog("刪除報告", $Username, "UpdateReportInfo", date("Y-m-d H:i:s"), $deletelog);
 
                 }
                 $messageData = [

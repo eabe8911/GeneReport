@@ -117,7 +117,7 @@
                                 <div class="form-group">
                                     <label for="scdate" class="col-md-3 control-label">採集日期:</label>
                                     <div class="col-md-8">
-                                        <input type="date" id="scdate" name="scdate" class="form-control" readonly
+                                        <input type="datetime-local" id="scdate" name="scdate" class="form-control" readonly
                                             value="{$scdate}">
                                     </div>
                                 </div>
@@ -125,7 +125,7 @@
                                 <div class="form-group">
                                     <label for="rcdate" class="col-md-3 control-label">收檢日期:</label>
                                     <div class="col-md-8">
-                                        <input type="date" id="rcdate" name="rcdate" class="form-control" readonly
+                                        <input type="datetime-local" id="rcdate" name="rcdate" class="form-control" readonly
                                             value="{$rcdate}">
                                     </div>
                                 </div>
