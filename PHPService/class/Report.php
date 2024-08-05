@@ -32,13 +32,32 @@ class Report implements ReportInterface
 
             $this->_ReportInfo = [
                 'ID' => $data['ID'] ?? '',
+                'SampleID' => $data['SampleID'] ?? '', //檢體編號
+                'PatientID' => $data['PatientID'] ?? '', //病歷號
+                'SampleNo' => $data['SampleNo'] ?? '', //樣本編號
+                'scID' => $data['scID'] ?? '', //採檢單號
+                'HospitalList' => $data['HospitalList'] ?? '', //醫院名稱
+                'HospitalList_Dr' => $data['HospitalList_Dr'] ?? '', //送檢醫師
+                'ReportTemplate' => $data['ReportTemplate'] ?? '', //報告範本
+                'ReportTemplateID' => $data['ReportTemplateID'] ?? '', //報告範本編號
+                'ReportType' => $data['ReportType'] ?? '', //報告類型
+                'scdate' => $data['scdate'] ?? '', //採集日期
+                'Submitdate' => $data['Submitdate'] ?? '', //送檢日期
+                'rcdate' => $data['rcdate'] ?? '', //收檢日期
+                'SampleType' => $data['SampleType'] ?? '', //樣本類型
+                'ReceivingDate' => $data['ReceivingDate'] ?? '', //收檢日期
+                'Receiving' => $data['Receiving'] ?? '', //收檢人員
+                'Receiving2' => $data['Receiving2'] ?? '', //收檢人員2
+                'TemplateID' => $data['TemplateID'] ?? '', //範本編號
                 'ReportID' => $data['ReportID'] ?? '', //報告編號
                 'ReportName' => $data['ReportName'] ?? '', //報告名稱
-                'ReportType' => $data['ReportType'] ?? '', //報告類型
-                'TemplateID' => $data['TemplateID'] ?? '', //範本編號
+                'HospitalList_ERP' => $data['HospitalList_ERP'] ?? '', //院所代號(ERP)
+                'CustomerName' => $data['CustomerName'] ?? '', //客戶名稱
+                'CustomerPhone' => $data['CustomerPhone'] ?? '', //客戶電話
+                'CustomerEmail' => $data['CustomerEmail'] ?? '', //客戶Email
+                'DueDate' => $data['DueDate'] ?? '', //截止日期
                 'FileName' => $data['FileName'] ?? '', //檔案名稱
                 'apply_pdf' => $data['apply_pdf'] ?? '', //申請檔案
-                'HospitalList' => $data['HospitalList'] ?? '', //醫院名稱
                 'ReportStatus' => $data['ReportStatus'] ?? '', //報告狀態
                 'CreatedAt' => $data['CreatedAt'] ?? '', //建立時間
                 'UpdatedAt' => $data['UpdatedAt'] ?? '', //更新時間
@@ -46,24 +65,10 @@ class Report implements ReportInterface
                 'Approved1At' => $data['Approved1At'] ?? '', //醫檢師簽核時間
                 'Approved2' => $data['Approved2'] ?? '', //醫師簽核
                 'Approved2At' => $data['Approved2At'] ?? '', //醫師簽核時間
-                'DueDate' => $data['DueDate'] ?? '', //截止日期
-                'CustomerName' => $data['CustomerName'] ?? '', //客戶名稱
-                'CustomerEmail' => $data['CustomerEmail'] ?? '', //客戶Email
                 'ccemail' => $data['ccemail'] ?? '', //副本Email
-                'CustomerPhone' => $data['CustomerPhone'] ?? '', //客戶電話
                 'ReportSendStatus' => $data['ReportSendStatus'] ?? '', //報告寄送狀態
                 'Editable' => $data['Editable'] ?? '', //是否可編輯
                 'RejectReason' => $data['RejectReason'] ?? '', //拒絕原因
-                'SampleID' => $data['SampleID'] ?? '', //檢體編號
-                'PatientID' => $data['PatientID'] ?? '', //病歷號
-                'scID' => $data['scID'] ?? '', //採檢單號
-                'scdate' => $data['scdate'] ?? '', //採集日期
-                'rcdate' => $data['rcdate'] ?? '', //收檢日期
-                'Submitdate' => $data['Submitdate'] ?? '', //送檢日期
-                'SampleNo' => $data['SampleNo'] ?? '', //樣本編號
-                'SampleType' => $data['SampleType'] ?? '', //樣本類型
-                'ReceivingDate' => $data['ReceivingDate'] ?? '', //收檢日期
-                'Receiving' => $data['Receiving'] ?? '', //收檢人員
                 'Sampleglass' => $data['Sampleglass'] ?? '', //樣本容器
                 'quantity' => $data['quantity'] ?? '', //樣本數量
             ];
@@ -339,82 +344,97 @@ class Report implements ReportInterface
                 }
                 $now = date("Y-m-d H:i:s");
                 $sql = "INSERT INTO Report (
-                ReportID, ReportName, FileName, ReportType, TemplateID, ccemail, HospitalList, ReportStatus,
-                CreatedAt, CustomerName, CustomerEmail, CustomerPhone, DueDate, SampleID, PatientID, scID, scdate, rcdate, apply_pdf, Submitdate ,SampleNo, SampleType,ReceivingDate,  Receiving,Sampleglass, quantity
+                SampleID, PatientID, SampleNo, scID, HospitalList, HospitalList_Dr, ReportTemplate, ReportTemplateID,
+                ReportType, scdate, Submitdate, rcdate, SampleType, ReceivingDate, Receiving, Receiving2, TemplateID, 
+                ReportID, ReportName, CustomerName, CustomerEmail, CustomerPhone, ReportStatus, HospitalList_ERP,
+                CreatedAt, DueDate
                 ) VALUES (
-                :ReportID, :ReportName, :FileName, :ReportType, :TemplateID, :ccemail, :HospitalList, :ReportStatus,
-                :CreatedAt, :CustomerName, :CustomerEmail, :CustomerPhone, :DueDate, :SampleID, :PatientID, :scID, :scdate, :rcdate, :apply_pdf, :Submitdate, :SampleNo, :SampleType, :ReceivingDate, :Receiving, :Sampleglass, :quantity
-                )";
+                :SampleID, :PatientID, :SampleNo, :scID, :HospitalList, :HospitalList_Dr, :ReportTemplate, :ReportTemplateID,
+                :ReportType, :scdate, :Submitdate, :rcdate, :SampleType, :ReceivingDate, :Receiving, :Receiving2, :TemplateID, 
+                :ReportID, :ReportName, :CustomerName, :CustomerEmail, :CustomerPhone, :ReportStatus, :HospitalList_ERP,
+                :CreatedAt, :DueDate                )";
                 $stmt = $this->_conn->prepare($sql);
-                $stmt->bindParam(':ReportID', $ReportInfo['ReportID']);
-                $stmt->bindParam(':ReportName', $ReportInfo['ReportName']);
-                //如果沒有上傳檔案，就不要寫入檔案名稱
-                if (empty($ReportInfo['FileName'])) {
-                    $stmt->bindValue(':FileName', '');
-                } else {
-                    $stmt->bindValue(':FileName', $ReportInfo['ReportID'] . '.pdf');
-                }
-                //如果沒有上傳檔案，就不要寫入apply_pdf檔案名稱
-                if (empty($ReportInfo['apply_pdf'])) {
-                    $stmt->bindValue(':apply_pdf', '');
-                } else {
-                    $stmt->bindValue(':apply_pdf', $_FILES['ReportApply']['name']);
-                }
-                if (empty($ReportInfo['DueDate']) || $ReportInfo['DueDate'] == '') {
-                    $DueDate_date = null;
-                    $scdate_date = null;
-                    $rcdate_date = null;
-                    $Submit_date = null;
-                    $ReceivingDate_date = null;
 
-                } else {
-                    // $ReportInfo['DueDate'] = $date->format('Y-m-d');
-                    $DueDate = DateTime::createFromFormat('n/j/Y', $ReportInfo['DueDate']);
-                    // $DueDate_date = $DueDate->format('Y-m-d');
-                    if ($DueDate === false) {
-                        $DueDate_date = null;
-                    } else {
-                        $DueDate_date = $DueDate->format('Y-m-d');
+                // $ReportInfo['DueDate'] = DateTime::createFromFormat('Y-m-d', $ReportInfo['DueDate']);
+                             
+                try {
+                    // 假设 $ReportInfo 是包含所有信息的数组
+                    $ReportDate = [
+                        'scdate' => $ReportInfo['scdate'],
+                        'Submitdate' => $ReportInfo['Submitdate'],
+                        'rcdate' => $ReportInfo['rcdate'],
+                        'ReceivingDate' => $ReportInfo['ReceivingDate'],
+                        'DueDate' => $ReportInfo['DueDate'],
+                    ];
+                
+                    // 定义需要转换的日期时间字段
+                    $dateTimeFields = ['scdate', 'Submitdate', 'rcdate', 'ReceivingDate'];
+                    $dateFields = ['DueDate'];
+                
+                    // 遍历需要转换的字段
+                    foreach ($dateTimeFields as $field) {
+                        if (!empty($ReportDate[$field])) {
+                            $dateTime = DateTime::createFromFormat('Y/n/j h:i A', $ReportDate[$field]);
+                            if ($dateTime === false) {
+                                throw new Exception("Invalid date format: " . $ReportDate[$field]);
+                            }
+                            $ReportDate[$field] = $dateTime->format('Y-m-d H:i:s');
+                        }
                     }
-                    $scdate = DateTime::createFromFormat('Y/n/j g:i A', $ReportInfo['scdate']);
-                    $scdate_date = $scdate->format('Y-m-d H:i:s');
-                    $rcdate = DateTime::createFromFormat('Y/n/j g:i A', $ReportInfo['rcdate']);
-                    $rcdate_date = $rcdate->format('Y-m-d H:i:s');
-                    $Submitdate = DateTime::createFromFormat('n/j/Y', $ReportInfo['Submitdate']);
-                    $Submit_date = $Submitdate->format('Y-m-d');
-                    $ReceivingDate = DateTime::createFromFormat('n/j/Y', $ReportInfo['ReceivingDate']);
-                    $ReceivingDate_date = $ReceivingDate->format('Y-m-d');
+
+                        // 遍历需要转换的日期字段
+                    foreach ($dateFields as $field) {
+                        if (!empty($ReportDate[$field])) {
+                            $date = DateTime::createFromFormat('n/j/Y', $ReportDate[$field]);
+                            if ($date === false) {
+                                throw new Exception("Invalid date format: " . $ReportDate[$field]);
+                            }
+                            $ReportDate[$field] = $date->format('Y-m-d');
+                        } else {
+                            // 如果日期字段为空，设置为 NULL
+                            $ReportDate[$field] = null;
+                        }
+                    }
+    
+                
+                } catch (Exception $e) {
+                    $ErrorMessage = $e->getMessage();
+                    $log->SaveLog("ERROR", $DisplayName, "ReportImportData", date("Y-m-d H:i:s"), $ErrorMessage);
                 }
 
-
-                // $stmt->bindValue(':FileName', $ReportInfo['ReportID'] . '.pdf');
-                //ReportType 只取第一個數字
+                $hospitalList = substr($ReportInfo['HospitalList'], 0, 255);
                 $ReportInfo['ReportType'] = substr($ReportInfo['ReportType'], 0, 1);
                 $ReportInfo['TemplateID'] = substr($ReportInfo['TemplateID'], 0, 1);
                 $ReportInfo['HospitalList'] = substr($ReportInfo['HospitalList'], 0, 1);
 
-                $stmt->bindParam(':ReportType', $ReportInfo['ReportType']);
-                $stmt->bindParam(':TemplateID', $ReportInfo['TemplateID']);
-                $stmt->bindParam(':ccemail', $ReportInfo['ccemail']);
+
+                $stmt->bindParam(':SampleID', $ReportInfo['SampleID']);
+                $stmt->bindParam(':PatientID', $ReportInfo['PatientID']);
+                $stmt->bindParam(':SampleNo', $ReportInfo['SampleNo']);
+                $stmt->bindParam(':scID', $ReportInfo['scID']);
                 $stmt->bindParam(':HospitalList', $ReportInfo['HospitalList']);
-                $stmt->bindParam(':ReportStatus', $ReportStatus);
-                $stmt->bindParam(':CreatedAt', $now);
+                $stmt->bindParam(':HospitalList_Dr', $ReportInfo['HospitalList_Dr']);
+                $stmt->bindParam(':ReportTemplate', $ReportInfo['ReportTemplate']);
+                $stmt->bindParam(':ReportTemplateID', $ReportInfo['ReportTemplateID']);
+                $stmt->bindParam(':ReportType', $ReportInfo['ReportType']);
+                $stmt->bindParam(':scdate', $ReportDate['scdate']);
+                $stmt->bindParam(':Submitdate', $ReportDate['Submitdate']);
+                $stmt->bindParam(':rcdate', $ReportDate['rcdate']);
+                $stmt->bindParam(':SampleType', $ReportInfo['SampleType']);
+                $stmt->bindParam(':ReceivingDate', $ReportDate['ReceivingDate']);
+                $stmt->bindParam(':Receiving', $ReportInfo['Receiving']);
+                $stmt->bindParam(':Receiving2', $ReportInfo['Receiving2']);
+                $stmt->bindParam(':TemplateID', $ReportInfo['TemplateID']);
+                $stmt->bindParam(':ReportID', $ReportInfo['ReportID']);
+                $stmt->bindParam(':ReportName', $ReportInfo['ReportName']);
                 $stmt->bindParam(':CustomerName', $ReportInfo['CustomerName']);
                 $stmt->bindParam(':CustomerEmail', $ReportInfo['CustomerEmail']);
                 $stmt->bindParam(':CustomerPhone', $ReportInfo['CustomerPhone']);
-                $stmt->bindParam(':DueDate', $DueDate_date);
-                $stmt->bindParam(':SampleID', $ReportInfo['SampleID']);
-                $stmt->bindParam(':PatientID', $ReportInfo['PatientID']);
-                $stmt->bindParam(':scID', $ReportInfo['scID']);
-                $stmt->bindParam(':scdate', $scdate_date);
-                $stmt->bindParam(':rcdate', $rcdate_date);
-                $stmt->bindParam(':Submitdate', $Submit_date);
-                $stmt->bindParam(':SampleNo', $ReportInfo['SampleNo']);
-                $stmt->bindParam(':SampleType', $ReportInfo['SampleType']);
-                $stmt->bindParam(':ReceivingDate', $ReceivingDate_date);
-                $stmt->bindParam(':Receiving', $ReportInfo['Receiving']);
-                $stmt->bindParam(':Sampleglass', $ReportInfo['Sampleglass']);
-                $stmt->bindParam(':quantity', $ReportInfo['quantity']);
+                $stmt->bindParam(':DueDate', $ReportDate['DueDate']);
+                $stmt->bindParam(':ReportStatus', $ReportStatus);
+                $stmt->bindParam(':HospitalList_ERP', $ReportInfo['HospitalList_ERP']);
+                $stmt->bindParam(':CreatedAt', $now);
+
                 $stmt->execute();
             }
         } catch (PDOException | Exception $th) {

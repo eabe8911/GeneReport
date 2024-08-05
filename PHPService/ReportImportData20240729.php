@@ -9,6 +9,7 @@ if ($_SESSION["AUTH"] != TRUE) {
     die();
 }
 use PhpOffice\PhpSpreadsheet\IOFactory;
+use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
 
 // require class
 require_once __DIR__ . "/class/Report.php";
@@ -40,10 +41,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ReportImportData") {
             // Process the Excel file
             $spreadsheet = IOFactory::load($tmpName);
             $worksheet = $spreadsheet->getActiveSheet();
+            // // 获取工作表的最大行和列
+            $maxRow = $worksheet->getHighestRow();
+            $maxColumn = $worksheet->getHighestColumn();
+            $maxColumnIndex = Coordinate::columnIndexFromString($maxColumn);
+            // // 遍历单元格
+            for ($row = 1; $row <= $maxRow; ++$row) {
+                for ($col = 1; $col <= $maxColumnIndex; ++$col) {
+                    $cell = $worksheet->getCellByColumnAndRow($col, $row);
+                    $value = $cell->getValue();
+                    // 检查单元格是否包含公式
+                    if ($cell->isFormula()) {
+                        // 获取公式计算后的值
+                        $calculatedValue = $cell->getCalculatedValue();
+                        // 将计算后的值设置为单元格的值，替换公式
+                        $cell->setValueExplicit($calculatedValue, \PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING);
+                    }
+                }
+            }
+            // 保存更改到新文件
+            $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
+            $writer->save('your_excel_file_converted.xlsx');
+
+            // 获取整个工作表的数据
             $rows = $worksheet->toArray();
             $header = array_shift($rows);
             $datas = [];
-            $count = 0;
+            $count = 1;
             foreach ($rows as $row) {
                 $count++;
                 if ($count <= 1) {
@@ -60,14 +84,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ReportImportData") {
                 throw new Exception($ErrorMessage, 1);
             } else {
                 //add data
-                    // 從$datas[3]開始執行foreach
-                    foreach (array_slice($datas, 3) as $data) {
-                        
-                        $report->AddReport1($data);
+                foreach ($datas as $data) {
+                    // $index++;
+                    if(count($datas) > 1) {
+                        $secondRow = $datas[4]; // get the second row
+                        $report->AddReport1($secondRow);
+                        continue;
+
                     }
-                    //     foreach ($datas as $data) {
-                    //     $report->AddReport1($data);
-                    // }
+                }
 
             }
             $Message = "資料匯入成功!";
