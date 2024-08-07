@@ -402,11 +402,19 @@ class Report implements ReportInterface
                     $log->SaveLog("ERROR", $DisplayName, "ReportImportData", date("Y-m-d H:i:s"), $ErrorMessage);
                 }
 
-                $hospitalList = substr($ReportInfo['HospitalList'], 0, 255);
+                // $hospitalList = substr($ReportInfo['HospitalList'], 0, 255);
                 $ReportInfo['ReportType'] = substr($ReportInfo['ReportType'], 0, 1);
                 $ReportInfo['TemplateID'] = substr($ReportInfo['TemplateID'], 0, 1);
-                $ReportInfo['HospitalList'] = substr($ReportInfo['HospitalList'], 0, 1);
+                // $ReportInfo['HospitalList'] = substr($ReportInfo['HospitalList'], 0, 1);
+                // 假设 $ReportInfo['HospitalList'] 是一个包含数字的字符串
+                $hospitalList = $ReportInfo['HospitalList'];
 
+                // 使用正则表达式计算字符串中的数字个数
+                preg_match_all('/\d/', $hospitalList, $matches);
+                $digitCount = count($matches[0]);
+
+                // 使用数字个数作为 substr 的长度
+                $ReportInfo['HospitalList'] = substr($hospitalList, 0, $digitCount);
 
                 $stmt->bindParam(':SampleID', $ReportInfo['SampleID']);
                 $stmt->bindParam(':PatientID', $ReportInfo['PatientID']);

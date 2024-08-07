@@ -72,7 +72,7 @@ class Email
             $_mail->SMTPAuth = true;
             // sender email setting
             $_mail->Username = 'Report@libobio.com';
-            $_mail->Password = '5836@dhnbg';
+            $_mail->Password = 'PMm1665!@';
             if ($ReportType == 1) {
                 $_mail->SetFrom('Report@libobio.com', 'JB_Lab_ISO');
             } elseif ($ReportType == 2) {

@@ -222,7 +222,7 @@
     $(function () {
         //$("#appoint_date").datepicker({ dateFormat: 'yy-mm-dd' });
         //$("#checkin_date").datepicker({ dateFormat: 'yy-mm-dd' });
-        $("#query_appoint_date").datepicker({ dateFormat: 'yy-mm-dd' });
+        // $("#query_appoint_date").datepicker({ dateFormat: 'yy-mm-dd' });
         $("#DueDate").datepicker({ dateFormat: 'yy-mm-dd' });
     })
 </script>

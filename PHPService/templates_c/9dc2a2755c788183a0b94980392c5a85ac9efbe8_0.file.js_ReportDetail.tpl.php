@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-06-05 10:27:57
+/* Smarty version 4.3.4, created on 2024-08-07 11:39:45
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\js_ReportDetail.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_665fcd2d43cc38_07208021',
+  'unifunc' => 'content_66b2ec81707148_05365968',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '9dc2a2755c788183a0b94980392c5a85ac9efbe8' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\js_ReportDetail.tpl',
-      1 => 1717554391,
+      1 => 1723001956,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_665fcd2d43cc38_07208021 (Smarty_Internal_Template $_smarty_tpl) {
+function content_66b2ec81707148_05365968 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
  type="text/javascript">
   

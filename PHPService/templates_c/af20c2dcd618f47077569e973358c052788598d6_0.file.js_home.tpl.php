@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-06-04 07:59:02
+/* Smarty version 4.3.4, created on 2024-08-07 05:40:02
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\js_home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_665ead26b40b69_49203748',
+  'unifunc' => 'content_66b2ec9256e129_90266600',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'af20c2dcd618f47077569e973358c052788598d6' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\js_home.tpl',
-      1 => 1717480735,
+      1 => 1723001982,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_665ead26b40b69_49203748 (Smarty_Internal_Template $_smarty_tpl) {
+function content_66b2ec9256e129_90266600 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!--THIS JQUERY AND CSS IS FOR JQGRID TABLE-->
 <?php echo '<script'; ?>
  type="text/ecmascript" src="js/prettify/prettify.js"><?php echo '</script'; ?>
@@ -290,7 +290,7 @@ function content_665ead26b40b69_49203748 (Smarty_Internal_Template $_smarty_tpl)
     $(function () {
         //$("#appoint_date").datepicker({ dateFormat: 'yy-mm-dd' });
         //$("#checkin_date").datepicker({ dateFormat: 'yy-mm-dd' });
-        $("#query_appoint_date").datepicker({ dateFormat: 'yy-mm-dd' });
+        // $("#query_appoint_date").datepicker({ dateFormat: 'yy-mm-dd' });
         $("#DueDate").datepicker({ dateFormat: 'yy-mm-dd' });
     })
 <?php echo '</script'; ?>

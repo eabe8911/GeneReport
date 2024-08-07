@@ -227,7 +227,7 @@ class ReportSignature
             $signatureBase64 = base64_encode($signature);
             $token = 'libobio_token';
             // Call web service Tina本機端測試 'http://192.168.2.121:5000'  正式環境改回'http://flask-api:5000'
-            $client = new Client(['base_uri' => 'http://192.168.2.143:5000']);
+            $client = new Client(['base_uri' => 'http://192.168.2.170:5000']);
             $data = [
                 'pdf_file' => $pdfBase64,
                 'signature_image' => $signatureBase64,

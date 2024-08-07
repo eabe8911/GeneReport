@@ -476,9 +476,10 @@ if ($PDFFile == '') {
 } else {
     $smarty->assign("PDFPreview", $PDFFile);
     $output =
-
         '<div style="justify-content: center; display: flex; ">
-            <form id="email_report" method="post" action="send_email.php">
+
+            <!-- test form -->
+            <form id="test" method="post" action="send_email.php">
                 <input type="hidden" name="ReportID" value="' . $ReportID . '">
                 <input type="hidden" name="ReportName" value="' . $ReportName . '">
                 <input type="hidden" name="CustomerEmail" value="' . $CustomerEmail . '">
@@ -493,13 +494,12 @@ if ($PDFFile == '') {
                 <input type="hidden" name="rcdate" value="' . $rcdate . '">
                 <input type="hidden" name="HospitalList" value="' . $HospitalList . '">
                 
-                <input type="submit" style="margin-left: 10px;height: 40px;" name="BtnSendPDF" id="BtnSendPDF" class="btn btn-primary" value="' . $ReportID . ', Send E-mail">
-            </form>
+                <input type="submit" style="margin-left: 10px;height: 40px;" name="BtnSendPDF" id="BtnSendPDF" class="btn btn-primary" value="test">
+
             <button style="margin-left: 10px;height: 40px;" class="btn btn-primary" type="button">
                 <a style="color:white;" href="' . $PDFFile . '" download>Download </a>
             </button>
           </div>';
-
     //if permission = 6 don't show email button
     if ($Permission != 4) {
         $output = '<br><h4 style="justify-content: center; display: flex;color:#FF0000">請再次確認檢測報告資訊</h4>' .
@@ -534,7 +534,7 @@ echo '<script>
 </script>';
 ?>
 
-<script>
+<!-- <script>
 const pdfOutput = document.getElementById('pdf-output');
 document.body.appendChild(pdfOutput);
-</script>
+</script> -->
