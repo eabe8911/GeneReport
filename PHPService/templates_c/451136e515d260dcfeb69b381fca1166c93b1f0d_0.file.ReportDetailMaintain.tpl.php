@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-06-05 14:16:02
+/* Smarty version 4.3.4, created on 2024-08-14 14:51:41
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\ReportDetailMaintain.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_666002a234e002_72224786',
+  'unifunc' => 'content_66bc53fd6a8a30_04880295',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '451136e515d260dcfeb69b381fca1166c93b1f0d' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\ReportDetailMaintain.tpl',
-      1 => 1717568160,
+      1 => 1723618279,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_666002a234e002_72224786 (Smarty_Internal_Template $_smarty_tpl) {
+function content_66bc53fd6a8a30_04880295 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\vendor\\smarty\\smarty\\libs\\plugins\\function.html_options.php','function'=>'smarty_function_html_options',),));
 ?>
 <!--POP UP MODAL TO VIEW MEMBER DETAILS AND RESULTS FOR Member Information-->
@@ -141,10 +141,10 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                             <div class="col-md-4">
                                 <!---- 檢體編號 ---->
                                 <div class="form-group">
-                                    <label for="SampleID" class="col-md-3 control-label">檢體編號:</label>
+                                    <label for="SampleNo" class="col-md-3 control-label">檢體編號:</label>
                                     <div class="col-md-8">
-                                        <input type="text" id="SampleID" name="SampleID" class="form-control" required
-                                            value="<?php echo $_smarty_tpl->tpl_vars['SampleID']->value;?>
+                                        <input type="text" id="SampleNo" name="SampleNo" class="form-control" required
+                                            value="<?php echo $_smarty_tpl->tpl_vars['SampleNo']->value;?>
 ">
                                     </div>
                                 </div>
@@ -257,7 +257,24 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                 </div>
                                 <?php }?>
 
-                                <!---- 上傳報告 ---->
+                                <!-- 發信通知按紐，permission == 2 才顯示按紐 -->
+                                <!-- <?php if ($_smarty_tpl->tpl_vars['Permission']->value == 2) {?>
+                                <div class="form-group text-center">
+                                    <form method="post" action="<?php echo $_smarty_tpl->tpl_vars['FormEmail']->value;?>
+" name="FormSendEmail" id="FormSendEmail">
+                                        <input type="hidden" id="ReportID" name="ReportID" value="<?php echo $_smarty_tpl->tpl_vars['ReportID']->value;?>
+">
+                                        <input type="hidden" id="CustomerEmail" name="CustomerEmail"
+                                            value="<?php echo $_smarty_tpl->tpl_vars['CustomerEmail']->value;?>
+">   
+                                        <input type="hidden" id="ccemail" name="ccemail" value="<?php echo $_smarty_tpl->tpl_vars['ccemail']->value;?>
+">
+                                        <button type="submit" class="btn btn-primary btn-md" id="BtnSendEmail"
+                                            style="font-weight:bold;font-size:20px;margin:30px;">
+                                            <i class="fa fa-envelope"></i> 發送通知</button>
+        
+                                <?php }?>
+                                -- 上傳報告 -- -->
                                 <div class="form-group" id="DisplayUploadButton">
                                     <center>
                                         <?php if ($_smarty_tpl->tpl_vars['Permission']->value == 1 || $_smarty_tpl->tpl_vars['Permission']->value == 9) {?>

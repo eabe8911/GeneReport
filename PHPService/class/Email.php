@@ -160,6 +160,86 @@ class Email
         return true;
     }
 
+    public function SendData($ReportID, $ReportName, $CustomerEmail, $ccemail, $CustomerName, $Username, $HospitalList): bool
+    {
+        $report = new Report($_POST);
+        $ReportID = filter_input(INPUT_POST, 'ReportID');
+        $ReportName = filter_input(INPUT_POST, 'ReportName');
+        $CustomerEmail = filter_input(INPUT_POST, 'CustomerEmail');
+        $ccemail = filter_input(INPUT_POST, 'ccemail');
+        $CustomerName = filter_input(INPUT_POST, 'CustomerName');
+        $Username = $_SESSION['DisplayName'];
+        $HospitalList = filter_input(INPUT_POST, 'HospitalList');
+        
+        
+
+
+        $_mail = new PHPMailer(true); // Passing `true` enables exceptions
+
+        $log = new Log();
+        try {
+            $_mail->SMTPDebug = 0;
+
+            // Init Office 365 email setting
+            $_mail->isSMTP();
+            $_mail->Host = 'smtp.office365.com';
+            $_mail->Port = 587;
+            $_mail->SMTPSecure = 'tls';
+            $_mail->SMTPAuth = true;
+            // sender email setting
+            $_mail->Username = 'Report@libobio.com';
+            $_mail->Password = 'PMm1665!@';
+
+
+            // Set sender alias based on user permission
+
+            $_mail->addAddress($CustomerEmail, 'ToEmail');
+            $_mail->addCC($ccemail);
+            $_mail->addBCC('tina.xue@libobio.com');
+
+            $_mail->isHTML(true); // Set email format to HTML
+            $_mail->Subject = '【測試麗寶生醫通知信】' . $HospitalList . '檢測報告_'. $ReportName . '_' . $ReportID;
+
+            $_mail->Body = $CustomerName . '先生/女士 您好：<br><br>
+ 
+            非常感謝貴院委檢本司施作基因檢測服務，<br>
+            本司已收到檢體。<br>
+            此次的檢測資訊如下所示：<br>
+            麗寶報告編號 : ' . $ReportID . '<br>
+            採檢單號 : ' . $scID . '<br>
+            檢測項目 : ' . $ReportName . '<br>
+
+            
+             
+            如有任何問題，煩請不吝告知。<br>
+            再次感謝您!!<br><br><br>
+             
+            麗寶生醫股份有限公司<br>
+            分子檢測服務處 董昕恬<br>
+            TEL:(02)2503-1392#360<br>';
+
+
+            $_mail->CharSet = 'UTF-8';
+
+            $_mail->send();
+            // $log->SaveLog("SendEmail", $Username, "Emailer", date("Y-m-d H:i:s"), $ReportID."報告已寄出");
+
+            echo '<script>
+                    alert("Message has been sent");
+                    window.location.href = "home.php";
+                </script>';
+
+
+        } catch (Exception $e) {
+            echo "Message could not be sent. Mailer Error";
+            $log->SaveLog("SendEmail", $Username, "Emailer", date("Y-m-d H:i:s"), $ReportID . "報告寄送失敗");
+
+
+            throw new Exception($e->getMessage(), $e->getCode());
+        }
+        return true;
+    }
+
 
 }
 ?>

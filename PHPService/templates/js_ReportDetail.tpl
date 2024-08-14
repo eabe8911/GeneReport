@@ -195,7 +195,7 @@
       $('#ccemail').prop('readonly', state);
       $('#CustomerPhone').prop('readonly', state);
       $('#ReportType').prop('disabled', state);
-      $('#SampleID').prop('disabled', state);
+      $('#SampleNo').prop('disabled', state);
       $('#PatientID').prop('disabled', state);
       $('#scID').prop('disabled', state);
       $('#scdate').prop('readonly', state);

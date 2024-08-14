@@ -108,10 +108,10 @@
                             <div class="col-md-4">
                                 <!---- 檢體編號 ---->
                                 <div class="form-group">
-                                    <label for="SampleID" class="col-md-3 control-label">檢體編號:</label>
+                                    <label for="SampleNo" class="col-md-3 control-label">檢體編號:</label>
                                     <div class="col-md-8">
-                                        <input type="text" id="SampleID" name="SampleID" class="form-control" required
-                                            value="{$SampleID}">
+                                        <input type="text" id="SampleNo" name="SampleNo" class="form-control" required
+                                            value="{$SampleNo}">
                                     </div>
                                 </div>
                                 <!---- 病歷編號 ---->
@@ -212,7 +212,20 @@
                                 </div>
                                 {/if}
 
-                                <!---- 上傳報告 ---->
+                                <!-- 發信通知按紐，permission == 2 才顯示按紐 -->
+                                <!-- {if $Permission eq 2}
+                                <div class="form-group text-center">
+                                    <form method="post" action="{$FormEmail}" name="FormSendEmail" id="FormSendEmail">
+                                        <input type="hidden" id="ReportID" name="ReportID" value="{$ReportID}">
+                                        <input type="hidden" id="CustomerEmail" name="CustomerEmail"
+                                            value="{$CustomerEmail}">   
+                                        <input type="hidden" id="ccemail" name="ccemail" value="{$ccemail}">
+                                        <button type="submit" class="btn btn-primary btn-md" id="BtnSendEmail"
+                                            style="font-weight:bold;font-size:20px;margin:30px;">
+                                            <i class="fa fa-envelope"></i> 發送通知</button>
+        
+                                {/if}
+                                -- 上傳報告 -- -->
                                 <div class="form-group" id="DisplayUploadButton">
                                     <center>
                                         {if $Permission eq 1 or $Permission eq 9 }

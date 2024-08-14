@@ -75,6 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
                 $ccemail = $_POST['ccemail'];
                 $CustomerPhone = $_POST['CustomerPhone'];
                 $SampleID = $_POST['SampleID'];
+                $SampleNo = $_POST['SampleNo'];
                 $PatientID = $_POST['PatientID'];
                 $scID = $_POST['scID'];
                 $scdate = $_POST['scdate'];
@@ -95,7 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
                         . "聯絡人信箱：" . $CustomerEmail . "\n" 
                         . "信箱(副本)：" . $ccemail . "\n" 
                         . "聯絡電話：" . $CustomerPhone. "\n"
-                        . "檢體編號：" . $SampleID . "\n"
+                        . "檢體編號：" . $SampleNo . "\n"
                         . "病歷號碼：" . $PatientID . "\n"
                         . "採檢單號：" . $scID . "\n"
                         . "採檢日期：" . $scdate . "\n"
@@ -164,7 +165,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
                     $CustomerEmail = $_POST['CustomerEmail'];
                     $ccemail = $_POST['ccemail'];
                     $CustomerPhone = $_POST['CustomerPhone'];
-                    $SampleID = $_POST['SampleID'];
+                    $SampleNo = $_POST['SampleNo'];
                     $PatientID = $_POST['PatientID'];
                     $scID = $_POST['scID'];
                     $scdate = $_POST['scdate'];
@@ -195,7 +196,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
                     . "聯絡人信箱：" . $CustomerEmail . "\n" 
                     . "信箱(副本)：" . $ccemail . "\n" 
                     . "聯絡電話：" . $CustomerPhone . "\n" 
-                    . "檢體編號：" . $SampleID . "\n"
+                    . "檢體編號：" . $SampleNo . "\n"
                     . "病歷號碼：" . $PatientID . "\n"
                     . "採檢單號：" . $scID . "\n"
                     . "採檢日期：" . $scdate . "\n"
@@ -357,6 +358,11 @@ if ($ErrorMessage == '') {
     $smarty->assign("ShowErrorMessage", '');
 }
 
+//form to send email
+$smarty->assign("FormEmail", "<form id='email_report' method='post' action='send_email.php'>");
+
+
+
 // Report Status
 $ReportStatus = $report->ReportInfo('ReportStatus');
 switch ($ReportStatus) {
@@ -422,7 +428,7 @@ $smarty->assign("CustomerPhone", $report->ReportInfo('CustomerPhone'), true);
 $smarty->assign("ReportStatus", $ReportStatus, true);
 $smarty->assign("Permission", $Permission, true);
 $smarty->assign("RejectReason", $report->ReportInfo('RejectReason'), true);
-$smarty->assign("SampleID", $report->ReportInfo('SampleID'), true);
+$smarty->assign("SampleNo", $report->ReportInfo('SampleNo'), true);
 $smarty->assign("PatientID", $report->ReportInfo('PatientID'), true);
 $smarty->assign("scID", $report->ReportInfo('scID'), true);
 $smarty->assign("scdate", $report->ReportInfo('scdate'), true);
@@ -477,7 +483,22 @@ if ($PDFFile == '') {
     $smarty->assign("PDFPreview", $PDFFile);
     $output =
         '<div style="justify-content: center; display: flex; ">
-
+            <form id="email_report" method="post" action="send_email.php">
+                <input type="hidden" name="ReportID" value="' . $ReportID . '">
+                <input type="hidden" name="ReportName" value="' . $ReportName . '">
+                <input type="hidden" name="CustomerEmail" value="' . $CustomerEmail . '">
+                <input type="hidden" name="ccemail" value="' . $ccemail . '">
+                <input type="hidden" name="CustomerName" value="' . $CustomerName . '">
+                <input type="hidden" name="PDFFile" value="' . $PDFFile . '">
+                <input type="hidden" name="ApplyFile" value="' . $ApplyFile . '">
+                <input type="hidden" name="LogoFile" value="' . $LogoFile . '">
+                <input type="hidden" name="PatientID" value="' . $PatientID . '">
+                <input type="hidden" name="scID" value="' . $scID . '">
+                <input type="hidden" name="scdate" value="' . $scdate . '">
+                <input type="hidden" name="rcdate" value="' . $rcdate . '">
+                <input type="hidden" name="HospitalList" value="' . $HospitalList . '">
+                <input type="hidden" style="margin-left: 10px;height: 40px;" name="BtnSendPDF" id="BtnSendPDF" class="btn btn-primary" value="Send E-mail">
+            </form>
             <!-- test form -->
             <form id="test" method="post" action="send_email.php">
                 <input type="hidden" name="ReportID" value="' . $ReportID . '">
@@ -494,7 +515,7 @@ if ($PDFFile == '') {
                 <input type="hidden" name="rcdate" value="' . $rcdate . '">
                 <input type="hidden" name="HospitalList" value="' . $HospitalList . '">
                 
-                <input type="submit" style="margin-left: 10px;height: 40px;" name="BtnSendPDF" id="BtnSendPDF" class="btn btn-primary" value="test">
+                <input type="submit" style="margin-left: 10px;height: 40px;" name="BtnSendPDF" id="BtnSendPDF" class="btn btn-primary" value="Send E-mail">
 
             <button style="margin-left: 10px;height: 40px;" class="btn btn-primary" type="button">
                 <a style="color:white;" href="' . $PDFFile . '" download>Download </a>

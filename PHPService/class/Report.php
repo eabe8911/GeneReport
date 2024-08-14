@@ -399,7 +399,8 @@ class Report implements ReportInterface
                 
                 } catch (Exception $e) {
                     $ErrorMessage = $e->getMessage();
-                    $log->SaveLog("ERROR", $DisplayName, "ReportImportData", date("Y-m-d H:i:s"), $ErrorMessage);
+                    echo $ErrorMessage;
+                    // $log->SaveLog("ERROR", $DisplayName, "ReportImportData", date("Y-m-d H:i:s"), $ErrorMessage);
                 }
 
                 // $hospitalList = substr($ReportInfo['HospitalList'], 0, 255);
@@ -414,7 +415,7 @@ class Report implements ReportInterface
                 $digitCount = count($matches[0]);
 
                 // 使用数字个数作为 substr 的长度
-                $ReportInfo['HospitalList'] = substr($hospitalList, 0, $digitCount);
+                $ReportInfo['HospitalList'] = substr($hospitalList, -$digitCount);
 
                 $stmt->bindParam(':SampleID', $ReportInfo['SampleID']);
                 $stmt->bindParam(':PatientID', $ReportInfo['PatientID']);
