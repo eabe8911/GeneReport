@@ -19,7 +19,7 @@
                                     </div>
                                 </div>
                                 {if $Permission eq 1 or $Permission eq 2 or $Permission eq 4 or $Permission eq 5 or
-                                    $Permission eq 9 }
+                                $Permission eq 9 }
                                 <div class="form-group">
                                     <label for="main-menu" class="col-md-3 control-label">報告類型:</label>
                                     <div class="col-md-8">
@@ -62,26 +62,74 @@
                                 <div class="form-group">
                                     <label for="HospitalList" class="col-md-3 control-label">送檢單位:</label>
                                     <div class="col-md-8">
-                                        <!-- {html_options} 生成HTML 下拉式選單 -->
-                                        <!-- {html_options name=HospitalList id=HospitalList options=$HospitalListOptions
-                                        selected='na' class="form-control" required="required"} -->
-                                        {html_options name=HospitalList id=HospitalList options=['' => '請選擇...'] +
+
+                                        <!-- {html_options name=HospitalList id=HospitalList options=['' => '請選擇...'] +
                                         $HospitalListOptions
-                                        selected=$HospitalListSelect class="form-control" required="required"}
+                                        selected=$HospitalListSelect class="form-control" required="required"} -->
+                                        <select id="HospitalList" name="HospitalList" class="form-control"
+                                            onchange="hospitalSubmenu(this, document.getElementById('CustomerName'))">
+                                            <option value="">Select a category</option>
+                                            <option value="1" {if $HospitalListSelect==1}selected{/if}>輔大醫院</option>
+                                            <option value="2" {if $HospitalListSelect==2}selected{/if}>新光醫院</option>
+                                            <option value="3" {if $HospitalListSelect==3}selected{/if}>台北市立聯合醫院</option>
+                                            <option value="4" {if $HospitalListSelect==4}selected{/if}>台北慈濟醫院</option>
+                                            <option value="5" {if $HospitalListSelect==5}selected{/if}>台北榮民總醫院</option>
+                                            <option value="6" {if $HospitalListSelect==6}selected{/if}>恩主公醫院</option>
+                                            <option value="7" {if $HospitalListSelect==7}selected{/if}>雙和醫院</option>
+                                            <option value="8" {if $HospitalListSelect==8}selected{/if}>國泰醫院</option>
+                                            <option value="9" {if $HospitalListSelect==9}selected{/if}>怡仁醫院</option>
+                                            <option value="10" {if $HospitalListSelect==10}selected{/if}>淡水馬偕醫院</option>
+                                            <option value="11" {if $HospitalListSelect==11}selected{/if}>三軍總醫院_台北內湖
+                                            </option>
+                                            <option value="12" {if $HospitalListSelect==12}selected{/if}>中山醫院</option>
+                                            <option value="13" {if $HospitalListSelect==13}selected{/if}>新家生醫_聯新醫院
+                                            </option>
+                                            <option value="14" {if $HospitalListSelect==14}selected{/if}>台北市立萬芳醫院
+                                            </option>
+                                            <option value="15" {if $HospitalListSelect==15}selected{/if}>臺北醫學大學附設醫院
+                                            </option>
+                                            <option value="16" {if $HospitalListSelect==16}selected{/if}>台中國軍總醫院
+                                            </option>
+                                            <option value="17" {if $HospitalListSelect==17}selected{/if}>統誠醫療</option>
+                                            <option value="18" {if $HospitalListSelect==18}selected{/if}>彰化秀傳醫院</option>
+                                            <option value="19" {if $HospitalListSelect==19}selected{/if}>
+                                                國立臺灣大學醫學院附設醫院雲林分院</option>
+                                            <option value="20" {if $HospitalListSelect==20}selected{/if}>光田綜合醫院</option>
+                                            <option value="21" {if $HospitalListSelect==21}selected{/if}>澄清綜合醫院中港分院
+                                            </option>
+                                            <option value="22" {if $HospitalListSelect==22}selected{/if}>竹山秀傳醫院</option>
+                                            <option value="23" {if $HospitalListSelect==23}selected{/if}>烏日林新醫院</option>
+                                            <option value="24" {if $HospitalListSelect==24}selected{/if}>彰濱秀傳醫院</option>
+                                            <option value="25" {if $HospitalListSelect==25}selected{/if}>大千綜合醫院</option>
+                                            <option value="26" {if $HospitalListSelect==26}selected{/if}>員榮醫療社團法人員榮醫院
+                                            </option>
+                                            <option value="27" {if $HospitalListSelect==27}selected{/if}>彰化基督教醫院
+                                            </option>
+                                            <option value="28" {if $HospitalListSelect==28}selected{/if}>台中榮民總醫院
+                                            </option>
+                                            <option value="29" {if $HospitalListSelect==29}selected{/if}>台南市立醫院</option>
+                                            <option value="30" {if $HospitalListSelect==30}selected{/if}>麻豆新樓醫院</option>
+                                            <option value="31" {if $HospitalListSelect==31}selected{/if}>台南新樓醫院</option>
+                                            <option value="32" {if $HospitalListSelect==32}selected{/if}>屏東基督教醫院
+                                            </option>
+                                            <option value="33" {if $HospitalListSelect==33}selected{/if}>高雄長庚醫院</option>
+                                            <option value="34" {if $HospitalListSelect==34}selected{/if}>高雄醫學大學附設醫院
+                                            </option>
+                                            <option value="35" {if $HospitalListSelect==35}selected{/if}>連江醫院</option>
+                                            <option value="36" {if $HospitalListSelect==36}selected{/if}>一般客戶or泓采代採
+                                            </option>
+                                        </select>
+
+
                                     </div>
-                                    <!-- <div class="col-md-8">
-                                        <input type="text" id="HospitalList" name="HospitalList"
-                                            class="form-control" value="{$HospitalList}">
-                                    </div> -->
+
                                 </div>
 
                                 <!---- 檢測單位 ---->
                                 <div class="form-group">
                                     <label for="ReportType" class="col-md-3 control-label">檢測單位:</label>
                                     <div class="col-md-8">
-                                        <!-- {html_options} 生成HTML 下拉式選單 -->
-                                        <!-- {html_options name=ReportType id=ReportType  options=['' => '請選擇...'] + $ReportTypeOptions
-                                        selected=$ReportTypeSelect class="form-control" required="required"} -->
+
                                         {html_options name=ReportType id=ReportType options=['' => '請選擇...'] +
                                         $ReportTypeOptions
                                         selected=$ReportTypeSelect class="form-control" required="required"}
@@ -95,8 +143,7 @@
                                 <div class="form-group">
                                     <label for="TemplateID" class="col-md-3 control-label">報告樣板:</label>
                                     <div class="col-md-8">
-                                        <!-- {html_options name=TemplateID id=TemplateID options=$TemplateOptions
-                                        selected=$TemplateSelect class="form-control" required="required"} -->
+
                                         {html_options name=TemplateID id=TemplateID options=['' => '請選擇...'] +
                                         $TemplateOptions
                                         selected=$TemplateSelect class="form-control" required="required"}
@@ -134,16 +181,16 @@
                                 <div class="form-group">
                                     <label for="scdate" class="col-md-3 control-label">採集日期:</label>
                                     <div class="col-md-8">
-                                        <input type="datetime-local" id="scdate" name="scdate" class="form-control" required
-                                            value="{$scdate}">
+                                        <input type="datetime-local" id="scdate" name="scdate" class="form-control"
+                                            required value="{$scdate}">
                                     </div>
                                 </div>
                                 <!---- 收檢日期 ---->
                                 <div class="form-group">
                                     <label for="rcdate" class="col-md-3 control-label">收檢日期:</label>
                                     <div class="col-md-8">
-                                        <input type="datetime-local" id="rcdate" name="rcdate" class="form-control" required
-                                            value="{$rcdate}">
+                                        <input type="datetime-local" id="rcdate" name="rcdate" class="form-control"
+                                            required value="{$rcdate}">
                                     </div>
                                 </div>
                             </div>
@@ -162,8 +209,9 @@
                                 <div class="form-group">
                                     <label for="CustomerName" class="col-md-3 control-label">聯絡人名稱:</label>
                                     <div class="col-md-8">
-                                        <input type="text" id="CustomerName" name="CustomerName" class="form-control"
-                                            required value="{$CustomerName}">
+                                        <select id="CustomerName" name="CustomerName" class="form-control" required>
+                                            <option value="{$CustomerName}">{$CustomerName}</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <!---- 客戶郵件 ---->
@@ -236,7 +284,7 @@
                                                 type="file" accept="application/pdf" />
                                             <i class="fa fa-file-pdf"></i> 上傳報告結果
                                         </label>
-                                     
+
                                         {else}
 
                                         <label type="button" class="btn btn-primary btn-block"
@@ -298,7 +346,7 @@
                                 <button type="button" class="btn btn-danger btn-md" id="BtnReportEdit"
                                     style="font-weight:bold;font-size:20px;margin:30px;">
                                     <i class="fa fa-edit"></i> 修 改</button>
-   
+
                             </p>
                             {elseif $Permission == 4 or $Permission == 5 or $Permission == 9}
                             <p id="ReportQueryButton">
@@ -416,6 +464,130 @@
             subMenu.appendChild(opt);
         });
     }
-</script>
 
+    function hospitalSubmenu(hospitalMenu, subhospitalMenu) {
+        var hospitalData = {
+            "1": ["王智鴻"],
+            "2": ["連立明", "林冠佑", "蔣介雅", "張名鑫", "許維志", "張安娜", "陳威宏"],
+            "3": ["朱素娟"],
+            "4": ["劉修勳", "許博荏"],
+            "5": ["莊茜"],
+            "6": ["孫瑜", "劉長袖", "鍾季廷", "呂建榮"],
+            "7": ["王韻筑", "黃立楷", "黃媚莉", "陳嘉泓", "鄭芸詠"],
+            "8": ["洪琨景"],
+            "9": [""],
+            "10": ["傅維仁", "黃勇評"],
+            "11": ["宋岳峰", "周中興", "劉懿", "葉大全", "徐昌鴻"],
+            "12": ["呂彥瑢"],
+            "13": ["葉怡君"],
+            "14": ["陳鴻儒", "宋家瑩"],
+            "15": ["胡昭榮"],
+            "16": ["馬松蔚", "王雪君"],
+            "17": [""],
+            "18": ["美玲"],
+            "19": [""],
+            "20": ["趙育萱"],
+            "21": ["孫敏珠"],
+            "22": ["黃忠諺"],
+            "23": [""],
+            "24": ["魏誠佑"],
+            "25": [""],
+            "26": ["涂川洲"],
+            "27": ["陳彥中", "巫錫霖"],
+            "28": ["傅雲慶"],
+            "29": ["王淑貞"],
+            "30": ["林士君"],
+            "31": ["蔡耀隆"],
+            "32": ["陳詩怡"],
+            "33": ["蔡孟翰"],
+            "34": ["劉怡慶", "徐仲豪"],
+            "35": ["陳鴻斌"],
+            "36": ["泓采診所"]
+
+
+        };
+        var selectedCategory = hospitalMenu.value;
+        var options = hospitalData[selectedCategory] || [];
+
+        subhospitalMenu.innerHTML = '';
+
+        options.forEach(function (option) {
+            var opt = document.createElement('option');
+            opt.value = option;
+            opt.innerHTML = option;
+            subhospitalMenu.appendChild(opt);
+        });
+
+    }
+
+
+
+
+</script>
+<script>
+    // Define the contacts for each hospital
+    const hospitalContacts = {
+            "1": ["王智鴻"],
+            "2": ["連立明", "林冠佑", "蔣介雅", "張名鑫", "許維志", "張安娜", "陳威宏"],
+            "3": ["朱素娟"],
+            "4": ["劉修勳", "許博荏"],
+            "5": ["莊茜"],
+            "6": ["孫瑜", "劉長袖", "鍾季廷", "呂建榮"],
+            "7": ["王韻筑", "黃立楷", "黃媚莉", "陳嘉泓", "鄭芸詠"],
+            "8": ["洪琨景"],
+            "9": [""],
+            "10": ["傅維仁", "黃勇評"],
+            "11": ["宋岳峰", "周中興", "劉懿", "葉大全", "徐昌鴻"],
+            "12": ["呂彥瑢"],
+            "13": ["葉怡君"],
+            "14": ["陳鴻儒", "宋家瑩"],
+            "15": ["胡昭榮"],
+            "16": ["馬松蔚", "王雪君"],
+            "17": [""],
+            "18": ["美玲"],
+            "19": [""],
+            "20": ["趙育萱"],
+            "21": ["孫敏珠"],
+            "22": ["黃忠諺"],
+            "23": [""],
+            "24": ["魏誠佑"],
+            "25": [""],
+            "26": ["涂川洲"],
+            "27": ["陳彥中", "巫錫霖"],
+            "28": ["傅雲慶"],
+            "29": ["王淑貞"],
+            "30": ["林士君"],
+            "31": ["蔡耀隆"],
+            "32": ["陳詩怡"],
+            "33": ["蔡孟翰"],
+            "34": ["劉怡慶", "徐仲豪"],
+            "35": ["陳鴻斌"],
+            "36": ["泓采診所"]    };
+
+    // Get references to the select elements
+    const hospitalSelect = document.getElementById('HospitalList');
+    const contactSelect = document.getElementById('CustomerName');
+
+    // Add an event listener to the hospital select element
+    hospitalSelect.addEventListener('change', function() {
+        // Get the selected hospital
+        const selectedHospital = this.value;
+
+        // Clear the current options in the contact select element
+        contactSelect.innerHTML = '';
+
+        // Populate the contact select element with the new options
+        if (hospitalContacts[selectedHospital]) {
+            hospitalContacts[selectedHospital].forEach(function(contact) {
+                const option = document.createElement('option');
+                option.value = contact;
+                option.text = contact;
+                contactSelect.appendChild(option);
+            });
+        }
+    });
+
+    // Optionally, trigger the change event to populate the contacts on page load
+    hospitalSelect.dispatchEvent(new Event('change'));
+</script>
 <!---------------------------End----------------------------->

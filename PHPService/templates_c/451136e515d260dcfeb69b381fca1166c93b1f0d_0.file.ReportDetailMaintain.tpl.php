@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-08-14 14:51:41
+/* Smarty version 4.3.4, created on 2024-08-19 17:50:53
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\ReportDetailMaintain.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_66bc53fd6a8a30_04880295',
+  'unifunc' => 'content_66c3157d6514d4_38652099',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '451136e515d260dcfeb69b381fca1166c93b1f0d' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\ReportDetailMaintain.tpl',
-      1 => 1723618279,
+      1 => 1724061051,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_66bc53fd6a8a30_04880295 (Smarty_Internal_Template $_smarty_tpl) {
+function content_66c3157d6514d4_38652099 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\vendor\\smarty\\smarty\\libs\\plugins\\function.html_options.php','function'=>'smarty_function_html_options',),));
 ?>
 <!--POP UP MODAL TO VIEW MEMBER DETAILS AND RESULTS FOR Member Information-->
@@ -96,28 +96,73 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                 <div class="form-group">
                                     <label for="HospitalList" class="col-md-3 control-label">送檢單位:</label>
                                     <div class="col-md-8">
-                                        <!-- <?php echo smarty_function_html_options(array(),$_smarty_tpl);?>
- 生成HTML 下拉式選單 -->
-                                        <!-- <?php echo smarty_function_html_options(array('name'=>'HospitalList','id'=>'HospitalList','options'=>$_smarty_tpl->tpl_vars['HospitalListOptions']->value,'selected'=>'na','class'=>"form-control",'required'=>"required"),$_smarty_tpl);?>
+
+                                        <!-- <?php echo smarty_function_html_options(array('name'=>'HospitalList','id'=>'HospitalList','options'=>array(''=>'請選擇...')+$_smarty_tpl->tpl_vars['HospitalListOptions']->value,'selected'=>$_smarty_tpl->tpl_vars['HospitalListSelect']->value,'class'=>"form-control",'required'=>"required"),$_smarty_tpl);?>
  -->
-                                        <?php echo smarty_function_html_options(array('name'=>'HospitalList','id'=>'HospitalList','options'=>array(''=>'請選擇...')+$_smarty_tpl->tpl_vars['HospitalListOptions']->value,'selected'=>$_smarty_tpl->tpl_vars['HospitalListSelect']->value,'class'=>"form-control",'required'=>"required"),$_smarty_tpl);?>
+                                        <select id="HospitalList" name="HospitalList" class="form-control"
+                                            onchange="hospitalSubmenu(this, document.getElementById('CustomerName'))">
+                                            <option value="">Select a category</option>
+                                            <option value="1" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 1) {?>selected<?php }?>>輔大醫院</option>
+                                            <option value="2" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 2) {?>selected<?php }?>>新光醫院</option>
+                                            <option value="3" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 3) {?>selected<?php }?>>台北市立聯合醫院</option>
+                                            <option value="4" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 4) {?>selected<?php }?>>台北慈濟醫院</option>
+                                            <option value="5" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 5) {?>selected<?php }?>>台北榮民總醫院</option>
+                                            <option value="6" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 6) {?>selected<?php }?>>恩主公醫院</option>
+                                            <option value="7" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 7) {?>selected<?php }?>>雙和醫院</option>
+                                            <option value="8" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 8) {?>selected<?php }?>>國泰醫院</option>
+                                            <option value="9" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 9) {?>selected<?php }?>>怡仁醫院</option>
+                                            <option value="10" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 10) {?>selected<?php }?>>淡水馬偕醫院</option>
+                                            <option value="11" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 11) {?>selected<?php }?>>三軍總醫院_台北內湖
+                                            </option>
+                                            <option value="12" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 12) {?>selected<?php }?>>中山醫院</option>
+                                            <option value="13" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 13) {?>selected<?php }?>>新家生醫_聯新醫院
+                                            </option>
+                                            <option value="14" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 14) {?>selected<?php }?>>台北市立萬芳醫院
+                                            </option>
+                                            <option value="15" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 15) {?>selected<?php }?>>臺北醫學大學附設醫院
+                                            </option>
+                                            <option value="16" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 16) {?>selected<?php }?>>台中國軍總醫院
+                                            </option>
+                                            <option value="17" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 17) {?>selected<?php }?>>統誠醫療</option>
+                                            <option value="18" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 18) {?>selected<?php }?>>彰化秀傳醫院</option>
+                                            <option value="19" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 19) {?>selected<?php }?>>
+                                                國立臺灣大學醫學院附設醫院雲林分院</option>
+                                            <option value="20" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 20) {?>selected<?php }?>>光田綜合醫院</option>
+                                            <option value="21" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 21) {?>selected<?php }?>>澄清綜合醫院中港分院
+                                            </option>
+                                            <option value="22" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 22) {?>selected<?php }?>>竹山秀傳醫院</option>
+                                            <option value="23" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 23) {?>selected<?php }?>>烏日林新醫院</option>
+                                            <option value="24" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 24) {?>selected<?php }?>>彰濱秀傳醫院</option>
+                                            <option value="25" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 25) {?>selected<?php }?>>大千綜合醫院</option>
+                                            <option value="26" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 26) {?>selected<?php }?>>員榮醫療社團法人員榮醫院
+                                            </option>
+                                            <option value="27" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 27) {?>selected<?php }?>>彰化基督教醫院
+                                            </option>
+                                            <option value="28" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 28) {?>selected<?php }?>>台中榮民總醫院
+                                            </option>
+                                            <option value="29" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 29) {?>selected<?php }?>>台南市立醫院</option>
+                                            <option value="30" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 30) {?>selected<?php }?>>麻豆新樓醫院</option>
+                                            <option value="31" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 31) {?>selected<?php }?>>台南新樓醫院</option>
+                                            <option value="32" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 32) {?>selected<?php }?>>屏東基督教醫院
+                                            </option>
+                                            <option value="33" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 33) {?>selected<?php }?>>高雄長庚醫院</option>
+                                            <option value="34" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 34) {?>selected<?php }?>>高雄醫學大學附設醫院
+                                            </option>
+                                            <option value="35" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 35) {?>selected<?php }?>>連江醫院</option>
+                                            <option value="36" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 36) {?>selected<?php }?>>一般客戶or泓采代採
+                                            </option>
+                                        </select>
+
 
                                     </div>
-                                    <!-- <div class="col-md-8">
-                                        <input type="text" id="HospitalList" name="HospitalList"
-                                            class="form-control" value="<?php echo $_smarty_tpl->tpl_vars['HospitalList']->value;?>
-">
-                                    </div> -->
+
                                 </div>
 
                                 <!---- 檢測單位 ---->
                                 <div class="form-group">
                                     <label for="ReportType" class="col-md-3 control-label">檢測單位:</label>
                                     <div class="col-md-8">
-                                        <!-- <?php echo smarty_function_html_options(array(),$_smarty_tpl);?>
- 生成HTML 下拉式選單 -->
-                                        <!-- <?php echo smarty_function_html_options(array('name'=>'ReportType','id'=>'ReportType','options'=>array(''=>'請選擇...')+$_smarty_tpl->tpl_vars['ReportTypeOptions']->value,'selected'=>$_smarty_tpl->tpl_vars['ReportTypeSelect']->value,'class'=>"form-control",'required'=>"required"),$_smarty_tpl);?>
- -->
+
                                         <?php echo smarty_function_html_options(array('name'=>'ReportType','id'=>'ReportType','options'=>array(''=>'請選擇...')+$_smarty_tpl->tpl_vars['ReportTypeOptions']->value,'selected'=>$_smarty_tpl->tpl_vars['ReportTypeSelect']->value,'class'=>"form-control",'required'=>"required"),$_smarty_tpl);?>
 
 
@@ -129,8 +174,7 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                 <div class="form-group">
                                     <label for="TemplateID" class="col-md-3 control-label">報告樣板:</label>
                                     <div class="col-md-8">
-                                        <!-- <?php echo smarty_function_html_options(array('name'=>'TemplateID','id'=>'TemplateID','options'=>$_smarty_tpl->tpl_vars['TemplateOptions']->value,'selected'=>$_smarty_tpl->tpl_vars['TemplateSelect']->value,'class'=>"form-control",'required'=>"required"),$_smarty_tpl);?>
- -->
+
                                         <?php echo smarty_function_html_options(array('name'=>'TemplateID','id'=>'TemplateID','options'=>array(''=>'請選擇...')+$_smarty_tpl->tpl_vars['TemplateOptions']->value,'selected'=>$_smarty_tpl->tpl_vars['TemplateSelect']->value,'class'=>"form-control",'required'=>"required"),$_smarty_tpl);?>
 
                                     </div>
@@ -170,8 +214,8 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                 <div class="form-group">
                                     <label for="scdate" class="col-md-3 control-label">採集日期:</label>
                                     <div class="col-md-8">
-                                        <input type="datetime-local" id="scdate" name="scdate" class="form-control" required
-                                            value="<?php echo $_smarty_tpl->tpl_vars['scdate']->value;?>
+                                        <input type="datetime-local" id="scdate" name="scdate" class="form-control"
+                                            required value="<?php echo $_smarty_tpl->tpl_vars['scdate']->value;?>
 ">
                                     </div>
                                 </div>
@@ -179,8 +223,8 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                 <div class="form-group">
                                     <label for="rcdate" class="col-md-3 control-label">收檢日期:</label>
                                     <div class="col-md-8">
-                                        <input type="datetime-local" id="rcdate" name="rcdate" class="form-control" required
-                                            value="<?php echo $_smarty_tpl->tpl_vars['rcdate']->value;?>
+                                        <input type="datetime-local" id="rcdate" name="rcdate" class="form-control"
+                                            required value="<?php echo $_smarty_tpl->tpl_vars['rcdate']->value;?>
 ">
                                     </div>
                                 </div>
@@ -201,9 +245,11 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                 <div class="form-group">
                                     <label for="CustomerName" class="col-md-3 control-label">聯絡人名稱:</label>
                                     <div class="col-md-8">
-                                        <input type="text" id="CustomerName" name="CustomerName" class="form-control"
-                                            required value="<?php echo $_smarty_tpl->tpl_vars['CustomerName']->value;?>
-">
+                                        <select id="CustomerName" name="CustomerName" class="form-control" required>
+                                            <option value="<?php echo $_smarty_tpl->tpl_vars['CustomerName']->value;?>
+"><?php echo $_smarty_tpl->tpl_vars['CustomerName']->value;?>
+</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <!---- 客戶郵件 ---->
@@ -285,7 +331,7 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                                 type="file" accept="application/pdf" />
                                             <i class="fa fa-file-pdf"></i> 上傳報告結果
                                         </label>
-                                     
+
                                         <?php } else { ?>
 
                                         <label type="button" class="btn btn-primary btn-block"
@@ -349,7 +395,7 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                 <button type="button" class="btn btn-danger btn-md" id="BtnReportEdit"
                                     style="font-weight:bold;font-size:20px;margin:30px;">
                                     <i class="fa fa-edit"></i> 修 改</button>
-   
+
                             </p>
                             <?php } elseif ($_smarty_tpl->tpl_vars['Permission']->value == 4 || $_smarty_tpl->tpl_vars['Permission']->value == 5 || $_smarty_tpl->tpl_vars['Permission']->value == 9) {?>
                             <p id="ReportQueryButton">
@@ -472,8 +518,134 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
             subMenu.appendChild(opt);
         });
     }
+
+    function hospitalSubmenu(hospitalMenu, subhospitalMenu) {
+        var hospitalData = {
+            "1": ["王智鴻"],
+            "2": ["連立明", "林冠佑", "蔣介雅", "張名鑫", "許維志", "張安娜", "陳威宏"],
+            "3": ["朱素娟"],
+            "4": ["劉修勳", "許博荏"],
+            "5": ["莊茜"],
+            "6": ["孫瑜", "劉長袖", "鍾季廷", "呂建榮"],
+            "7": ["王韻筑", "黃立楷", "黃媚莉", "陳嘉泓", "鄭芸詠"],
+            "8": ["洪琨景"],
+            "9": [""],
+            "10": ["傅維仁", "黃勇評"],
+            "11": ["宋岳峰", "周中興", "劉懿", "葉大全", "徐昌鴻"],
+            "12": ["呂彥瑢"],
+            "13": ["葉怡君"],
+            "14": ["陳鴻儒", "宋家瑩"],
+            "15": ["胡昭榮"],
+            "16": ["馬松蔚", "王雪君"],
+            "17": [""],
+            "18": ["美玲"],
+            "19": [""],
+            "20": ["趙育萱"],
+            "21": ["孫敏珠"],
+            "22": ["黃忠諺"],
+            "23": [""],
+            "24": ["魏誠佑"],
+            "25": [""],
+            "26": ["涂川洲"],
+            "27": ["陳彥中", "巫錫霖"],
+            "28": ["傅雲慶"],
+            "29": ["王淑貞"],
+            "30": ["林士君"],
+            "31": ["蔡耀隆"],
+            "32": ["陳詩怡"],
+            "33": ["蔡孟翰"],
+            "34": ["劉怡慶", "徐仲豪"],
+            "35": ["陳鴻斌"],
+            "36": ["泓采診所"]
+
+
+        };
+        var selectedCategory = hospitalMenu.value;
+        var options = hospitalData[selectedCategory] || [];
+
+        subhospitalMenu.innerHTML = '';
+
+        options.forEach(function (option) {
+            var opt = document.createElement('option');
+            opt.value = option;
+            opt.innerHTML = option;
+            subhospitalMenu.appendChild(opt);
+        });
+
+    }
+
+
+
+
 <?php echo '</script'; ?>
 >
+<?php echo '<script'; ?>
+>
+    // Define the contacts for each hospital
+    const hospitalContacts = {
+            "1": ["王智鴻"],
+            "2": ["連立明", "林冠佑", "蔣介雅", "張名鑫", "許維志", "張安娜", "陳威宏"],
+            "3": ["朱素娟"],
+            "4": ["劉修勳", "許博荏"],
+            "5": ["莊茜"],
+            "6": ["孫瑜", "劉長袖", "鍾季廷", "呂建榮"],
+            "7": ["王韻筑", "黃立楷", "黃媚莉", "陳嘉泓", "鄭芸詠"],
+            "8": ["洪琨景"],
+            "9": [""],
+            "10": ["傅維仁", "黃勇評"],
+            "11": ["宋岳峰", "周中興", "劉懿", "葉大全", "徐昌鴻"],
+            "12": ["呂彥瑢"],
+            "13": ["葉怡君"],
+            "14": ["陳鴻儒", "宋家瑩"],
+            "15": ["胡昭榮"],
+            "16": ["馬松蔚", "王雪君"],
+            "17": [""],
+            "18": ["美玲"],
+            "19": [""],
+            "20": ["趙育萱"],
+            "21": ["孫敏珠"],
+            "22": ["黃忠諺"],
+            "23": [""],
+            "24": ["魏誠佑"],
+            "25": [""],
+            "26": ["涂川洲"],
+            "27": ["陳彥中", "巫錫霖"],
+            "28": ["傅雲慶"],
+            "29": ["王淑貞"],
+            "30": ["林士君"],
+            "31": ["蔡耀隆"],
+            "32": ["陳詩怡"],
+            "33": ["蔡孟翰"],
+            "34": ["劉怡慶", "徐仲豪"],
+            "35": ["陳鴻斌"],
+            "36": ["泓采診所"]    };
 
+    // Get references to the select elements
+    const hospitalSelect = document.getElementById('HospitalList');
+    const contactSelect = document.getElementById('CustomerName');
+
+    // Add an event listener to the hospital select element
+    hospitalSelect.addEventListener('change', function() {
+        // Get the selected hospital
+        const selectedHospital = this.value;
+
+        // Clear the current options in the contact select element
+        contactSelect.innerHTML = '';
+
+        // Populate the contact select element with the new options
+        if (hospitalContacts[selectedHospital]) {
+            hospitalContacts[selectedHospital].forEach(function(contact) {
+                const option = document.createElement('option');
+                option.value = contact;
+                option.text = contact;
+                contactSelect.appendChild(option);
+            });
+        }
+    });
+
+    // Optionally, trigger the change event to populate the contacts on page load
+    hospitalSelect.dispatchEvent(new Event('change'));
+<?php echo '</script'; ?>
+>
 <!---------------------------End-----------------------------><?php }
 }
