@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-08-19 17:50:53
+/* Smarty version 4.3.4, created on 2024-08-20 14:39:58
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\ReportDetailMaintain.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_66c3157d6514d4_38652099',
+  'unifunc' => 'content_66c43a3e79f136_30874483',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '451136e515d260dcfeb69b381fca1166c93b1f0d' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\ReportDetailMaintain.tpl',
-      1 => 1724061051,
+      1 => 1724135993,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_66c3157d6514d4_38652099 (Smarty_Internal_Template $_smarty_tpl) {
+function content_66c43a3e79f136_30874483 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\vendor\\smarty\\smarty\\libs\\plugins\\function.html_options.php','function'=>'smarty_function_html_options',),));
 ?>
 <!--POP UP MODAL TO VIEW MEMBER DETAILS AND RESULTS FOR Member Information-->
@@ -341,15 +341,6 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                             <i class="fa fa-file-pdf"></i> 上傳申請單
                                         </label>
                                         <?php }?>
-                                        <!-- <label type="button" class="btn btn-primary btn-block"
-                                            style="font-weight:bold;font-size:20px;width:40%;;margin:30px;">
-                                            <input id="ReportUploadLogoPDF" name="ReportUploadLogoPDF"
-                                                style="display:none;" type="file" accept="application/pdf" />
-                                            <i class="fa fa-file-pdf"></i> 上傳院所版本
-                                        </label> -->
-
-
-                                        <!-- <input type="file" id="Apply" name="Apply" /> -->
 
                                     </center>
                                 </div>
@@ -470,16 +461,7 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
 
                         <br>
                         <br>
-                        <!---- LooPDF Preview -->
-                        <!-- <div class="row" id="LogoPDFArea">
-                        <div class="form-horizontal" role="form">
-                            <div class="col-md-12">
-                                <embed id='LogoFile' name='LogoFile' src='<?php echo $_smarty_tpl->tpl_vars['LogoFile']->value;?>
-' type='application/pdf'
-                                    width='100%' height='1000px' />
-                            </div>
-                        </div>
-                    </div> -->
+
                     </div>
                 </div>
             </div>
@@ -574,6 +556,25 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
 
     }
 
+    function contactnameSubmenu(contactnameMenu, subcontactnameMenu) {
+        var contactnameData = {
+            "王智鴻": ["b104090050@tmu.edu.tw"],
+            "朱素娟": ["b0225@tpech.gov.tw"],
+            "洪琨景": ["konjunhom@yahoo.com.tw"]
+        };
+        var selectedCategory = contactnameMenu.value;
+        var options = contactnameData[selectedCategory] || [];
+
+        subcontactnameMenu.innerHTML = '';
+
+        options.forEach(function (option) {
+            var opt = document.createElement('option');
+            opt.value = option;
+            opt.innerHTML = option;
+            subcontactnameMenu.appendChild(opt);
+        });
+
+    }
 
 
 
@@ -618,11 +619,20 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
             "33": ["蔡孟翰"],
             "34": ["劉怡慶", "徐仲豪"],
             "35": ["陳鴻斌"],
-            "36": ["泓采診所"]    };
+            "36": ["泓采診所"]    
+        };
+
+    const contactnameEmail = {
+        "王智鴻": ["b104090050@tmu.edu.tw"],
+        "朱素娟": ["b0225@tpech.gov.tw"],
+        "洪琨景": ["konjunhom@yahoo.com.tw"]
+        };
+
 
     // Get references to the select elements
     const hospitalSelect = document.getElementById('HospitalList');
     const contactSelect = document.getElementById('CustomerName');
+    const contactEmail = document.getElementById('CustomerEmail');
 
     // Add an event listener to the hospital select element
     hospitalSelect.addEventListener('change', function() {
@@ -642,6 +652,44 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
             });
         }
     });
+
+    contactSelect.addEventListener('change', function() {
+        // Get the selected hospital
+        const selectedName = this.value;
+
+        // Clear the current options in the contact select element
+        contactSelect.innerHTML = '';
+
+        // Populate the contact select element with the new options
+        if (hospitalContacts[contactSelect]) {
+            hospitalContacts[contactSelect].forEach(function(contact) {
+                const option = document.createElement('option');
+                option.value = contact;
+                option.text = contact;
+                contactSelect.appendChild(option);
+            });
+        }
+    });
+
+    contactSelect.addEventListener('change', function() {
+        // Get the selected hospital
+        const selectedHospital = this.value;
+
+        // Clear the current options in the contact select element
+        contactSelect.innerHTML = '';
+
+        // Populate the contact select element with the new options
+        if (hospitalContacts[selectedHospital]) {
+            hospitalContacts[selectedHospital].forEach(function(contact) {
+                const option = document.createElement('option');
+                option.value = contact;
+                option.text = contact;
+                contactSelect.appendChild(option);
+            });
+        }
+    });
+
+    
 
     // Optionally, trigger the change event to populate the contacts on page load
     hospitalSelect.dispatchEvent(new Event('change'));
