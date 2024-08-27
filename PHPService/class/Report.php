@@ -247,10 +247,10 @@ class Report implements ReportInterface
                 $now = date("Y-m-d H:i:s");
                 $sql = "INSERT INTO Report (
                 ReportID, ReportName, FileName, ReportType, TemplateID, ccemail, HospitalList, ReportStatus,
-                CreatedAt, CustomerName, CustomerEmail, CustomerPhone, DueDate, SampleID, PatientID, scID, scdate, rcdate, apply_pdf, Submitdate ,SampleNo, SampleType,ReceivingDate,  Receiving,Sampleglass, quantity
+                CreatedAt, CustomerName, CustomerEmail, CustomerPhone, DueDate, SampleID, PatientID, scID, scdate, rcdate, apply_pdf, Submitdate ,SampleNo, SampleType,ReceivingDate,  Receiving,Sampleglass, quantity, ReportTemplate
                 ) VALUES (
                 :ReportID, :ReportName, :FileName, :ReportType, :TemplateID, :ccemail, :HospitalList, :ReportStatus,
-                :CreatedAt, :CustomerName, :CustomerEmail, :CustomerPhone, :DueDate, :SampleID, :PatientID, :scID, :scdate, :rcdate, :apply_pdf, :Submitdate, :SampleNo, :SampleType, :ReceivingDate, :Receiving, :Sampleglass, :quantity
+                :CreatedAt, :CustomerName, :CustomerEmail, :CustomerPhone, :DueDate, :SampleID, :PatientID, :scID, :scdate, :rcdate, :apply_pdf, :Submitdate, :SampleNo, :SampleType, :ReceivingDate, :Receiving, :Sampleglass, :quantity, :ReportTemplate
                 )";
                 $stmt = $this->_conn->prepare($sql);
                 $stmt->bindParam(':ReportID', $ReportInfo['ReportID']);
@@ -534,7 +534,8 @@ class Report implements ReportInterface
                 PatientID=:PatientID,
                 scID=:scID,
                 scdate=:scdate,
-                rcdate=:rcdate
+                rcdate=:rcdate, 
+                ReportTemplate = :ReportTemplate
                 WHERE ID=:ID";
 
                 
@@ -557,7 +558,8 @@ class Report implements ReportInterface
                 PatientID=:PatientID,
                 scID=:scID,
                 scdate=:scdate,
-                rcdate=:rcdate
+                rcdate=:rcdate,
+                ReportTemplate = :ReportTemplate
                 WHERE ID=:ID";
 
             if (!empty($_FILES['ReportApply']['name']) ) {
@@ -582,6 +584,7 @@ class Report implements ReportInterface
                 $stmt->bindParam(':scID', $ReportInfo['scID']);
                 $stmt->bindParam(':scdate', $ReportInfo['scdate']);
                 $stmt->bindParam(':rcdate', $ReportInfo['rcdate']);
+                $stmt->bindParam(':ReportTemplate', $ReportInfo['ReportTemplate']);
                 $stmt->bindParam(':ID', $ReportInfo['ID']);
                 // $stmt->execute();
 
@@ -605,6 +608,7 @@ class Report implements ReportInterface
                 $stmt->bindParam(':scID', $ReportInfo['scID']);
                 $stmt->bindParam(':scdate', $ReportInfo['scdate']);
                 $stmt->bindParam(':rcdate', $ReportInfo['rcdate']);
+                $stmt->bindParam(':ReportTemplate', $ReportInfo['ReportTemplate']);
                 $stmt->bindParam(':ID', $ReportInfo['ID']);
             }
 

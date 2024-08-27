@@ -44,31 +44,34 @@
                 <h3>{$DisplayName} 您好 </h3>
             </li>
             {/if}
-            {if $Role eq 1}
-            <li style="display: inline-block;">
-                <h3>，單位：JB_Lab_ISO</h3>
-            </li>
-            {elseif $Role eq 2}
-            <li style="display: inline-block;">
-                <h3>，單位：JB_Lab_LDTS</h3>
-            </li>
-            {elseif $Role eq 3}
-            <li style="display: inline-block;">
-                <h3>，單位：怡仁所</h3>
-            </li>
-            {elseif $Role eq 4}
-            <li style="display: inline-block;">
-                <h3>，單位：泓采診所</h3>
-            </li>
-            {elseif $Role eq 5}
-            <li style="display: inline-block;">
-                <h3>，單位：新光醫院</h3>
-            </li>
-            {else}
-            <li style="display: inline-block;">
-                <h3> </h3>
-            </li>
-            {/if}
+
+            
+
+                <!-- {if $Role eq 1}
+                <li style="display: inline-block;">
+                    <h3>，單位：JB_Lab_ISO</h3>
+                </li>
+                {elseif $Role eq 2}
+                <li style="display: inline-block;">
+                    <h3>，單位：JB_Lab_LDTS</h3>
+                </li>
+                {elseif $Role eq 3}
+                <li style="display: inline-block;">
+                    <h3>，單位：怡仁所</h3>
+                </li>
+                {elseif $Role eq 4}
+                <li style="display: inline-block;">
+                    <h3>，單位：泓采診所</h3>
+                </li>
+                {elseif $Role eq 5}
+                <li style="display: inline-block;">
+                    <h3>，單位：新光醫院</h3>
+                </li>
+                {else}
+                <li style="display: inline-block;">
+                    <h3> </h3>
+                </li>
+                {/if} -->
 
 
 

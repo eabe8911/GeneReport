@@ -186,7 +186,7 @@
     function setFieldsReadonly(state) {
       // $('#ReportID').prop('readonly', state);
       
-      $('#main-menu').prop('disabled', state);
+      $('#ReportTemplate').prop('disabled', state);
 
       $('#ReportName').prop('disabled', state);
       $('#HospitalList').prop('disabled', state);

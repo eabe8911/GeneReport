@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-08-20 14:39:58
+/* Smarty version 4.3.4, created on 2024-08-27 15:55:21
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\ReportDetailMaintain.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_66c43a3e79f136_30874483',
+  'unifunc' => 'content_66cd86691be048_79354676',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '451136e515d260dcfeb69b381fca1166c93b1f0d' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\ReportDetailMaintain.tpl',
-      1 => 1724135993,
+      1 => 1724745318,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_66c43a3e79f136_30874483 (Smarty_Internal_Template $_smarty_tpl) {
+function content_66cd86691be048_79354676 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\vendor\\smarty\\smarty\\libs\\plugins\\function.html_options.php','function'=>'smarty_function_html_options',),));
 ?>
 <!--POP UP MODAL TO VIEW MEMBER DETAILS AND RESULTS FOR Member Information-->
@@ -55,10 +55,13 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                 <div class="form-group">
                                     <label for="main-menu" class="col-md-3 control-label">報告類型:</label>
                                     <div class="col-md-8">
+                                       
 
-                                        <select id="main-menu" name="main-menu" class="form-control"
+                                        <select id="ReportTemplate" name="ReportTemplate" class="form-control"
                                             onchange="populateSubmenu(this, document.getElementById('ReportName'))">
-                                            <option value="">Select a category</option>
+                                            <option value=""> <?php echo '<?php'; ?>
+ echo $ReportTemplate; <?php echo '?>'; ?>
+</option>
                                             <option value="M1">M1 系列</option>
                                             <option value="M2">M2 系列</option>
                                             <option value="O1">O1 系列</option>
@@ -73,7 +76,10 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                             <option value="W3">W3 系列</option>
                                             <option value="W4">W4 系列</option>
                                             <option value="W5">W5 系列</option>
+                                            <option value="W6">W6 系列</option>
                                             <option value="R9">R9 系列</option>
+
+
 
                                         </select>
                                     </div>
@@ -245,11 +251,14 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                 <div class="form-group">
                                     <label for="CustomerName" class="col-md-3 control-label">聯絡人名稱:</label>
                                     <div class="col-md-8">
-                                        <select id="CustomerName" name="CustomerName" class="form-control" required>
+                                        <!-- <select id="CustomerName" name="CustomerName" class="form-control" required>
                                             <option value="<?php echo $_smarty_tpl->tpl_vars['CustomerName']->value;?>
 "><?php echo $_smarty_tpl->tpl_vars['CustomerName']->value;?>
 </option>
-                                        </select>
+                                        </select> -->
+                                        <input type="text" id="CustomerName" name="CustomerName" class="form-control"
+                                            required value="<?php echo $_smarty_tpl->tpl_vars['CustomerName']->value;?>
+">
                                     </div>
                                 </div>
                                 <!---- 客戶郵件 ---->
@@ -341,6 +350,15 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                             <i class="fa fa-file-pdf"></i> 上傳申請單
                                         </label>
                                         <?php }?>
+                                        <!-- <label type="button" class="btn btn-primary btn-block"
+                                            style="font-weight:bold;font-size:20px;width:40%;;margin:30px;">
+                                            <input id="ReportUploadLogoPDF" name="ReportUploadLogoPDF"
+                                                style="display:none;" type="file" accept="application/pdf" />
+                                            <i class="fa fa-file-pdf"></i> 上傳院所版本
+                                        </label> -->
+
+
+                                        <!-- <input type="file" id="Apply" name="Apply" /> -->
 
                                     </center>
                                 </div>
@@ -406,6 +424,14 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                     style="font-weight:bold;font-size:20px;margin:30px;">
                                     <i class="fa fa-trash"></i> 刪 除</button>
                             </p>
+                            <?php } elseif ($_smarty_tpl->tpl_vars['Permission']->value == 3) {?>
+                            <p id="ReportQueryButton">
+                                <button type="button" class="btn btn-danger btn-md" id="BtnReportExit"
+                                    style="font-weight:bold;font-size:20px;margin:30px;">
+                                    <i class="fa fa-eject"></i> 離 開</button>
+                            </p>
+
+
                             <!-- <?php } elseif ($_smarty_tpl->tpl_vars['Permission']->value == 4) {?>
                             <p id="ReportQueryButton">
                                 <button type="button" class="btn btn-danger btn-md" id="BtnReportExit"
@@ -461,7 +487,16 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
 
                         <br>
                         <br>
-
+                        <!---- LooPDF Preview -->
+                        <!-- <div class="row" id="LogoPDFArea">
+                        <div class="form-horizontal" role="form">
+                            <div class="col-md-12">
+                                <embed id='LogoFile' name='LogoFile' src='<?php echo $_smarty_tpl->tpl_vars['LogoFile']->value;?>
+' type='application/pdf'
+                                    width='100%' height='1000px' />
+                            </div>
+                        </div>
+                    </div> -->
                     </div>
                 </div>
             </div>
@@ -470,23 +505,180 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
 <?php echo '<script'; ?>
 >
     function populateSubmenu(mainMenu, subMenu) {
-        var subMenuData = {
-            "M1": ["次世代病原微生物檢測[DNA病原]", "次世代病原微生物檢測[RNA病毒]", "次世代病原微生物檢測套組"],
-            "M2": ["黴漿菌檢測(一般件)", "黴漿菌檢測(急件)"],
-            "O1": ["循環腫瘤細胞篩查檢測"],
-            "P1": ["麗寶克癌標靶藥物基因檢測", "麗寶大腸直腸癌標靶藥物基因檢測", "麗寶非小細胞肺癌標靶藥物基因檢測", "麗寶BRCA1/2遺傳性基因檢測", "麗寶克癌標靶藥物RNA基因檢測", "肺癌融合基因伴隨式診斷", "肺癌混合式標靶藥物基因檢測", "次世代定序乳癌基因檢測(麗寶克癌標靶藥物基因檢測)", "次世代定序腸癌基因檢測(麗寶大腸直腸癌標靶藥物基因檢測)"],
-            "P2": ["體細胞BRCA1與BRCA2基因檢測", "致心律失常性右心室心肌病變基因檢測", "肥厚型心肌病變基因檢測", "NOTCH3 基因檢測"],
-            "P3": ["體細胞及生殖細胞之BRCA1與BRCA2基因檢測"],
-            "S1": ["EGFR 29突變檢測", "KRAS突變檢測", "BRAF V600突變檢測"],
-            "S2": ["APOE基因分型", "代謝三重奏", "CYP1A2 基因分型", "ADH1B 基因分型", "ALDH2 基因分型"],
-            "S3": ["單一核苷酸多型性(單一基因)檢測", "NOTCH3 R544C基因分型", "CYP2C19 *2/*3基因分型", "二氫嘧啶去氫酶缺乏症檢測", "BDNF rs6265基因分型"],
-            "W1": ["遺傳性癌症基因檢測", "前列腺癌基因檢測服務"],
-            "W2": ["心血管疾病基因檢測", "擴張性心肌病變基因檢測", "胸主動脈瘤剝離症候群基因檢測", "動脈粥狀硬化基因檢測", "退化性二尖瓣疾病基因檢測", "家族性高膽固醇血症基因檢測", "馬凡氏症候群基因檢測", "心律不整基因檢測", "布魯格達氏症候群基因檢測", "兒茶酚胺多型性心室頻脈基因檢測", "長QT症候群基因檢測", "短QT症候群基因檢測"],
-            "W3": ["神經系統疾病基因檢測", "腦小血管疾病基因檢測套組", "帕金森氏症基因檢測", "遺傳性痙攣性下身麻痺基因檢測", "肌張力不全症基因檢測", "認知障礙基因檢測套組", "威爾森氏症基因檢測", "多發性神經纖維瘤基因檢測", "共濟失調基因檢測", "結節性硬化症基因檢測", "脊髓側索硬化基因檢測", "腦白質失養症基因檢測", "希佩爾-林道症候群基因檢測", "夏柯-馬利-杜斯氏病基因檢測", "體顯性腦動脈血管病變合併皮質下腦梗塞及腦白質病變基因檢測", "溶小體儲積症基因檢測", "妥瑞症候群基因檢測", "MELAS症候群基因檢測", "多發性系統退化症基因檢測", "原發性側索硬化基因檢測", "家族性澱粉樣多發性神經病變基因檢測", "癲癇基因檢測套組", "常見神經疾病基因檢測套組", "遺傳性腦中風基因檢測套組"],
-            "W4": ["帶因篩檢 v1.0", "帶因篩檢 v2.0", "帶因篩檢 v3.0"],
-            "W5": ["體重健康管理基因檢測", "單基因體重健康管理基因檢測", "美肌體質評估基因檢測", "肌膚免疫健康管理基因檢測", "骨質健康管理基因檢測(女)", "骨質健康管理基因檢測(男)", "酒精代謝體質評估基因檢測", "身高潛力基因檢測", "性格特質基因檢測", "運動性向基因檢測", "子宮健康管理基因檢測", "第二型糖尿病健康管理基因檢測", "眼睛健康管理基因檢測", "單基因眼睛健康管理基因檢測", "髮質健康管理基因檢測(女)", "髮質健康管理基因檢測(男)", "睡眠健康管理基因檢測(女)", "睡眠健康管理基因檢測(男)", "性早熟風險管理基因檢測(女)", "性早熟風險管理基因檢測(男)", "腦血管健康管理基因檢測(女)", "腦血管健康管理基因檢測(男)", "單基因腦血管健康管理基因檢測", "慢性腎臟病風險管理基因檢測", "尿路與腎結石風險管理基因檢測", "胃食道逆流風險管理基因檢測", "長壽體質基因檢測(女)", "長壽體質基因檢測(男)", "胸腔健康基因檢測", "咖啡因代謝基因檢測", "膽固醇代謝基因檢測", "肝臟健康基因檢測"],
-            "R9": ["R9 客製化報告"]
-        };
+var subMenuData = {
+    "M1": [
+        "M101-01 Pathogen Fast Identification (DNA)",
+        "M102-01 Pathogen Fast Identification (RNA)",
+        "M103-01 Pathogen Fast Identification"
+    ],
+    "M2": [
+        "M201-01 Mycoplasma (General)",
+        "M202-01 Mycoplasma (Express)"
+    ],
+    "O1": [
+        "O101-01 Circulating Tumor Cell (CTC) Assay Report"
+    ],
+    "P1": [
+        "P101-01 Lihpao Multi-cancer Target Drug Panel",
+        "P101-02 Lihpao Comprehensive CDx-30 Genes (FFPE)",
+        "P101-03 Lihpao Multi-cancer Target Drug Genetic Testing",
+        "P102-01 Lihpao CRC Target Drug Panel",
+        "P102-02 Lihpao CRC Target Drug Genetic Testing",
+        "P103-01 Lihpao NSCLC Target Drug Panel",
+        "P103-02 Lihpao NSCLC Target Drug Genetic Testing",
+        "P104-01 Lihpao BRCA1/2 Germline Panel",
+        "P104-02 Lihpao Germline BRCA1/2 Genetic Testing",
+        "P105-01 Lihpao Multi-cancer Target Drug RNA Panel",
+        "P105-02 Lihpao Multi-Cacner Target Drug RNA Genetic Testing",
+        "P106-01 Lihpao Lung Fusion Target Drug Panel",
+        "P107-01 Lihpao Lung Cancer Comprehensive Target Drug Panel",
+        "P108-01 Next-generation sequencing for Breast cancer",
+        "P109-01 Next-generation sequencing for Colon cancer",
+        "P110-01 CDx DNA Genetic Testing_HS",
+        "P111-01 CDx DNA Genetic Testing_S5",
+        "P111-02 Tumor DNA Genetic Testing",
+        "P112-01 CDx RNA Genetic Testing_HS",
+        "P113-01 CDx RNA Genetic Testing_S5",
+        "P113-02 Tumor RNA Genetic Testing",
+        "P115-01 Lihpao Multi-cancer Target Drug Panel_HS",
+        "P116-01 Lihpao CRC Target Drug Panel_HS",
+        "P117-01 Lihpao NSCLC Target Drug Panel_HS",
+        "P118-01 Lihpao Multi-cancer Target Drug Panel (Comprehensive Version)"
+    ],
+    "P2": [
+        "P201-01 BRCA1/2 of Somatic Genetic Testing",
+        "P202-01 ARVC Panel",
+        "P203-01 HCM Panel",
+        "P204-01 NOTCH3 EGFr Domain, Exon 2-24"
+    ],
+    "P3": [
+        "P301-01 BRCA1/2 of Somatic and Germline Genetic Testing"
+    ],
+    "S1": [
+        "S101-01 EGFR 29 Mutations Detection",
+        "S102-01 KRAS Mutation Detection",
+        "S103-01 BRAF V600 Mutations Detection"
+    ],
+    "S2": [
+        "S201-01 APOE Genotyping",
+        "S202-01 Metabolism Trio Genetic Testing",
+        "S203-01 CYP1A2 Genotyping",
+        "S204-01 ADH1B Genotyping",
+        "S205-01 ALDH2 Genotyping",
+        "S206-01 NOTCH3 R544C Genotyping",
+        "S208-01 CYP2C19 *2/*3 Genotyping"
+    ],
+    "S3": [
+        "S301-01 Sanger Sequencing",
+        "S302-01 NOTCH3 R544C Genotyping",
+        "S303-01 CYP2C19 *2/*3 Genotyping",
+        "S304-01 DPD Deficiency Genetic Testing",
+        "S305-01 BDNF rs6265 Genotyping",
+        "S306-01 PKD genetic testing genetic testing (Hotspot)",
+        "S307-01 TGFBI (Hotspots) Genetic Testing"
+    ],
+    "W1": [
+        "W100-01 Hereditary Cancer Genetic Testing",
+        "W101-01 Prostate Cancer Germline Genetic Testing"
+    ],
+    "W2": [
+        "W200-01 Cardiovascular Disease Genetic Testing",
+        "W201-01 ARVC Genetic Testing",
+        "W202-01 HCM Genetic Testing",
+        "W203-01 DCM Genetic Testing",
+        "W204-01 TAAD Genetic Testing",
+        "W205-01 ATS Genetic Testing",
+        "W206-01 DMVD Genetic Testing",
+        "W207-01 Familial Hypercholesterolemia Genetic Testing",
+        "W208-01 Marfan Syndrome Genetic Testing",
+        "W209-01 Arrhythmia Genetic Testing",
+        "W210-01 Brugada Syndrome Genetic Testing",
+        "W211-01 Catecholaminergic Polymorphic Ventricular Tachycardia Genetic Testing",
+        "W212-01 Long QT Syndrome Genetic Testing",
+        "W213-01 Short QT Syndrome Genetic Testing",
+        "W214-01 ARVC Genetic Testing",
+        "W215-01 HCM Genetic Testing",
+        "W216-01 Familial hypercholesterolemia genetic testing",
+        "W217-01 Aortopathy genetic testing",
+        "W218-01 SADS genetic testing",
+        "W219-01 Cardiovascular disease genetic testing"
+    ],
+    "W3": [
+        "W300-01 Neurological Disease Genetic Testing",
+        "W301-01 Cerebral Small Vessel Disease Genetic Testing",
+        "W302-01 Parkinsonism Genetic Testing",
+        "W303-01 Hereditary Spastic Paraplegia Genetic Testing",
+        "W304-01 Dystonia Genetic Testing",
+        "W305-01 Cognitive Disorder Genetic Testing",
+        "W306-01 Wilson's disease Genetic Testing",
+        "W307-01 Neurofibromatosis Genetic Testing",
+        "W308-01 Ataxia Genetic Testing",
+        "W309-01 Tuberous Sclerosis Genetic Testing",
+        "W310-01 Amyotrophic Lateral Sclerosis Genetic Testing",
+        "W311-01 Leukodystrophy Genetic Testing",
+        "W312-01 Von-Hippel-Lindau Disease Genetic Testing",
+        "W313-01 Charcot-Marie-Tooth Disease Genetic Testing",
+        "W314-01 Cerebral Autosomal Dominant Arteriopathy with Subcortical Infarcts and Leukoencephalopathy Genetic Testing",
+        "W314-02 CADASIL Genetic Testing",
+        "W315-01 Lysosomal Storage Disease Genetic Testing",
+        "W316-01 Tourette's Syndrome Genetic Testing",
+        "W317-01 MELAS Syndrome Genetic Testing",
+        "W318-01 Multiple System Atrophy Genetic Testing",
+        "W319-01 Primary Lateral Sclerosis Genetic Testing",
+        "W320-01 Familial Amyloid Polyneuropathy Genetic Testing",
+        "W321-01 Epilepsy Genetic Testing",
+        "W322-01 Common Neurological Disease Genetic Testing",
+        "W323-01 Inherited Stroke Genetic Testing"
+    ],
+    "W4": [
+        "W401-01 Genetic Carrier Screening v1.0",
+        "W402-01 Genetic Carrier Screening v2.0",
+        "W403-01 Genetic Carrier Screening v3.0"
+    ],
+    "W5": [
+        "W501-01 Healthy Weight Genetic Testing",
+        "W502-01 Healthy Weight Genetic Testing for Monogenic Disorders",
+        "W503-01 Skin Care Genetic Testing",
+        "W504-01 Skin Immunity Genetic Testing",
+        "W505-01 Bone Health Genetic Testing (Female)",
+        "W506-01 Bone Health Genetic Testing (Male)",
+        "W507-01 Alcohol Metabolism Genetic Testing",
+        "W508-01 Height Potential Genetic Testing",
+        "W509-01 Personality Genetic Testing",
+        "W510-01 Athletic Performance Genetic Testing",
+        "W511-01 Uterine Care Genetic Testing",
+        "W512-01 Genetic Predisposition Testing for Type 2 Diabetes",
+        "W513-01 Eye Health Genetic Testing",
+        "W514-01 Eye Health Genetic Testing for Monogenic Disorders",
+        "W515-01 Hair Care Genetic Testing (Female)",
+        "W516-01 Hair Care Genetic Testing (Male)",
+        "W517-01 Sleep Care Genetic Testing (Female)",
+        "W518-01 Sleep Care Genetic Testing (Male)",
+        "W519-01 Genetic Predisposition Testing for Precocious Puberty (Female)",
+        "W520-01 Genetic Predisposition Testing for Precocious Puberty (Male)",
+        "W521-01 Cerebrovascular Health Genetic Testing (Female)",
+        "W522-01 Cerebrovascular Health Genetic Testing (Male)",
+        "W523-01 Cerebrovascular Health Genetic Testing for Monogenic Disorders",
+        "W524-01 Genetic Predisposition Testing for Chronic Kidney Disease",
+        "W525-01 Genetic Predisposition Testing for Urolithiasis and Nephrolithiasis",
+        "W526-01 Genetic Predisposition Testing for Gastroesophageal Reflux Disease",
+        "W527-01 Genetic Predisposition Testing for Longevity (Female)",
+        "W527-02 Longevity Genetic Testing (Female)",
+        "W528-01 Genetic Predisposition Testing for Longevity (Male)",
+        "W528-02 Longevity Genetic Testing (Male)",
+        "W529-01 Chest Care Genetic Testing",
+        "W530-01 Caffeine Metabolism Genetic Testing",
+        "W531-01 Cholesterol Metabolism Genetic Testing",
+        "W532-01 Liver Health Genetic Testing"
+    ],
+    "W6": [
+        "W601-01 Glaucoma Genetic Testing",
+        "W602-01 Macular Degeneration Genetic Testing"
+    ],
+    "R9": [
+        "R9 客製化報告"
+    ]
+};
 
         var selectedCategory = mainMenu.value;
         var options = subMenuData[selectedCategory] || [];
@@ -501,81 +693,60 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
         });
     }
 
-    function hospitalSubmenu(hospitalMenu, subhospitalMenu) {
-        var hospitalData = {
-            "1": ["王智鴻"],
-            "2": ["連立明", "林冠佑", "蔣介雅", "張名鑫", "許維志", "張安娜", "陳威宏"],
-            "3": ["朱素娟"],
-            "4": ["劉修勳", "許博荏"],
-            "5": ["莊茜"],
-            "6": ["孫瑜", "劉長袖", "鍾季廷", "呂建榮"],
-            "7": ["王韻筑", "黃立楷", "黃媚莉", "陳嘉泓", "鄭芸詠"],
-            "8": ["洪琨景"],
-            "9": [""],
-            "10": ["傅維仁", "黃勇評"],
-            "11": ["宋岳峰", "周中興", "劉懿", "葉大全", "徐昌鴻"],
-            "12": ["呂彥瑢"],
-            "13": ["葉怡君"],
-            "14": ["陳鴻儒", "宋家瑩"],
-            "15": ["胡昭榮"],
-            "16": ["馬松蔚", "王雪君"],
-            "17": [""],
-            "18": ["美玲"],
-            "19": [""],
-            "20": ["趙育萱"],
-            "21": ["孫敏珠"],
-            "22": ["黃忠諺"],
-            "23": [""],
-            "24": ["魏誠佑"],
-            "25": [""],
-            "26": ["涂川洲"],
-            "27": ["陳彥中", "巫錫霖"],
-            "28": ["傅雲慶"],
-            "29": ["王淑貞"],
-            "30": ["林士君"],
-            "31": ["蔡耀隆"],
-            "32": ["陳詩怡"],
-            "33": ["蔡孟翰"],
-            "34": ["劉怡慶", "徐仲豪"],
-            "35": ["陳鴻斌"],
-            "36": ["泓采診所"]
+    // function hospitalSubmenu(hospitalMenu, subhospitalMenu) {
+    //     var hospitalData = {
+    //         "1": ["王智鴻"],
+    //         "2": ["連立明", "林冠佑", "蔣介雅", "張名鑫", "許維志", "張安娜", "陳威宏"],
+    //         "3": ["朱素娟"],
+    //         "4": ["劉修勳", "許博荏"],
+    //         "5": ["莊茜"],
+    //         "6": ["孫瑜", "劉長袖", "鍾季廷", "呂建榮"],
+    //         "7": ["王韻筑", "黃立楷", "黃媚莉", "陳嘉泓", "鄭芸詠"],
+    //         "8": ["洪琨景"],
+    //         "9": [""],
+    //         "10": ["傅維仁", "黃勇評"],
+    //         "11": ["宋岳峰", "周中興", "劉懿", "葉大全", "徐昌鴻"],
+    //         "12": ["呂彥瑢"],
+    //         "13": ["葉怡君"],
+    //         "14": ["陳鴻儒", "宋家瑩"],
+    //         "15": ["胡昭榮"],
+    //         "16": ["馬松蔚", "王雪君"],
+    //         "17": [""],
+    //         "18": ["美玲"],
+    //         "19": [""],
+    //         "20": ["趙育萱"],
+    //         "21": ["孫敏珠"],
+    //         "22": ["黃忠諺"],
+    //         "23": [""],
+    //         "24": ["魏誠佑"],
+    //         "25": [""],
+    //         "26": ["涂川洲"],
+    //         "27": ["陳彥中", "巫錫霖"],
+    //         "28": ["傅雲慶"],
+    //         "29": ["王淑貞"],
+    //         "30": ["林士君"],
+    //         "31": ["蔡耀隆"],
+    //         "32": ["陳詩怡"],
+    //         "33": ["蔡孟翰"],
+    //         "34": ["劉怡慶", "徐仲豪"],
+    //         "35": ["陳鴻斌"],
+    //         "36": ["泓采診所"]
 
 
-        };
-        var selectedCategory = hospitalMenu.value;
-        var options = hospitalData[selectedCategory] || [];
+    //     };
+    //     var selectedCategory = hospitalMenu.value;
+    //     var options = hospitalData[selectedCategory] || [];
 
-        subhospitalMenu.innerHTML = '';
+    //     subhospitalMenu.innerHTML = '';
 
-        options.forEach(function (option) {
-            var opt = document.createElement('option');
-            opt.value = option;
-            opt.innerHTML = option;
-            subhospitalMenu.appendChild(opt);
-        });
+    //     options.forEach(function (option) {
+    //         var opt = document.createElement('option');
+    //         opt.value = option;
+    //         opt.innerHTML = option;
+    //         subhospitalMenu.appendChild(opt);
+    //     });
 
-    }
-
-    function contactnameSubmenu(contactnameMenu, subcontactnameMenu) {
-        var contactnameData = {
-            "王智鴻": ["b104090050@tmu.edu.tw"],
-            "朱素娟": ["b0225@tpech.gov.tw"],
-            "洪琨景": ["konjunhom@yahoo.com.tw"]
-        };
-        var selectedCategory = contactnameMenu.value;
-        var options = contactnameData[selectedCategory] || [];
-
-        subcontactnameMenu.innerHTML = '';
-
-        options.forEach(function (option) {
-            var opt = document.createElement('option');
-            opt.value = option;
-            opt.innerHTML = option;
-            subcontactnameMenu.appendChild(opt);
-        });
-
-    }
-
+    // }
 
 
 <?php echo '</script'; ?>
@@ -619,20 +790,11 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
             "33": ["蔡孟翰"],
             "34": ["劉怡慶", "徐仲豪"],
             "35": ["陳鴻斌"],
-            "36": ["泓采診所"]    
-        };
-
-    const contactnameEmail = {
-        "王智鴻": ["b104090050@tmu.edu.tw"],
-        "朱素娟": ["b0225@tpech.gov.tw"],
-        "洪琨景": ["konjunhom@yahoo.com.tw"]
-        };
-
+            "36": ["泓采診所"]    };
 
     // Get references to the select elements
     const hospitalSelect = document.getElementById('HospitalList');
     const contactSelect = document.getElementById('CustomerName');
-    const contactEmail = document.getElementById('CustomerEmail');
 
     // Add an event listener to the hospital select element
     hospitalSelect.addEventListener('change', function() {
@@ -652,44 +814,6 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
             });
         }
     });
-
-    contactSelect.addEventListener('change', function() {
-        // Get the selected hospital
-        const selectedName = this.value;
-
-        // Clear the current options in the contact select element
-        contactSelect.innerHTML = '';
-
-        // Populate the contact select element with the new options
-        if (hospitalContacts[contactSelect]) {
-            hospitalContacts[contactSelect].forEach(function(contact) {
-                const option = document.createElement('option');
-                option.value = contact;
-                option.text = contact;
-                contactSelect.appendChild(option);
-            });
-        }
-    });
-
-    contactSelect.addEventListener('change', function() {
-        // Get the selected hospital
-        const selectedHospital = this.value;
-
-        // Clear the current options in the contact select element
-        contactSelect.innerHTML = '';
-
-        // Populate the contact select element with the new options
-        if (hospitalContacts[selectedHospital]) {
-            hospitalContacts[selectedHospital].forEach(function(contact) {
-                const option = document.createElement('option');
-                option.value = contact;
-                option.text = contact;
-                contactSelect.appendChild(option);
-            });
-        }
-    });
-
-    
 
     // Optionally, trigger the change event to populate the contacts on page load
     hospitalSelect.dispatchEvent(new Event('change'));

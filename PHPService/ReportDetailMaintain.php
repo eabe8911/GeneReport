@@ -35,7 +35,7 @@ $DisplayName = $_SESSION['DisplayName'];
 $Permission = $_SESSION['Permission'];
 $Role = $_SESSION['Role'];
 $FormName = filter_input(INPUT_POST, 'FormName');
-$ReportMode = $ReportID = $PDFFile = $ApplyFile = $LogoFile = $ID = $ReportStatus = "";
+$ReportMode = $ReportID = $PDFFile = $ApplyFile = $LogoFile = $ID = $ReportStatus = $ReportTemplate ="";
 $ErrorMessage = '';
 $result1 = $resultID = array();
 //檢查是否第二次進入
@@ -54,6 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
                 $ReportStatus = $_POST['ReportStatus'];
                 $ReportType = $_POST['ReportType'];
 
+
                 //if ReportMode = ADD, 將"新增"帶到ReportMode
                 if ($ReportMode == 'ADD') {
                     $ReportMode = "新增";
@@ -62,6 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
                 $ReportName = $_POST['ReportName'];
                 $HospitalList = $_POST['HospitalList'];
                 $TemplateID = $_POST['TemplateID'];
+                $ReportTemplate = $_POST['ReportTemplate'];
                 if ($ReportType == '1') {
                     $ReportType = "JB_Lab_ISO";
                 } elseif ($ReportType == '2') {
@@ -160,6 +162,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
                     $HospitalList = $_POST['HospitalList'];
                     $ReportType = $_POST['ReportType'];
                     $TemplateID = $_POST['TemplateID'];
+                    $ReportTemplate = $_POST['ReportTemplate'];
                     $DueDate = $_POST['DueDate'];
                     $CustomerName = $_POST['CustomerName'];
                     $CustomerEmail = $_POST['CustomerEmail'];
@@ -170,7 +173,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
                     $scID = $_POST['scID'];
                     $scdate = $_POST['scdate'];
                     $rcdate = $_POST['rcdate'];
-                    
+                    // echo $ReportTemplate;die();
 
                     //if ReportUploadPDF click ReportStaus = 1
                     if (!empty($_FILES['ReportUploadPDF']['name'])) {
@@ -179,13 +182,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
                         $ReportStatus = $_POST['ReportStatus'];
                     } // $ReportStatus = $_POST['ReportStatus'];
 
-                    if ($Role == '1') {
-                        $Role = "JB_Lab_ISO";
-                    } elseif ($Role == '2') {
-                        $Role = "JB_Lab_LDTS";
-                    } elseif ($Role == '3') {
-                        $Role = "YL_Lab_ISO";
-                    }
+                    // if ($Role == '1') {
+                    //     $Role = "JB_Lab_ISO";
+                    // } elseif ($Role == '2') {
+                    //     $Role = "JB_Lab_LDTS";
+                    // } elseif ($Role == '3') {
+                    //     $Role = "YL_Lab_ISO";
+                    // }
 
                     $updatelog = "報告編號：" . $ReportID . "\n" 
                     . "報告名稱：" . $ReportName . "\n" 
@@ -416,6 +419,7 @@ $smarty->assign('HospitalListOptions', $List, true);
 $smarty->assign('HospitalListSelect', $HospitalList, true);
 $smarty->assign('ReportTypeOptions', $Type, true);
 $smarty->assign('ReportTypeSelect', $ReportType, true);
+$smarty->assign("ReportTemplate", $ReportTemplate, true);
 $TemplateID = $report->ReportInfo('TemplateID');
 $TemplateList = $report->getTemplateList(); //取得樣板清單
 $smarty->assign('TemplateOptions', $TemplateList, true); //將樣板清單送至樣板檔
@@ -466,7 +470,8 @@ $PatientID = $report->ReportInfo('PatientID');
 $scID = $report->ReportInfo('scID');
 $scdate = $report->ReportInfo('scdate');
 $rcdate = $report->ReportInfo('rcdate');
-// echo $ReportStatus;
+$ReportTemplate = $report->ReportInfo('ReportTemplate');
+
 // Display PDF File if empty show error message
 
 if ($PDFFile == '') {

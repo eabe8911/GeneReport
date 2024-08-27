@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-08-07 05:40:02
+/* Smarty version 4.3.4, created on 2024-08-23 08:15:06
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\js_home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_66b2ec9256e129_90266600',
+  'unifunc' => 'content_66c828ea44ef43_90329555',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'af20c2dcd618f47077569e973358c052788598d6' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\js_home.tpl',
-      1 => 1723001982,
+      1 => 1724393702,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_66b2ec9256e129_90266600 (Smarty_Internal_Template $_smarty_tpl) {
+function content_66c828ea44ef43_90329555 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!--THIS JQUERY AND CSS IS FOR JQGRID TABLE-->
 <?php echo '<script'; ?>
  type="text/ecmascript" src="js/prettify/prettify.js"><?php echo '</script'; ?>

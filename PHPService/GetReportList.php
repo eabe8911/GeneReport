@@ -40,7 +40,125 @@ switch ($Character) {
             $where = " WHERE  ReportStatus='2' or ReportStatus='8' ";
         }elseif ($Permission == 0) { //抓到Report裡面的CustomerName資料
             $where = " WHERE CustomerEmail='" . $Email . "' ";    
-        } 
+        } elseif ($Permission == 3) {
+            
+            $where = " WHERE HospitalList ='" . $Role . "'";
+            switch ($Role) {
+                case '1':
+                    $where = " WHERE HospitalList = '輔大醫院' and TemplateID = '2' and ReportStatus='2' ";
+                    break;
+                case '2':
+                    $where = " WHERE HospitalList = '新光醫院' and TemplateID = '2' and ReportStatus='2' ";
+                    break;
+                case '3':
+                    $where = " WHERE HospitalList = '台北市立聯合醫院' and TemplateID = '2' and ReportStatus='2'  ";
+                    break;
+                case '4':
+                    $where = " WHERE HospitalList = '台北慈濟醫院' and TemplateID = '2' and ReportStatus='2' ";
+                    break;
+                case '5':
+                    $where = " WHERE HospitalList = '台北榮民總醫院' and TemplateID = '2' and ReportStatus='2' ";
+                    break;
+                case '6':
+                    $where = " WHERE HospitalList = '恩主公醫院' and TemplateID = '2' and ReportStatus='2' ";
+                    break;
+                case '7':
+                    $where = " WHERE HospitalList = '雙和醫院' and TemplateID = '2' and ReportStatus='2' ";
+                    break;
+                case '8':
+                    $where = " WHERE HospitalList = '國泰醫院' and TemplateID = '2' and ReportStatus='2' ";
+                    break;
+                case '9':
+                    $where = " WHERE HospitalList = '怡仁醫院' and TemplateID = '2' and ReportStatus='2' ";
+                    break;
+                case '10':
+                    $where = " WHERE HospitalList = '淡水馬偕醫院' and TemplateID = '2' and ReportStatus='2' ";
+                    break;
+                case '11':
+                    $where = " WHERE HospitalList = '三軍總醫院_台北內湖' and TemplateID = '2' and ReportStatus='2' ";
+                    break;
+                case '12':
+                    $where = " WHERE HospitalList = '中山醫院' and TemplateID = '2' and ReportStatus='2' ";
+                    break;
+                case '13':
+                    $where = " WHERE HospitalList = '新家生醫_聯新醫院' and TemplateID = '2' and ReportStatus='2' ";
+                    break;
+                case '14':
+                    $where = " WHERE HospitalList = '台北市立萬芳醫院' and TemplateID = '2' and ReportStatus='2' ";
+                    break;
+                case '15':
+                    $where = " WHERE HospitalList = '臺北醫學大學附設醫院' and TemplateID = '2' and ReportStatus='2' ";
+                    break;
+                case '16':
+                    $where = " WHERE HospitalList = '台中國軍總醫院' and TemplateID = '2' and ReportStatus='2' ";
+                    break;
+                case '17':
+                    $where = " WHERE HospitalList = '統誠醫療' and TemplateID = '2' and ReportStatus='2' ";
+                    break;
+                case '18':
+                    $where = " WHERE HospitalList = '彰化秀傳醫院' and TemplateID = '2' and ReportStatus='2' ";
+                    break;
+                case '19':
+                    $where = " WHERE HospitalList = '國立臺灣大學醫學院附設醫院雲林分院' and TemplateID = '2' and ReportStatus='2' ";
+                    break;
+                case '20':
+                    $where = " WHERE HospitalList = '光田綜合醫院' and TemplateID = '2' and ReportStatus='2' ";
+                    break;
+                case '21':
+                    $where = " WHERE HospitalList = '澄清綜合醫院中港分院' and TemplateID = '2' and ReportStatus='2' ";
+                    break;
+                case '22':
+                    $where = " WHERE HospitalList = '竹山秀傳醫院' and TemplateID = '2' and ReportStatus='2' ";
+                    break;
+                case '23':
+                    $where = " WHERE HospitalList = '烏日林新醫院' and TemplateID = '2' and ReportStatus='2' ";
+                    break;
+                case '24':
+                    $where = " WHERE HospitalList = '彰濱秀傳醫院' and TemplateID = '2' and ReportStatus='2' ";
+                    break;
+                case '25':
+                    $where = " WHERE HospitalList = '大千綜合醫院' and TemplateID = '2' and ReportStatus='2' ";
+                    break;
+                case '26':
+                    $where = " WHERE HospitalList = '員榮醫療社團法人員榮醫院' and TemplateID = '2' and ReportStatus='2' ";
+                    break;
+                case '27':
+                    $where = " WHERE HospitalList = '彰化基督教醫院' and TemplateID = '2' and ReportStatus='2' ";
+                    break;
+                case '28':
+                    $where = " WHERE HospitalList = '台中榮民總醫院' and TemplateID = '2' and ReportStatus='2' ";
+                    break;
+                case '29':
+                    $where = " WHERE HospitalList = '台南市立醫院' and TemplateID = '2' and ReportStatus='2' ";
+                    break;
+                case '30':
+                    $where = " WHERE HospitalList = '麻豆新樓醫院' and TemplateID = '2' and ReportStatus='2' ";
+                    break;
+                case '31':
+                    $where = " WHERE HospitalList = '台南新樓醫院' and TemplateID = '2' and ReportStatus='2' ";
+                    break;
+                case '32':
+                    $where = " WHERE HospitalList = '屏東基督教醫院' and TemplateID = '2' and ReportStatus='2' ";
+                    break;
+                case '33':
+                    $where = " WHERE HospitalList = '高雄長庚醫院' and TemplateID = '2' and ReportStatus='2' ";
+                    break;
+                case '34':
+                    $where = " WHERE HospitalList = '高雄醫學大學附設醫院' and TemplateID = '2' and ReportStatus='2' ";
+                    break;
+                case '35':
+                    $where = " WHERE HospitalList = '連江醫院' and TemplateID = '2' and ReportStatus='2' ";
+                    break;
+                case '36':
+                    $where = " WHERE HospitalList = '一般客戶or泓采代採' and TemplateID = '2' and ReportStatus='2' ";
+                    break;
+                    
+                default:
+                $where = " WHERE HospitalList = '' ";
+                break;
+            }
+            $where1 = " WHERE Approve ='2'";
+        }
         
         else { // 如果 Permission 是 1->管理者、2->醫檢師 或 3->醫師 4->護理師, 只能看到自己的資料
             // $where = " WHERE ReportType='" . $Role . "' ";
@@ -95,6 +213,124 @@ try {
     if ($start < 0) {
         $start = 0;
     }
+// if ($Permission == 3) {
+//     switch ($Role) {
+//         case '1':
+//             $where = " WHERE HospitalList = '輔大醫院' and TemplateID = '2' and ReportStatus='2' ";
+//             break;
+//         case '2':
+//             $where = " WHERE HospitalList = '新光醫院' and TemplateID = '2' and ReportStatus='2' ";
+//             break;
+//         case '3':
+//             $where = " WHERE HospitalList = '台北市立聯合醫院' and TemplateID = '2' and ReportStatus='2'  ";
+//             break;
+//         case '4':
+//             $where = " WHERE HospitalList = '台北慈濟醫院' and TemplateID = '2' and ReportStatus='2' ";
+//             break;
+//         case '5':
+//             $where = " WHERE HospitalList = '台北榮民總醫院' and TemplateID = '2' and ReportStatus='2' ";
+//             break;
+//         case '6':
+//             $where = " WHERE HospitalList = '恩主公醫院' and TemplateID = '2' and ReportStatus='2' ";
+//             break;
+//         case '7':
+//             $where = " WHERE HospitalList = '雙和醫院' and TemplateID = '2' and ReportStatus='2' ";
+//             break;
+//         case '8':
+//             $where = " WHERE HospitalList = '國泰醫院' and TemplateID = '2' and ReportStatus='2' ";
+//             break;
+//         case '9':
+//             $where = " WHERE HospitalList = '怡仁醫院' and TemplateID = '2' and ReportStatus='2' ";
+//             break;
+//         case '10':
+//             $where = " WHERE HospitalList = '淡水馬偕醫院' and TemplateID = '2' and ReportStatus='2' ";
+//             break;
+//         case '11':
+//             $where = " WHERE HospitalList = '三軍總醫院_台北內湖' and TemplateID = '2' and ReportStatus='2' ";
+//             break;
+//         case '12':
+//             $where = " WHERE HospitalList = '中山醫院' and TemplateID = '2' and ReportStatus='2' ";
+//             break;
+//         case '13':
+//             $where = " WHERE HospitalList = '新家生醫_聯新醫院' and TemplateID = '2' and ReportStatus='2' ";
+//             break;
+//         case '14':
+//             $where = " WHERE HospitalList = '台北市立萬芳醫院' and TemplateID = '2' and ReportStatus='2' ";
+//             break;
+//         case '15':
+//             $where = " WHERE HospitalList = '臺北醫學大學附設醫院' and TemplateID = '2' and ReportStatus='2' ";
+//             break;
+//         case '16':
+//             $where = " WHERE HospitalList = '台中國軍總醫院' and TemplateID = '2' and ReportStatus='2' ";
+//             break;
+//         case '17':
+//             $where = " WHERE HospitalList = '統誠醫療' and TemplateID = '2' and ReportStatus='2' ";
+//             break;
+//         case '18':
+//             $where = " WHERE HospitalList = '彰化秀傳醫院' and TemplateID = '2' and ReportStatus='2' ";
+//             break;
+//         case '19':
+//             $where = " WHERE HospitalList = '國立臺灣大學醫學院附設醫院雲林分院' and TemplateID = '2' and ReportStatus='2' ";
+//             break;
+//         case '20':
+//             $where = " WHERE HospitalList = '光田綜合醫院' and TemplateID = '2' and ReportStatus='2' ";
+//             break;
+//         case '21':
+//             $where = " WHERE HospitalList = '澄清綜合醫院中港分院' and TemplateID = '2' and ReportStatus='2' ";
+//             break;
+//         case '22':
+//             $where = " WHERE HospitalList = '竹山秀傳醫院' and TemplateID = '2' and ReportStatus='2' ";
+//             break;
+//         case '23':
+//             $where = " WHERE HospitalList = '烏日林新醫院' and TemplateID = '2' and ReportStatus='2' ";
+//             break;
+//         case '24':
+//             $where = " WHERE HospitalList = '彰濱秀傳醫院' and TemplateID = '2' and ReportStatus='2' ";
+//             break;
+//         case '25':
+//             $where = " WHERE HospitalList = '大千綜合醫院' and TemplateID = '2' and ReportStatus='2' ";
+//             break;
+//         case '26':
+//             $where = " WHERE HospitalList = '員榮醫療社團法人員榮醫院' and TemplateID = '2' and ReportStatus='2' ";
+//             break;
+//         case '27':
+//             $where = " WHERE HospitalList = '彰化基督教醫院' and TemplateID = '2' and ReportStatus='2' ";
+//             break;
+//         case '28':
+//             $where = " WHERE HospitalList = '台中榮民總醫院' and TemplateID = '2' and ReportStatus='2' ";
+//             break;
+//         case '29':
+//             $where = " WHERE HospitalList = '台南市立醫院' and TemplateID = '2' and ReportStatus='2' ";
+//             break;
+//         case '30':
+//             $where = " WHERE HospitalList = '麻豆新樓醫院' and TemplateID = '2' and ReportStatus='2' ";
+//             break;
+//         case '31':
+//             $where = " WHERE HospitalList = '台南新樓醫院' and TemplateID = '2' and ReportStatus='2' ";
+//             break;
+//         case '32':
+//             $where = " WHERE HospitalList = '屏東基督教醫院' and TemplateID = '2' and ReportStatus='2' ";
+//             break;
+//         case '33':
+//             $where = " WHERE HospitalList = '高雄長庚醫院' and TemplateID = '2' and ReportStatus='2' ";
+//             break;
+//         case '34':
+//             $where = " WHERE HospitalList = '高雄醫學大學附設醫院' and TemplateID = '2' and ReportStatus='2' ";
+//             break;
+//         case '35':
+//             $where = " WHERE HospitalList = '連江醫院' and TemplateID = '2' and ReportStatus='2' ";
+//             break;
+//         case '36':
+//             $where = " WHERE HospitalList = '一般客戶or泓采代採' and TemplateID = '2' and ReportStatus='2' ";
+//             break;
+            
+//         default:
+//         $where = " WHERE HospitalList = '' ";
+//         break;
+//     }
+// }
+
+
     $sql = "SELECT * FROM ReportView " . $where . " ORDER BY $sidx $sord LIMIT $start , $limit";
     $sth = $conn->prepare($sql);
     $sth->execute();

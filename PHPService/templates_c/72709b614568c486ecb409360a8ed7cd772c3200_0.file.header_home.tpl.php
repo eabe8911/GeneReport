@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-06-03 08:41:35
+/* Smarty version 4.3.4, created on 2024-08-22 09:41:18
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\header_home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_665d659fc0d9b5_05884635',
+  'unifunc' => 'content_66c6eb9ec2a1a0_66836537',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '72709b614568c486ecb409360a8ed7cd772c3200' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\header_home.tpl',
-      1 => 1717396803,
+      1 => 1724312472,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_665d659fc0d9b5_05884635 (Smarty_Internal_Template $_smarty_tpl) {
+function content_66c6eb9ec2a1a0_66836537 (Smarty_Internal_Template $_smarty_tpl) {
 ?><header style="border-bottom: 1px solid #ccc; display: flex; padding: 0.5em 1em; justify-content: space-between;">
     <div class="member-site-identity">
         <?php echo $_smarty_tpl->tpl_vars['Logo']->value;?>
@@ -76,31 +76,34 @@ function content_665d659fc0d9b5_05884635 (Smarty_Internal_Template $_smarty_tpl)
  您好 </h3>
             </li>
             <?php }?>
-            <?php if ($_smarty_tpl->tpl_vars['Role']->value == 1) {?>
-            <li style="display: inline-block;">
-                <h3>，單位：JB_Lab_ISO</h3>
-            </li>
-            <?php } elseif ($_smarty_tpl->tpl_vars['Role']->value == 2) {?>
-            <li style="display: inline-block;">
-                <h3>，單位：JB_Lab_LDTS</h3>
-            </li>
-            <?php } elseif ($_smarty_tpl->tpl_vars['Role']->value == 3) {?>
-            <li style="display: inline-block;">
-                <h3>，單位：怡仁所</h3>
-            </li>
-            <?php } elseif ($_smarty_tpl->tpl_vars['Role']->value == 4) {?>
-            <li style="display: inline-block;">
-                <h3>，單位：泓采診所</h3>
-            </li>
-            <?php } elseif ($_smarty_tpl->tpl_vars['Role']->value == 5) {?>
-            <li style="display: inline-block;">
-                <h3>，單位：新光醫院</h3>
-            </li>
-            <?php } else { ?>
-            <li style="display: inline-block;">
-                <h3> </h3>
-            </li>
-            <?php }?>
+
+            
+
+                <!-- <?php if ($_smarty_tpl->tpl_vars['Role']->value == 1) {?>
+                <li style="display: inline-block;">
+                    <h3>，單位：JB_Lab_ISO</h3>
+                </li>
+                <?php } elseif ($_smarty_tpl->tpl_vars['Role']->value == 2) {?>
+                <li style="display: inline-block;">
+                    <h3>，單位：JB_Lab_LDTS</h3>
+                </li>
+                <?php } elseif ($_smarty_tpl->tpl_vars['Role']->value == 3) {?>
+                <li style="display: inline-block;">
+                    <h3>，單位：怡仁所</h3>
+                </li>
+                <?php } elseif ($_smarty_tpl->tpl_vars['Role']->value == 4) {?>
+                <li style="display: inline-block;">
+                    <h3>，單位：泓采診所</h3>
+                </li>
+                <?php } elseif ($_smarty_tpl->tpl_vars['Role']->value == 5) {?>
+                <li style="display: inline-block;">
+                    <h3>，單位：新光醫院</h3>
+                </li>
+                <?php } else { ?>
+                <li style="display: inline-block;">
+                    <h3> </h3>
+                </li>
+                <?php }?> -->
 
 
 
