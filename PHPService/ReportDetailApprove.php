@@ -243,7 +243,7 @@ $smarty->assign("Reject1At", $report->ReportInfo('Reject1At'), true);
 $smarty->assign("Reject2", $report->ReportInfo('Reject2'), true);
 $smarty->assign("Reject2At", $report->ReportInfo('Reject2At'), true);
 $smarty->assign("RejectReason", $report->ReportInfo('RejectReason'), true);
-$smarty->assign("SampleID", $report->ReportInfo('SampleID'), true);
+$smarty->assign("SampleNo", $report->ReportInfo('SampleNo'), true);
 $smarty->assign("PatientID", $report->ReportInfo('PatientID'), true);
 $smarty->assign("scID", $report->ReportInfo('scID'), true);
 $smarty->assign("scdate", $report->ReportInfo('scdate'), true);

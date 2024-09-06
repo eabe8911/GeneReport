@@ -42,11 +42,11 @@ class Emailer
             $this->_mail->Port = 587;
 
             // 發件人和收件人設定
-            $this->_mail->setFrom('Report@libobio.com', 'Libobio');
+            $this->_mail->setFrom('liboreport@libobio.com', 'Libobio');
             $this->_mail->addAddress($CustomerEmail,$CustomerName); 
 
             // 添加 BCC 和 CC
-            $this->_mail->addBCC('olive.chou@libobio.com');
+            // $this->_mail->addBCC('olive.chou@libobio.com');
             $this->_mail->addCC('tina.xue@libobio.com');
 
             // 郵件內容 

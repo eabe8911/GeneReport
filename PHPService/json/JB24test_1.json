@@ -1,0 +1,18 @@
+{
+    "ReportID": "JB24test_1",
+    "PatientID": "",
+    "SampleNo": "",
+    "scID": "",
+    "HospitalList": "",
+    "HospitalList_Dr": "",
+    "ReportTemplateID": "",
+    "ReportType": "",
+    "scdate": "2024-08-30T00:00",
+    "rcdate": "2024-08-30T13:00",
+    "ReportName": "",
+    "DueDate": "2024-09-23",
+    "CustomerName": "\u9673\u8a69\u6021",
+    "CustomerEmail": "lab1419@ptch.org.tw",
+    "ccemail": "",
+    "CustomerPhone": "08-7368686#1413"
+}

@@ -42,9 +42,10 @@ class Report implements ReportInterface
                 'ReportTemplateID' => $data['ReportTemplateID'] ?? '', //報告範本編號
                 'ReportType' => $data['ReportType'] ?? '', //報告類型
                 'scdate' => $data['scdate'] ?? '', //採集日期
-                // 'Submitdate' => $data['Submitdate'] ?? '', //送檢日期
+                'Submitdate' => $data['Submitdate'] ?? '', //送檢日期
                 'rcdate' => $data['rcdate'] ?? '', //收檢日期
-                // 'ReceivingDate' => $data['ReceivingDate'] ?? '', //收檢日期
+                'SampleType' => $data['SampleType'] ?? '', //樣本類型
+                'ReceivingDate' => $data['ReceivingDate'] ?? '', //收檢日期
                 'Receiving' => $data['Receiving'] ?? '', //收檢人員
                 'Receiving2' => $data['Receiving2'] ?? '', //收檢人員2
                 'TemplateID' => $data['TemplateID'] ?? '', //範本編號
@@ -68,22 +69,8 @@ class Report implements ReportInterface
                 'ReportSendStatus' => $data['ReportSendStatus'] ?? '', //報告寄送狀態
                 'Editable' => $data['Editable'] ?? '', //是否可編輯
                 'RejectReason' => $data['RejectReason'] ?? '', //拒絕原因
-                'SampleType_1' => $data['SampleType_1'] ?? '', //樣本類型1
-                'SampleQuantity_1' => $data['SampleQuantity_1'] ?? '', //樣本數量1
-                'SampleUnit_1' => $data['SampleUnit_1'] ?? '', //樣本單位1
-                'SampleType_2' => $data['SampleType_2'] ?? '', //樣本類型2
-                'SampleQuantity_2' => $data['SampleQuantity_2'] ?? '', //樣本數量2
-                'SampleUnit_2' => $data['SampleUnit_2'] ?? '', //樣本單位2
-                'SampleType_3' => $data['SampleType_3'] ?? '', //樣本類型3
-                'SampleQuantity_3' => $data['SampleQuantity_3'] ?? '', //樣本數量3
-                'SampleUnit_3' => $data['SampleUnit_3'] ?? '', //樣本單位3
-                'SampleType_4' => $data['SampleType_4'] ?? '', //樣本類型4
-                'SampleQuantity_4' => $data['SampleQuantity_4'] ?? '', //樣本數量4
-                'SampleUnit_4' => $data['SampleUnit_4'] ?? '', //樣本單位4
-                'SampleType_5' => $data['SampleType_5'] ?? '', //樣本類型5
-                'SampleQuantity_5' => $data['SampleQuantity_5'] ?? '', //樣本數量5
-                'SampleUnit_5' => $data['SampleUnit_5'] ?? '', //樣本單位5
-
+                'Sampleglass' => $data['Sampleglass'] ?? '', //樣本容器
+                'quantity' => $data['quantity'] ?? '', //樣本數量
             ];
         } catch (PDOException | Exception $th) {
             throw new Exception($th->getMessage(), $th->getCode());
@@ -259,12 +246,12 @@ class Report implements ReportInterface
                 }
                 $now = date("Y-m-d H:i:s");
                 $sql = "INSERT INTO Report (
-                ReportID, ReportName, FileName, apply_pdf, DueDate, ReportType, TemplateID, ccemail, HospitalList, ReportStatus,
-                CreatedAt, CustomerName, CustomerEmail, CustomerPhone, SampleID, PatientID, scID, scdate, rcdate ,SampleNo, Receiving, Receiving2, ReportTemplate
+                ReportID, ReportName, FileName, ReportType, TemplateID, ccemail, HospitalList, ReportStatus,
+                CreatedAt, CustomerName, CustomerEmail, CustomerPhone, DueDate, SampleID, PatientID, scID, scdate, rcdate, apply_pdf, Submitdate ,SampleNo, SampleType,ReceivingDate,  Receiving,Sampleglass, quantity
                 ) VALUES (
-                :ReportID, :ReportName, :FileName, :apply_pdf, :DueDate, :ReportType, :TemplateID, :ccemail, :HospitalList, :ReportStatus,
-                :CreatedAt, :CustomerName, :CustomerEmail, :CustomerPhone, :SampleID, :PatientID, :scID, :scdate, :rcdate, :SampleNo, :Receiving, :Receiving2, :ReportTemplate 
-               )";
+                :ReportID, :ReportName, :FileName, :ReportType, :TemplateID, :ccemail, :HospitalList, :ReportStatus,
+                :CreatedAt, :CustomerName, :CustomerEmail, :CustomerPhone, :DueDate, :SampleID, :PatientID, :scID, :scdate, :rcdate, :apply_pdf, :Submitdate, :SampleNo, :SampleType, :ReceivingDate, :Receiving, :Sampleglass, :quantity
+                )";
                 $stmt = $this->_conn->prepare($sql);
                 $stmt->bindParam(':ReportID', $ReportInfo['ReportID']);
                 $stmt->bindParam(':ReportName', $ReportInfo['ReportName']);
@@ -284,15 +271,34 @@ class Report implements ReportInterface
                     $DueDate_date = null;
                     $scdate_date = null;
                     $rcdate_date = null;
+                    $Submit_date = null;
+                    $ReceivingDate_date = null;
+
                 } else {
+                    // $ReportInfo['DueDate'] = $date->format('Y-m-d');
                     $DueDate =  $ReportInfo['DueDate'];
+                    // $DueDate_date = $DueDate->format('Y-m-d');
+                    // if ($DueDate === false) {
+                    //     $DueDate_date = null;
+                    // } else {
+                    //     $DueDate_date = $DueDate->format('Y-m-d');
+                    // }
                     $scdate =  $ReportInfo['scdate'];
+                    // $scdate_date = $scdate->format('Y-m-d');
                     $rcdate = $ReportInfo['rcdate'];
+                    // $rcdate_date = $rcdate->format('Y-m-d');
+                    $Submitdate =  $ReportInfo['Submitdate'];
+                    // $Submit_date = $Submitdate->format('Y-m-d');
+                    $ReceivingDate =  $ReportInfo['ReceivingDate'];
+                    // $ReceivingDate_date = $ReceivingDate->format('Y-m-d');
                 }
+
+                // $stmt->bindValue(':FileName', $ReportInfo['ReportID'] . '.pdf');
+                //ReportType 只取第一個數字
                 $ReportInfo['ReportType'] = substr($ReportInfo['ReportType'], 0, 1);
                 $ReportInfo['TemplateID'] = substr($ReportInfo['TemplateID'], 0, 1);
                 $ReportInfo['HospitalList'] = substr($ReportInfo['HospitalList'], 0, 1);
-                $stmt->bindParam(':DueDate', $DueDate);
+
                 $stmt->bindParam(':ReportType', $ReportInfo['ReportType']);
                 $stmt->bindParam(':TemplateID', $ReportInfo['TemplateID']);
                 $stmt->bindParam(':ccemail', $ReportInfo['ccemail']);
@@ -302,38 +308,24 @@ class Report implements ReportInterface
                 $stmt->bindParam(':CustomerName', $ReportInfo['CustomerName']);
                 $stmt->bindParam(':CustomerEmail', $ReportInfo['CustomerEmail']);
                 $stmt->bindParam(':CustomerPhone', $ReportInfo['CustomerPhone']);
+                $stmt->bindParam(':DueDate', $DueDate);
                 $stmt->bindParam(':SampleID', $ReportInfo['SampleID']);
                 $stmt->bindParam(':PatientID', $ReportInfo['PatientID']);
                 $stmt->bindParam(':scID', $ReportInfo['scID']);
                 $stmt->bindParam(':scdate', $scdate);
                 $stmt->bindParam(':rcdate', $rcdate);
-                // $stmt->bindParam(':Submitdate', $Submitdate);
+                $stmt->bindParam(':Submitdate', $Submitdate);
                 $stmt->bindParam(':SampleNo', $ReportInfo['SampleNo']);
-                // $stmt->bindParam(':ReceivingDate', $ReceivingDate);
+                $stmt->bindParam(':SampleType', $ReportInfo['SampleType']);
+                $stmt->bindParam(':ReceivingDate', $ReceivingDate);
                 $stmt->bindParam(':Receiving', $ReportInfo['Receiving']);
-                $stmt->bindParam(':Receiving2', $ReportInfo['Receiving2']);
-                $stmt->bindParam(':ReportTemplate', $ReportInfo['ReportTemplate']);
-                // $stmt->bindParam(':SampleType_1', $ReportInfo['SampleType_1']);
-                // $stmt->bindParam(':SampleQuantity_1', $ReportInfo['SampleQuantity_1']);
-                // $stmt->bindParam(':SampleUnit_1', $ReportInfo['SampleUnit_1']);
-                // $stmt->bindParam(':SampleType_2', $ReportInfo['SampleType_2']);
-                // $stmt->bindParam(':SampleQuantity_2', $ReportInfo['SampleQuantity_2']);
-                // $stmt->bindParam(':SampleUnit_2', $ReportInfo['SampleUnit_2']);
-                // $stmt->bindParam(':SampleType_3', $ReportInfo['SampleType_3']);
-                // $stmt->bindParam(':SampleQuantity_3', $ReportInfo['SampleQuantity_3']);
-                // $stmt->bindParam(':SampleUnit_3', $ReportInfo['SampleUnit_3']);
-                // $stmt->bindParam(':SampleType_4', $ReportInfo['SampleType_4']);
-                // $stmt->bindParam(':SampleQuantity_4', $ReportInfo['SampleQuantity_4']);
-                // $stmt->bindParam(':SampleUnit_4', $ReportInfo['SampleUnit_4']);
-                // $stmt->bindParam(':SampleType_5', $ReportInfo['SampleType_5']);
-                // $stmt->bindParam(':SampleQuantity_5', $ReportInfo['SampleQuantity_5']);
-                // $stmt->bindParam(':SampleUnit_5', $ReportInfo['SampleUnit_5']);
-
+                $stmt->bindParam(':Sampleglass', $ReportInfo['Sampleglass']);
+                $stmt->bindParam(':quantity', $ReportInfo['quantity']);
                 $stmt->execute();
             }
         } catch (PDOException | Exception $th) {
-            throw new Exception($th->getMessage(), (int)$th->getCode());
-                }
+            throw new Exception($th->getMessage(), $th->getCode());
+        }
         return true;
     }
 
@@ -353,17 +345,14 @@ class Report implements ReportInterface
                 $now = date("Y-m-d H:i:s");
                 $sql = "INSERT INTO Report (
                 SampleID, PatientID, SampleNo, scID, HospitalList, HospitalList_Dr, ReportTemplate, ReportTemplateID,
-                ReportType, scdate, rcdate, Receiving, Receiving2, TemplateID, 
+                ReportType, scdate, Submitdate, rcdate, SampleType, ReceivingDate, Receiving, Receiving2, TemplateID, 
                 ReportID, ReportName, CustomerName, CustomerEmail, CustomerPhone, ReportStatus, HospitalList_ERP,
-                CreatedAt, DueDate, SampleType_1, SampleQuantity_1, SampleUnit_1, SampleType_2, SampleQuantity_2, SampleUnit_2
-                , SampleType_3, SampleQuantity_3, SampleUnit_3, SampleType_4, SampleQuantity_4, SampleUnit_4, SampleType_5, SampleQuantity_5, SampleUnit_5
+                CreatedAt, DueDate
                 ) VALUES (
                 :SampleID, :PatientID, :SampleNo, :scID, :HospitalList, :HospitalList_Dr, :ReportTemplate, :ReportTemplateID,
-                :ReportType, :scdate, :rcdate, :Receiving, :Receiving2, :TemplateID, 
+                :ReportType, :scdate, :Submitdate, :rcdate, :SampleType, :ReceivingDate, :Receiving, :Receiving2, :TemplateID, 
                 :ReportID, :ReportName, :CustomerName, :CustomerEmail, :CustomerPhone, :ReportStatus, :HospitalList_ERP,
-                :CreatedAt, :DueDate, :SampleType_1, :SampleQuantity_1, :SampleUnit_1, :SampleType_2, :SampleQuantity_2, :SampleUnit_2
-                , :SampleType_3, :SampleQuantity_3, :SampleUnit_3, :SampleType_4, :SampleQuantity_4, :SampleUnit_4, :SampleType_5, :SampleQuantity_5, :SampleUnit_5
-                )";
+                :CreatedAt, :DueDate                )";
                 $stmt = $this->_conn->prepare($sql);
 
                 // $ReportInfo['DueDate'] = DateTime::createFromFormat('Y-m-d', $ReportInfo['DueDate']);
@@ -372,14 +361,14 @@ class Report implements ReportInterface
                     // 假设 $ReportInfo 是包含所有信息的数组
                     $ReportDate = [
                         'scdate' => $ReportInfo['scdate'],
-                        // 'Submitdate' => $ReportInfo['Submitdate'],
+                        'Submitdate' => $ReportInfo['Submitdate'],
                         'rcdate' => $ReportInfo['rcdate'],
-                        // 'ReceivingDate' => $ReportInfo['ReceivingDate'],
+                        'ReceivingDate' => $ReportInfo['ReceivingDate'],
                         'DueDate' => $ReportInfo['DueDate'],
                     ];
                 
                     // 定义需要转换的日期时间字段
-                    $dateTimeFields = ['scdate', 'rcdate'];
+                    $dateTimeFields = ['scdate', 'Submitdate', 'rcdate', 'ReceivingDate'];
                     $dateFields = ['DueDate'];
                 
                     // 遍历需要转换的字段
@@ -438,9 +427,10 @@ class Report implements ReportInterface
                 $stmt->bindParam(':ReportTemplateID', $ReportInfo['ReportTemplateID']);
                 $stmt->bindParam(':ReportType', $ReportInfo['ReportType']);
                 $stmt->bindParam(':scdate', $ReportDate['scdate']);
-                // $stmt->bindParam(':Submitdate', $ReportDate['Submitdate']);
+                $stmt->bindParam(':Submitdate', $ReportDate['Submitdate']);
                 $stmt->bindParam(':rcdate', $ReportDate['rcdate']);
-                // $stmt->bindParam(':ReceivingDate', $ReportDate['ReceivingDate']);
+                $stmt->bindParam(':SampleType', $ReportInfo['SampleType']);
+                $stmt->bindParam(':ReceivingDate', $ReportDate['ReceivingDate']);
                 $stmt->bindParam(':Receiving', $ReportInfo['Receiving']);
                 $stmt->bindParam(':Receiving2', $ReportInfo['Receiving2']);
                 $stmt->bindParam(':TemplateID', $ReportInfo['TemplateID']);
@@ -453,22 +443,6 @@ class Report implements ReportInterface
                 $stmt->bindParam(':ReportStatus', $ReportStatus);
                 $stmt->bindParam(':HospitalList_ERP', $ReportInfo['HospitalList_ERP']);
                 $stmt->bindParam(':CreatedAt', $now);
-
-                $stmt->bindParam(':SampleType_1', $ReportInfo['SampleType_1']);
-                $stmt->bindParam(':SampleQuantity_1', $ReportInfo['SampleQuantity_1']);
-                $stmt->bindParam(':SampleUnit_1', $ReportInfo['SampleUnit_1']);
-                $stmt->bindParam(':SampleType_2', $ReportInfo['SampleType_2']);
-                $stmt->bindParam(':SampleQuantity_2', $ReportInfo['SampleQuantity_2']);
-                $stmt->bindParam(':SampleUnit_2', $ReportInfo['SampleUnit_2']);
-                $stmt->bindParam(':SampleType_3', $ReportInfo['SampleType_3']);
-                $stmt->bindParam(':SampleQuantity_3', $ReportInfo['SampleQuantity_3']);
-                $stmt->bindParam(':SampleUnit_3', $ReportInfo['SampleUnit_3']);
-                $stmt->bindParam(':SampleType_4', $ReportInfo['SampleType_4']);
-                $stmt->bindParam(':SampleQuantity_4', $ReportInfo['SampleQuantity_4']);
-                $stmt->bindParam(':SampleUnit_4', $ReportInfo['SampleUnit_4']);
-                $stmt->bindParam(':SampleType_5', $ReportInfo['SampleType_5']);
-                $stmt->bindParam(':SampleQuantity_5', $ReportInfo['SampleQuantity_5']);
-                $stmt->bindParam(':SampleUnit_5', $ReportInfo['SampleUnit_5']);
 
                 $stmt->execute();
             }
@@ -560,8 +534,7 @@ class Report implements ReportInterface
                 PatientID=:PatientID,
                 scID=:scID,
                 scdate=:scdate,
-                rcdate=:rcdate, 
-                ReportTemplate = :ReportTemplate
+                rcdate=:rcdate
                 WHERE ID=:ID";
 
                 
@@ -584,8 +557,7 @@ class Report implements ReportInterface
                 PatientID=:PatientID,
                 scID=:scID,
                 scdate=:scdate,
-                rcdate=:rcdate,
-                ReportTemplate = :ReportTemplate
+                rcdate=:rcdate
                 WHERE ID=:ID";
 
             if (!empty($_FILES['ReportApply']['name']) ) {
@@ -610,7 +582,6 @@ class Report implements ReportInterface
                 $stmt->bindParam(':scID', $ReportInfo['scID']);
                 $stmt->bindParam(':scdate', $ReportInfo['scdate']);
                 $stmt->bindParam(':rcdate', $ReportInfo['rcdate']);
-                $stmt->bindParam(':ReportTemplate', $ReportInfo['ReportTemplate']);
                 $stmt->bindParam(':ID', $ReportInfo['ID']);
                 // $stmt->execute();
 
@@ -634,7 +605,6 @@ class Report implements ReportInterface
                 $stmt->bindParam(':scID', $ReportInfo['scID']);
                 $stmt->bindParam(':scdate', $ReportInfo['scdate']);
                 $stmt->bindParam(':rcdate', $ReportInfo['rcdate']);
-                $stmt->bindParam(':ReportTemplate', $ReportInfo['ReportTemplate']);
                 $stmt->bindParam(':ID', $ReportInfo['ID']);
             }
 

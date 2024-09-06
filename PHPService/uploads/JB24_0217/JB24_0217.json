@@ -1,0 +1,18 @@
+{
+    "ReportID": "JB24_0217",
+    "PatientID": "xxx123",
+    "SampleNo": "pp",
+    "scID": "ccc123",
+    "HospitalList": "2",
+    "HospitalList_Dr": "",
+    "ReportTemplateID": "",
+    "ReportType": "1",
+    "scdate": "2024-09-06T11:23",
+    "rcdate": "2024-09-05T11:23",
+    "ReportName": "M101-01 Pathogen Fast Identification (DNA)",
+    "DueDate": "2024-10-05",
+    "CustomerName": "1",
+    "CustomerEmail": "1",
+    "ccemail": "1",
+    "CustomerPhone": "1"
+}

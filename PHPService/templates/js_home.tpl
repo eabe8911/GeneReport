@@ -154,10 +154,14 @@
                 var link = "<button class='btn btn-primary' onclick='ReportDelete(" + ID + ");'>刪  除</button>";
                 break;
             case '2':
-            case '3':
                 var link0 = "<button class='btn btn-primary' onclick='ReportApprove(" + ID + ");'>報告簽核</button>";
                 var link1 = "<button class='btn btn-primary' onclick='ReportEdit(" + ID + ");'>檢視報告</button>";
                 var link = link0 + " " + link1;                
+                break;
+            case '3':
+                var link = "<button class='btn btn-primary' onclick='ReportApprove(" + ID + ");'>報告簽核</button>";
+                // var link1 = "<button class='btn btn-primary' onclick='ReportEdit(" + ID + ");'>檢視報告</button>";
+                // var link = link0 + " " + link1;                
                 break;
             default:
                 var link = "<button class='btn btn-primary' onclick='ViewAppointPage(" + ID + ");'>無權限</button>";

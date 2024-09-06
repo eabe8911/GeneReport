@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-08-23 08:15:06
+/* Smarty version 4.3.4, created on 2024-08-30 10:49:03
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\js_home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_66c828ea44ef43_90329555',
+  'unifunc' => 'content_66d1877f6c4621_62713357',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'af20c2dcd618f47077569e973358c052788598d6' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\js_home.tpl',
-      1 => 1724393702,
+      1 => 1725007533,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_66c828ea44ef43_90329555 (Smarty_Internal_Template $_smarty_tpl) {
+function content_66d1877f6c4621_62713357 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!--THIS JQUERY AND CSS IS FOR JQGRID TABLE-->
 <?php echo '<script'; ?>
  type="text/ecmascript" src="js/prettify/prettify.js"><?php echo '</script'; ?>
@@ -222,10 +222,14 @@ function content_66c828ea44ef43_90329555 (Smarty_Internal_Template $_smarty_tpl)
                 var link = "<button class='btn btn-primary' onclick='ReportDelete(" + ID + ");'>刪  除</button>";
                 break;
             case '2':
-            case '3':
                 var link0 = "<button class='btn btn-primary' onclick='ReportApprove(" + ID + ");'>報告簽核</button>";
                 var link1 = "<button class='btn btn-primary' onclick='ReportEdit(" + ID + ");'>檢視報告</button>";
                 var link = link0 + " " + link1;                
+                break;
+            case '3':
+                var link = "<button class='btn btn-primary' onclick='ReportApprove(" + ID + ");'>報告簽核</button>";
+                // var link1 = "<button class='btn btn-primary' onclick='ReportEdit(" + ID + ");'>檢視報告</button>";
+                // var link = link0 + " " + link1;                
                 break;
             default:
                 var link = "<button class='btn btn-primary' onclick='ViewAppointPage(" + ID + ");'>無權限</button>";

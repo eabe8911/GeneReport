@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-08-27 15:55:21
+/* Smarty version 4.3.4, created on 2024-09-05 16:36:40
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\ReportDetailMaintain.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_66cd86691be048_79354676',
+  'unifunc' => 'content_66d96d988b3390_13408747',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '451136e515d260dcfeb69b381fca1166c93b1f0d' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\ReportDetailMaintain.tpl',
-      1 => 1724745318,
+      1 => 1725525397,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_66cd86691be048_79354676 (Smarty_Internal_Template $_smarty_tpl) {
+function content_66d96d988b3390_13408747 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\vendor\\smarty\\smarty\\libs\\plugins\\function.html_options.php','function'=>'smarty_function_html_options',),));
 ?>
 <!--POP UP MODAL TO VIEW MEMBER DETAILS AND RESULTS FOR Member Information-->
@@ -55,13 +55,11 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                 <div class="form-group">
                                     <label for="main-menu" class="col-md-3 control-label">報告類型:</label>
                                     <div class="col-md-8">
-                                       
+
 
                                         <select id="ReportTemplate" name="ReportTemplate" class="form-control"
                                             onchange="populateSubmenu(this, document.getElementById('ReportName'))">
-                                            <option value=""> <?php echo '<?php'; ?>
- echo $ReportTemplate; <?php echo '?>'; ?>
-</option>
+                                            <option value="">Select a category</option>
                                             <option value="M1">M1 系列</option>
                                             <option value="M2">M2 系列</option>
                                             <option value="O1">O1 系列</option>
@@ -272,7 +270,7 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                 </div>
                                 <!---- 客戶郵件2 -->
                                 <div class="form-group">
-                                    <label for="ccemail" class="col-md-3 control-label">信箱(副本):</label>
+                                    <label for="ccemail" class="col-md-3 control-label">信箱(CC副本):</label>
                                     <div class="col-md-8">
                                         <input type="text" id="ccemail" name="ccemail" class="form-control"
                                             value="<?php echo $_smarty_tpl->tpl_vars['ccemail']->value;?>
@@ -311,6 +309,18 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                     </div>
                                 </div>
                                 <?php }?>
+                                 <div class="form-group">
+                                    <label for="downloadJsonBtn" class="col-md-3 control-label"></label>
+
+                                    <div class="col-md-8">
+                                        <button id="downloadJsonBtn" class="btn btn-primary" onclick="downloadJson()">下載
+                                            JSON 文件</button>
+
+                                    </div>
+
+                                </div> 
+
+
 
                                 <!-- 發信通知按紐，permission == 2 才顯示按紐 -->
                                 <!-- <?php if ($_smarty_tpl->tpl_vars['Permission']->value == 2) {?>
@@ -450,6 +460,7 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                 <button type="submit" class="btn btn-custom btn-success btn-md" id=BtnReportSubmit
                                     name=BtnReportSubmit style="font-weight:bold;font-size:20px;margin:30px;">
                                     <i class="fa fa-paper-plane"></i> 確 認</button>
+                            <p id="uploadWarning" style="color: red; display: none;">請上傳申請單</p>
                             </p>
                         </div>
                     </div>
@@ -505,180 +516,197 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
 <?php echo '<script'; ?>
 >
     function populateSubmenu(mainMenu, subMenu) {
-var subMenuData = {
-    "M1": [
-        "M101-01 Pathogen Fast Identification (DNA)",
-        "M102-01 Pathogen Fast Identification (RNA)",
-        "M103-01 Pathogen Fast Identification"
-    ],
-    "M2": [
-        "M201-01 Mycoplasma (General)",
-        "M202-01 Mycoplasma (Express)"
-    ],
-    "O1": [
-        "O101-01 Circulating Tumor Cell (CTC) Assay Report"
-    ],
-    "P1": [
-        "P101-01 Lihpao Multi-cancer Target Drug Panel",
-        "P101-02 Lihpao Comprehensive CDx-30 Genes (FFPE)",
-        "P101-03 Lihpao Multi-cancer Target Drug Genetic Testing",
-        "P102-01 Lihpao CRC Target Drug Panel",
-        "P102-02 Lihpao CRC Target Drug Genetic Testing",
-        "P103-01 Lihpao NSCLC Target Drug Panel",
-        "P103-02 Lihpao NSCLC Target Drug Genetic Testing",
-        "P104-01 Lihpao BRCA1/2 Germline Panel",
-        "P104-02 Lihpao Germline BRCA1/2 Genetic Testing",
-        "P105-01 Lihpao Multi-cancer Target Drug RNA Panel",
-        "P105-02 Lihpao Multi-Cacner Target Drug RNA Genetic Testing",
-        "P106-01 Lihpao Lung Fusion Target Drug Panel",
-        "P107-01 Lihpao Lung Cancer Comprehensive Target Drug Panel",
-        "P108-01 Next-generation sequencing for Breast cancer",
-        "P109-01 Next-generation sequencing for Colon cancer",
-        "P110-01 CDx DNA Genetic Testing_HS",
-        "P111-01 CDx DNA Genetic Testing_S5",
-        "P111-02 Tumor DNA Genetic Testing",
-        "P112-01 CDx RNA Genetic Testing_HS",
-        "P113-01 CDx RNA Genetic Testing_S5",
-        "P113-02 Tumor RNA Genetic Testing",
-        "P115-01 Lihpao Multi-cancer Target Drug Panel_HS",
-        "P116-01 Lihpao CRC Target Drug Panel_HS",
-        "P117-01 Lihpao NSCLC Target Drug Panel_HS",
-        "P118-01 Lihpao Multi-cancer Target Drug Panel (Comprehensive Version)"
-    ],
-    "P2": [
-        "P201-01 BRCA1/2 of Somatic Genetic Testing",
-        "P202-01 ARVC Panel",
-        "P203-01 HCM Panel",
-        "P204-01 NOTCH3 EGFr Domain, Exon 2-24"
-    ],
-    "P3": [
-        "P301-01 BRCA1/2 of Somatic and Germline Genetic Testing"
-    ],
-    "S1": [
-        "S101-01 EGFR 29 Mutations Detection",
-        "S102-01 KRAS Mutation Detection",
-        "S103-01 BRAF V600 Mutations Detection"
-    ],
-    "S2": [
-        "S201-01 APOE Genotyping",
-        "S202-01 Metabolism Trio Genetic Testing",
-        "S203-01 CYP1A2 Genotyping",
-        "S204-01 ADH1B Genotyping",
-        "S205-01 ALDH2 Genotyping",
-        "S206-01 NOTCH3 R544C Genotyping",
-        "S208-01 CYP2C19 *2/*3 Genotyping"
-    ],
-    "S3": [
-        "S301-01 Sanger Sequencing",
-        "S302-01 NOTCH3 R544C Genotyping",
-        "S303-01 CYP2C19 *2/*3 Genotyping",
-        "S304-01 DPD Deficiency Genetic Testing",
-        "S305-01 BDNF rs6265 Genotyping",
-        "S306-01 PKD genetic testing genetic testing (Hotspot)",
-        "S307-01 TGFBI (Hotspots) Genetic Testing"
-    ],
-    "W1": [
-        "W100-01 Hereditary Cancer Genetic Testing",
-        "W101-01 Prostate Cancer Germline Genetic Testing"
-    ],
-    "W2": [
-        "W200-01 Cardiovascular Disease Genetic Testing",
-        "W201-01 ARVC Genetic Testing",
-        "W202-01 HCM Genetic Testing",
-        "W203-01 DCM Genetic Testing",
-        "W204-01 TAAD Genetic Testing",
-        "W205-01 ATS Genetic Testing",
-        "W206-01 DMVD Genetic Testing",
-        "W207-01 Familial Hypercholesterolemia Genetic Testing",
-        "W208-01 Marfan Syndrome Genetic Testing",
-        "W209-01 Arrhythmia Genetic Testing",
-        "W210-01 Brugada Syndrome Genetic Testing",
-        "W211-01 Catecholaminergic Polymorphic Ventricular Tachycardia Genetic Testing",
-        "W212-01 Long QT Syndrome Genetic Testing",
-        "W213-01 Short QT Syndrome Genetic Testing",
-        "W214-01 ARVC Genetic Testing",
-        "W215-01 HCM Genetic Testing",
-        "W216-01 Familial hypercholesterolemia genetic testing",
-        "W217-01 Aortopathy genetic testing",
-        "W218-01 SADS genetic testing",
-        "W219-01 Cardiovascular disease genetic testing"
-    ],
-    "W3": [
-        "W300-01 Neurological Disease Genetic Testing",
-        "W301-01 Cerebral Small Vessel Disease Genetic Testing",
-        "W302-01 Parkinsonism Genetic Testing",
-        "W303-01 Hereditary Spastic Paraplegia Genetic Testing",
-        "W304-01 Dystonia Genetic Testing",
-        "W305-01 Cognitive Disorder Genetic Testing",
-        "W306-01 Wilson's disease Genetic Testing",
-        "W307-01 Neurofibromatosis Genetic Testing",
-        "W308-01 Ataxia Genetic Testing",
-        "W309-01 Tuberous Sclerosis Genetic Testing",
-        "W310-01 Amyotrophic Lateral Sclerosis Genetic Testing",
-        "W311-01 Leukodystrophy Genetic Testing",
-        "W312-01 Von-Hippel-Lindau Disease Genetic Testing",
-        "W313-01 Charcot-Marie-Tooth Disease Genetic Testing",
-        "W314-01 Cerebral Autosomal Dominant Arteriopathy with Subcortical Infarcts and Leukoencephalopathy Genetic Testing",
-        "W314-02 CADASIL Genetic Testing",
-        "W315-01 Lysosomal Storage Disease Genetic Testing",
-        "W316-01 Tourette's Syndrome Genetic Testing",
-        "W317-01 MELAS Syndrome Genetic Testing",
-        "W318-01 Multiple System Atrophy Genetic Testing",
-        "W319-01 Primary Lateral Sclerosis Genetic Testing",
-        "W320-01 Familial Amyloid Polyneuropathy Genetic Testing",
-        "W321-01 Epilepsy Genetic Testing",
-        "W322-01 Common Neurological Disease Genetic Testing",
-        "W323-01 Inherited Stroke Genetic Testing"
-    ],
-    "W4": [
-        "W401-01 Genetic Carrier Screening v1.0",
-        "W402-01 Genetic Carrier Screening v2.0",
-        "W403-01 Genetic Carrier Screening v3.0"
-    ],
-    "W5": [
-        "W501-01 Healthy Weight Genetic Testing",
-        "W502-01 Healthy Weight Genetic Testing for Monogenic Disorders",
-        "W503-01 Skin Care Genetic Testing",
-        "W504-01 Skin Immunity Genetic Testing",
-        "W505-01 Bone Health Genetic Testing (Female)",
-        "W506-01 Bone Health Genetic Testing (Male)",
-        "W507-01 Alcohol Metabolism Genetic Testing",
-        "W508-01 Height Potential Genetic Testing",
-        "W509-01 Personality Genetic Testing",
-        "W510-01 Athletic Performance Genetic Testing",
-        "W511-01 Uterine Care Genetic Testing",
-        "W512-01 Genetic Predisposition Testing for Type 2 Diabetes",
-        "W513-01 Eye Health Genetic Testing",
-        "W514-01 Eye Health Genetic Testing for Monogenic Disorders",
-        "W515-01 Hair Care Genetic Testing (Female)",
-        "W516-01 Hair Care Genetic Testing (Male)",
-        "W517-01 Sleep Care Genetic Testing (Female)",
-        "W518-01 Sleep Care Genetic Testing (Male)",
-        "W519-01 Genetic Predisposition Testing for Precocious Puberty (Female)",
-        "W520-01 Genetic Predisposition Testing for Precocious Puberty (Male)",
-        "W521-01 Cerebrovascular Health Genetic Testing (Female)",
-        "W522-01 Cerebrovascular Health Genetic Testing (Male)",
-        "W523-01 Cerebrovascular Health Genetic Testing for Monogenic Disorders",
-        "W524-01 Genetic Predisposition Testing for Chronic Kidney Disease",
-        "W525-01 Genetic Predisposition Testing for Urolithiasis and Nephrolithiasis",
-        "W526-01 Genetic Predisposition Testing for Gastroesophageal Reflux Disease",
-        "W527-01 Genetic Predisposition Testing for Longevity (Female)",
-        "W527-02 Longevity Genetic Testing (Female)",
-        "W528-01 Genetic Predisposition Testing for Longevity (Male)",
-        "W528-02 Longevity Genetic Testing (Male)",
-        "W529-01 Chest Care Genetic Testing",
-        "W530-01 Caffeine Metabolism Genetic Testing",
-        "W531-01 Cholesterol Metabolism Genetic Testing",
-        "W532-01 Liver Health Genetic Testing"
-    ],
-    "W6": [
-        "W601-01 Glaucoma Genetic Testing",
-        "W602-01 Macular Degeneration Genetic Testing"
-    ],
-    "R9": [
-        "R9 客製化報告"
-    ]
-};
+        var subMenuData = {
+            "M1": [
+                "M101-01 Pathogen Fast Identification (DNA)",
+                "M102-01 Pathogen Fast Identification (RNA)",
+                "M103-01 Pathogen Fast Identification"
+            ],
+            "M2": [
+                "M201-01 Mycoplasma (General)",
+                "M201-02 Mycoplasma",
+                "M202-01 Mycoplasma (Express)",
+                "M202-02 Mycoplasma (Express)"
+            ],
+            "O1": [
+                "O101-01 Circulating Tumor Cell (CTC) Assay Report"
+            ],
+            "P1": [
+                "P101-01 Lihpao Multi-cancer Target Drug Panel",
+                "P101-02 Lihpao Comprehensive CDx-30 Genes (FFPE)",
+                "P101-03 Lihpao Multi-cancer Target Drug Genetic Testing",
+                "P102-01 Lihpao CRC Target Drug Panel",
+                "P102-02 Lihpao CRC Target Drug Genetic Testing",
+                "P103-01 Lihpao NSCLC Target Drug Panel",
+                "P103-02 Lihpao NSCLC Target Drug Genetic Testing",
+                "P104-01 Lihpao BRCA1/2 Germline Panel",
+                "P104-02 Lihpao Germline BRCA1/2 Genetic Testing",
+                "P105-01 Lihpao Multi-cancer Target Drug RNA Panel",
+                "P105-02 Lihpao Multi-Cacner Target Drug RNA Genetic Testing",
+                "P106-01 Lihpao Lung Fusion Target Drug Panel",
+                "P107-01 Lihpao Lung Cancer Comprehensive Target Drug Panel",
+                "P108-01 Next-generation sequencing for Breast cancer",
+                "P109-01 Next-generation sequencing for Colon cancer",
+                "P110-01 CDx DNA Genetic Testing_HS",
+                "P111-01 CDx DNA Genetic Testing_S5",
+                "P111-02 Tumor DNA Genetic Testing",
+                "P112-01 CDx RNA Genetic Testing_HS",
+                "P113-01 CDx RNA Genetic Testing_S5",
+                "P113-02 Tumor RNA Genetic Testing",
+                "P115-01 Lihpao Multi-cancer Target Drug Panel_HS",
+                "P116-01 Lihpao CRC Target Drug Panel_HS",
+                "P117-01 Lihpao NSCLC Target Drug Panel_HS",
+                "P118-01 Lihpao Multi-cancer Target Drug Panel (Comprehensive Version)"
+            ],
+            "P2": [
+                "P201-01 BRCA1/2 of Somatic Genetic Testing",
+                "P202-01 ARVC Panel",
+                "P203-01 HCM Panel",
+                "P204-01 NOTCH3 EGFr Domain, Exon 2-24"
+            ],
+            "P3": [
+                "P301-01 BRCA1/2 of Somatic and Germline Genetic Testing"
+            ],
+            "S1": [
+                "S101-01 EGFR 29 Mutations Detection",
+                "S101-02 EGFR 29 Mutations Detection",
+                "S102-01 KRAS Mutation Detection",
+                "S103-01 BRAF V600 Mutations Detection"
+            ],
+            "S2": [
+                "S201-01 APOE Genotyping",
+                "S202-01 Metabolism Trio Genetic Testing",
+                "S203-01 CYP1A2 Genotyping",
+                "S204-01 ADH1B Genotyping",
+                "S205-01 ALDH2 Genotyping",
+                "S206-01 NOTCH3 R544C Genotyping",
+                "S208-01 CYP2C19 *2/*3 Genotyping"
+            ],
+            "S3": [
+                "S301-01 Sanger Sequencing",
+                "S302-01 NOTCH3 R544C Genotyping",
+                "S303-01 CYP2C19 *2/*3 Genotyping",
+                "S304-01 DPD Deficiency Genetic Testing",
+                "S305-01 BDNF rs6265 Genotyping",
+                "S306-01 PKD genetic testing genetic testing (Hotspot)",
+                "S307-01 TGFBI (Hotspots) Genetic Testing"
+            ],
+            "W1": [
+                "W100-01 Hereditary Cancer Genetic Testing",
+                "W101-01 Prostate Cancer Germline Genetic Testing",
+                "W102-01 Hereditary Cancer Genetic Testing"
+            ],
+            "W2": [
+                "W200-01 Cardiovascular Disease Genetic Testing",
+                "W201-01 ARVC Genetic Testing",
+                "W202-01 HCM Genetic Testing",
+                "W203-01 DCM Genetic Testing",
+                "W204-01 TAAD Genetic Testing",
+                "W205-01 ATS Genetic Testing",
+                "W206-01 DMVD Genetic Testing",
+                "W207-01 Familial Hypercholesterolemia Genetic Testing",
+                "W208-01 Marfan Syndrome Genetic Testing",
+                "W209-01 Arrhythmia Genetic Testing",
+                "W210-01 Brugada Syndrome Genetic Testing",
+                "W211-01 Catecholaminergic Polymorphic Ventricular Tachycardia Genetic Testing",
+                "W212-01 Long QT Syndrome Genetic Testing",
+                "W213-01 Short QT Syndrome Genetic Testing",
+                "W214-01 ARVC Genetic Testing",
+                "W215-01 HCM Genetic Testing",
+                "W216-01 Familial hypercholesterolemia genetic testing",
+                "W217-01 Aortopathy genetic testing",
+                "W218-01 SADS genetic testing",
+                "W219-01 Cardiovascular disease genetic testing"
+            ],
+            "W3": [
+                "W300-01 Neurological Disease Genetic Testing",
+                "W300-02 Neurological Disease Genetic Testing",
+                "W301-01 Cerebral Small Vessel Disease Genetic Testing",
+                "W302-01 Parkinsonism Genetic Testing",
+                "W303-01 Hereditary Spastic Paraplegia Genetic Testing",
+                "W304-01 Dystonia Genetic Testing",
+                "W305-01 Cognitive Disorder Genetic Testing",
+                "W305-02 Cognitive Disorder Genetic Testing",
+                "W306-01 Wilson's disease Genetic Testing",
+                "W307-01 Neurofibromatosis Genetic Testing",
+                "W308-01 Ataxia Genetic Testing",
+                "W309-01 Tuberous Sclerosis Genetic Testing",
+                "W310-01 Amyotrophic Lateral Sclerosis Genetic Testing",
+                "W311-01 Leukodystrophy Genetic Testing",
+                "W312-01 Von-Hippel-Lindau Disease Genetic Testing",
+                "W313-01 Charcot-Marie-Tooth Disease Genetic Testing",
+                "W314-01 Cerebral Autosomal Dominant Arteriopathy with Subcortical Infarcts and Leukoencephalopathy Genetic Testing",
+                "W314-02 CADASIL Genetic Testing",
+                "W315-01 Lysosomal Storage Disease Genetic Testing",
+                "W316-01 Tourette's Syndrome Genetic Testing",
+                "W317-01 MELAS Syndrome Genetic Testing",
+                "W318-01 Multiple System Atrophy Genetic Testing",
+                "W319-01 Primary Lateral Sclerosis Genetic Testing",
+                "W320-01 Familial Amyloid Polyneuropathy Genetic Testing",
+                "W321-01 Epilepsy Genetic Testing",
+                "W322-01 Common Neurological Disease Genetic Testing",
+                "W323-01 Inherited Stroke Genetic Testing",
+                "W324-01 Cerebral Small Vessel Disease Genetic Testing",
+                "W325-01 Inherited Stroke Genetic Testing",
+                "W326-01 Common Neurological Disease Genetic Testing",
+                "W327-01 Neurological Disease Genetic Testing",
+                "W327-02 Neurological Disease Genetic Testing",
+                "W328-01 Parkinson Disease Genetic Testing",
+                "W329-01 Cerebral Small Vessel Disease Genetic Testing",
+                "W330-01 Cognitive Disorder Genetic Testing",
+                "W331-01 Epilepsy Genetic Testing",
+                "W332-01 Common Neurological Disease Genetic Testing",
+                "W333-01 Neurological Disease Genetic Testing"
+            ],
+            "W4": [
+                "W401-01 Genetic Carrier Screening v1.0",
+                "W402-01 Genetic Carrier Screening v2.0",
+                "W403-01 Genetic Carrier Screening v3.0"
+            ],
+            "W5": [
+                "W501-01 Healthy Weight Genetic Testing",
+                "W502-01 Healthy Weight Genetic Testing for Monogenic Disorders",
+                "W503-01 Skin Care Genetic Testing",
+                "W504-01 Skin Immunity Genetic Testing",
+                "W505-01 Bone Health Genetic Testing (Female)",
+                "W506-01 Bone Health Genetic Testing (Male)",
+                "W507-01 Alcohol Metabolism Genetic Testing",
+                "W508-01 Height Potential Genetic Testing",
+                "W509-01 Personality Genetic Testing",
+                "W510-01 Athletic Performance Genetic Testing",
+                "W511-01 Uterine Care Genetic Testing",
+                "W512-01 Genetic Predisposition Testing for Type 2 Diabetes",
+                "W513-01 Eye Health Genetic Testing",
+                "W514-01 Eye Health Genetic Testing for Monogenic Disorders",
+                "W515-01 Hair Care Genetic Testing (Female)",
+                "W516-01 Hair Care Genetic Testing (Male)",
+                "W517-01 Sleep Care Genetic Testing (Female)",
+                "W518-01 Sleep Care Genetic Testing (Male)",
+                "W519-01 Genetic Predisposition Testing for Precocious Puberty (Female)",
+                "W520-01 Genetic Predisposition Testing for Precocious Puberty (Male)",
+                "W521-01 Cerebrovascular Health Genetic Testing (Female)",
+                "W522-01 Cerebrovascular Health Genetic Testing (Male)",
+                "W523-01 Cerebrovascular Health Genetic Testing for Monogenic Disorders",
+                "W524-01 Genetic Predisposition Testing for Chronic Kidney Disease",
+                "W525-01 Genetic Predisposition Testing for Urolithiasis and Nephrolithiasis",
+                "W526-01 Genetic Predisposition Testing for Gastroesophageal Reflux Disease",
+                "W527-01 Genetic Predisposition Testing for Longevity (Female)",
+                "W527-02 Longevity Genetic Testing (Female)",
+                "W528-01 Genetic Predisposition Testing for Longevity (Male)",
+                "W528-02 Longevity Genetic Testing (Male)",
+                "W529-01 Chest Care Genetic Testing",
+                "W530-01 Caffeine Metabolism Genetic Testing",
+                "W531-01 Cholesterol Metabolism Genetic Testing",
+                "W532-01 Liver Health Genetic Testing"
+            ],
+            "W6": [
+                "W601-01 Glaucoma Genetic Testing",
+                "W602-01 Macular Degeneration Genetic Testing"
+            ],
+            "R9": [
+                "R9 客製化報告"
+            ]
+        };
 
         var selectedCategory = mainMenu.value;
         var options = subMenuData[selectedCategory] || [];
@@ -755,49 +783,50 @@ var subMenuData = {
 >
     // Define the contacts for each hospital
     const hospitalContacts = {
-            "1": ["王智鴻"],
-            "2": ["連立明", "林冠佑", "蔣介雅", "張名鑫", "許維志", "張安娜", "陳威宏"],
-            "3": ["朱素娟"],
-            "4": ["劉修勳", "許博荏"],
-            "5": ["莊茜"],
-            "6": ["孫瑜", "劉長袖", "鍾季廷", "呂建榮"],
-            "7": ["王韻筑", "黃立楷", "黃媚莉", "陳嘉泓", "鄭芸詠"],
-            "8": ["洪琨景"],
-            "9": [""],
-            "10": ["傅維仁", "黃勇評"],
-            "11": ["宋岳峰", "周中興", "劉懿", "葉大全", "徐昌鴻"],
-            "12": ["呂彥瑢"],
-            "13": ["葉怡君"],
-            "14": ["陳鴻儒", "宋家瑩"],
-            "15": ["胡昭榮"],
-            "16": ["馬松蔚", "王雪君"],
-            "17": [""],
-            "18": ["美玲"],
-            "19": [""],
-            "20": ["趙育萱"],
-            "21": ["孫敏珠"],
-            "22": ["黃忠諺"],
-            "23": [""],
-            "24": ["魏誠佑"],
-            "25": [""],
-            "26": ["涂川洲"],
-            "27": ["陳彥中", "巫錫霖"],
-            "28": ["傅雲慶"],
-            "29": ["王淑貞"],
-            "30": ["林士君"],
-            "31": ["蔡耀隆"],
-            "32": ["陳詩怡"],
-            "33": ["蔡孟翰"],
-            "34": ["劉怡慶", "徐仲豪"],
-            "35": ["陳鴻斌"],
-            "36": ["泓采診所"]    };
+        "1": ["王智鴻"],
+        "2": ["連立明", "林冠佑", "蔣介雅", "張名鑫", "許維志", "張安娜", "陳威宏"],
+        "3": ["朱素娟"],
+        "4": ["劉修勳", "許博荏"],
+        "5": ["莊茜"],
+        "6": ["孫瑜", "劉長袖", "鍾季廷", "呂建榮"],
+        "7": ["王韻筑", "黃立楷", "黃媚莉", "陳嘉泓", "鄭芸詠"],
+        "8": ["洪琨景"],
+        "9": [""],
+        "10": ["傅維仁", "黃勇評"],
+        "11": ["宋岳峰", "周中興", "劉懿", "葉大全", "徐昌鴻"],
+        "12": ["呂彥瑢"],
+        "13": ["葉怡君"],
+        "14": ["陳鴻儒", "宋家瑩"],
+        "15": ["胡昭榮"],
+        "16": ["馬松蔚", "王雪君"],
+        "17": [""],
+        "18": ["美玲"],
+        "19": [""],
+        "20": ["趙育萱"],
+        "21": ["孫敏珠"],
+        "22": ["黃忠諺"],
+        "23": [""],
+        "24": ["魏誠佑"],
+        "25": [""],
+        "26": ["涂川洲"],
+        "27": ["陳彥中", "巫錫霖"],
+        "28": ["傅雲慶"],
+        "29": ["王淑貞"],
+        "30": ["林士君"],
+        "31": ["蔡耀隆"],
+        "32": ["陳詩怡"],
+        "33": ["蔡孟翰"],
+        "34": ["劉怡慶", "徐仲豪"],
+        "35": ["陳鴻斌"],
+        "36": ["泓采診所"]
+    };
 
     // Get references to the select elements
     const hospitalSelect = document.getElementById('HospitalList');
     const contactSelect = document.getElementById('CustomerName');
 
     // Add an event listener to the hospital select element
-    hospitalSelect.addEventListener('change', function() {
+    hospitalSelect.addEventListener('change', function () {
         // Get the selected hospital
         const selectedHospital = this.value;
 
@@ -806,7 +835,7 @@ var subMenuData = {
 
         // Populate the contact select element with the new options
         if (hospitalContacts[selectedHospital]) {
-            hospitalContacts[selectedHospital].forEach(function(contact) {
+            hospitalContacts[selectedHospital].forEach(function (contact) {
                 const option = document.createElement('option');
                 option.value = contact;
                 option.text = contact;
@@ -817,6 +846,41 @@ var subMenuData = {
 
     // Optionally, trigger the change event to populate the contacts on page load
     hospitalSelect.dispatchEvent(new Event('change'));
+<?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+>
+    function downloadJson() {
+        // 設置 JSON 文件的 URL
+        var fileUrl = "./uploads/".$ReportID;
+
+        // 創建一個隱藏的 <a> 元素
+        var a = document.createElement('a');
+        a.href = fileUrl;
+        a.download = 'file.json'; // 設置下載的文件名
+
+        // 將 <a> 元素添加到 DOM 並觸發點擊事件
+        document.body.appendChild(a);
+        a.click();
+
+        // 移除 <a> 元素
+        document.body.removeChild(a);
+    }
+<?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+>
+    document.getElementById('BtnReportSubmit').addEventListener('click', function (event) {
+        var fileInput = document.getElementById('ReportApply');
+        var uploadWarning = document.getElementById('uploadWarning');
+
+        if (fileInput.files.length === 0) {
+            event.preventDefault(); // 阻止表單提交
+            uploadWarning.style.display = 'block'; // 顯示提示文字
+        } else {
+            uploadWarning.style.display = 'none'; // 隱藏提示文字
+        }
+    });
 <?php echo '</script'; ?>
 >
 <!---------------------------End-----------------------------><?php }

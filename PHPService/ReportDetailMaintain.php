@@ -46,14 +46,51 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
         $ReportID = filter_input(INPUT_POST, 'ReportID');
         $Username = $_SESSION['DisplayName'];
         $reportInfo = $report->get_ReportInfo();
+                //轉換成JSON數據
+                $jdata = [
+                    'ReportID' => $reportInfo['ReportID'],
+                    'PatientID' => $reportInfo['PatientID'],
+                    'SampleNo' => $reportInfo['SampleNo'],
+                    'scID' => $reportInfo['scID'],
+                    'HospitalList' => $reportInfo['HospitalList'],
+                    'HospitalList_Dr' => $reportInfo['HospitalList_Dr'],
+                    'ReportTemplateID' => $reportInfo['ReportTemplateID'],
+                    'ReportType' => $reportInfo['ReportType'],
+                    'scdate' => $reportInfo['scdate'],
+                    'rcdate' => $reportInfo['rcdate'],
+                    'ReportName' => $reportInfo['ReportName'],
+                    'DueDate' => $reportInfo['DueDate'],
+                    'CustomerName' => $reportInfo['CustomerName'],
+                    'CustomerEmail' => $reportInfo['CustomerEmail'],
+                    'ccemail' => $reportInfo['ccemail'],
+                    'CustomerPhone' => $reportInfo['CustomerPhone']
+                ];
 
+                //轉換成JSON數據
+                $json_data = json_encode($jdata, JSON_PRETTY_PRINT);
+
+                // 將 JSON 字符串寫入檔案
+                $file_name = $ReportID . '.json';
+                $file_path = "./uploads/".$ReportID . '/' . $file_name;
+                $directory = dirname($file_path);
+
+                if (!file_exists($directory)) {
+                    mkdir($directory, 0777, true); // create the directory if it doesn't exist
+                }
+
+                // 將 JSON 格式寫入檔案
+                if (file_put_contents($file_path, $json_data) === false) {
+                    echo 'Failed to save data in ' . $file_path;
+                } else {
+                    echo 'Data successfully saved in ' . $file_path;
+                }
+            //   die();
         switch ($ReportMode) {
             case 'ADD':
                 $report->AddReport($_POST);
                 $ReportMode = $_POST['ReportMode'];
                 $ReportStatus = $_POST['ReportStatus'];
                 $ReportType = $_POST['ReportType'];
-
 
                 //if ReportMode = ADD, 將"新增"帶到ReportMode
                 if ($ReportMode == 'ADD') {
@@ -88,6 +125,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
                 } elseif ($ReportStatus == '1') {
                     $ReportStatus = '報告已上傳，未審核';
                 }
+
 
                 $addlog = "報告編號：" . $ReportID . "已新增" . "\n"
                         . "報告名稱：" . $ReportName . "\n" 
@@ -437,6 +475,23 @@ $smarty->assign("PatientID", $report->ReportInfo('PatientID'), true);
 $smarty->assign("scID", $report->ReportInfo('scID'), true);
 $smarty->assign("scdate", $report->ReportInfo('scdate'), true);
 $smarty->assign("rcdate", $report->ReportInfo('rcdate'), true);
+$smarty->assign("SampleType_1", $report->ReportInfo('SampleType_1'), true);
+$smarty->assign("SampleType_2", $report->ReportInfo('SampleType_2'), true);
+$smarty->assign("SampleType_3", $report->ReportInfo('SampleType_3'), true);
+$smarty->assign("SampleType_4", $report->ReportInfo('SampleType_4'), true);
+$smarty->assign("SampleType_5", $report->ReportInfo('SampleType_5'), true);
+$smarty->assign("SampleQuantity_1", $report->ReportInfo('SampleQuantity_1'), true);
+$smarty->assign("SampleQuantity_2", $report->ReportInfo('SampleQuantity_2'), true);
+$smarty->assign("SampleQuantity_3", $report->ReportInfo('SampleQuantity_3'), true);
+$smarty->assign("SampleQuantity_4", $report->ReportInfo('SampleQuantity_4'), true);
+$smarty->assign("SampleQuantity_5", $report->ReportInfo('SampleQuantity_5'), true);
+$smarty->assign("SampleUnit_1", $report->ReportInfo('SampleUnit_1'), true);
+$smarty->assign("SampleUnit_2", $report->ReportInfo('SampleUnit_2'), true);
+$smarty->assign("SampleUnit_3", $report->ReportInfo('SampleUnit_3'), true);
+$smarty->assign("SampleUnit_4", $report->ReportInfo('SampleUnit_4'), true);
+$smarty->assign("SampleUnit_5", $report->ReportInfo('SampleUnit_5'), true);
+$smarty->assign("Receiving", $report->ReportInfo('Receiving'), true);
+$smarty->assign("Receiving2", $report->ReportInfo('Receiving2'), true);
 
 if ($ApplyFile == '') {
     $smarty->assign("ApplyFile", "", true);

@@ -18,6 +18,47 @@
                                             value="{$ReportID}">
                                     </div>
                                 </div>
+                                <!---- 檢體編號 ---->
+                                <div class="form-group">
+                                    <label for="SampleNo" class="col-md-3 control-label">檢體編號:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="SampleNo" name="SampleNo" class="form-control" required
+                                            value="{$SampleNo}">
+                                    </div>
+                                </div>
+                                <!---- 病歷編號 ---->
+                                <div class="form-group">
+                                    <label for="PatientID" class="col-md-3 control-label">病歷編號:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="PatientID" name="PatientID" class="form-control" required
+                                            value="{$PatientID}">
+                                    </div>
+                                </div>
+                                <!---- 採檢單號 ---->
+                                <div class="form-group">
+                                    <label for="scID" class="col-md-3 control-label">採檢單號:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="scID" name="scID" class="form-control" required
+                                            value="{$scID}">
+                                    </div>
+                                </div>
+                                <!---- 採集日期 ---->
+                                <div class="form-group">
+                                    <label for="scdate" class="col-md-3 control-label">採集日期:</label>
+                                    <div class="col-md-8">
+                                        <input type="datetime-local" id="scdate" name="scdate" class="form-control"
+                                            required value="{$scdate}">
+                                    </div>
+                                </div>
+                                <!---- 收檢日期 ---->
+                                <div class="form-group">
+                                    <label for="rcdate" class="col-md-3 control-label">收檢日期:</label>
+                                    <div class="col-md-8">
+                                        <input type="datetime-local" id="rcdate" name="rcdate" class="form-control"
+                                            required value="{$rcdate}">
+                                    </div>
+                                </div>
+
                                 {if $Permission eq 1 or $Permission eq 2 or $Permission eq 4 or $Permission eq 5 or
                                 $Permission eq 9 }
                                 <div class="form-group">
@@ -157,50 +198,172 @@
                             </div>
                             <!---- 第二排 ---->
                             <div class="col-md-4">
-                                <!---- 檢體編號 ---->
+                                <!---- 樣品種類一 ---->
                                 <div class="form-group">
-                                    <label for="SampleNo" class="col-md-3 control-label">檢體編號:</label>
+                                    <label for="SampleType_1" class="col-md-3 control-label">樣品種類一:</label>
                                     <div class="col-md-8">
-                                        <input type="text" id="SampleNo" name="SampleNo" class="form-control" required
-                                            value="{$SampleNo}">
+                                        <select id="SampleType_1" name="SampleType_1" class="form-control" required onchange="updateUnit()">                                            <option value="">請選擇樣品種類</option>
+                                            <option value="EDTA紫頭管-全血" {if $SampleType_1 == "EDTA紫頭管-全血"}selected{/if}>EDTA紫頭管-全血</option>
+                                            <option value="Streck cfDNA BCT(迷彩管)-全血" {if $SampleType_1 == "Streck cfDNA BCT(迷彩管)-全血"}selected{/if}>Streck cfDNA BCT(迷彩管)-全血</option>
+                                            <option value="Streck RNA Complete BCT(橘頭管)-全血" {if $SampleType_1 == "Streck RNA Complete BCT(橘頭管)-全血"}selected{/if}>Streck RNA Complete BCT(橘頭管)-全血</option>
+                                            <option value="5 ㎛ FFPE玻片(不含圈片)" {if $SampleType_1 == "5 ㎛ FFPE玻片(不含圈片)"}selected{/if}>5 ㎛ FFPE玻片(不含圈片)</option>
+                                            <option value="10 ㎛ FFPE玻片(不含圈片)" {if $SampleType_1 == "10 ㎛ FFPE玻片(不含圈片)"}selected{/if}>10 ㎛ FFPE玻片(不含圈片)</option>
+                                            <option value="染色圈片" {if $SampleType_1 == "染色圈片"}selected{/if}>染色圈片</option>
+                                            <option value="粗針穿刺檢體" {if $SampleType_1 == "粗針穿刺檢體"}selected{/if}>粗針穿刺檢體</option>
+                                            <option value="gDNA" {if $SampleType_1 == "gDNA"}selected{/if}>gDNA</option>
+                                            <option value="口腔拭子-口腔黏膜細胞" {if $SampleType_1 == "口腔拭子-口腔黏膜細胞"}selected{/if}>口腔拭子-口腔黏膜細胞</option>
+                                            <option value="生資分析" {if $SampleType_1 == "生資分析"}selected{/if}>生資分析</option>
+                                            <option value="細胞懸浮液" {if $SampleType_1 == "細胞懸浮液"}selected{/if}>細胞懸浮液</option>
+                                            <option value="其他(請手動輸入樣品種類)" {if $SampleType_1 == "其他(請手動輸入樣品種類)"}selected{/if}>其他(請手動輸入樣品種類)</option>
+                                        </select>
                                     </div>
                                 </div>
-                                <!---- 病歷編號 ---->
+                                <!---- 樣品數量一 ---->
                                 <div class="form-group">
-                                    <label for="PatientID" class="col-md-3 control-label">病歷編號:</label>
+                                    <label for="SampleQuantity_1" class="col-md-2 control-label">樣品數量一:</label>
                                     <div class="col-md-8">
-                                        <input type="text" id="PatientID" name="PatientID" class="form-control" required
-                                            value="{$PatientID}">
+                                        <input type="number" id="SampleQuantity_1" name="SampleQuantity_1"
+                                            class="form-control" required value="{$SampleQuantity_1}">
+                                            <span id="unit">單位</span>
+
                                     </div>
                                 </div>
-                                <!---- 採檢單號 ---->
-                                <div class="form-group">
-                                    <label for="scID" class="col-md-3 control-label">採檢單號:</label>
+                                <!---- 樣品單位一 ---->
+                                <!-- <div class="form-group">
+                                    <label for="SampleQuantity_1" class="col-md-3 control-label">樣品數量:</label>
                                     <div class="col-md-8">
-                                        <input type="text" id="scID" name="scID" class="form-control" required
-                                            value="{$scID}">
+                                        <input type="number" id="SampleQuantity_1" name="SampleQuantity_1" class="form-control" required>
+                                        <span id="unit">單位</span>
+                                    </div>
+                                    
+                                </div> -->
+                                <!---- 樣品種類二 ---->
+                                <div class="form-group">
+                                    <label for="SampleType_2" class="col-md-3 control-label">樣品種類二:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="SampleType_2" name="SampleType_2" class="form-control"
+                                             value="{$SampleType_2}">
                                     </div>
                                 </div>
-                                <!---- 採集日期 ---->
+                                <!---- 樣品數量二 ---->
                                 <div class="form-group">
-                                    <label for="scdate" class="col-md-3 control-label">採集日期:</label>
+                                    <label for="SampleQuantity_2" class="col-md-3 control-label">樣品數量二:</label>
                                     <div class="col-md-8">
-                                        <input type="datetime-local" id="scdate" name="scdate" class="form-control"
-                                            required value="{$scdate}">
+                                        <input type="number" id="SampleQuantity_2" name="SampleQuantity_2"
+                                            class="form-control"  value="{$SampleQuantity_2}">
                                     </div>
                                 </div>
-                                <!---- 收檢日期 ---->
+                                <!---- 樣品單位二 ---->
                                 <div class="form-group">
-                                    <label for="rcdate" class="col-md-3 control-label">收檢日期:</label>
+                                    <label for="SampleUnit_2" class="col-md-3 control-label">樣品單位二:</label>
                                     <div class="col-md-8">
-                                        <input type="datetime-local" id="rcdate" name="rcdate" class="form-control"
-                                            required value="{$rcdate}">
+                                        <input type="text" id="SampleUnit_2" name="SampleUnit_2" class="form-control"
+                                             value="{$SampleUnit_2}">
                                     </div>
                                 </div>
+                                <!---- 樣品種類三 ---->
+                                <div class="form-group">
+                                    <label for="SampleType_3" class="col-md-3 control-label">樣品種類三:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="SampleType_3" name="SampleType_3" class="form-control"
+                                             value="{$SampleType_3}">
+                                    </div>
+                                </div>
+                                <!---- 樣品數量三 ---->
+                                <div class="form-group">
+                                    <label for="SampleQuantity_3" class="col-md-3 control-label">樣品數量三:</label>
+                                    <div class="col-md-8">
+                                        <input type="number" id="SampleQuantity_3" name="SampleQuantity_3"
+                                            class="form-control"  value="{$SampleQuantity_3}">
+                                    </div>
+                                </div>
+                                <!---- 樣品單位三 ---->
+                                <div class="form-group">
+                                    <label for="SampleUnit_3" class="col-md-3 control-label">樣品單位三:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="SampleUnit_3" name="SampleUnit_3" class="form-control"
+                                             value="{$SampleUnit_3}">
+                                    </div>
+                                </div>
+                                <!---- 樣品種類四 ---->
+                                <div class="form-group">
+                                    <label for="SampleType_4" class="col-md-3 control-label">樣品種類四:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="SampleType_4" name="SampleType_4" class="form-control"
+                                             value="{$SampleType_4}">
+                                    </div>
+                                </div>
+                                <!---- 樣品數量四 ---->
+                                <div class="form-group">
+                                    <label for="SampleQuantity_4" class="col-md-3 control-label">樣品數量四:</label>
+                                    <div class="col-md-8">
+                                        <input type="number" id="SampleQuantity_4" name="SampleQuantity_4"
+                                            class="form-control"  value="{$SampleQuantity_4}">
+                                    </div>
+                                </div>
+                                <!---- 樣品單位四 ---->
+                                <div class="form-group">
+                                    <label for="SampleUnit_4" class="col-md-3 control-label">樣品單位四:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="SampleUnit_4" name="SampleUnit_4" class="form-control"
+                                             value="{$SampleUnit_4}">
+                                    </div>
+                                </div>
+                                <!---- 樣品種類五 ---->
+                                <div class="form-group">
+                                    <label for="SampleType_5" class="col-md-3 control-label">樣品種類五:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="SampleType_5" name="SampleType_5" class="form-control" 
+                                            value="{$SampleType_5}">
+                                    </div>
+                                </div>
+                                <!---- 樣品數量五 ---->
+                                <div class="form-group">
+                                    <label for="SampleQuantity_5" class="col-md-3 control-label">樣品數量五:</label>
+                                    <div class="col-md-8">
+                                        <input type="number" id="SampleQuantity_5" name="SampleQuantity_5" class="form-control" 
+                                            value="{$SampleQuantity_5}">
+                                    </div>
+                                </div>
+                                <!---- 樣品單位五 ---->
+                                <div class="form-group">
+                                    <label for="SampleUnit_5" class="col-md-3 control-label">樣品單位五:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="SampleUnit_5" name="SampleUnit_5" class="form-control" 
+                                            value="{$SampleUnit_5}">
+                                    </div>
+                                </div>
+
                             </div>
 
                             <!---- 第三排 ---->
                             <div class="col-md-4">
+                                <!---- 簽收人 ---->
+                                <div class="form-group">
+                                    <label for="Receiving" class="col-md-3 control-label">簽收人:</label>
+                                    <div class="col-md-8">
+                                        <select id="Receiving" name="Receiving" class="form-control" required>
+                                            <option value="">請選擇簽收人</option>
+                                            <option value="王許安" {if $Receiving == "王許安"}selected{/if}>王許安</option>
+                                            <option value="林庭萱" {if $Receiving == "林庭萱"}selected{/if}>林庭萱</option>
+                                            <option value="黃志凱" {if $Receiving == "黃志凱"}selected{/if}>黃志凱</option>
+                                            <option value="陳奕勳" {if $Receiving == "陳奕勳"}selected{/if}>陳奕勳</option>
+                                            <option value="張本樺" {if $Receiving == "張本樺"}selected{/if}>張本樺</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!---- 覆核人員 ---->
+                                <div class="form-group">
+                                    <label for="Receiving2" class="col-md-3 control-label">覆核人員:</label>
+                                    <div class="col-md-8">
+                                        <select id="Receiving2" name="Receiving2" class="form-control" required>
+                                            <option value="">請選擇覆核人員</option>
+                                            <option value="黃志凱" {if $Receiving2 == "黃志凱"}selected{/if}>黃志凱</option>
+                                            <option value="陳奕勳" {if $Receiving2 == "陳奕勳"}selected{/if}>陳奕勳</option>
+                                            <option value="張本樺" {if $Receiving2 == "張本樺"}selected{/if}>張本樺</option>
+                                        </select>
+                                    </div>
+                                </div>
                                 <!---- TAT最終日 ---->
                                 <div class="form-group">
                                     <label for="DueDate" class="col-md-3 control-label">TAT最終日:</label>
@@ -230,7 +393,7 @@
                                 </div>
                                 <!---- 客戶郵件2 -->
                                 <div class="form-group">
-                                    <label for="ccemail" class="col-md-3 control-label">信箱(CC副本):</label>
+                                    <label for="ccemail" class="col-md-3 control-label">信箱(副本):</label>
                                     <div class="col-md-8">
                                         <input type="text" id="ccemail" name="ccemail" class="form-control"
                                             value="{$ccemail}">
@@ -265,18 +428,6 @@
                                     </div>
                                 </div>
                                 {/if}
-                                 <div class="form-group">
-                                    <label for="downloadJsonBtn" class="col-md-3 control-label"></label>
-
-                                    <div class="col-md-8">
-                                        <button id="downloadJsonBtn" class="btn btn-primary" onclick="downloadJson()">下載
-                                            JSON 文件</button>
-
-                                    </div>
-
-                                </div> 
-
-
 
                                 <!-- 發信通知按紐，permission == 2 才顯示按紐 -->
                                 <!-- {if $Permission eq 2}
@@ -410,7 +561,6 @@
                                 <button type="submit" class="btn btn-custom btn-success btn-md" id=BtnReportSubmit
                                     name=BtnReportSubmit style="font-weight:bold;font-size:20px;margin:30px;">
                                     <i class="fa fa-paper-plane"></i> 確 認</button>
-                            <p id="uploadWarning" style="color: red; display: none;">請上傳申請單</p>
                             </p>
                         </div>
                     </div>
@@ -469,9 +619,7 @@
             ],
             "M2": [
                 "M201-01 Mycoplasma (General)",
-                "M201-02 Mycoplasma",
-                "M202-01 Mycoplasma (Express)",
-                "M202-02 Mycoplasma (Express)"
+                "M202-01 Mycoplasma (Express)"
             ],
             "O1": [
                 "O101-01 Circulating Tumor Cell (CTC) Assay Report"
@@ -514,7 +662,6 @@
             ],
             "S1": [
                 "S101-01 EGFR 29 Mutations Detection",
-                "S101-02 EGFR 29 Mutations Detection",
                 "S102-01 KRAS Mutation Detection",
                 "S103-01 BRAF V600 Mutations Detection"
             ],
@@ -538,8 +685,7 @@
             ],
             "W1": [
                 "W100-01 Hereditary Cancer Genetic Testing",
-                "W101-01 Prostate Cancer Germline Genetic Testing",
-                "W102-01 Hereditary Cancer Genetic Testing"
+                "W101-01 Prostate Cancer Germline Genetic Testing"
             ],
             "W2": [
                 "W200-01 Cardiovascular Disease Genetic Testing",
@@ -565,13 +711,11 @@
             ],
             "W3": [
                 "W300-01 Neurological Disease Genetic Testing",
-                "W300-02 Neurological Disease Genetic Testing",
                 "W301-01 Cerebral Small Vessel Disease Genetic Testing",
                 "W302-01 Parkinsonism Genetic Testing",
                 "W303-01 Hereditary Spastic Paraplegia Genetic Testing",
                 "W304-01 Dystonia Genetic Testing",
                 "W305-01 Cognitive Disorder Genetic Testing",
-                "W305-02 Cognitive Disorder Genetic Testing",
                 "W306-01 Wilson's disease Genetic Testing",
                 "W307-01 Neurofibromatosis Genetic Testing",
                 "W308-01 Ataxia Genetic Testing",
@@ -590,18 +734,7 @@
                 "W320-01 Familial Amyloid Polyneuropathy Genetic Testing",
                 "W321-01 Epilepsy Genetic Testing",
                 "W322-01 Common Neurological Disease Genetic Testing",
-                "W323-01 Inherited Stroke Genetic Testing",
-                "W324-01 Cerebral Small Vessel Disease Genetic Testing",
-                "W325-01 Inherited Stroke Genetic Testing",
-                "W326-01 Common Neurological Disease Genetic Testing",
-                "W327-01 Neurological Disease Genetic Testing",
-                "W327-02 Neurological Disease Genetic Testing",
-                "W328-01 Parkinson Disease Genetic Testing",
-                "W329-01 Cerebral Small Vessel Disease Genetic Testing",
-                "W330-01 Cognitive Disorder Genetic Testing",
-                "W331-01 Epilepsy Genetic Testing",
-                "W332-01 Common Neurological Disease Genetic Testing",
-                "W333-01 Neurological Disease Genetic Testing"
+                "W323-01 Inherited Stroke Genetic Testing"
             ],
             "W4": [
                 "W401-01 Genetic Carrier Screening v1.0",
@@ -791,34 +924,25 @@
     hospitalSelect.dispatchEvent(new Event('change'));
 </script>
 <script>
-    function downloadJson() {
-        // 設置 JSON 文件的 URL
-        var fileUrl = "./uploads/".$ReportID;
-
-        // 創建一個隱藏的 <a> 元素
-        var a = document.createElement('a');
-        a.href = fileUrl;
-        a.download = 'file.json'; // 設置下載的文件名
-
-        // 將 <a> 元素添加到 DOM 並觸發點擊事件
-        document.body.appendChild(a);
-        a.click();
-
-        // 移除 <a> 元素
-        document.body.removeChild(a);
-    }
-</script>
-<script>
-    document.getElementById('BtnReportSubmit').addEventListener('click', function (event) {
-        var fileInput = document.getElementById('ReportApply');
-        var uploadWarning = document.getElementById('uploadWarning');
-
-        if (fileInput.files.length === 0) {
-            event.preventDefault(); // 阻止表單提交
-            uploadWarning.style.display = 'block'; // 顯示提示文字
+    function updateUnit() {
+        var sampleType = document.getElementById('SampleType_1').value;
+        var unitSpan = document.getElementById('unit');
+        
+        if (sampleType === "EDTA紫頭管-全血" || 
+            sampleType === "Streck cfDNA BCT(迷彩管)-全血" || 
+            sampleType === "Streck RNA Complete BCT(橘頭管)-全血") {
+            unitSpan.textContent = "毫升";
+        } else if (sampleType === "5 ㎛ FFPE玻片(不含圈片)" || 
+                   sampleType === "10 ㎛ FFPE玻片(不含圈片)" || 
+                   sampleType === "染色圈片" || 
+                   sampleType === "粗針穿刺檢體") {
+            unitSpan.textContent = "片";
+        } else if (sampleType === "gDNA" || 
+                   sampleType === "口腔拭子-口腔黏膜細胞") {
+            unitSpan.textContent = "管";
         } else {
-            uploadWarning.style.display = 'none'; // 隱藏提示文字
+            unitSpan.textContent = "單位";
         }
-    });
+    }
 </script>
 <!---------------------------End----------------------------->

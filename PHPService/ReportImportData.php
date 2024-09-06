@@ -52,7 +52,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ReportImportData") {
                 $datas[] = array_combine($header, $row);
             }
             $report = new Report();
-            $iterationCount = count($datas);
+            $iterationCount1 = count($datas);
+            $iterationCount = $iterationCount1 - 3;
+
             //if no data in excel
             if ($iterationCount == 0) {
                 $ErrorMessage = "上傳檔案無資料!";

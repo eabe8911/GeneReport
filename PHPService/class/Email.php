@@ -71,17 +71,10 @@ class Email
             $_mail->SMTPSecure = 'tls';
             $_mail->SMTPAuth = true;
             // sender email setting
-            $_mail->Username = 'Report@libobio.com';
-            $_mail->Password = 'PMm1665!@';
-            if ($ReportType == 1) {
-                $_mail->SetFrom('Report@libobio.com', 'JB_Lab_ISO');
-            } elseif ($ReportType == 2) {
-                $_mail->SetFrom('Report@libobio.com', 'JB_Lab_LDTS');
-            } elseif ($ReportType == 3) {
-                $_mail->SetFrom('Report@libobio.com', 'YL_Lab_LDTS');
-            } else {
-                $_mail->SetFrom('Report@libobio.com', 'FromEmail');
-            }
+            $_mail->Username = 'liboreport@libobio.com';
+            $_mail->Password = 'Xu41l3libo';
+            $_mail->SetFrom('liboreport@libobio.com', 'FromEmail');
+
 
             // Set sender alias based on user permission
 
@@ -187,8 +180,8 @@ class Email
             $_mail->SMTPSecure = 'tls';
             $_mail->SMTPAuth = true;
             // sender email setting
-            $_mail->Username = 'Report@libobio.com';
-            $_mail->Password = 'PMm1665!@';
+            $_mail->Username = 'liboreport@libobio.com';
+            $_mail->Password = 'Xu41l3libo';
 
 
             // Set sender alias based on user permission

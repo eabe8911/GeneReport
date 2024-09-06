@@ -25,7 +25,9 @@
                 </a> -->
                 <a href="新報告傳輸系統_Template.xlsx" download>
                     <h3>下載Excel範本檔</h3>
+
                 </a>
+                <h4 style="color: red;"><b><輸入完資料請將檔案存成值上傳></b></h4>
             </div>
             <center>
                 <p>

@@ -91,10 +91,10 @@
                             <!---- 第二排 ---->
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="SampleID" class="col-md-3 control-label">檢體編號:</label>
+                                    <label for="SampleNo" class="col-md-3 control-label">檢體編號:</label>
                                     <div class="col-md-8">
-                                        <input type="text" id="SampleID" name="SampleID" class="form-control" readonly
-                                            value="{$SampleID}">
+                                        <input type="text" id="SampleNo" name="SampleNo" class="form-control" readonly
+                                            value="{$SampleNo}">
                                     </div>
                                 </div>
                                 <!---- 病歷編號 ---->
