@@ -18,6 +18,9 @@
                                             value="{$ReportID}">
                                     </div>
                                 </div>
+
+
+
                                 {if $Permission eq 1 or $Permission eq 2 or $Permission eq 4 or $Permission eq 5 or
                                 $Permission eq 9 }
                                 <div class="form-group">
@@ -141,6 +144,7 @@
                                     </div>
                                 </div>
 
+
                                 <!---- 報告樣板 ---->
                                 {if $Permission eq 1 or $Permission eq 2 or $Permission eq 4 or $Permission eq 5 or
                                 $Permission eq 9 }
@@ -157,6 +161,15 @@
                             </div>
                             <!---- 第二排 ---->
                             <div class="col-md-4">
+                                <!---- 姓   名 ---->
+                                <div class="form-group">
+                                    <label for="proband_name" class="col-md-3 control-label">姓 名:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="proband_name" name="proband_name" class="form-control"
+                                            value="{$proband_name}">
+                                        <p id="proband_name_warning" style="color: red; display: none;">所選檢測單位不需填寫姓名</p>
+                                    </div>
+                                </div>
                                 <!---- 檢體編號 ---->
                                 <div class="form-group">
                                     <label for="SampleNo" class="col-md-3 control-label">檢體編號:</label>
@@ -235,7 +248,16 @@
                                         <input type="text" id="ccemail" name="ccemail" class="form-control"
                                             value="{$ccemail}">
                                     </div>
+
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-danger btn-md float-right"
+                                            id="BtnReportEditccemail"
+                                            style="font-weight:bold;font-size:13px;margin:23px;">
+                                            <i class="fa fa-edit"></i> 修改郵件
+                                        </button>
+                                    </div>
                                 </div>
+
 
                                 <!---- 客戶電話 ---->
                                 <div class="form-group">
@@ -265,16 +287,16 @@
                                     </div>
                                 </div>
                                 {/if}
-                                 <div class="form-group">
+                                <div class="form-group">
                                     <label for="downloadJsonBtn" class="col-md-3 control-label"></label>
 
-                                    <div class="col-md-8">
+                                    <!-- <div class="col-md-8">
                                         <button id="downloadJsonBtn" class="btn btn-primary" onclick="downloadJson()">下載
                                             JSON 文件</button>
 
-                                    </div>
+                                    </div> -->
 
-                                </div> 
+                                </div>
 
 
 
@@ -809,6 +831,41 @@
     }
 </script>
 <script>
+    document.getElementById('ReportType').addEventListener('change', function () {
+        var probandNameGroup = document.getElementById('proband_name');
+        var probandNameWarning = document.getElementById('proband_name_warning');
+        if (this.value === '1') {
+            probandNameGroup.style.display = 'block';
+            probandNameWarning.style.display = 'none';
+        } else {
+            probandNameGroup.style.display = 'none';
+            probandNameWarning.style.display = 'block';
+
+        }
+    });
+
+    // 初始化時檢查選擇的值
+    document.addEventListener('DOMContentLoaded', function () {
+        var testUnit = document.getElementById('ReportType').value;
+        var probandNameGroup = document.getElementById('proband_name');
+        var probandNameWarning = document.getElementById('proband_name_warning');
+        if (testUnit === '1') {
+            probandNameGroup.style.display = 'block';
+            probandNameWarning.style.display = 'none';
+        } else {
+            probandNameGroup.style.display = 'none';
+            probandNameWarning.style.display = 'block';
+        }
+
+    });
+</script>
+<script>
+    document.getElementById('FormReportDetail').addEventListener('submit', function() {
+        document.querySelector('#ReportName').disabled = false;
+        document.querySelector('#HospitalList').disabled = false;
+    });
+</script>
+<!-- <script>
     document.getElementById('BtnReportSubmit').addEventListener('click', function (event) {
         var fileInput = document.getElementById('ReportApply');
         var uploadWarning = document.getElementById('uploadWarning');
@@ -820,5 +877,5 @@
             uploadWarning.style.display = 'none'; // 隱藏提示文字
         }
     });
-</script>
+</script> -->
 <!---------------------------End----------------------------->

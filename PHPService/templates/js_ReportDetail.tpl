@@ -84,7 +84,7 @@
       });
 
       $('#BtnReportEditccemail').click(function() {
-        $('#ReportMode').val('EDIT');
+        $('#ReportMode').val('EDITCC');
         // set button for confirm
         $('#ReportQueryButton').hide();
         $('#ReportConfirmButton').show();
@@ -148,6 +148,7 @@
       });
 
       $("#ReportUploadPDF").change(function() {
+
         if (this.files && this.files[0]) {
           var reader = new FileReader();
           reader.readAsDataURL(this.files[0]);
@@ -155,6 +156,8 @@
           reader.onload = function(e) {
             $('#PDFPreview').attr('src', e.target.result);
           }
+
+
         }
       });
       $("#ReportApply").change(function() {
@@ -189,6 +192,7 @@
       $('#ReportTemplate').prop('disabled', state);
 
       $('#ReportName').prop('disabled', state);
+      $('#proband_name').prop('disabled', state);
       $('#HospitalList').prop('disabled', state);
       $('#CustomerName').prop('readonly', state);
       $('#CustomerEmail').prop('readonly', state);
@@ -216,6 +220,9 @@
     // //set upload button PDF
     function setFieldsUploadPDF(state) {
       $('#DisplayUploadButton').prop('hidden', state);
+      //移除disabled屬性
+      
+
     }
 
     // 設定 jQuery 日期選擇器

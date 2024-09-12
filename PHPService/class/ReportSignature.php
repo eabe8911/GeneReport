@@ -180,7 +180,9 @@ class ReportSignature
             // $UpdateFile = __DIR__ . "/../uploads/" . $PDFFileName;
             $UpdateFile = __DIR__ . "/../uploads/"  . $ReportInfo['ReportID'] . "/" . $PDFFileName;
             // $PDFFile = __DIR__ . "/../uploads/" . $ReportInfo['FileName'];
+            $ReportInfo['FileName'] = str_replace(' ', '_', $ReportInfo['FileName']);
             $PDFFile = __DIR__ . "/../uploads/" . $ReportInfo['ReportID'] . "/" . $ReportInfo['FileName'];
+            echo $PDFFile;
             // read singature image file from signature folder
             $SigFile = $UserInfo['SignatureFile'];
             // If the user is a medical examiner, use the signature file of the medical examiner

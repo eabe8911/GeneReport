@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-09-05 16:36:40
+/* Smarty version 4.3.4, created on 2024-09-12 17:28:13
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\ReportDetailMaintain.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_66d96d988b3390_13408747',
+  'unifunc' => 'content_66e2b42db2be27_06142972',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '451136e515d260dcfeb69b381fca1166c93b1f0d' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\ReportDetailMaintain.tpl',
-      1 => 1725525397,
+      1 => 1726133270,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_66d96d988b3390_13408747 (Smarty_Internal_Template $_smarty_tpl) {
+function content_66e2b42db2be27_06142972 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\vendor\\smarty\\smarty\\libs\\plugins\\function.html_options.php','function'=>'smarty_function_html_options',),));
 ?>
 <!--POP UP MODAL TO VIEW MEMBER DETAILS AND RESULTS FOR Member Information-->
@@ -51,6 +51,9 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
 ">
                                     </div>
                                 </div>
+
+
+
                                 <?php if ($_smarty_tpl->tpl_vars['Permission']->value == 1 || $_smarty_tpl->tpl_vars['Permission']->value == 2 || $_smarty_tpl->tpl_vars['Permission']->value == 4 || $_smarty_tpl->tpl_vars['Permission']->value == 5 || $_smarty_tpl->tpl_vars['Permission']->value == 9) {?>
                                 <div class="form-group">
                                     <label for="main-menu" class="col-md-3 control-label">報告類型:</label>
@@ -173,6 +176,7 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                     </div>
                                 </div>
 
+
                                 <!---- 報告樣板 ---->
                                 <?php if ($_smarty_tpl->tpl_vars['Permission']->value == 1 || $_smarty_tpl->tpl_vars['Permission']->value == 2 || $_smarty_tpl->tpl_vars['Permission']->value == 4 || $_smarty_tpl->tpl_vars['Permission']->value == 5 || $_smarty_tpl->tpl_vars['Permission']->value == 9) {?>
                                 <div class="form-group">
@@ -187,6 +191,16 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                             </div>
                             <!---- 第二排 ---->
                             <div class="col-md-4">
+                                <!---- 姓   名 ---->
+                                <div class="form-group">
+                                    <label for="proband_name" class="col-md-3 control-label">姓 名:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="proband_name" name="proband_name" class="form-control"
+                                            value="<?php echo $_smarty_tpl->tpl_vars['proband_name']->value;?>
+">
+                                        <p id="proband_name_warning" style="color: red; display: none;">所選檢測單位不需填寫姓名</p>
+                                    </div>
+                                </div>
                                 <!---- 檢體編號 ---->
                                 <div class="form-group">
                                     <label for="SampleNo" class="col-md-3 control-label">檢體編號:</label>
@@ -276,7 +290,16 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                             value="<?php echo $_smarty_tpl->tpl_vars['ccemail']->value;?>
 ">
                                     </div>
+
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-danger btn-md float-right"
+                                            id="BtnReportEditccemail"
+                                            style="font-weight:bold;font-size:13px;margin:23px;">
+                                            <i class="fa fa-edit"></i> 修改郵件
+                                        </button>
+                                    </div>
                                 </div>
+
 
                                 <!---- 客戶電話 ---->
                                 <div class="form-group">
@@ -309,16 +332,16 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                     </div>
                                 </div>
                                 <?php }?>
-                                 <div class="form-group">
+                                <div class="form-group">
                                     <label for="downloadJsonBtn" class="col-md-3 control-label"></label>
 
-                                    <div class="col-md-8">
+                                    <!-- <div class="col-md-8">
                                         <button id="downloadJsonBtn" class="btn btn-primary" onclick="downloadJson()">下載
                                             JSON 文件</button>
 
-                                    </div>
+                                    </div> -->
 
-                                </div> 
+                                </div>
 
 
 
@@ -870,6 +893,45 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
 >
 <?php echo '<script'; ?>
 >
+    document.getElementById('ReportType').addEventListener('change', function () {
+        var probandNameGroup = document.getElementById('proband_name');
+        var probandNameWarning = document.getElementById('proband_name_warning');
+        if (this.value === '1') {
+            probandNameGroup.style.display = 'block';
+            probandNameWarning.style.display = 'none';
+        } else {
+            probandNameGroup.style.display = 'none';
+            probandNameWarning.style.display = 'block';
+
+        }
+    });
+
+    // 初始化時檢查選擇的值
+    document.addEventListener('DOMContentLoaded', function () {
+        var testUnit = document.getElementById('ReportType').value;
+        var probandNameGroup = document.getElementById('proband_name');
+        var probandNameWarning = document.getElementById('proband_name_warning');
+        if (testUnit === '1') {
+            probandNameGroup.style.display = 'block';
+            probandNameWarning.style.display = 'none';
+        } else {
+            probandNameGroup.style.display = 'none';
+            probandNameWarning.style.display = 'block';
+        }
+
+    });
+<?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+>
+    document.getElementById('FormReportDetail').addEventListener('submit', function() {
+        document.querySelector('#ReportName').disabled = false;
+        document.querySelector('#HospitalList').disabled = false;
+    });
+<?php echo '</script'; ?>
+>
+<!-- <?php echo '<script'; ?>
+>
     document.getElementById('BtnReportSubmit').addEventListener('click', function (event) {
         var fileInput = document.getElementById('ReportApply');
         var uploadWarning = document.getElementById('uploadWarning');
@@ -882,6 +944,6 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
         }
     });
 <?php echo '</script'; ?>
->
+> -->
 <!---------------------------End-----------------------------><?php }
 }

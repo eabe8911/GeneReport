@@ -93,6 +93,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewApproveDetail") {
                 // save signature data into database and put signature image into PDF file
                 // if ($report->Approve($_POST, $_SESSION)) {
                 // $ReportInfo = $report->get_ReportInfo();
+                $ReportInfo = $report->get_ReportInfo();
+                // echo $ReportInfo['FileName']; die();
+
                 $report->Approve($_POST, $_SESSION);
                 $$ReportID = $_POST['ReportID'];
                 $ReportName = $_POST['ReportName'];

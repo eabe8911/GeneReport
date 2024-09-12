@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-08-27 15:50:27
+/* Smarty version 4.3.4, created on 2024-09-12 17:25:58
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\js_ReportDetail.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_66cd8543af33d6_72266604',
+  'unifunc' => 'content_66e2b3a62af3b1_08627631',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '9dc2a2755c788183a0b94980392c5a85ac9efbe8' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\js_ReportDetail.tpl',
-      1 => 1724745022,
+      1 => 1726132979,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_66cd8543af33d6_72266604 (Smarty_Internal_Template $_smarty_tpl) {
+function content_66e2b3a62af3b1_08627631 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
  type="text/javascript">
   
@@ -108,7 +108,7 @@ echo '<script'; ?>
       });
 
       $('#BtnReportEditccemail').click(function() {
-        $('#ReportMode').val('EDIT');
+        $('#ReportMode').val('EDITCC');
         // set button for confirm
         $('#ReportQueryButton').hide();
         $('#ReportConfirmButton').show();
@@ -172,6 +172,7 @@ echo '<script'; ?>
       });
 
       $("#ReportUploadPDF").change(function() {
+
         if (this.files && this.files[0]) {
           var reader = new FileReader();
           reader.readAsDataURL(this.files[0]);
@@ -179,6 +180,8 @@ echo '<script'; ?>
           reader.onload = function(e) {
             $('#PDFPreview').attr('src', e.target.result);
           }
+
+
         }
       });
       $("#ReportApply").change(function() {
@@ -213,6 +216,7 @@ echo '<script'; ?>
       $('#ReportTemplate').prop('disabled', state);
 
       $('#ReportName').prop('disabled', state);
+      $('#proband_name').prop('disabled', state);
       $('#HospitalList').prop('disabled', state);
       $('#CustomerName').prop('readonly', state);
       $('#CustomerEmail').prop('readonly', state);
@@ -240,6 +244,9 @@ echo '<script'; ?>
     // //set upload button PDF
     function setFieldsUploadPDF(state) {
       $('#DisplayUploadButton').prop('hidden', state);
+      //移除disabled屬性
+      
+
     }
 
     // 設定 jQuery 日期選擇器

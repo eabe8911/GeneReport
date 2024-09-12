@@ -35,15 +35,17 @@ $DisplayName = $_SESSION['DisplayName'];
 $Permission = $_SESSION['Permission'];
 $Role = $_SESSION['Role'];
 $FormName = filter_input(INPUT_POST, 'FormName');
-$ReportMode = $ReportID = $PDFFile = $ApplyFile = $LogoFile = $ID = $ReportStatus = $ReportTemplate ="";
+$ReportMode = $ReportID = $PDFFile = $ApplyFile = $LogoFile = $ID = $ReportStatus = $ReportTemplate = $proband_name = "";
 $ErrorMessage = '';
 $result1 = $resultID = array();
 //檢查是否第二次進入
 if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
     try {
         $report = new Report($_POST);
+        $ccemail = filter_input(INPUT_POST, 'ccemail');
         $ReportMode = filter_input(INPUT_POST, 'ReportMode');
         $ReportID = filter_input(INPUT_POST, 'ReportID');
+
         $Username = $_SESSION['DisplayName'];
         $reportInfo = $report->get_ReportInfo();
                 //轉換成JSON數據
@@ -63,7 +65,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
                     'CustomerName' => $reportInfo['CustomerName'],
                     'CustomerEmail' => $reportInfo['CustomerEmail'],
                     'ccemail' => $reportInfo['ccemail'],
-                    'CustomerPhone' => $reportInfo['CustomerPhone']
+                    'CustomerPhone' => $reportInfo['CustomerPhone'],
+                    'proband_name' => $reportInfo['proband_name']
                 ];
 
                 //轉換成JSON數據
@@ -119,6 +122,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
                 $scID = $_POST['scID'];
                 $scdate = $_POST['scdate'];
                 $rcdate = $_POST['rcdate'];
+                $proband_name = $_POST['proband_name'];
 
                 if ($ReportStatus == '0' || $ReportStatus == '') {
                     $ReportStatus = '報告未上傳';
@@ -142,7 +146,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
                         . "採檢日期：" . $scdate . "\n"
                         . "收檢日期：" . $rcdate ;
 
-                CheckPDF($_FILES);
+                // CheckPDF($_FILES);
+                CheckPDF($_FILES, $HospitalList, $ReportInfo,$ReportName);
+
                 $_SESSION['ReportID'] = $_POST['ReportID'];
                 $log->SaveLog("新增檢體資料", $Username, "UpdateReportInfo", date("Y-m-d H:i:s"), $addlog);
                 $messageData = [
@@ -152,28 +158,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
                 sendNotificationToTeams("ADD", "新增一筆報告: " . $_POST['ReportID'] . ' ' . $_POST['ReportName'] . " by " . $DisplayName);
                 break;
             case 'EDIT':
-                //permission =4 use Updateccemail
-                if ($Permission == 4) {
-                    $report->Updateccemail($_POST);
-
-                    $ReportID = $_POST['ReportID'];
-                    $CustomerName = $_POST['CustomerName'];
-                    $CustomerEmail = $_POST['CustomerEmail'];
-                    $ccemail = $_POST['ccemail'];
-                    $CustomerPhone = $_POST['CustomerPhone'];
-                    $ReportStatus = $_POST['ReportStatus'];
-                    
-
-                    $updatelog = "報告編號：" . $ReportID . "\n" 
-                                . "聯絡人名稱：" . $CustomerName . "\n" 
-                                . "聯絡人信箱：" . $CustomerEmail . "\n" 
-                                . "信箱(副本)：" . $ccemail . "\n" 
-                                . "聯絡電話：" . $CustomerPhone . "\n" 
-                                . "報告狀態：" . $ReportStatus;
-                    $log->SaveLog("修改信箱", $Username, "UpdateReportInfo", date("Y-m-d H:i:s"), $updatelog);
- 
-                } elseif ($Permission == 1 ) {
+                if ($Permission == 1 ) {
                     $report->UpdateReportFileName($_POST);
+                    $ReportName = $_POST['ReportName'];
+                    $HospitalList = $_POST['HospitalList'];
 
                     $ReportID = $_POST['ReportID'];
                     $ReportStatus = $_POST['ReportStatus'];
@@ -183,7 +171,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
                         $ReportStatus = $_POST['ReportStatus'];
                     } // $ReportStatus = $_POST['ReportStatus'];
 
-                    CheckPDF($_FILES);
+                    // CheckPDF($_FILES);
+                CheckPDF($_FILES, $HospitalList, $ReportInfo,$ReportName);
 
                     $updatelog = "報告編號：" . $ReportID .  "報告狀態：" . $ReportStatus;
                     $log->SaveLog("上傳報告", $Username, "UpdateReportInfo", date("Y-m-d H:i:s"), $updatelog);
@@ -211,6 +200,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
                     $scID = $_POST['scID'];
                     $scdate = $_POST['scdate'];
                     $rcdate = $_POST['rcdate'];
+                    $proband_name = $_POST['proband_name'];
                     // echo $ReportTemplate;die();
 
                     //if ReportUploadPDF click ReportStaus = 1
@@ -218,15 +208,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
                         $ReportStatus = '報告已上傳，未審核';
                     } else {
                         $ReportStatus = $_POST['ReportStatus'];
-                    } // $ReportStatus = $_POST['ReportStatus'];
-
-                    // if ($Role == '1') {
-                    //     $Role = "JB_Lab_ISO";
-                    // } elseif ($Role == '2') {
-                    //     $Role = "JB_Lab_LDTS";
-                    // } elseif ($Role == '3') {
-                    //     $Role = "YL_Lab_ISO";
-                    // }
+                    } 
 
                     $updatelog = "報告編號：" . $ReportID . "\n" 
                     . "報告名稱：" . $ReportName . "\n" 
@@ -246,7 +228,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
                     $log->SaveLog("修改檢體資料", $Username, "UpdateReportInfo", date("Y-m-d H:i:s"), $updatelog);
 
                 }
-                    CheckPDF($_FILES);
+                CheckPDF($_FILES, $HospitalList, $ReportInfo,$ReportName);
 
 
                 $messageData = [
@@ -254,6 +236,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
                     'status' => 'update',
                 ];
                 sendNotificationToTeams("EDIT", "修改一筆報告: " . $_POST['ReportID'] . ' ' . $_POST['ReportName'] . " by " . $DisplayName);
+                break;
+            case 'EDITCC':
+                $report->Updateccemail($reportInfo, $_POST);
+
+                $ReportID = $_POST['ReportID'];
+                $CustomerName = $_POST['CustomerName'];
+                $CustomerEmail = $_POST['CustomerEmail'];
+                $ccemail = $_POST['ccemail'];
+                $CustomerPhone = $_POST['CustomerPhone'];
+                $ReportStatus = $_POST['ReportStatus'];
+
+                $updatelog = "報告編號：" . $ReportID . "\n" 
+                            . "聯絡人名稱：" . $CustomerName . "\n" 
+                            . "聯絡人信箱：" . $CustomerEmail . "\n" 
+                            . "信箱(副本)：" . $ccemail . "\n" 
+                            . "聯絡電話：" . $CustomerPhone . "\n" 
+                            . "報告狀態：" . $ReportStatus;
+                $log->SaveLog("修改信箱", $Username, "UpdateReportInfo", date("Y-m-d H:i:s"), $updatelog);
+
+                $messageData = [
+                    'report_id' => $_POST['ReportID'],
+                    'status' => 'update',
+                ];
+                sendNotificationToTeams("EDITCC", "修改一筆報告: " . $_POST['ReportID'] . ' ' . $_POST['ReportName'] . " by " . $DisplayName);
                 break;
             case 'DELETE':
                 if ($report->DeleteReport($_POST)) {
@@ -492,6 +498,7 @@ $smarty->assign("SampleUnit_4", $report->ReportInfo('SampleUnit_4'), true);
 $smarty->assign("SampleUnit_5", $report->ReportInfo('SampleUnit_5'), true);
 $smarty->assign("Receiving", $report->ReportInfo('Receiving'), true);
 $smarty->assign("Receiving2", $report->ReportInfo('Receiving2'), true);
+$smarty->assign("proband_name", $report->ReportInfo('proband_name'), true);
 
 if ($ApplyFile == '') {
     $smarty->assign("ApplyFile", "", true);

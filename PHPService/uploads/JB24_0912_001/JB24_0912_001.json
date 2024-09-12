@@ -1,0 +1,19 @@
+{
+    "ReportID": "JB24_0912_001",
+    "PatientID": "gfdsa",
+    "SampleNo": "asdfg",
+    "scID": "34567",
+    "HospitalList": "12",
+    "HospitalList_Dr": "",
+    "ReportTemplateID": "",
+    "ReportType": "1",
+    "scdate": "2024-09-12T17:34",
+    "rcdate": "2024-09-11T17:34",
+    "ReportName": "M201-02 Mycoplasma",
+    "DueDate": "2024-09-30",
+    "CustomerName": "\u859b\u7fbd\u5022",
+    "CustomerEmail": "tina.xue@libobio.com",
+    "ccemail": "eabe8911@gmail.com",
+    "CustomerPhone": "0225031392",
+    "proband_name": "\u859b\u7fbd\u5022"
+}
