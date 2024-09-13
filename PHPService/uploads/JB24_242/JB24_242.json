@@ -1,19 +1,19 @@
 {
     "ReportID": "JB24_242",
-    "PatientID": "0000006",
-    "SampleNo": "NA",
-    "scID": "LB-240722-23",
+    "PatientID": "",
+    "SampleNo": "",
+    "scID": "",
     "HospitalList": "2",
     "HospitalList_Dr": "",
     "ReportTemplateID": "",
-    "ReportType": "1",
+    "ReportType": "",
     "scdate": "2024-09-03T09:30",
     "rcdate": "2024-09-05T09:30",
     "ReportName": "S307-01 TGFBI (Hotspots) Genetic Testing",
     "DueDate": "2024-09-12",
     "CustomerName": "\u8607\u6587\u79c0",
     "CustomerEmail": "tina.xue@libobio.com",
-    "ccemail": "eabe8911@gmail.com",
+    "ccemail": "cindy.tung@libobio.com",
     "CustomerPhone": "07-362-1131",
-    "proband_name": "\u8607\u6587\u79c0"
+    "proband_name": ""
 }

@@ -371,13 +371,13 @@ class Report implements ReportInterface
                 ReportType, scdate, rcdate, Receiving, Receiving2, TemplateID, 
                 ReportID, ReportName, CustomerName, CustomerEmail, CustomerPhone, ReportStatus, HospitalList_ERP,
                 CreatedAt, DueDate, SampleType_1, SampleQuantity_1, SampleUnit_1, SampleType_2, SampleQuantity_2, SampleUnit_2
-                , SampleType_3, SampleQuantity_3, SampleUnit_3, SampleType_4, SampleQuantity_4, SampleUnit_4, SampleType_5, SampleQuantity_5, SampleUnit_5, proband_name
+                , SampleType_3, SampleQuantity_3, SampleUnit_3, SampleType_4, SampleQuantity_4, SampleUnit_4, SampleType_5, SampleQuantity_5, SampleUnit_5, proband_name, method
                 ) VALUES (
                 :SampleID, :PatientID, :SampleNo, :scID, :HospitalList, :HospitalList_Dr, :ReportTemplate, :ReportTemplateID,
                 :ReportType, :scdate, :rcdate, :Receiving, :Receiving2, :TemplateID, 
                 :ReportID, :ReportName, :CustomerName, :CustomerEmail, :CustomerPhone, :ReportStatus, :HospitalList_ERP,
                 :CreatedAt, :DueDate, :SampleType_1, :SampleQuantity_1, :SampleUnit_1, :SampleType_2, :SampleQuantity_2, :SampleUnit_2
-                , :SampleType_3, :SampleQuantity_3, :SampleUnit_3, :SampleType_4, :SampleQuantity_4, :SampleUnit_4, :SampleType_5, :SampleQuantity_5, :SampleUnit_5, proband_name
+                , :SampleType_3, :SampleQuantity_3, :SampleUnit_3, :SampleType_4, :SampleQuantity_4, :SampleUnit_4, :SampleType_5, :SampleQuantity_5, :SampleUnit_5, :proband_name, :method
                 )";
                 $stmt = $this->_conn->prepare($sql);
 
@@ -485,6 +485,7 @@ class Report implements ReportInterface
                 $stmt->bindParam(':SampleQuantity_5', $ReportInfo['SampleQuantity_5']);
                 $stmt->bindParam(':SampleUnit_5', $ReportInfo['SampleUnit_5']);
                 $stmt->bindParam(':proband_name', $ReportInfo['proband_name']);
+                $stmt->bindParam(':method', $ReportInfo['method']);
 
                 $stmt->execute();
             }

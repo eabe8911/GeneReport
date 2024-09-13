@@ -127,6 +127,8 @@
                                             <option value="35" {if $HospitalListSelect==35}selected{/if}>連江醫院</option>
                                             <option value="36" {if $HospitalListSelect==36}selected{/if}>一般客戶or泓采代採
                                             </option>
+                                            <option value="37" {if $HospitalListSelect==37}selected{/if}>上明眼科</option>
+                                            <option value="38" {if $HospitalListSelect==38}selected{/if}>台灣醫事檢驗學會</option>
                                         </select>
 
 

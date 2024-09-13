@@ -533,6 +533,10 @@ $scID = $report->ReportInfo('scID');
 $scdate = $report->ReportInfo('scdate');
 $rcdate = $report->ReportInfo('rcdate');
 $ReportTemplate = $report->ReportInfo('ReportTemplate');
+$HospitalList = $report->ReportInfo('HospitalList');
+$proband_name = $report->ReportInfo('proband_name');
+$SampleNo = $report->ReportInfo('SampleNo');
+
 
 // Display PDF File if empty show error message
 
@@ -564,6 +568,8 @@ if ($PDFFile == '') {
                 <input type="hidden" name="scdate" value="' . $scdate . '">
                 <input type="hidden" name="rcdate" value="' . $rcdate . '">
                 <input type="hidden" name="HospitalList" value="' . $HospitalList . '">
+                                <input type="hidden" name="proband_name" value="' . $proband_name . '">
+                <input type="hidden" name="SampleNo" value="' . $SampleNo . '">
                 <input type="hidden" style="margin-left: 10px;height: 40px;" name="BtnSendPDF" id="BtnSendPDF" class="btn btn-primary" value="Send E-mail">
             </form>
             <!-- test form -->
@@ -581,6 +587,8 @@ if ($PDFFile == '') {
                 <input type="hidden" name="scdate" value="' . $scdate . '">
                 <input type="hidden" name="rcdate" value="' . $rcdate . '">
                 <input type="hidden" name="HospitalList" value="' . $HospitalList . '">
+                <input type="hidden" name="proband_name" value="' . $proband_name . '">
+                <input type="hidden" name="SampleNo" value="' . $SampleNo . '">
                 
                 <input type="submit" style="margin-left: 10px;height: 40px;" name="BtnSendPDF" id="BtnSendPDF" class="btn btn-primary" value="Send E-mail">
 

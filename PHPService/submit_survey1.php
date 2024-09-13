@@ -12,6 +12,8 @@ $ReportID = $_POST['ReportID'];
 $CustomerEmail = $_POST['CustomerEmail'];
 $HospitalList = $_POST['HospitalList'];
 $SampleNo = $_POST['SampleNo'];
+$PatientID = $_POST['PatientID'];
+$scID = $_POST['scID']; 
 $ReportName = $_POST['ReportName'];
 $other_comments = $_POST['other_comments'];
 $report_content_satisfaction1 = $_POST['report_content_satisfaction1'];
@@ -27,13 +29,15 @@ $report_content_satisfaction5 = $_POST['report_content_satisfaction5'];
 $DBConnect = new DBConnect();
 $conn = $DBConnect->connect();
 $sql = "INSERT INTO customer_satisfaction(
-    ReportID,CustomerEmail,HospitalList,SampleNo,ReportName,other_comments,report_content_satisfaction1,report_content_satisfaction2,report_content_satisfaction3,report_content_satisfaction4,report_content_satisfaction5,CreatedAt) 
-    VALUES (:ReportID, :CustomerEmail, :HospitalList, :SampleNo, :ReportName, :other_comments, :report_content_satisfaction1, :report_content_satisfaction2, :report_content_satisfaction3, :report_content_satisfaction4, :report_content_satisfaction5, :CreatedAt";
+    ReportID,CustomerEmail,HospitalList,SampleNo,PatientID,scID,ReportName,other_comments,report_content_satisfaction1,report_content_satisfaction2,report_content_satisfaction3,report_content_satisfaction4,report_content_satisfaction5,CreatedAt) 
+    VALUES (:ReportID, :CustomerEmail, :HospitalList, :SampleNo, :PatientID, :scID, :ReportName, :other_comments, :report_content_satisfaction1, :report_content_satisfaction2, :report_content_satisfaction3, :report_content_satisfaction4, :report_content_satisfaction5, :CreatedAt)";
 $stmt = $conn->prepare($sql);
 $stmt->bindParam(':ReportID', $ReportID);
 $stmt->bindParam(':CustomerEmail', $CustomerEmail);
 $stmt->bindParam(':HospitalList', $HospitalList);
 $stmt->bindParam(':SampleNo', $SampleNo);
+$stmt->bindParam(':PatientID', $PatientID);
+$stmt->bindParam(':scID', $scID);
 $stmt->bindParam(':ReportName', $ReportName);
 $stmt->bindParam(':other_comments', $other_comments);
 $stmt->bindParam(':report_content_satisfaction1', $report_content_satisfaction1);
@@ -41,8 +45,8 @@ $stmt->bindParam(':report_content_satisfaction2', $report_content_satisfaction2)
 $stmt->bindParam(':report_content_satisfaction3', $report_content_satisfaction3);
 $stmt->bindParam(':report_content_satisfaction4', $report_content_satisfaction4);
 $stmt->bindParam(':report_content_satisfaction5', $report_content_satisfaction5);
-$stmt->bindParam(':CreatedAt', date('Y-m-d H:i:s'));
-
+$createdAt = date('Y-m-d H:i:s');
+$stmt->bindParam(':CreatedAt', $createdAt);
 // Execute the statement
 $stmt->execute();
 

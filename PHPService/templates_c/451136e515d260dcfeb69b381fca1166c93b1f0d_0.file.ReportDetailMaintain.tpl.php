@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-09-12 17:28:13
+/* Smarty version 4.3.4, created on 2024-09-13 10:00:46
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\ReportDetailMaintain.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_66e2b42db2be27_06142972',
+  'unifunc' => 'content_66e39cce2b2fe3_11983847',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '451136e515d260dcfeb69b381fca1166c93b1f0d' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\ReportDetailMaintain.tpl',
-      1 => 1726133270,
+      1 => 1726192819,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_66e2b42db2be27_06142972 (Smarty_Internal_Template $_smarty_tpl) {
+function content_66e39cce2b2fe3_11983847 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\vendor\\smarty\\smarty\\libs\\plugins\\function.html_options.php','function'=>'smarty_function_html_options',),));
 ?>
 <!--POP UP MODAL TO VIEW MEMBER DETAILS AND RESULTS FOR Member Information-->
@@ -69,16 +69,18 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                             <option value="P1">P1 系列</option>
                                             <option value="P2">P2 系列</option>
                                             <option value="P3">P3 系列</option>
+                                            <option value="P9">P9 系列</option>
                                             <option value="S1">S1 系列</option>
                                             <option value="S2">S2 系列</option>
                                             <option value="S3">S3 系列</option>
+                                            <option value="S9">S9 系列</option>
                                             <option value="W1">W1 系列</option>
                                             <option value="W2">W2 系列</option>
                                             <option value="W3">W3 系列</option>
                                             <option value="W4">W4 系列</option>
                                             <option value="W5">W5 系列</option>
                                             <option value="W6">W6 系列</option>
-                                            <option value="R9">R9 系列</option>
+                                            <option value="W9">W9 系列</option>
 
 
 
@@ -158,6 +160,8 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                             <option value="35" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 35) {?>selected<?php }?>>連江醫院</option>
                                             <option value="36" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 36) {?>selected<?php }?>>一般客戶or泓采代採
                                             </option>
+                                            <option value="37" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 37) {?>selected<?php }?>>上明眼科</option>
+                                            <option value="38" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 38) {?>selected<?php }?>>台灣醫事檢驗學會</option>
                                         </select>
 
 
@@ -541,194 +545,203 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
     function populateSubmenu(mainMenu, subMenu) {
         var subMenuData = {
             "M1": [
-                "M101-01 Pathogen Fast Identification (DNA)",
-                "M102-01 Pathogen Fast Identification (RNA)",
-                "M103-01 Pathogen Fast Identification"
+                "M101 Pathogen Fast Identification (DNA)",
+                "M102 Pathogen Fast Identification (RNA)",
+                "M103 Pathogen Fast Identification"
             ],
             "M2": [
-                "M201-01 Mycoplasma (General)",
-                "M201-02 Mycoplasma",
-                "M202-01 Mycoplasma (Express)",
-                "M202-02 Mycoplasma (Express)"
+                "M201 Mycoplasma (General)",
+                "M201 Mycoplasma",
+                "M202 Mycoplasma (Express)",
+                "M202 Mycoplasma (Express)"
             ],
             "O1": [
-                "O101-01 Circulating Tumor Cell (CTC) Assay Report"
+                "O101 Circulating Tumor Cell (CTC) Assay Report"
             ],
             "P1": [
-                "P101-01 Lihpao Multi-cancer Target Drug Panel",
-                "P101-02 Lihpao Comprehensive CDx-30 Genes (FFPE)",
-                "P101-03 Lihpao Multi-cancer Target Drug Genetic Testing",
-                "P102-01 Lihpao CRC Target Drug Panel",
-                "P102-02 Lihpao CRC Target Drug Genetic Testing",
-                "P103-01 Lihpao NSCLC Target Drug Panel",
-                "P103-02 Lihpao NSCLC Target Drug Genetic Testing",
-                "P104-01 Lihpao BRCA1/2 Germline Panel",
-                "P104-02 Lihpao Germline BRCA1/2 Genetic Testing",
-                "P105-01 Lihpao Multi-cancer Target Drug RNA Panel",
-                "P105-02 Lihpao Multi-Cacner Target Drug RNA Genetic Testing",
-                "P106-01 Lihpao Lung Fusion Target Drug Panel",
-                "P107-01 Lihpao Lung Cancer Comprehensive Target Drug Panel",
-                "P108-01 Next-generation sequencing for Breast cancer",
-                "P109-01 Next-generation sequencing for Colon cancer",
-                "P110-01 CDx DNA Genetic Testing_HS",
-                "P111-01 CDx DNA Genetic Testing_S5",
-                "P111-02 Tumor DNA Genetic Testing",
-                "P112-01 CDx RNA Genetic Testing_HS",
-                "P113-01 CDx RNA Genetic Testing_S5",
-                "P113-02 Tumor RNA Genetic Testing",
-                "P115-01 Lihpao Multi-cancer Target Drug Panel_HS",
-                "P116-01 Lihpao CRC Target Drug Panel_HS",
-                "P117-01 Lihpao NSCLC Target Drug Panel_HS",
-                "P118-01 Lihpao Multi-cancer Target Drug Panel (Comprehensive Version)"
+                "P101 Lihpao Multi-cancer Target Drug Panel",
+                "P101 Lihpao Comprehensive CDx-30 Genes (FFPE)",
+                "P101 Lihpao Multi-cancer Target Drug Genetic Testing",
+                "P102 Lihpao CRC Target Drug Panel",
+                "P102 Lihpao CRC Target Drug Genetic Testing",
+                "P103 Lihpao NSCLC Target Drug Panel",
+                "P103 Lihpao NSCLC Target Drug Genetic Testing",
+                "P104 Lihpao BRCA1/2 Germline Panel",
+                "P104 Lihpao Germline BRCA1/2 Genetic Testing",
+                "P105 Lihpao Multi-cancer Target Drug RNA Panel",
+                "P105 Lihpao Multi-Cacner Target Drug RNA Genetic Testing",
+                "P106 Lihpao Lung Fusion Target Drug Panel",
+                "P107 Lihpao Lung Cancer Comprehensive Target Drug Panel",
+                "P108 Next-generation sequencing for Breast cancer",
+                "P109 Next-generation sequencing for Colon cancer",
+                "P110 CDx DNA Genetic Testing_HS",
+                "P111 CDx DNA Genetic Testing_S5",
+                "P111 Tumor DNA Genetic Testing",
+                "P112 CDx RNA Genetic Testing_HS",
+                "P113 CDx RNA Genetic Testing_S5",
+                "P113 Tumor RNA Genetic Testing",
+                "P115 Lihpao Multi-cancer Target Drug Panel_HS",
+                "P116 Lihpao CRC Target Drug Panel_HS",
+                "P117 Lihpao NSCLC Target Drug Panel_HS",
+                "P118 Lihpao Multi-cancer Target Drug Panel (Comprehensive Version)"
             ],
             "P2": [
-                "P201-01 BRCA1/2 of Somatic Genetic Testing",
-                "P202-01 ARVC Panel",
-                "P203-01 HCM Panel",
-                "P204-01 NOTCH3 EGFr Domain, Exon 2-24"
+                "P201 BRCA1/2 of Somatic Genetic Testing",
+                "P202 ARVC Panel",
+                "P203 HCM Panel",
+                "P204 NOTCH3 EGFr Domain, Exon 2-24"
             ],
             "P3": [
-                "P301-01 BRCA1/2 of Somatic and Germline Genetic Testing"
+                "P301 BRCA1/2 of Somatic and Germline Genetic Testing"
+            ],
+            "P9":[
+                "P999 Customed Amplicon Service" 
             ],
             "S1": [
-                "S101-01 EGFR 29 Mutations Detection",
-                "S101-02 EGFR 29 Mutations Detection",
-                "S102-01 KRAS Mutation Detection",
-                "S103-01 BRAF V600 Mutations Detection"
+                "S101 EGFR 29 Mutations Detection",
+                "S101 EGFR 29 Mutations Detection",
+                "S102 KRAS Mutation Detection",
+                "S103 BRAF V600 Mutations Detection"
             ],
             "S2": [
-                "S201-01 APOE Genotyping",
-                "S202-01 Metabolism Trio Genetic Testing",
-                "S203-01 CYP1A2 Genotyping",
-                "S204-01 ADH1B Genotyping",
-                "S205-01 ALDH2 Genotyping",
-                "S206-01 NOTCH3 R544C Genotyping",
-                "S208-01 CYP2C19 *2/*3 Genotyping"
+                "S201 APOE Genotyping",
+                "S202 Metabolism Trio Genetic Testing",
+                "S203 CYP1A2 Genotyping",
+                "S204 ADH1B Genotyping",
+                "S205 ALDH2 Genotyping",
+                "S206 NOTCH3 R544C Genotyping",
+                "S208 CYP2C19 *2/*3 Genotyping",
+                "S209 TGFBI (Hotspots) Genetic Testing",
             ],
             "S3": [
-                "S301-01 Sanger Sequencing",
-                "S302-01 NOTCH3 R544C Genotyping",
-                "S303-01 CYP2C19 *2/*3 Genotyping",
-                "S304-01 DPD Deficiency Genetic Testing",
-                "S305-01 BDNF rs6265 Genotyping",
-                "S306-01 PKD genetic testing genetic testing (Hotspot)",
-                "S307-01 TGFBI (Hotspots) Genetic Testing"
+                "S301 Sanger Sequencing",
+                "S302 NOTCH3 R544C Genotyping",
+                "S303 CYP2C19 *2/*3 Genotyping",
+                "S304 DPD Deficiency Genetic Testing",
+                "S305 BDNF rs6265 Genotyping",
+                "S306 PKD genetic testing genetic testing (Hotspot)",
+                "S307 TGFBI (Hotspots) Genetic Testing"
+            ],
+            "S9": [
+                "S998 Customed qPCR Service",
+                "S999 Customed Sanger Service"
             ],
             "W1": [
-                "W100-01 Hereditary Cancer Genetic Testing",
-                "W101-01 Prostate Cancer Germline Genetic Testing",
-                "W102-01 Hereditary Cancer Genetic Testing"
+                "W100 Hereditary Cancer Genetic Testing",
+                "W101 Prostate Cancer Germline Genetic Testing",
+                "W102 Hereditary Cancer Genetic Testing"
             ],
             "W2": [
-                "W200-01 Cardiovascular Disease Genetic Testing",
-                "W201-01 ARVC Genetic Testing",
-                "W202-01 HCM Genetic Testing",
-                "W203-01 DCM Genetic Testing",
-                "W204-01 TAAD Genetic Testing",
-                "W205-01 ATS Genetic Testing",
-                "W206-01 DMVD Genetic Testing",
-                "W207-01 Familial Hypercholesterolemia Genetic Testing",
-                "W208-01 Marfan Syndrome Genetic Testing",
-                "W209-01 Arrhythmia Genetic Testing",
-                "W210-01 Brugada Syndrome Genetic Testing",
-                "W211-01 Catecholaminergic Polymorphic Ventricular Tachycardia Genetic Testing",
-                "W212-01 Long QT Syndrome Genetic Testing",
-                "W213-01 Short QT Syndrome Genetic Testing",
-                "W214-01 ARVC Genetic Testing",
-                "W215-01 HCM Genetic Testing",
-                "W216-01 Familial hypercholesterolemia genetic testing",
-                "W217-01 Aortopathy genetic testing",
-                "W218-01 SADS genetic testing",
-                "W219-01 Cardiovascular disease genetic testing"
+                "W200 Cardiovascular Disease Genetic Testing",
+                "W201 ARVC Genetic Testing",
+                "W202 HCM Genetic Testing",
+                "W203 DCM Genetic Testing",
+                "W204 TAAD Genetic Testing",
+                "W205 ATS Genetic Testing",
+                "W206 DMVD Genetic Testing",
+                "W207 Familial Hypercholesterolemia Genetic Testing",
+                "W208 Marfan Syndrome Genetic Testing",
+                "W209 Arrhythmia Genetic Testing",
+                "W210 Brugada Syndrome Genetic Testing",
+                "W211 Catecholaminergic Polymorphic Ventricular Tachycardia Genetic Testing",
+                "W212 Long QT Syndrome Genetic Testing",
+                "W213 Short QT Syndrome Genetic Testing",
+                "W214 ARVC Genetic Testing",
+                "W215 HCM Genetic Testing",
+                "W216 Familial hypercholesterolemia genetic testing",
+                "W217 Aortopathy genetic testing",
+                "W218 SADS genetic testing",
+                "W219 Cardiovascular disease genetic testing"
             ],
             "W3": [
-                "W300-01 Neurological Disease Genetic Testing",
-                "W300-02 Neurological Disease Genetic Testing",
-                "W301-01 Cerebral Small Vessel Disease Genetic Testing",
-                "W302-01 Parkinsonism Genetic Testing",
-                "W303-01 Hereditary Spastic Paraplegia Genetic Testing",
-                "W304-01 Dystonia Genetic Testing",
-                "W305-01 Cognitive Disorder Genetic Testing",
-                "W305-02 Cognitive Disorder Genetic Testing",
-                "W306-01 Wilson's disease Genetic Testing",
-                "W307-01 Neurofibromatosis Genetic Testing",
-                "W308-01 Ataxia Genetic Testing",
-                "W309-01 Tuberous Sclerosis Genetic Testing",
-                "W310-01 Amyotrophic Lateral Sclerosis Genetic Testing",
-                "W311-01 Leukodystrophy Genetic Testing",
-                "W312-01 Von-Hippel-Lindau Disease Genetic Testing",
-                "W313-01 Charcot-Marie-Tooth Disease Genetic Testing",
-                "W314-01 Cerebral Autosomal Dominant Arteriopathy with Subcortical Infarcts and Leukoencephalopathy Genetic Testing",
-                "W314-02 CADASIL Genetic Testing",
-                "W315-01 Lysosomal Storage Disease Genetic Testing",
-                "W316-01 Tourette's Syndrome Genetic Testing",
-                "W317-01 MELAS Syndrome Genetic Testing",
-                "W318-01 Multiple System Atrophy Genetic Testing",
-                "W319-01 Primary Lateral Sclerosis Genetic Testing",
-                "W320-01 Familial Amyloid Polyneuropathy Genetic Testing",
-                "W321-01 Epilepsy Genetic Testing",
-                "W322-01 Common Neurological Disease Genetic Testing",
-                "W323-01 Inherited Stroke Genetic Testing",
-                "W324-01 Cerebral Small Vessel Disease Genetic Testing",
-                "W325-01 Inherited Stroke Genetic Testing",
-                "W326-01 Common Neurological Disease Genetic Testing",
-                "W327-01 Neurological Disease Genetic Testing",
-                "W327-02 Neurological Disease Genetic Testing",
-                "W328-01 Parkinson Disease Genetic Testing",
-                "W329-01 Cerebral Small Vessel Disease Genetic Testing",
-                "W330-01 Cognitive Disorder Genetic Testing",
-                "W331-01 Epilepsy Genetic Testing",
-                "W332-01 Common Neurological Disease Genetic Testing",
-                "W333-01 Neurological Disease Genetic Testing"
+                "W300 Neurological Disease Genetic Testing",
+                "W300 Neurological Disease Genetic Testing",
+                "W301 Cerebral Small Vessel Disease Genetic Testing",
+                "W302 Parkinsonism Genetic Testing",
+                "W303 Hereditary Spastic Paraplegia Genetic Testing",
+                "W304 Dystonia Genetic Testing",
+                "W305 Cognitive Disorder Genetic Testing",
+                "W305 Cognitive Disorder Genetic Testing",
+                "W306 Wilson's disease Genetic Testing",
+                "W307 Neurofibromatosis Genetic Testing",
+                "W308 Ataxia Genetic Testing",
+                "W309 Tuberous Sclerosis Genetic Testing",
+                "W310 Amyotrophic Lateral Sclerosis Genetic Testing",
+                "W311 Leukodystrophy Genetic Testing",
+                "W312 Von-Hippel-Lindau Disease Genetic Testing",
+                "W313 Charcot-Marie-Tooth Disease Genetic Testing",
+                "W314 Cerebral Autosomal Dominant Arteriopathy with Subcortical Infarcts and Leukoencephalopathy Genetic Testing",
+                "W314 CADASIL Genetic Testing",
+                "W315 Lysosomal Storage Disease Genetic Testing",
+                "W316 Tourette's Syndrome Genetic Testing",
+                "W317 MELAS Syndrome Genetic Testing",
+                "W318 Multiple System Atrophy Genetic Testing",
+                "W319 Primary Lateral Sclerosis Genetic Testing",
+                "W320 Familial Amyloid Polyneuropathy Genetic Testing",
+                "W321 Epilepsy Genetic Testing",
+                "W322 Common Neurological Disease Genetic Testing",
+                "W323 Inherited Stroke Genetic Testing",
+                "W324 Cerebral Small Vessel Disease Genetic Testing",
+                "W325 Inherited Stroke Genetic Testing",
+                "W326 Common Neurological Disease Genetic Testing",
+                "W327 Neurological Disease Genetic Testing",
+                "W327 Neurological Disease Genetic Testing",
+                "W328 Parkinson Disease Genetic Testing",
+                "W329 Cerebral Small Vessel Disease Genetic Testing",
+                "W330 Cognitive Disorder Genetic Testing",
+                "W331 Epilepsy Genetic Testing",
+                "W332 Common Neurological Disease Genetic Testing",
+                "W333 Neurological Disease Genetic Testing"
             ],
             "W4": [
-                "W401-01 Genetic Carrier Screening v1.0",
-                "W402-01 Genetic Carrier Screening v2.0",
-                "W403-01 Genetic Carrier Screening v3.0"
+                "W401 Genetic Carrier Screening v1.0",
+                "W402 Genetic Carrier Screening v2.0",
+                "W403 Genetic Carrier Screening v3.0"
             ],
             "W5": [
-                "W501-01 Healthy Weight Genetic Testing",
-                "W502-01 Healthy Weight Genetic Testing for Monogenic Disorders",
-                "W503-01 Skin Care Genetic Testing",
-                "W504-01 Skin Immunity Genetic Testing",
-                "W505-01 Bone Health Genetic Testing (Female)",
-                "W506-01 Bone Health Genetic Testing (Male)",
-                "W507-01 Alcohol Metabolism Genetic Testing",
-                "W508-01 Height Potential Genetic Testing",
-                "W509-01 Personality Genetic Testing",
-                "W510-01 Athletic Performance Genetic Testing",
-                "W511-01 Uterine Care Genetic Testing",
-                "W512-01 Genetic Predisposition Testing for Type 2 Diabetes",
-                "W513-01 Eye Health Genetic Testing",
-                "W514-01 Eye Health Genetic Testing for Monogenic Disorders",
-                "W515-01 Hair Care Genetic Testing (Female)",
-                "W516-01 Hair Care Genetic Testing (Male)",
-                "W517-01 Sleep Care Genetic Testing (Female)",
-                "W518-01 Sleep Care Genetic Testing (Male)",
-                "W519-01 Genetic Predisposition Testing for Precocious Puberty (Female)",
-                "W520-01 Genetic Predisposition Testing for Precocious Puberty (Male)",
-                "W521-01 Cerebrovascular Health Genetic Testing (Female)",
-                "W522-01 Cerebrovascular Health Genetic Testing (Male)",
-                "W523-01 Cerebrovascular Health Genetic Testing for Monogenic Disorders",
-                "W524-01 Genetic Predisposition Testing for Chronic Kidney Disease",
-                "W525-01 Genetic Predisposition Testing for Urolithiasis and Nephrolithiasis",
-                "W526-01 Genetic Predisposition Testing for Gastroesophageal Reflux Disease",
-                "W527-01 Genetic Predisposition Testing for Longevity (Female)",
-                "W527-02 Longevity Genetic Testing (Female)",
-                "W528-01 Genetic Predisposition Testing for Longevity (Male)",
-                "W528-02 Longevity Genetic Testing (Male)",
-                "W529-01 Chest Care Genetic Testing",
-                "W530-01 Caffeine Metabolism Genetic Testing",
-                "W531-01 Cholesterol Metabolism Genetic Testing",
-                "W532-01 Liver Health Genetic Testing"
+                "W501 Healthy Weight Genetic Testing",
+                "W502 Healthy Weight Genetic Testing for Monogenic Disorders",
+                "W503 Skin Care Genetic Testing",
+                "W504 Skin Immunity Genetic Testing",
+                "W505 Bone Health Genetic Testing (Female)",
+                "W506 Bone Health Genetic Testing (Male)",
+                "W507 Alcohol Metabolism Genetic Testing",
+                "W508 Height Potential Genetic Testing",
+                "W509 Personality Genetic Testing",
+                "W510 Athletic Performance Genetic Testing",
+                "W511 Uterine Care Genetic Testing",
+                "W512 Genetic Predisposition Testing for Type 2 Diabetes",
+                "W513 Eye Health Genetic Testing",
+                "W514 Eye Health Genetic Testing for Monogenic Disorders",
+                "W515 Hair Care Genetic Testing (Female)",
+                "W516 Hair Care Genetic Testing (Male)",
+                "W517 Sleep Care Genetic Testing (Female)",
+                "W518 Sleep Care Genetic Testing (Male)",
+                "W519 Genetic Predisposition Testing for Precocious Puberty (Female)",
+                "W520 Genetic Predisposition Testing for Precocious Puberty (Male)",
+                "W521 Cerebrovascular Health Genetic Testing (Female)",
+                "W522 Cerebrovascular Health Genetic Testing (Male)",
+                "W523 Cerebrovascular Health Genetic Testing for Monogenic Disorders",
+                "W524 Genetic Predisposition Testing for Chronic Kidney Disease",
+                "W525 Genetic Predisposition Testing for Urolithiasis and Nephrolithiasis",
+                "W526 Genetic Predisposition Testing for Gastroesophageal Reflux Disease",
+                "W527 Genetic Predisposition Testing for Longevity (Female)",
+                "W527 Longevity Genetic Testing (Female)",
+                "W528 Genetic Predisposition Testing for Longevity (Male)",
+                "W528 Longevity Genetic Testing (Male)",
+                "W529 Chest Care Genetic Testing",
+                "W530 Caffeine Metabolism Genetic Testing",
+                "W531 Cholesterol Metabolism Genetic Testing",
+                "W532 Liver Health Genetic Testing"
             ],
             "W6": [
-                "W601-01 Glaucoma Genetic Testing",
-                "W602-01 Macular Degeneration Genetic Testing"
+                "W601 Glaucoma Genetic Testing",
+                "W602 Macular Degeneration Genetic Testing"
             ],
-            "R9": [
-                "R9 客製化報告"
-            ]
+            "W9": [
+                "W999 Customed WES Service"
+            ],
+
         };
 
         var selectedCategory = mainMenu.value;

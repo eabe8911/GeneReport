@@ -54,15 +54,10 @@ class Email
         $Username = $_SESSION['DisplayName'];
         $PatientID = filter_input(INPUT_POST, 'PatientID');
         $rcdate = filter_input(INPUT_POST, 'rcdate');
-        $HospitalList = filter_input(INPUT_POST, 'HospitalList');
         
         $proband_name = filter_input(INPUT_POST, 'proband_name');
         $SampleNo = filter_input(INPUT_POST, 'SampleNo');
 
-        $hospitalList = new Report();
-        $hospitalList = $hospitalList->getHospitalList();
-        //get hospitalList name
-        $hospitalList = $hospitalList[$ReportInfo['HospitalList']];
 
 
 
@@ -81,7 +76,7 @@ class Email
             // sender email setting
             $_mail->Username = 'liboreport@libobio.com';
             $_mail->Password = 'Xu41l3libo';
-            $_mail->SetFrom('liboreport@libobio.com', 'FromEmail');
+            $_mail->SetFrom('liboreport@libobio.com', '麗寶生醫');
 
 
             // Set sender alias based on user permission
@@ -91,9 +86,9 @@ class Email
             $_mail->addBCC('tina.xue@libobio.com');
 
             $_mail->isHTML(true); // Set email format to HTML
-            $_mail->Subject = '【麗寶生醫】' . $hospitalList . '檢測報告_'. $ReportName . '_' . $ReportID;
+            $_mail->Subject = '【麗寶生醫】' . $HospitalList . '檢測報告_'. $ReportName . '_' . $ReportID;
 
-            $_mail->Body = $hospitalList .'_'. $CustomerName . '先生/女士 您好：<br><br>
+            $_mail->Body = $HospitalList .'_'. $CustomerName . '先生/女士 您好：<br><br>
  
             非常感謝貴院委檢本司施作基因檢測服務，<br>
             附件檔案為送檢的基因檢測報告及服務申請單，煩請您查收。<br>

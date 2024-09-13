@@ -39,71 +39,80 @@ $reports = $stmt->fetchAll(PDO::FETCH_ASSOC);
 foreach ($reports as $report) {
     $ReportID = $report['ReportID'];
     $CustomerEmail = $report['CustomerEmail'];
-    $HospitalList1 = $report['HospitalList'];
+    $HospitalList = $report['HospitalList'];
     $SampleNo = $report['SampleNo'];
     $ReportName = $report['ReportName'];
     $SampleID = $report['SampleID'];
     $PatientID = $report['PatientID'];
     $scID = $report['scID'];
+    $SampleID = $report['SampleID'];
     
 }
 
-    switch ($HospitalList1) {
-        case '1':
-            $HospitalList = '台大雲林分院';
-            break;
-        case '2':
-            $HospitalList = '台北市立聯合醫院';
-            break;
-        case '3':
-            $HospitalList = '台南市立醫院';
-            break;
-        case '4':
-            $HospitalList = '台南新樓醫院';
-            break;
-        case '5':
-            $HospitalList = '竹山秀傳';
-            break;
-        case '6':
-            $HospitalList = '屏基醫院';
-            break;
-        case '7':
-            $HospitalList = '恩主公醫院';
-            break;
-        case '8':
-            $HospitalList = '國軍803';
-            break;
-        case '9':
-            $HospitalList = '國泰醫院';
-            break;
-        case '10':
-            $HospitalList = '統誠醫療';
-            break;
-        case '11':
-            $HospitalList = '麻豆新樓醫院';
-            break;
-        case '12':
-            $HospitalList = '彰化秀傳';
-            break;
-        case '13':
-            $HospitalList = '彰濱秀傳';
-            break;
-        case '14':
-            $HospitalList = '輔大醫院';
-            break;
-        case '15':
-            $HospitalList = '泓采診所';
-            break;
-        case '16':
-            $HospitalList = '麗寶生醫(自來客)';
-            break;
-        case '17':
-            $HospitalList = '其他';
-            break;
-        default:
-            $HospitalList = '';
-            break;
+if (!empty($HospitalList)) {
+    $hospitalList = new Report();
+    $hospitalList = $hospitalList->getHospitalList();
+    //get hospitalList name
+    $hospitalList = $hospitalList[$HospitalList];
+    } else {
+    $hospitalList = '';
     }
+    // switch ($HospitalList1) {
+    //     case '1':
+    //         $HospitalList = '台大雲林分院';
+    //         break;
+    //     case '2':
+    //         $HospitalList = '台北市立聯合醫院';
+    //         break;
+    //     case '3':
+    //         $HospitalList = '台南市立醫院';
+    //         break;
+    //     case '4':
+    //         $HospitalList = '台南新樓醫院';
+    //         break;
+    //     case '5':
+    //         $HospitalList = '竹山秀傳';
+    //         break;
+    //     case '6':
+    //         $HospitalList = '屏基醫院';
+    //         break;
+    //     case '7':
+    //         $HospitalList = '恩主公醫院';
+    //         break;
+    //     case '8':
+    //         $HospitalList = '國軍803';
+    //         break;
+    //     case '9':
+    //         $HospitalList = '國泰醫院';
+    //         break;
+    //     case '10':
+    //         $HospitalList = '統誠醫療';
+    //         break;
+    //     case '11':
+    //         $HospitalList = '麻豆新樓醫院';
+    //         break;
+    //     case '12':
+    //         $HospitalList = '彰化秀傳';
+    //         break;
+    //     case '13':
+    //         $HospitalList = '彰濱秀傳';
+    //         break;
+    //     case '14':
+    //         $HospitalList = '輔大醫院';
+    //         break;
+    //     case '15':
+    //         $HospitalList = '泓采診所';
+    //         break;
+    //     case '16':
+    //         $HospitalList = '麗寶生醫(自來客)';
+    //         break;
+    //     case '17':
+    //         $HospitalList = '其他';
+    //         break;
+    //     default:
+    //         $HospitalList = '';
+    //         break;
+    // }
 
 
 
@@ -139,15 +148,12 @@ foreach ($reports as $report) {
             </tr>
             <tr>
                 <th>送檢單位：</th>
-                <td><input type="text" name="HospitalList" value="<?php echo $HospitalList; ?>" required></td>
+                <td><input type="text" name="HospitalList" value="<?php echo $hospitalList; ?>" required></td>
             </tr>
-            <!-- <tr>
-                <th>原樣本代號：</th>
-                <td><input type="text" name="SampleNo" value="<?php echo $SampleNo; ?>" required></td>
-            </tr> -->
+
             <tr>
                 <th>檢體編號：</th>
-                <td><input type="text" name="SampleID" value="<?php echo $SampleID; ?>" required></td>
+                <td><input type="text" name="SampleNo" value="<?php echo $SampleNo; ?>" required></td>
             </tr>
             <tr>
                 <th>病歷編號：</th>
