@@ -371,13 +371,13 @@ class Report implements ReportInterface
                 ReportType, scdate, rcdate, Receiving, Receiving2, TemplateID, 
                 ReportID, ReportName, CustomerName, CustomerEmail, CustomerPhone, ReportStatus, HospitalList_ERP,
                 CreatedAt, DueDate, SampleType_1, SampleQuantity_1, SampleUnit_1, SampleType_2, SampleQuantity_2, SampleUnit_2
-                , SampleType_3, SampleQuantity_3, SampleUnit_3, SampleType_4, SampleQuantity_4, SampleUnit_4, SampleType_5, SampleQuantity_5, SampleUnit_5, proband_name, method
+                , SampleType_3, SampleQuantity_3, SampleUnit_3, SampleType_4, SampleQuantity_4, SampleUnit_4, SampleType_5, SampleQuantity_5, SampleUnit_5, proband_name, method, sample_type_r1, sample_type_r2, sample_type_r3, sample_type_r4, sample_type_r5
                 ) VALUES (
                 :SampleID, :PatientID, :SampleNo, :scID, :HospitalList, :HospitalList_Dr, :ReportTemplate, :ReportTemplateID,
                 :ReportType, :scdate, :rcdate, :Receiving, :Receiving2, :TemplateID, 
                 :ReportID, :ReportName, :CustomerName, :CustomerEmail, :CustomerPhone, :ReportStatus, :HospitalList_ERP,
                 :CreatedAt, :DueDate, :SampleType_1, :SampleQuantity_1, :SampleUnit_1, :SampleType_2, :SampleQuantity_2, :SampleUnit_2
-                , :SampleType_3, :SampleQuantity_3, :SampleUnit_3, :SampleType_4, :SampleQuantity_4, :SampleUnit_4, :SampleType_5, :SampleQuantity_5, :SampleUnit_5, :proband_name, :method
+                , :SampleType_3, :SampleQuantity_3, :SampleUnit_3, :SampleType_4, :SampleQuantity_4, :SampleUnit_4, :SampleType_5, :SampleQuantity_5, :SampleUnit_5, :proband_name, :method, :sample_type_r1, :sample_type_r2, :sample_type_r3, :sample_type_r4, :sample_type_r5
                 )";
                 $stmt = $this->_conn->prepare($sql);
 
@@ -468,7 +468,6 @@ class Report implements ReportInterface
                 $stmt->bindParam(':ReportStatus', $ReportStatus);
                 $stmt->bindParam(':HospitalList_ERP', $ReportInfo['HospitalList_ERP']);
                 $stmt->bindParam(':CreatedAt', $now);
-
                 $stmt->bindParam(':SampleType_1', $ReportInfo['SampleType_1']);
                 $stmt->bindParam(':SampleQuantity_1', $ReportInfo['SampleQuantity_1']);
                 $stmt->bindParam(':SampleUnit_1', $ReportInfo['SampleUnit_1']);
@@ -486,6 +485,12 @@ class Report implements ReportInterface
                 $stmt->bindParam(':SampleUnit_5', $ReportInfo['SampleUnit_5']);
                 $stmt->bindParam(':proband_name', $ReportInfo['proband_name']);
                 $stmt->bindParam(':method', $ReportInfo['method']);
+                $stmt->bindParam(':sample_type_r1', $ReportInfo['sample_type_r1']);
+                $stmt->bindParam(':sample_type_r2', $ReportInfo['sample_type_r2']);
+                $stmt->bindParam(':sample_type_r3', $ReportInfo['sample_type_r3']);
+                $stmt->bindParam(':sample_type_r4', $ReportInfo['sample_type_r4']);
+                $stmt->bindParam(':sample_type_r5', $ReportInfo['sample_type_r5']);
+
 
                 $stmt->execute();
             }

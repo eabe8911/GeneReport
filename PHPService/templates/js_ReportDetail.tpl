@@ -83,6 +83,16 @@
         setFieldsReadonly(false);
       });
 
+        // Edit BtnReportEditCustomer using ReportID
+        $('#BtnReportEditCustomer').click(function() {
+        $('#ReportMode').val('EDIT');
+        // set button for confirm
+        $('#ReportQueryButton').hide();
+        $('#ReportConfirmButton').show();
+        setCustomerFieldsReadonly(false);
+      });
+
+
       $('#BtnReportEditccemail').click(function() {
         $('#ReportMode').val('EDITCC');
         // set button for confirm
@@ -211,6 +221,17 @@
       $('#DisplayUploadButton').prop('hidden', state);
     }
 
+    function setCustomerFieldsReadonly(state) {
+      // $('#ReportID').prop('readonly', state);
+      
+      $('#CustomerName').prop('readonly', state);
+      $('#CustomerEmail').prop('readonly', state);
+      $('#ccemail').prop('readonly', state);
+      $('#CustomerPhone').prop('readonly', state);
+    }
+
+
+    
     //set email editable
     function setFieldsEditable(state) {
       // $('#CustomerEmail').prop('readonly', state);

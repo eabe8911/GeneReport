@@ -128,7 +128,8 @@
                                             <option value="36" {if $HospitalListSelect==36}selected{/if}>一般客戶or泓采代採
                                             </option>
                                             <option value="37" {if $HospitalListSelect==37}selected{/if}>上明眼科</option>
-                                            <option value="38" {if $HospitalListSelect==38}selected{/if}>台灣醫事檢驗學會</option>
+                                            <option value="38" {if $HospitalListSelect==38}selected{/if}>台灣醫事檢驗學會
+                                            </option>
                                         </select>
 
 
@@ -241,71 +242,74 @@
                                 <div class="form-group">
                                     <label for="CustomerEmail" class="col-md-3 control-label">聯絡人信箱:</label>
                                     <div class="col-md-8">
-                                        <input type="text" id="CustomerEmail" name="CustomerEmail" class="form-control"
-                                            required value="{$CustomerEmail}">
+                                        <input type="email" id="CustomerEmail" name="CustomerEmail" class="form-control"
+                                            required value="{$CustomerEmail}" placeholder="請輸入正確E-mail格式">
                                     </div>
                                 </div>
                                 <!---- 客戶郵件2 -->
                                 <div class="form-group">
                                     <label for="ccemail" class="col-md-3 control-label">信箱(CC副本):</label>
                                     <div class="col-md-8">
-                                        <input type="text" id="ccemail" name="ccemail" class="form-control"
-                                            value="{$ccemail}">
+                                        <input type="email" id="ccemail" name="ccemail" class="form-control"
+                                            value="{$ccemail}" placeholder="請輸入正確E-mail格式">
                                     </div>
 
                                     <div class="form-group">
-                                        <button type="button" class="btn btn-danger btn-md float-right"
-                                            id="BtnReportEditccemail"
-                                            style="font-weight:bold;font-size:13px;margin:23px;">
-                                            <i class="fa fa-edit"></i> 修改郵件
-                                        </button>
+                                        <label class="col-md-3 control-label"></label>
+
+                                        <div class="col-md-8 text-right">
+                                            <button type="button" class="btn btn-danger btn-md "
+                                                id="BtnReportEditccemail"
+                                                style="font-weight:bold;font-size:13px;margin:23px;">
+                                                <i class="fa fa-edit"></i>修改郵件
+                                            </button>
+                                        </div>
                                     </div>
-                                </div>
 
 
-                                <!---- 客戶電話 ---->
-                                <div class="form-group">
-                                    <label for="CustomerPhone" class="col-md-3 control-label">聯絡電話:</label>
-                                    <div class="col-md-8">
-                                        <input type="text" id="CustomerPhone" name="CustomerPhone" class="form-control"
-                                            required value="{$CustomerPhone}">
+                                    <!---- 客戶電話 ---->
+                                    <div class="form-group">
+                                        <label for="CustomerPhone" class="col-md-3 control-label">聯絡電話:</label>
+                                        <div class="col-md-8">
+                                            <input type="text" id="CustomerPhone" name="CustomerPhone"
+                                                class="form-control" required value="{$CustomerPhone}">
+                                        </div>
                                     </div>
-                                </div>
-                                <!---- 報告發送狀態 ---->
+                                    <!---- 報告發送狀態 ---->
 
-                                <div class="form-group">
-                                    <label for="ReportStatus" class="col-md-3 control-label">報告進度:</label>
-                                    <div class="col-md-8">
-                                        <input type="text" id="ReportStatus" name="ReportStatus" class="form-control"
-                                            value="{$ReportStatus}">
+                                    <div class="form-group">
+                                        <label for="ReportStatus" class="col-md-3 control-label">報告進度:</label>
+                                        <div class="col-md-8">
+                                            <input type="text" id="ReportStatus" name="ReportStatus"
+                                                class="form-control" value="{$ReportStatus}">
+                                        </div>
                                     </div>
-                                </div>
 
-                                <!---- 報告退回原因，有值才顯示欄位 ---->
-                                {if $RejectReason}
-                                <div class="form-group">
-                                    <label for="RejectReason" class="col-md-3 control-label">報告退回原因:</label>
-                                    <div class="col-md-8">
-                                        <input type="text" id="RejectReason" name="RejectReason" class="form-control"
-                                            value="{$RejectReason}">
+                                    <!---- 報告退回原因，有值才顯示欄位 ---->
+                                    {if $RejectReason}
+                                    <div class="form-group">
+                                        <label for="RejectReason" class="col-md-3 control-label">報告退回原因:</label>
+                                        <div class="col-md-8">
+                                            <input type="text" id="RejectReason" name="RejectReason"
+                                                class="form-control" value="{$RejectReason}">
+                                        </div>
                                     </div>
-                                </div>
-                                {/if}
-                                <div class="form-group">
-                                    <label for="downloadJsonBtn" class="col-md-3 control-label"></label>
+                                    {/if}
+                                    <div class="form-group">
+                                        <label for="downloadJsonBtn" class="col-md-3 control-label"></label>
 
-                                    <!-- <div class="col-md-8">
+                                        <!-- <div class="col-md-8">
                                         <button id="downloadJsonBtn" class="btn btn-primary" onclick="downloadJson()">下載
                                             JSON 文件</button>
 
                                     </div> -->
 
-                                </div>
+                                    </div>
 
 
 
-                                <!-- 發信通知按紐，permission == 2 才顯示按紐 -->
-                                <!-- {if $Permission eq 2}
+                                    <!-- 發信通知按紐，permission == 2 才顯示按紐 -->
+                                    <!-- {if $Permission eq 2}
                                 <div class="form-group text-center">
                                     <form method="post" action="{$FormEmail}" name="FormSendEmail" id="FormSendEmail">
                                         <input type="hidden" id="ReportID" name="ReportID" value="{$ReportID}">
@@ -318,27 +322,27 @@
         
                                 {/if}
                                 -- 上傳報告 -- -->
-                                <div class="form-group" id="DisplayUploadButton">
-                                    <center>
-                                        {if $Permission eq 1 or $Permission eq 9 }
+                                    <div class="form-group" id="DisplayUploadButton">
+                                        <center>
+                                            {if $Permission eq 1 or $Permission eq 9 }
 
-                                        <label type="button" class="btn btn-primary btn-block"
-                                            style="font-weight:bold;font-size:20px;width:40%;;margin:30px;">
-                                            <input id="ReportUploadPDF" name="ReportUploadPDF" style="display:none;"
-                                                type="file" accept="application/pdf" />
-                                            <i class="fa fa-file-pdf"></i> 上傳報告結果
-                                        </label>
+                                            <label type="button" class="btn btn-primary btn-block"
+                                                style="font-weight:bold;font-size:20px;width:40%;;margin:30px;">
+                                                <input id="ReportUploadPDF" name="ReportUploadPDF" style="display:none;"
+                                                    type="file" accept="application/pdf" />
+                                                <i class="fa fa-file-pdf"></i> 上傳報告結果
+                                            </label>
 
-                                        {else}
+                                            {else}
 
-                                        <label type="button" class="btn btn-primary btn-block"
-                                            style="font-weight:bold;font-size:20px;width:40%;;margin:30px;">
-                                            <input id="ReportApply" name="ReportApply" style="display:none;" type="file"
-                                                accept="application/pdf" />
-                                            <i class="fa fa-file-pdf"></i> 上傳申請單
-                                        </label>
-                                        {/if}
-                                        <!-- <label type="button" class="btn btn-primary btn-block"
+                                            <label type="button" class="btn btn-primary btn-block"
+                                                style="font-weight:bold;font-size:20px;width:40%;;margin:30px;">
+                                                <input id="ReportApply" name="ReportApply" style="display:none;"
+                                                    type="file" accept="application/pdf" />
+                                                <i class="fa fa-file-pdf"></i> 上傳申請單
+                                            </label>
+                                            {/if}
+                                            <!-- <label type="button" class="btn btn-primary btn-block"
                                             style="font-weight:bold;font-size:20px;width:40%;;margin:30px;">
                                             <input id="ReportUploadLogoPDF" name="ReportUploadLogoPDF"
                                                 style="display:none;" type="file" accept="application/pdf" />
@@ -346,79 +350,88 @@
                                         </label> -->
 
 
-                                        <!-- <input type="file" id="Apply" name="Apply" /> -->
+                                            <!-- <input type="file" id="Apply" name="Apply" /> -->
 
-                                    </center>
+                                        </center>
+                                    </div>
+
                                 </div>
-
                             </div>
                         </div>
-                    </div>
-                    <!---- button area ---->
-                    <div>
-                        <div id="ds1" align="center">
-                            <p id="Message">
-                            <div class="alert alert-danger alert-container" id="alert" {$ShowErrorMessage}>
-                                <strong>
-                                    <center>
-                                        <h1>{$ErrorMessage}</h1>
-                                    </center>
-                                </strong>
-                            </div>
-                            </p>
-                            <p id="ReportViewButton">
-                                <button type="button" class="btn btn-danger btn-md" id="BtnReportViewExit"
-                                    style="font-weight:bold;font-size:20px;margin:30px;">
-                                    <i class="fa fa-eject"></i> 離 開</button>
+                        <!---- button area ---->
+                        <div>
+                            <div id="ds1" align="center">
+                                <p id="Message">
+                                <div class="alert alert-danger alert-container" id="alert" {$ShowErrorMessage}>
+                                    <strong>
+                                        <center>
+                                            <h1>{$ErrorMessage}</h1>
+                                        </center>
+                                    </strong>
+                                </div>
+                                </p>
+                                <p id="ReportViewButton">
+                                    <button type="button" class="btn btn-danger btn-md" id="BtnReportViewExit"
+                                        style="font-weight:bold;font-size:20px;margin:30px;">
+                                        <i class="fa fa-eject"></i> 離 開</button>
 
-                            </p>
-                            {if $Permission == 1}
-                            <p id="ReportQueryButton">
-                                <button type="button" class="btn btn-danger btn-md" id="BtnReportExit"
-                                    style="font-weight:bold;font-size:20px;margin:30px;">
-                                    <i class="fa fa-eject"></i> 離 開</button>
-                                <button type="button" class="btn btn-danger btn-md" id="BtnReportEditPDF"
-                                    style="font-weight:bold;font-size:20px;margin:30px;">
-                                    <i class="fa fa-edit"></i> 修 改</button>
+                                </p>
+                                {if $Permission == 1}
+                                <p id="ReportQueryButton">
+                                    <button type="button" class="btn btn-danger btn-md" id="BtnReportExit"
+                                        style="font-weight:bold;font-size:20px;margin:30px;">
+                                        <i class="fa fa-eject"></i> 離 開</button>
+                                    <button type="button" class="btn btn-danger btn-md" id="BtnReportEditPDF"
+                                        style="font-weight:bold;font-size:20px;margin:30px;">
+                                        <i class="fa fa-edit"></i> 修 改</button>
 
-                            </p>
-                            {elseif $Permission == 2}
-                            <p id="ReportQueryButton">
-                                <button type="button" class="btn btn-danger btn-md" id="BtnReportExit"
-                                    style="font-weight:bold;font-size:20px;margin:30px;">
-                                    <i class="fa fa-eject"></i> 離 開</button>
-                                <button type="button" class="btn btn-danger btn-md" id="BtnReportEdit"
-                                    style="font-weight:bold;font-size:20px;margin:30px;">
-                                    <i class="fa fa-edit"></i> 修 改</button>
+                                </p>
+                                {elseif $Permission == 2}
+                                <p id="ReportQueryButton">
+                                    <button type="button" class="btn btn-danger btn-md" id="BtnReportExit"
+                                        style="font-weight:bold;font-size:20px;margin:30px;">
+                                        <i class="fa fa-eject"></i> 離 開</button>
+                                    <button type="button" class="btn btn-danger btn-md" id="BtnReportEdit"
+                                        style="font-weight:bold;font-size:20px;margin:30px;">
+                                        <i class="fa fa-edit"></i> 修 改</button>
 
-                            </p>
-                            {elseif $Permission == 4 or $Permission == 5 or $Permission == 9}
-                            <p id="ReportQueryButton">
-                                <button type="button" class="btn btn-danger btn-md" id="BtnReportExit"
-                                    style="font-weight:bold;font-size:20px;margin:30px;">
-                                    <i class="fa fa-eject"></i> 離 開</button>
-                                <button type="button" class="btn btn-danger btn-md" id="BtnReportEdit"
-                                    style="font-weight:bold;font-size:20px;margin:30px;">
-                                    <i class="fa fa-edit"></i> 修 改</button>
-                            </p>
-                            {elseif $Permission == 6}
-                            <p id="ReportQueryButton">
-                                <button type="button" class="btn btn-danger btn-md" id="BtnReportExit"
-                                    style="font-weight:bold;font-size:20px;margin:30px;">
-                                    <i class="fa fa-eject"></i> 離 開</button>
-                                <button type="button" class="btn btn-danger btn-md" id="BtnReportDelete"
-                                    style="font-weight:bold;font-size:20px;margin:30px;">
-                                    <i class="fa fa-trash"></i> 刪 除</button>
-                            </p>
-                            {elseif $Permission == 3}
-                            <p id="ReportQueryButton">
-                                <button type="button" class="btn btn-danger btn-md" id="BtnReportExit"
-                                    style="font-weight:bold;font-size:20px;margin:30px;">
-                                    <i class="fa fa-eject"></i> 離 開</button>
-                            </p>
+                                </p>
+                                {elseif $Permission == 4 }
+                                <p id="ReportQueryButton">
+                                    <button type="button" class="btn btn-danger btn-md" id="BtnReportExit"
+                                        style="font-weight:bold;font-size:20px;margin:30px;">
+                                        <i class="fa fa-eject"></i> 離 開</button>
+                                    <button type="button" class="btn btn-danger btn-md" id="BtnReportEditCustomer"
+                                        style="font-weight:bold;font-size:20px;margin:30px;">
+                                        <i class="fa fa-edit"></i> 修 改</button>
+                                </p>
+                                {elseif $Permission == 5 or $Permission == 9}
+                                <p id="ReportQueryButton">
+                                    <button type="button" class="btn btn-danger btn-md" id="BtnReportExit"
+                                        style="font-weight:bold;font-size:20px;margin:30px;">
+                                        <i class="fa fa-eject"></i> 離 開</button>
+                                    <button type="button" class="btn btn-danger btn-md" id="BtnReportEdit"
+                                        style="font-weight:bold;font-size:20px;margin:30px;">
+                                        <i class="fa fa-edit"></i> 修 改</button>
+                                </p>
+                                {elseif $Permission == 6}
+                                <p id="ReportQueryButton">
+                                    <button type="button" class="btn btn-danger btn-md" id="BtnReportExit"
+                                        style="font-weight:bold;font-size:20px;margin:30px;">
+                                        <i class="fa fa-eject"></i> 離 開</button>
+                                    <button type="button" class="btn btn-danger btn-md" id="BtnReportDelete"
+                                        style="font-weight:bold;font-size:20px;margin:30px;">
+                                        <i class="fa fa-trash"></i> 刪 除</button>
+                                </p>
+                                {elseif $Permission == 3}
+                                <p id="ReportQueryButton">
+                                    <button type="button" class="btn btn-danger btn-md" id="BtnReportExit"
+                                        style="font-weight:bold;font-size:20px;margin:30px;">
+                                        <i class="fa fa-eject"></i> 離 開</button>
+                                </p>
 
 
-                            <!-- {elseif $Permission == 4}
+                                <!-- {elseif $Permission == 4}
                             <p id="ReportQueryButton">
                                 <button type="button" class="btn btn-danger btn-md" id="BtnReportExit"
                                     style="font-weight:bold;font-size:20px;margin:30px;">
@@ -427,52 +440,52 @@
                                     style="font-weight:bold;font-size:20px;margin:30px;">
                                     <i class="fa fa-edit"></i> 修改郵件</button> -->
 
-                            {/if}
-                            <!--SUBMIT BUTTON IS CONNECTED TO HOME.PHP-->
-                            <p id="ReportConfirmButton">
-                                <button type="button" class="btn btn-custom btn-danger btn-md" id=BtnReportCancel
-                                    name=BtnReportCancel style="font-weight:bold;font-size:20px;margin:30px;">
-                                    <i class="fa fa-window-close"></i> 取 消</button>
-                                <button type="submit" class="btn btn-custom btn-success btn-md" id=BtnReportSubmit
-                                    name=BtnReportSubmit style="font-weight:bold;font-size:20px;margin:30px;">
-                                    <i class="fa fa-paper-plane"></i> 確 認</button>
-                            <p id="uploadWarning" style="color: red; display: none;">請上傳申請單</p>
-                            </p>
+                                {/if}
+                                <!--SUBMIT BUTTON IS CONNECTED TO HOME.PHP-->
+                                <p id="ReportConfirmButton">
+                                    <button type="button" class="btn btn-custom btn-danger btn-md" id=BtnReportCancel
+                                        name=BtnReportCancel style="font-weight:bold;font-size:20px;margin:30px;">
+                                        <i class="fa fa-window-close"></i> 取 消</button>
+                                    <button type="submit" class="btn btn-custom btn-success btn-md" id=BtnReportSubmit
+                                        name=BtnReportSubmit style="font-weight:bold;font-size:20px;margin:30px;">
+                                        <i class="fa fa-paper-plane"></i> 確 認</button>
+                                <p id="uploadWarning" style="color: red; display: none;">請上傳申請單</p>
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                    <!---- PDF Preview ---->
-                    <div class="row" id="PDFArea">
-                        <div class="form-horizontal" role="form">
+                        <!---- PDF Preview ---->
+                        <div class="row" id="PDFArea">
+                            <div class="form-horizontal" role="form">
 
-                            <div class="col-md-12">
-                                <embed id='PDFPreview' name='PDFPreview' src='{$PDFPreview}' type='application/pdf'
-                                    width='100%' height='1000px' />
+                                <div class="col-md-12">
+                                    <embed id='PDFPreview' name='PDFPreview' src='{$PDFPreview}' type='application/pdf'
+                                        width='100%' height='1000px' />
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <br>
-                    <br>
-                    <!---- Apply Preview -->
-                    <div class="row" id="ApplyArea">
-                        <div class="form-horizontal" role="form">
-                            <div class="col-md-12">
-                                <embed id='ApplyFile' name='ApplyFile' src='{$ApplyFile}' type='application/pdf'
-                                    width='100%' height='1000px' />
-                            </div>
-                        </div>
-                    </div>
-                    <!-- pdf-output -->
-                    <div class="row" id="pdf-output">
-                        <div class="form-horizontal" role="form">
-                            <div class="col-md-12" style="text-align: center;">
-                                {$output}
-                            </div>
-                        </div>
-
                         <br>
                         <br>
-                        <!---- LooPDF Preview -->
-                        <!-- <div class="row" id="LogoPDFArea">
+                        <!---- Apply Preview -->
+                        <div class="row" id="ApplyArea">
+                            <div class="form-horizontal" role="form">
+                                <div class="col-md-12">
+                                    <embed id='ApplyFile' name='ApplyFile' src='{$ApplyFile}' type='application/pdf'
+                                        width='100%' height='1000px' />
+                                </div>
+                            </div>
+                        </div>
+                        <!-- pdf-output -->
+                        <div class="row" id="pdf-output">
+                            <div class="form-horizontal" role="form">
+                                <div class="col-md-12" style="text-align: center;">
+                                    {$output}
+                                </div>
+                            </div>
+
+                            <br>
+                            <br>
+                            <!---- LooPDF Preview -->
+                            <!-- <div class="row" id="LogoPDFArea">
                         <div class="form-horizontal" role="form">
                             <div class="col-md-12">
                                 <embed id='LogoFile' name='LogoFile' src='{$LogoFile}' type='application/pdf'
@@ -480,10 +493,10 @@
                             </div>
                         </div>
                     </div> -->
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 </form>
 <script>
     function populateSubmenu(mainMenu, subMenu) {
@@ -538,8 +551,8 @@
             "P3": [
                 "P301 BRCA1/2 of Somatic and Germline Genetic Testing"
             ],
-            "P9":[
-                "P999 Customed Amplicon Service" 
+            "P9": [
+                "P999 Customed Amplicon Service"
             ],
             "S1": [
                 "S101 EGFR 29 Mutations Detection",
@@ -873,22 +886,28 @@
     });
 </script>
 <script>
-    document.getElementById('FormReportDetail').addEventListener('submit', function() {
+    document.getElementById('FormReportDetail').addEventListener('submit', function () {
         document.querySelector('#ReportName').disabled = false;
         document.querySelector('#HospitalList').disabled = false;
     });
 </script>
-<!-- <script>
-    document.getElementById('BtnReportSubmit').addEventListener('click', function (event) {
-        var fileInput = document.getElementById('ReportApply');
-        var uploadWarning = document.getElementById('uploadWarning');
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var permission = document.getElementById('Permission').value;
 
-        if (fileInput.files.length === 0) {
-            event.preventDefault(); // 阻止表單提交
-            uploadWarning.style.display = 'block'; // 顯示提示文字
-        } else {
-            uploadWarning.style.display = 'none'; // 隱藏提示文字
+        if (permission === '2') {
+            document.getElementById('BtnReportSubmit').addEventListener('click', function (event) {
+                var fileInput = document.getElementById('ReportApply');
+                var uploadWarning = document.getElementById('uploadWarning');
+
+                if (fileInput.files.length === 0) {
+                    event.preventDefault(); // 阻止表單提交
+                    uploadWarning.style.display = 'block'; // 顯示提示文字
+                } else {
+                    uploadWarning.style.display = 'none'; // 隱藏提示文字
+                }
+            });
         }
     });
-</script> -->
+</script>
 <!---------------------------End----------------------------->

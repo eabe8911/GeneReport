@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-09-12 17:25:58
+/* Smarty version 4.3.4, created on 2024-09-13 13:56:56
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\js_ReportDetail.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_66e2b3a62af3b1_08627631',
+  'unifunc' => 'content_66e3d428662ae1_63245983',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '9dc2a2755c788183a0b94980392c5a85ac9efbe8' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\js_ReportDetail.tpl',
-      1 => 1726132979,
+      1 => 1726207014,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_66e2b3a62af3b1_08627631 (Smarty_Internal_Template $_smarty_tpl) {
+function content_66e3d428662ae1_63245983 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
  type="text/javascript">
   
@@ -106,6 +106,16 @@ echo '<script'; ?>
         $('#ReportConfirmButton').show();
         setFieldsReadonly(false);
       });
+
+        // Edit BtnReportEditCustomer using ReportID
+        $('#BtnReportEditCustomer').click(function() {
+        $('#ReportMode').val('EDIT');
+        // set button for confirm
+        $('#ReportQueryButton').hide();
+        $('#ReportConfirmButton').show();
+        setCustomerFieldsReadonly(false);
+      });
+
 
       $('#BtnReportEditccemail').click(function() {
         $('#ReportMode').val('EDITCC');
@@ -235,6 +245,17 @@ echo '<script'; ?>
       $('#DisplayUploadButton').prop('hidden', state);
     }
 
+    function setCustomerFieldsReadonly(state) {
+      // $('#ReportID').prop('readonly', state);
+      
+      $('#CustomerName').prop('readonly', state);
+      $('#CustomerEmail').prop('readonly', state);
+      $('#ccemail').prop('readonly', state);
+      $('#CustomerPhone').prop('readonly', state);
+    }
+
+
+    
     //set email editable
     function setFieldsEditable(state) {
       // $('#CustomerEmail').prop('readonly', state);

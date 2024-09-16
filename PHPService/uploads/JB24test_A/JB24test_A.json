@@ -1,0 +1,19 @@
+{
+    "ReportID": "JB24test_A",
+    "PatientID": "JB25test_B",
+    "SampleNo": "JB26test_C",
+    "scID": "JB27test_D",
+    "HospitalList": "1",
+    "HospitalList_Dr": "",
+    "ReportTemplateID": "",
+    "ReportType": "1",
+    "scdate": "2024-08-29T00:00",
+    "rcdate": "2024-08-28T00:00",
+    "ReportName": "O101 Mycoplasma (Express)",
+    "DueDate": "2024-09-11",
+    "CustomerName": "\u738b\u667a\u9d3b",
+    "CustomerEmail": "b104090050@tmu.edu.tw",
+    "ccemail": "",
+    "CustomerPhone": "02-8512-8888#28809",
+    "proband_name": ""
+}
