@@ -5,7 +5,7 @@
         <div class="row"><br>
             <!---- Member Details ---->
             <div class="col-sm-12">
-                <div class="card-box" style="height:100%;">
+                <div class="card-box" style="height: 120%;">
                     <div class="row">
                         <div class="form-horizontal" role="form">
                             <!---- 第一排 ---->
@@ -18,63 +18,38 @@
                                             value="{$ReportID}">
                                     </div>
                                 </div>
-
-
-
-                                {if $Permission eq 1 or $Permission eq 2 or $Permission eq 4 or $Permission eq 5 or
-                                $Permission eq 9 }
+                                <!---- 病歷編號 ---->
                                 <div class="form-group">
-                                    <label for="main-menu" class="col-md-3 control-label">報告類型:</label>
+                                    <label for="PatientID" class="col-md-3 control-label">病歷編號:</label>
                                     <div class="col-md-8">
-
-
-                                        <select id="ReportTemplate" name="ReportTemplate" class="form-control"
-                                            onchange="populateSubmenu(this, document.getElementById('ReportName'))">
-                                            <option value="">Select a category</option>
-                                            <option value="M1">M1 系列</option>
-                                            <option value="M2">M2 系列</option>
-                                            <option value="O1">O1 系列</option>
-                                            <option value="P1">P1 系列</option>
-                                            <option value="P2">P2 系列</option>
-                                            <option value="P3">P3 系列</option>
-                                            <option value="P9">P9 系列</option>
-                                            <option value="S1">S1 系列</option>
-                                            <option value="S2">S2 系列</option>
-                                            <option value="S3">S3 系列</option>
-                                            <option value="S9">S9 系列</option>
-                                            <option value="W1">W1 系列</option>
-                                            <option value="W2">W2 系列</option>
-                                            <option value="W3">W3 系列</option>
-                                            <option value="W4">W4 系列</option>
-                                            <option value="W5">W5 系列</option>
-                                            <option value="W6">W6 系列</option>
-                                            <option value="W9">W9 系列</option>
-
-
-
-                                        </select>
+                                        <input type="text" id="PatientID" name="PatientID" class="form-control" required
+                                            value="{$PatientID}">
                                     </div>
                                 </div>
-                                {/if}
+                                <!---- 檢體編號 ---->
                                 <div class="form-group">
-
-                                    <label for="ReportName" class="col-md-3 control-label">報告名稱:</label>
+                                    <label for="SampleNo" class="col-md-3 control-label">檢體編號:</label>
                                     <div class="col-md-8">
-
-                                        <select id="ReportName" name="ReportName" class="form-control" required>
-                                            <option value="{$ReportName}">{$ReportName}</option>
-                                        </select>
+                                        <input type="text" id="SampleNo" name="SampleNo" class="form-control" required
+                                            value="{$SampleNo}">
                                     </div>
                                 </div>
-
+                                <!---- 採檢單號 ---->
+                                <div class="form-group">
+                                    <label for="scID" class="col-md-3 control-label">採檢單號:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="scID" name="scID" class="form-control" required
+                                            value="{$scID}">
+                                    </div>
+                                </div>
                                 <!---- 送檢單位 ---->
                                 <div class="form-group">
                                     <label for="HospitalList" class="col-md-3 control-label">送檢單位:</label>
                                     <div class="col-md-8">
 
                                         <!-- {html_options name=HospitalList id=HospitalList options=['' => '請選擇...'] +
-                                        $HospitalListOptions
-                                        selected=$HospitalListSelect class="form-control" required="required"} -->
+                                                                        $HospitalListOptions
+                                                                        selected=$HospitalListSelect class="form-control" required="required"} -->
                                         <select id="HospitalList" name="HospitalList" class="form-control"
                                             onchange="hospitalSubmenu(this, document.getElementById('CustomerName'))">
                                             <option value="">Select a category</option>
@@ -136,7 +111,68 @@
                                     </div>
 
                                 </div>
+                                <!---- 送件人 ---->
+                                <div class="form-group ">
+                                    <label for="HospitalList_Dr" class="col-md-3 control-label">送件人:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="HospitalList_Dr" name="HospitalList_Dr"
+                                            class="form-control" required value="{$HospitalList_Dr}">
+                                    </div>
+                                </div>
 
+                                {if $Permission eq 1 or $Permission eq 2 or $Permission eq 4 or $Permission eq 5 or
+                                $Permission eq 9 }
+                                <div class="form-group">
+                                    <label for="main-menu" class="col-md-3 control-label">檢測項目系列:</label>
+                                    <div class="col-md-8">
+
+
+                                        <select id="ReportTemplate" name="ReportTemplate" class="form-control"
+                                            onchange="populateSubmenu(this, document.getElementById('ReportName'))">
+                                            <option value="">Select a category</option>
+                                            <option value="M1">M1 系列</option>
+                                            <option value="M2">M2 系列</option>
+                                            <option value="O1">O1 系列</option>
+                                            <option value="P1">P1 系列</option>
+                                            <option value="P2">P2 系列</option>
+                                            <option value="P3">P3 系列</option>
+                                            <option value="P9">P9 系列</option>
+                                            <option value="S1">S1 系列</option>
+                                            <option value="S2">S2 系列</option>
+                                            <option value="S3">S3 系列</option>
+                                            <option value="S9">S9 系列</option>
+                                            <option value="W1">W1 系列</option>
+                                            <option value="W2">W2 系列</option>
+                                            <option value="W3">W3 系列</option>
+                                            <option value="W4">W4 系列</option>
+                                            <option value="W5">W5 系列</option>
+                                            <option value="W6">W6 系列</option>
+                                            <option value="W9">W9 系列</option>
+
+
+
+                                        </select>
+                                    </div>
+                                </div>
+                                {/if}
+                                <div class="form-group">
+
+                                    <label for="ReportName" class="col-md-3 control-label">報告名稱:</label>
+                                    <div class="col-md-8">
+
+                                        <select id="ReportName" name="ReportName" class="form-control" required>
+                                            <option value="{$ReportName}">{$ReportName}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!---- 檢測方法 ---->
+                                <div class="form-group">
+                                    <label for="method" class="col-md-3 control-label">檢測方法:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="method" name="method" class="form-control" required
+                                            value="{$method}">
+                                    </div>
+                                </div>
                                 <!---- 檢測單位 ---->
                                 <div class="form-group">
                                     <label for="ReportType" class="col-md-3 control-label">檢測單位:</label>
@@ -148,7 +184,15 @@
 
                                     </div>
                                 </div>
-
+                                <!---- 姓   名 ---->
+                                <div class="form-group">
+                                    <label for="proband_name" class="col-md-3 control-label">姓 名:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="proband_name" name="proband_name" class="form-control"
+                                            value="{$proband_name}">
+                                        <p id="proband_name_warning" style="color: red; display: none;">所選檢測單位不需填寫姓名</p>
+                                    </div>
+                                </div>
 
                                 <!---- 報告樣板 ---->
                                 {if $Permission eq 1 or $Permission eq 2 or $Permission eq 4 or $Permission eq 5 or
@@ -163,42 +207,6 @@
                                     </div>
                                 </div>
                                 {/if}
-                            </div>
-                            <!---- 第二排 ---->
-                            <div class="col-md-4">
-                                <!---- 姓   名 ---->
-                                <div class="form-group">
-                                    <label for="proband_name" class="col-md-3 control-label">姓 名:</label>
-                                    <div class="col-md-8">
-                                        <input type="text" id="proband_name" name="proband_name" class="form-control"
-                                            value="{$proband_name}">
-                                        <p id="proband_name_warning" style="color: red; display: none;">所選檢測單位不需填寫姓名</p>
-                                    </div>
-                                </div>
-                                <!---- 檢體編號 ---->
-                                <div class="form-group">
-                                    <label for="SampleNo" class="col-md-3 control-label">檢體編號:</label>
-                                    <div class="col-md-8">
-                                        <input type="text" id="SampleNo" name="SampleNo" class="form-control" required
-                                            value="{$SampleNo}">
-                                    </div>
-                                </div>
-                                <!---- 病歷編號 ---->
-                                <div class="form-group">
-                                    <label for="PatientID" class="col-md-3 control-label">病歷編號:</label>
-                                    <div class="col-md-8">
-                                        <input type="text" id="PatientID" name="PatientID" class="form-control" required
-                                            value="{$PatientID}">
-                                    </div>
-                                </div>
-                                <!---- 採檢單號 ---->
-                                <div class="form-group">
-                                    <label for="scID" class="col-md-3 control-label">採檢單號:</label>
-                                    <div class="col-md-8">
-                                        <input type="text" id="scID" name="scID" class="form-control" required
-                                            value="{$scID}">
-                                    </div>
-                                </div>
                                 <!---- 採集日期 ---->
                                 <div class="form-group">
                                     <label for="scdate" class="col-md-3 control-label">採集日期:</label>
@@ -215,10 +223,315 @@
                                             required value="{$rcdate}">
                                     </div>
                                 </div>
+                                <!---- 送檢日期 ---->
+                                <div class="form-group">
+                                    <label for="Submitdate" class="col-md-3 control-label">送檢日期:</label>
+                                    <div class="col-md-8">
+                                        <input type="datetime-local" id="Submitdate" name="Submitdate"
+                                            class="form-control" required value="{$Submitdate}">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!---- 第二排 ---->
+                            <div class="col-md-4">
+
+                                <!---- 樣品種類一 ---->
+                                <fieldset>
+                                    <legend>樣品一</legend>
+                                    <div class="form-group">
+                                        <label for="SampleType_1" class="col-md-3 control-label">樣品種類一:</label>
+                                        <div class="col-md-8">
+                                            <select id="SampleType_1" name="SampleType_1" class="form-control" required
+                                                onchange="updateUnit_1()">
+                                                <option value="">請選擇樣品種類</option>
+                                                <option value="EDTA紫頭管-全血" {if $SampleType_1=="EDTA紫頭管-全血"
+                                                    }selected{/if}>
+                                                    EDTA紫頭管-全血</option>
+                                                <option value="Streck cfDNA BCT(迷彩管)-全血" {if
+                                                    $SampleType_1=="Streck cfDNA BCT(迷彩管)-全血" }selected{/if}>Streck
+                                                    cfDNA
+                                                    BCT(迷彩管)-全血</option>
+                                                <option value="Streck RNA Complete BCT(橘頭管)-全血" {if
+                                                    $SampleType_1=="Streck RNA Complete BCT(橘頭管)-全血" }selected{/if}>
+                                                    Streck
+                                                    RNA Complete BCT(橘頭管)-全血</option>
+                                                <option value="5 ㎛ FFPE玻片(不含圈片)" {if $SampleType_1=="5 ㎛ FFPE玻片(不含圈片)"
+                                                    }selected{/if}>5 ㎛ FFPE玻片(不含圈片)</option>
+                                                <option value="10 ㎛ FFPE玻片(不含圈片)" {if $SampleType_1=="10 ㎛ FFPE玻片(不含圈片)"
+                                                    }selected{/if}>10 ㎛ FFPE玻片(不含圈片)</option>
+                                                <option value="染色圈片" {if $SampleType_1=="染色圈片" }selected{/if}>染色圈片
+                                                </option>
+                                                <option value="粗針穿刺檢體" {if $SampleType_1=="粗針穿刺檢體" }selected{/if}>粗針穿刺檢體
+                                                </option>
+                                                <option value="gDNA" {if $SampleType_1=="gDNA" }selected{/if}>gDNA
+                                                </option>
+                                                <option value="口腔拭子-口腔黏膜細胞" {if $SampleType_1=="口腔拭子-口腔黏膜細胞"
+                                                    }selected{/if}>
+                                                    口腔拭子-口腔黏膜細胞</option>
+                                                <option value="生資分析" {if $SampleType_1=="生資分析" }selected{/if}>生資分析
+                                                </option>
+                                                <option value="細胞懸浮液" {if $SampleType_1=="細胞懸浮液" }selected{/if}>細胞懸浮液
+                                                </option>
+                                                <option value="其他(請手動輸入樣品種類)" {if $SampleType_1=="其他(請手動輸入樣品種類)"
+                                                    }selected{/if}>其他(請手動輸入樣品種類)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <!-- 樣品數量一 (with unit next to the input) -->
+                                    <div class="form-group row">
+                                        <label for="SampleQuantity_1" class="col-md-3 control-label">樣品數量一:</label>
+                                        <div class="col-md-8 input-group">
+                                            <input type="number" id="SampleQuantity_1" name="SampleQuantity_1"
+                                                class="form-control" value="{$SampleQuantity_1}">
+                                            <span class="input-group-addon" id="SampleUnit_1">{$SampleUnit_1}</span>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <legend>樣品二</legend>
+
+                                    <!---- 樣品種類二 ---->
+                                    <div class="form-group">
+                                        <label for="SampleType_2" class="col-md-3 control-label">樣品種類二:</label>
+                                        <div class="col-md-8">
+                                            <select id="SampleType_2" name="SampleType_2" class="form-control"
+                                                onchange="updateUnit_2()">
+                                                <option value="">請選擇樣品種類</option>
+                                                <option value="EDTA紫頭管-全血" {if $SampleType_2=="EDTA紫頭管-全血"
+                                                    }selected{/if}>
+                                                    EDTA紫頭管-全血</option>
+                                                <option value="Streck cfDNA BCT(迷彩管)-全血" {if
+                                                    $SampleType_2=="Streck cfDNA BCT(迷彩管)-全血" }selected{/if}>Streck
+                                                    cfDNA
+                                                    BCT(迷彩管)-全血</option>
+                                                <option value="Streck RNA Complete BCT(橘頭管)-全血" {if
+                                                    $SampleType_2=="Streck RNA Complete BCT(橘頭管)-全血" }selected{/if}>
+                                                    Streck
+                                                    RNA Complete BCT(橘頭管)-全血</option>
+                                                <option value="5 ㎛ FFPE玻片(不含圈片)" {if $SampleType_2=="5 ㎛ FFPE玻片(不含圈片)"
+                                                    }selected{/if}>5 ㎛ FFPE玻片(不含圈片)</option>
+                                                <option value="10 ㎛ FFPE玻片(不含圈片)" {if $SampleType_2=="10 ㎛ FFPE玻片(不含圈片)"
+                                                    }selected{/if}>10 ㎛ FFPE玻片(不含圈片)</option>
+                                                <option value="染色圈片" {if $SampleType_2=="染色圈片" }selected{/if}>染色圈片
+                                                </option>
+                                                <option value="粗針穿刺檢體" {if $SampleType_2=="粗針穿刺檢體" }selected{/if}>粗針穿刺檢體
+                                                </option>
+                                                <option value="gDNA" {if $SampleType_2=="gDNA" }selected{/if}>gDNA
+                                                </option>
+                                                <option value="口腔拭子-口腔黏膜細胞" {if $SampleType_2=="口腔拭子-口腔黏膜細胞"
+                                                    }selected{/if}>
+                                                    口腔拭子-口腔黏膜細胞</option>
+                                                <option value="生資分析" {if $SampleType_2=="生資分析" }selected{/if}>生資分析
+                                                </option>
+                                                <option value="細胞懸浮液" {if $SampleType_2=="細胞懸浮液" }selected{/if}>細胞懸浮液
+                                                </option>
+                                                <option value="其他(請手動輸入樣品種類)" {if $SampleType_2=="其他(請手動輸入樣品種類)"
+                                                    }selected{/if}>其他(請手動輸入樣品種類)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <!-- 樣品數量二 (with unit next to the input) -->
+                                    <div class="form-group row">
+                                        <label for="SampleQuantity_2" class="col-md-3 control-label">樣品數量二:</label>
+                                        <div class="col-md-8 input-group">
+                                            <input type="number" id="SampleQuantity_2" name="SampleQuantity_2"
+                                                class="form-control" value="{$SampleQuantity_2}">
+                                            <span class="input-group-addon" id="SampleUnit_2">{$SampleUnit_2}</span>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <legend>樣品三</legend>
+
+                                    <!---- 樣品種類三 ---->
+                                    <div class="form-group ">
+                                        <label for="SampleType_3" class="col-md-3 control-label">樣品種類三:</label>
+                                        <div class="col-md-8">
+                                            <select id="SampleType_3" name="SampleType_3" class="form-control"
+                                                onchange="updateUnit_3()">
+                                                <option value="">請選擇樣品種類</option>
+                                                <option value="EDTA紫頭管-全血" {if $SampleType_3=="EDTA紫頭管-全血"
+                                                    }selected{/if}>
+                                                    EDTA紫頭管-全血</option>
+                                                <option value="Streck cfDNA BCT(迷彩管)-全血" {if
+                                                    $SampleType_3=="Streck cfDNA BCT(迷彩管)-全血" }selected{/if}>Streck
+                                                    cfDNA
+                                                    BCT(迷彩管)-全血</option>
+                                                <option value="Streck RNA Complete BCT(橘頭管)-全血" {if
+                                                    $SampleType_3=="Streck RNA Complete BCT(橘頭管)-全血" }selected{/if}>
+                                                    Streck
+                                                    RNA Complete BCT(橘頭管)-全血</option>
+                                                <option value="5 ㎛ FFPE玻片(不含圈片)" {if $SampleType_3=="5 ㎛ FFPE玻片(不含圈片)"
+                                                    }selected{/if}>5 ㎛ FFPE玻片(不含圈片)</option>
+                                                <option value="10 ㎛ FFPE玻片(不含圈片)" {if $SampleType_3=="10 ㎛ FFPE玻片(不含圈片)"
+                                                    }selected{/if}>10 ㎛ FFPE玻片(不含圈片)</option>
+                                                <option value="染色圈片" {if $SampleType_3=="染色圈片" }selected{/if}>染色圈片
+                                                </option>
+                                                <option value="粗針穿刺檢體" {if $SampleType_3=="粗針穿刺檢體" }selected{/if}>粗針穿刺檢體
+                                                </option>
+                                                <option value="gDNA" {if $SampleType_3=="gDNA" }selected{/if}>gDNA
+                                                </option>
+                                                <option value="口腔拭子-口腔黏膜細胞" {if $SampleType_3=="口腔拭子-口腔黏膜細胞"
+                                                    }selected{/if}>
+                                                    口腔拭子-口腔黏膜細胞</option>
+                                                <option value="生資分析" {if $SampleType_3=="生資分析" }selected{/if}>生資分析
+                                                </option>
+                                                <option value="細胞懸浮液" {if $SampleType_3=="細胞懸浮液" }selected{/if}>細胞懸浮液
+                                                </option>
+                                                <option value="其他(請手動輸入樣品種類)" {if $SampleType_3=="其他(請手動輸入樣品種類)"
+                                                    }selected{/if}>其他(請手動輸入樣品種類)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="SampleQuantity_3" class="col-md-3 control-label">樣品數量三:</label>
+                                        <div class="col-md-8 input-group">
+                                            <input type="number" id="SampleQuantity_3" name="SampleQuantity_3"
+                                                class="form-control" value="{$SampleQuantity_3}">
+                                            <span class="input-group-addon" id="SampleUnit_3">{$SampleUnit_3}</span>
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                                <fieldset>
+                                    <legend>樣品四</legend>
+
+                                    <!---- 樣品種類四 ---->
+                                    <div class="form-group ">
+                                        <label for="SampleType_4" class="col-md-3 control-label">樣品種類四:</label>
+                                        <div class="col-md-8">
+                                            <select id="SampleType_4" name="SampleType_4" class="form-control"
+                                                onchange="updateUnit_4()">
+                                                <option value="">請選擇樣品種類</option>
+                                                <option value="EDTA紫頭管-全血" {if $SampleType_4=="EDTA紫頭管-全血"
+                                                    }selected{/if}>
+                                                    EDTA紫頭管-全血</option>
+                                                <option value="Streck cfDNA BCT(迷彩管)-全血" {if
+                                                    $SampleType_4=="Streck cfDNA BCT(迷彩管)-全血" }selected{/if}>Streck
+                                                    cfDNA
+                                                    BCT(迷彩管)-全血</option>
+                                                <option value="Streck RNA Complete BCT(橘頭管)-全血" {if
+                                                    $SampleType_4=="Streck RNA Complete BCT(橘頭管)-全血" }selected{/if}>
+                                                    Streck
+                                                    RNA Complete BCT(橘頭管)-全血</option>
+                                                <option value="5 ㎛ FFPE玻片(不含圈片)" {if $SampleType_4=="5 ㎛ FFPE玻片(不含圈片)"
+                                                    }selected{/if}>5 ㎛ FFPE玻片(不含圈片)</option>
+                                                <option value="10 ㎛ FFPE玻片(不含圈片)" {if $SampleType_4=="10 ㎛ FFPE玻片(不含圈片)"
+                                                    }selected{/if}>10 ㎛ FFPE玻片(不含圈片)</option>
+                                                <option value="染色圈片" {if $SampleType_4=="染色圈片" }selected{/if}>染色圈片
+                                                </option>
+                                                <option value="粗針穿刺檢體" {if $SampleType_4=="粗針穿刺檢體" }selected{/if}>粗針穿刺檢體
+                                                </option>
+                                                <option value="gDNA" {if $SampleType_4=="gDNA" }selected{/if}>gDNA
+                                                </option>
+                                                <option value="口腔拭子-口腔黏膜細胞" {if $SampleType_4=="口腔拭子-口腔黏膜細胞"
+                                                    }selected{/if}>
+                                                    口腔拭子-口腔黏膜細胞</option>
+                                                <option value="生資分析" {if $SampleType_4=="生資分析" }selected{/if}>生資分析
+                                                </option>
+                                                <option value="細胞懸浮液" {if $SampleType_4=="細胞懸浮液" }selected{/if}>細胞懸浮液
+                                                </option>
+                                                <option value="其他(請手動輸入樣品種類)" {if $SampleType_4=="其他(請手動輸入樣品種類)"
+                                                    }selected{/if}>其他(請手動輸入樣品種類)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="SampleQuantity_4" class="col-md-3 control-label">樣品數量四:</label>
+                                        <div class="col-md-8 input-group">
+                                            <input type="number" id="SampleQuantity_4" name="SampleQuantity_4"
+                                                class="form-control" value="{$SampleQuantity_4}">
+                                            <span class="input-group-addon" id="SampleUnit_4">{$SampleUnit_4}</span>
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                                <fieldset>
+                                    <legend>樣品五</legend>
+
+                                    <!---- 樣品種類五 ---->
+                                    <div class="form-group ">
+                                        <label for="SampleType_5" class="col-md-3 control-label">樣品種類五:</label>
+                                        <div class="col-md-8">
+                                            <select id="SampleType_5" name="SampleType_5" class="form-control"
+                                                onchange="updateUnit_5()">
+                                                <option value="">請選擇樣品種類</option>
+                                                <option value="EDTA紫頭管-全血" {if $SampleType_5=="EDTA紫頭管-全血"
+                                                    }selected{/if}>
+                                                    EDTA紫頭管-全血</option>
+                                                <option value="Streck cfDNA BCT(迷彩管)-全血" {if
+                                                    $SampleType_5=="Streck cfDNA BCT(迷彩管)-全血" }selected{/if}>Streck
+                                                    cfDNA
+                                                    BCT(迷彩管)-全血</option>
+                                                <option value="Streck RNA Complete BCT(橘頭管)-全血" {if
+                                                    $SampleType_5=="Streck RNA Complete BCT(橘頭管)-全血" }selected{/if}>
+                                                    Streck
+                                                    RNA Complete BCT(橘頭管)-全血</option>
+                                                <option value="5 ㎛ FFPE玻片(不含圈片)" {if $SampleType_5=="5 ㎛ FFPE玻片(不含圈片)"
+                                                    }selected{/if}>5 ㎛ FFPE玻片(不含圈片)</option>
+                                                <option value="10 ㎛ FFPE玻片(不含圈片)" {if $SampleType_5=="10 ㎛ FFPE玻片(不含圈片)"
+                                                    }selected{/if}>10 ㎛ FFPE玻片(不含圈片)</option>
+                                                <option value="染色圈片" {if $SampleType_5=="染色圈片" }selected{/if}>染色圈片
+                                                </option>
+                                                <option value="粗針穿刺檢體" {if $SampleType_5=="粗針穿刺檢體" }selected{/if}>粗針穿刺檢體
+                                                </option>
+                                                <option value="gDNA" {if $SampleType_5=="gDNA" }selected{/if}>gDNA
+                                                </option>
+                                                <option value="口腔拭子-口腔黏膜細胞" {if $SampleType_5=="口腔拭子-口腔黏膜細胞"
+                                                    }selected{/if}>
+                                                    口腔拭子-口腔黏膜細胞</option>
+                                                <option value="生資分析" {if $SampleType_5=="生資分析" }selected{/if}>生資分析
+                                                </option>
+                                                <option value="細胞懸浮液" {if $SampleType_5=="細胞懸浮液" }selected{/if}>細胞懸浮液
+                                                </option>
+                                                <option value="其他(請手動輸入樣品種類)" {if $SampleType_5=="其他(請手動輸入樣品種類)"
+                                                    }selected{/if}>其他(請手動輸入樣品種類)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="SampleQuantity_5" class="col-md-3 control-label">樣品數量五:</label>
+                                        <div class="col-md-8 input-group">
+                                            <input type="number" id="SampleQuantity_5" name="SampleQuantity_5"
+                                                class="form-control" value="{$SampleQuantity_5}">
+                                            <span class="input-group-addon" id="SampleUnit_5">{$SampleUnit_5}</span>
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+
+
                             </div>
 
                             <!---- 第三排 ---->
                             <div class="col-md-4">
+                                <!---- 簽收人 ---->
+                                <div class="form-group">
+                                    <label for="Receiving" class="col-md-3 control-label">簽收人:</label>
+                                    <div class="col-md-8">
+                                        <select id="Receiving" name="Receiving" class="form-control" required>
+                                            <option value="">請選擇簽收人</option>
+                                            <option value="王許安" {if $Receiving=="王許安" }selected{/if}>王許安</option>
+                                            <option value="林庭萱" {if $Receiving=="林庭萱" }selected{/if}>林庭萱</option>
+                                            <option value="黃志凱" {if $Receiving=="黃志凱" }selected{/if}>黃志凱</option>
+                                            <option value="陳奕勳" {if $Receiving=="陳奕勳" }selected{/if}>陳奕勳</option>
+                                            <option value="張本樺" {if $Receiving=="張本樺" }selected{/if}>張本樺</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!---- 覆核人員 ---->
+                                <div class="form-group">
+                                    <label for="Receiving2" class="col-md-3 control-label">覆核人員:</label>
+                                    <div class="col-md-8">
+                                        <select id="Receiving2" name="Receiving2" class="form-control" required>
+                                            <option value="">請選擇覆核人員</option>
+                                            <option value="黃志凱" {if $Receiving2=="黃志凱" }selected{/if}>黃志凱</option>
+                                            <option value="陳奕勳" {if $Receiving2=="陳奕勳" }selected{/if}>陳奕勳</option>
+                                            <option value="張本樺" {if $Receiving2=="張本樺" }selected{/if}>張本樺</option>
+                                        </select>
+                                    </div>
+                                </div>
                                 <!---- TAT最終日 ---->
                                 <div class="form-group">
                                     <label for="DueDate" class="col-md-3 control-label">TAT最終日:</label>
@@ -892,7 +1205,7 @@
     });
 </script>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         var permission = document.getElementById('Permission').value;
 
         if (permission === '2') {
@@ -910,4 +1223,135 @@
         }
     });
 </script>
+<script>
+    function updateUnit_1() {
+        var sampleType = document.getElementById('SampleType_1').value;
+        var sampleUnit = document.getElementById('SampleUnit_1');
+
+        // Example logic for setting unit based on sample type
+        if (sampleType.includes('FFPE')) {
+            sampleUnit.innerText = '片';
+        } else if (sampleType.includes('全血')) {
+            sampleUnit.innerText = '毫升';
+        } else if (sampleType.includes('染色圈片')) {
+            sampleUnit.innerText = '片';
+        } else if (sampleType.includes('粗針穿刺檢體')) {
+            sampleUnit.innerText = '片';
+        } else if (sampleType.includes('gDNA')) {
+            sampleUnit.innerText = '管';
+        } else if (sampleType.includes('口腔拭子')) {
+            sampleUnit.innerText = '管';
+        } else if (sampleType.includes('生資分析')) {
+            sampleUnit.innerText = '';
+        } else if (sampleType.includes('細胞懸浮液')) {
+            sampleUnit.innerText = '管';
+        } else {
+            sampleUnit.innerText = '';
+        }
+    }
+    function updateUnit_2() {
+        var sampleType = document.getElementById('SampleType_2').value;
+        var sampleUnit = document.getElementById('SampleUnit_2');
+
+        // Example logic for setting unit based on sample type
+        if (sampleType.includes('FFPE')) {
+            sampleUnit.innerText = '片';
+        } else if (sampleType.includes('全血')) {
+            sampleUnit.innerText = '毫升';
+        } else if (sampleType.includes('染色圈片')) {
+            sampleUnit.innerText = '片';
+        } else if (sampleType.includes('粗針穿刺檢體')) {
+            sampleUnit.innerText = '片';
+        } else if (sampleType.includes('gDNA')) {
+            sampleUnit.innerText = '管';
+        } else if (sampleType.includes('口腔拭子')) {
+            sampleUnit.innerText = '管';
+        } else if (sampleType.includes('生資分析')) {
+            sampleUnit.innerText = '';
+        } else if (sampleType.includes('細胞懸浮液')) {
+            sampleUnit.innerText = '管';
+        } else {
+            sampleUnit.innerText = '';
+        }
+    }
+    function updateUnit_3() {
+        var sampleType = document.getElementById('SampleType_3').value;
+        var sampleUnit = document.getElementById('SampleUnit_3');
+
+        // Example logic for setting unit based on sample type
+        if (sampleType.includes('FFPE')) {
+            sampleUnit.innerText = '片';
+        } else if (sampleType.includes('全血')) {
+            sampleUnit.innerText = '毫升';
+        } else if (sampleType.includes('染色圈片')) {
+            sampleUnit.innerText = '片';
+        } else if (sampleType.includes('粗針穿刺檢體')) {
+            sampleUnit.innerText = '片';
+        } else if (sampleType.includes('gDNA')) {
+            sampleUnit.innerText = '管';
+        } else if (sampleType.includes('口腔拭子')) {
+            sampleUnit.innerText = '管';
+        } else if (sampleType.includes('生資分析')) {
+            sampleUnit.innerText = '';
+        } else if (sampleType.includes('細胞懸浮液')) {
+            sampleUnit.innerText = '管';
+        } else {
+            sampleUnit.innerText = '';
+        }
+    }
+    function updateUnit_4() {
+        var sampleType = document.getElementById('SampleType_4').value;
+        var sampleUnit = document.getElementById('SampleUnit_4');
+
+        // Example logic for setting unit based on sample type
+        if (sampleType.includes('FFPE')) {
+            sampleUnit.innerText = '片';
+        } else if (sampleType.includes('全血')) {
+            sampleUnit.innerText = '毫升';
+        } else if (sampleType.includes('染色圈片')) {
+            sampleUnit.innerText = '片';
+        } else if (sampleType.includes('粗針穿刺檢體')) {
+            sampleUnit.innerText = '片';
+        } else if (sampleType.includes('gDNA')) {
+            sampleUnit.innerText = '管';
+        } else if (sampleType.includes('口腔拭子')) {
+            sampleUnit.innerText = '管';
+        } else if (sampleType.includes('生資分析')) {
+            sampleUnit.innerText = '';
+        } else if (sampleType.includes('細胞懸浮液')) {
+            sampleUnit.innerText = '管';
+        } else {
+            sampleUnit.innerText = '';
+        }
+    }
+    function updateUnit_5() {
+        var sampleType = docu4ment.getElementById('SampleType_5').value;
+        var sampleUnit = document.getElementById('SampleUnit_5');
+
+        // Example logic for setting unit based on sample type
+        if (sampleType.includes('FFPE')) {
+            sampleUnit.innerText = '片';
+        } else if (sampleType.includes('全血')) {
+            sampleUnit.innerText = '毫升';
+        } else if (sampleType.includes('染色圈片')) {
+            sampleUnit.innerText = '片';
+        } else if (sampleType.includes('粗針穿刺檢體')) {
+            sampleUnit.innerText = '片';
+        } else if (sampleType.includes('gDNA')) {
+            sampleUnit.innerText = '管';
+        } else if (sampleType.includes('口腔拭子')) {
+            sampleUnit.innerText = '管';
+        } else if (sampleType.includes('生資分析')) {
+            sampleUnit.innerText = '';
+        } else if (sampleType.includes('細胞懸浮液')) {
+            sampleUnit.innerText = '管';
+        } else {
+            sampleUnit.innerText = '';
+        }
+
+
+    }
+
+</script>
+
 <!---------------------------End----------------------------->

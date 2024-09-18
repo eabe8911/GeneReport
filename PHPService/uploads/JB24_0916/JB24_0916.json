@@ -1,0 +1,19 @@
+{
+    "ReportID": "JB24_0916",
+    "PatientID": "\u6e2c\u8a661",
+    "SampleNo": "JB24_0916",
+    "scID": "JB24_0916",
+    "HospitalList": "12",
+    "HospitalList_Dr": "\u9673\u5148\u751f",
+    "ReportTemplateID": "",
+    "ReportType": "1",
+    "scdate": "2024-09-16T15:58",
+    "rcdate": "2024-09-20T15:58",
+    "ReportName": "W517 Sleep Care Genetic Testing (Female)",
+    "DueDate": "2024-09-26",
+    "CustomerName": "\u859b\u7fbd\u5022",
+    "CustomerEmail": "tina.xue@libobio.com",
+    "ccemail": "",
+    "CustomerPhone": "2503-1392",
+    "proband_name": "TEST"
+}

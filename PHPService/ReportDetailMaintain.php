@@ -42,35 +42,42 @@ $result1 = $resultID = array();
 if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
     try {
         $report = new Report($_POST);
+
         $ccemail = filter_input(INPUT_POST, 'ccemail');
         $ReportMode = filter_input(INPUT_POST, 'ReportMode');
         $ReportID = filter_input(INPUT_POST, 'ReportID');
 
         $Username = $_SESSION['DisplayName'];
         $reportInfo = $report->get_ReportInfo();
+        $hospitalList = new Report();
+        $hospitalList = $hospitalList->getHospitalList();
+        //get hospitalList name
+        $hospitalList = $hospitalList[$reportInfo['HospitalList']];
+
                 //轉換成JSON數據
                 $jdata = [
-                    'ReportID' => $reportInfo['ReportID'],
-                    'PatientID' => $reportInfo['PatientID'],
-                    'SampleNo' => $reportInfo['SampleNo'],
-                    'scID' => $reportInfo['scID'],
-                    'HospitalList' => $reportInfo['HospitalList'],
-                    'HospitalList_Dr' => $reportInfo['HospitalList_Dr'],
-                    'ReportTemplateID' => $reportInfo['ReportTemplateID'],
-                    'ReportType' => $reportInfo['ReportType'],
-                    'scdate' => $reportInfo['scdate'],
-                    'rcdate' => $reportInfo['rcdate'],
-                    'ReportName' => $reportInfo['ReportName'],
-                    'DueDate' => $reportInfo['DueDate'],
-                    'CustomerName' => $reportInfo['CustomerName'],
-                    'CustomerEmail' => $reportInfo['CustomerEmail'],
-                    'ccemail' => $reportInfo['ccemail'],
-                    'CustomerPhone' => $reportInfo['CustomerPhone'],
-                    'proband_name' => $reportInfo['proband_name']
+                    'report_number' => $reportInfo['ReportID'],
+                    'proband_name' => $reportInfo['proband_name'],
+                    'sample_number' => $reportInfo['SampleNo'],
+                    'medical_record_number' => $reportInfo['PatientID'],
+                    'sampling_number' => $reportInfo['scID'],
+                    'sample_type_1' => $reportInfo['sample_type_r1'],
+                    'sample_type_2' => $reportInfo['sample_type_r2'],
+                    'sample_type_3' => $reportInfo['sample_type_r3'],
+                    'sample_type_4' => $reportInfo['sample_type_r4'],
+                    'sample_type_5' => $reportInfo['sample_type_r5'],
+                    'method' => $reportInfo['method'],
+                    'sampling_date' => $reportInfo['scdate'],
+                    'collection_date' => $reportInfo['rcdate'],
+                    'referral_physician' => $reportInfo['HospitalList_Dr'],
+                    'referral_agency' => $hospitalList,
+                    'contact_name' => $reportInfo['CustomerName'],
+                    'contact_phone_number' => $reportInfo['CustomerPhone'],
+                    'contact_mail' => $reportInfo['CustomerEmail']
                 ];
 
                 //轉換成JSON數據
-                $json_data = json_encode($jdata, JSON_PRETTY_PRINT);
+                $json_data = json_encode($jdata, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 
                 // 將 JSON 字符串寫入檔案
                 $file_name = $ReportID . '.json';
@@ -133,7 +140,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
 
                 $addlog = "報告編號：" . $ReportID . "已新增" . "\n"
                         . "報告名稱：" . $ReportName . "\n" 
-                        . "送檢單位：" . $HospitalList . "\n" 
+                        . "送檢單位：" . $$hospitalList . "\n" 
                         . "檢測實驗室：" . $ReportType . "\n" 
                         . "TAT最終日：" . $DueDate . "\n" 
                         . "聯絡人名稱：" . $CustomerName ."\n" 
@@ -212,7 +219,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
 
                     $updatelog = "報告編號：" . $ReportID . "\n" 
                     . "報告名稱：" . $ReportName . "\n" 
-                    . "送檢單位：" . $HospitalList . "\n" 
+                    . "送檢單位：" . $$hospitalList . "\n" 
                     . "檢測實驗室：" . $ReportType . "\n" 
                     . "TAT最終日：" . $DueDate . "\n" 
                     . "聯絡人名稱：" . $CustomerName . "\n" 
@@ -468,6 +475,9 @@ $TemplateID = $report->ReportInfo('TemplateID');
 $TemplateList = $report->getTemplateList(); //取得樣板清單
 $smarty->assign('TemplateOptions', $TemplateList, true); //將樣板清單送至樣板檔
 $smarty->assign('TemplateSelect', $TemplateID, true);
+$smarty->assign("HospitalList_Dr", $report->ReportInfo('HospitalList_Dr'), true);
+$smarty->assign("method", $report->ReportInfo('method'), true);
+$smarty->assign("Submitdate", $report->ReportInfo('Submitdate'), true);
 $smarty->assign("DueDate", $report->ReportInfo('DueDate'), true);
 $smarty->assign("CustomerName", $report->ReportInfo('CustomerName'), true);
 $smarty->assign("CustomerEmail", $report->ReportInfo('CustomerEmail'), true);

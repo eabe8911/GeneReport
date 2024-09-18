@@ -1,0 +1,21 @@
+{
+    "report_number": "0916",
+    "proband_name": "TEST",
+    "sample_number": "0916_B",
+    "medical_record_number": "0916_A",
+    "sampling_number": "0916_C",
+    "sample_type_1": "EDTA紫頭管-全血",
+    "sample_type_2": "Streck RNA Complete BCT(橘頭管)-全血",
+    "sample_type_3": "生資分析",
+    "sample_type_4": "10 ㎛ FFPE玻片(不含圈片)",
+    "sample_type_5": "細胞懸浮液",
+    "method": null,
+    "sampling_date": "2024-09-16T16:07",
+    "collection_date": "2024-09-20T16:07",
+    "referral_physician": "陳先生",
+    "referral_agency": "6",
+    "ReportTemplateID": "",
+    "contact_name": "薛羽倢",
+    "contact_phone_number": "2503-1392",
+    "contact_mail": "tina.xue@libobio.com"
+}

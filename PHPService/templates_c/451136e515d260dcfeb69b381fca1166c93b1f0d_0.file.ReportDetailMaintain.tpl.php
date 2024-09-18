@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-09-16 10:36:01
+/* Smarty version 4.3.4, created on 2024-09-18 15:50:01
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\ReportDetailMaintain.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_66e79991406244_23486500',
+  'unifunc' => 'content_66ea8629781f62_72291522',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '451136e515d260dcfeb69b381fca1166c93b1f0d' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\ReportDetailMaintain.tpl',
-      1 => 1726454157,
+      1 => 1726645510,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_66e79991406244_23486500 (Smarty_Internal_Template $_smarty_tpl) {
+function content_66ea8629781f62_72291522 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\vendor\\smarty\\smarty\\libs\\plugins\\function.html_options.php','function'=>'smarty_function_html_options',),));
 ?>
 <!--POP UP MODAL TO VIEW MEMBER DETAILS AND RESULTS FOR Member Information-->
@@ -37,7 +37,7 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
         <div class="row"><br>
             <!---- Member Details ---->
             <div class="col-sm-12">
-                <div class="card-box" style="height:100%;">
+                <div class="card-box" style="height: 120%;">
                     <div class="row">
                         <div class="form-horizontal" role="form">
                             <!---- 第一排 ---->
@@ -51,56 +51,33 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
 ">
                                     </div>
                                 </div>
-
-
-
-                                <?php if ($_smarty_tpl->tpl_vars['Permission']->value == 1 || $_smarty_tpl->tpl_vars['Permission']->value == 2 || $_smarty_tpl->tpl_vars['Permission']->value == 4 || $_smarty_tpl->tpl_vars['Permission']->value == 5 || $_smarty_tpl->tpl_vars['Permission']->value == 9) {?>
+                                <!---- 病歷編號 ---->
                                 <div class="form-group">
-                                    <label for="main-menu" class="col-md-3 control-label">報告類型:</label>
+                                    <label for="PatientID" class="col-md-3 control-label">病歷編號:</label>
                                     <div class="col-md-8">
-
-
-                                        <select id="ReportTemplate" name="ReportTemplate" class="form-control"
-                                            onchange="populateSubmenu(this, document.getElementById('ReportName'))">
-                                            <option value="">Select a category</option>
-                                            <option value="M1">M1 系列</option>
-                                            <option value="M2">M2 系列</option>
-                                            <option value="O1">O1 系列</option>
-                                            <option value="P1">P1 系列</option>
-                                            <option value="P2">P2 系列</option>
-                                            <option value="P3">P3 系列</option>
-                                            <option value="P9">P9 系列</option>
-                                            <option value="S1">S1 系列</option>
-                                            <option value="S2">S2 系列</option>
-                                            <option value="S3">S3 系列</option>
-                                            <option value="S9">S9 系列</option>
-                                            <option value="W1">W1 系列</option>
-                                            <option value="W2">W2 系列</option>
-                                            <option value="W3">W3 系列</option>
-                                            <option value="W4">W4 系列</option>
-                                            <option value="W5">W5 系列</option>
-                                            <option value="W6">W6 系列</option>
-                                            <option value="W9">W9 系列</option>
-
-
-
-                                        </select>
+                                        <input type="text" id="PatientID" name="PatientID" class="form-control" required
+                                            value="<?php echo $_smarty_tpl->tpl_vars['PatientID']->value;?>
+">
                                     </div>
                                 </div>
-                                <?php }?>
+                                <!---- 檢體編號 ---->
                                 <div class="form-group">
-
-                                    <label for="ReportName" class="col-md-3 control-label">報告名稱:</label>
+                                    <label for="SampleNo" class="col-md-3 control-label">檢體編號:</label>
                                     <div class="col-md-8">
-
-                                        <select id="ReportName" name="ReportName" class="form-control" required>
-                                            <option value="<?php echo $_smarty_tpl->tpl_vars['ReportName']->value;?>
-"><?php echo $_smarty_tpl->tpl_vars['ReportName']->value;?>
-</option>
-                                        </select>
+                                        <input type="text" id="SampleNo" name="SampleNo" class="form-control" required
+                                            value="<?php echo $_smarty_tpl->tpl_vars['SampleNo']->value;?>
+">
                                     </div>
                                 </div>
-
+                                <!---- 採檢單號 ---->
+                                <div class="form-group">
+                                    <label for="scID" class="col-md-3 control-label">採檢單號:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="scID" name="scID" class="form-control" required
+                                            value="<?php echo $_smarty_tpl->tpl_vars['scID']->value;?>
+">
+                                    </div>
+                                </div>
                                 <!---- 送檢單位 ---->
                                 <div class="form-group">
                                     <label for="HospitalList" class="col-md-3 control-label">送檢單位:</label>
@@ -169,7 +146,71 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                     </div>
 
                                 </div>
+                                <!---- 送件人 ---->
+                                <div class="form-group ">
+                                    <label for="HospitalList_Dr" class="col-md-3 control-label">送件人:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="HospitalList_Dr" name="HospitalList_Dr"
+                                            class="form-control" required value="<?php echo $_smarty_tpl->tpl_vars['HospitalList_Dr']->value;?>
+">
+                                    </div>
+                                </div>
 
+                                <?php if ($_smarty_tpl->tpl_vars['Permission']->value == 1 || $_smarty_tpl->tpl_vars['Permission']->value == 2 || $_smarty_tpl->tpl_vars['Permission']->value == 4 || $_smarty_tpl->tpl_vars['Permission']->value == 5 || $_smarty_tpl->tpl_vars['Permission']->value == 9) {?>
+                                <div class="form-group">
+                                    <label for="main-menu" class="col-md-3 control-label">檢測項目系列:</label>
+                                    <div class="col-md-8">
+
+
+                                        <select id="ReportTemplate" name="ReportTemplate" class="form-control"
+                                            onchange="populateSubmenu(this, document.getElementById('ReportName'))">
+                                            <option value="">Select a category</option>
+                                            <option value="M1">M1 系列</option>
+                                            <option value="M2">M2 系列</option>
+                                            <option value="O1">O1 系列</option>
+                                            <option value="P1">P1 系列</option>
+                                            <option value="P2">P2 系列</option>
+                                            <option value="P3">P3 系列</option>
+                                            <option value="P9">P9 系列</option>
+                                            <option value="S1">S1 系列</option>
+                                            <option value="S2">S2 系列</option>
+                                            <option value="S3">S3 系列</option>
+                                            <option value="S9">S9 系列</option>
+                                            <option value="W1">W1 系列</option>
+                                            <option value="W2">W2 系列</option>
+                                            <option value="W3">W3 系列</option>
+                                            <option value="W4">W4 系列</option>
+                                            <option value="W5">W5 系列</option>
+                                            <option value="W6">W6 系列</option>
+                                            <option value="W9">W9 系列</option>
+
+
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <?php }?>
+                                <div class="form-group">
+
+                                    <label for="ReportName" class="col-md-3 control-label">報告名稱:</label>
+                                    <div class="col-md-8">
+
+                                        <select id="ReportName" name="ReportName" class="form-control" required>
+                                            <option value="<?php echo $_smarty_tpl->tpl_vars['ReportName']->value;?>
+"><?php echo $_smarty_tpl->tpl_vars['ReportName']->value;?>
+</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!---- 檢測方法 ---->
+                                <div class="form-group">
+                                    <label for="method" class="col-md-3 control-label">檢測方法:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="method" name="method" class="form-control" required
+                                            value="<?php echo $_smarty_tpl->tpl_vars['method']->value;?>
+">
+                                    </div>
+                                </div>
                                 <!---- 檢測單位 ---->
                                 <div class="form-group">
                                     <label for="ReportType" class="col-md-3 control-label">檢測單位:</label>
@@ -180,7 +221,16 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
 
                                     </div>
                                 </div>
-
+                                <!---- 姓   名 ---->
+                                <div class="form-group">
+                                    <label for="proband_name" class="col-md-3 control-label">姓 名:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="proband_name" name="proband_name" class="form-control"
+                                            value="<?php echo $_smarty_tpl->tpl_vars['proband_name']->value;?>
+">
+                                        <p id="proband_name_warning" style="color: red; display: none;">所選檢測單位不需填寫姓名</p>
+                                    </div>
+                                </div>
 
                                 <!---- 報告樣板 ---->
                                 <?php if ($_smarty_tpl->tpl_vars['Permission']->value == 1 || $_smarty_tpl->tpl_vars['Permission']->value == 2 || $_smarty_tpl->tpl_vars['Permission']->value == 4 || $_smarty_tpl->tpl_vars['Permission']->value == 5 || $_smarty_tpl->tpl_vars['Permission']->value == 9) {?>
@@ -193,46 +243,6 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                     </div>
                                 </div>
                                 <?php }?>
-                            </div>
-                            <!---- 第二排 ---->
-                            <div class="col-md-4">
-                                <!---- 姓   名 ---->
-                                <div class="form-group">
-                                    <label for="proband_name" class="col-md-3 control-label">姓 名:</label>
-                                    <div class="col-md-8">
-                                        <input type="text" id="proband_name" name="proband_name" class="form-control"
-                                            value="<?php echo $_smarty_tpl->tpl_vars['proband_name']->value;?>
-">
-                                        <p id="proband_name_warning" style="color: red; display: none;">所選檢測單位不需填寫姓名</p>
-                                    </div>
-                                </div>
-                                <!---- 檢體編號 ---->
-                                <div class="form-group">
-                                    <label for="SampleNo" class="col-md-3 control-label">檢體編號:</label>
-                                    <div class="col-md-8">
-                                        <input type="text" id="SampleNo" name="SampleNo" class="form-control" required
-                                            value="<?php echo $_smarty_tpl->tpl_vars['SampleNo']->value;?>
-">
-                                    </div>
-                                </div>
-                                <!---- 病歷編號 ---->
-                                <div class="form-group">
-                                    <label for="PatientID" class="col-md-3 control-label">病歷編號:</label>
-                                    <div class="col-md-8">
-                                        <input type="text" id="PatientID" name="PatientID" class="form-control" required
-                                            value="<?php echo $_smarty_tpl->tpl_vars['PatientID']->value;?>
-">
-                                    </div>
-                                </div>
-                                <!---- 採檢單號 ---->
-                                <div class="form-group">
-                                    <label for="scID" class="col-md-3 control-label">採檢單號:</label>
-                                    <div class="col-md-8">
-                                        <input type="text" id="scID" name="scID" class="form-control" required
-                                            value="<?php echo $_smarty_tpl->tpl_vars['scID']->value;?>
-">
-                                    </div>
-                                </div>
                                 <!---- 採集日期 ---->
                                 <div class="form-group">
                                     <label for="scdate" class="col-md-3 control-label">採集日期:</label>
@@ -251,10 +261,291 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
 ">
                                     </div>
                                 </div>
+                                <!---- 送檢日期 ---->
+                                <div class="form-group">
+                                    <label for="Submitdate" class="col-md-3 control-label">送檢日期:</label>
+                                    <div class="col-md-8">
+                                        <input type="datetime-local" id="Submitdate" name="Submitdate"
+                                            class="form-control" required value="<?php echo $_smarty_tpl->tpl_vars['Submitdate']->value;?>
+">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!---- 第二排 ---->
+                            <div class="col-md-4">
+
+                                <!---- 樣品種類一 ---->
+                                <fieldset>
+                                    <legend>樣品一</legend>
+                                    <div class="form-group">
+                                        <label for="SampleType_1" class="col-md-3 control-label">樣品種類一:</label>
+                                        <div class="col-md-8">
+                                            <select id="SampleType_1" name="SampleType_1" class="form-control" required
+                                                onchange="updateUnit_1()">
+                                                <option value="">請選擇樣品種類</option>
+                                                <option value="EDTA紫頭管-全血" <?php if ($_smarty_tpl->tpl_vars['SampleType_1']->value == "EDTA紫頭管-全血") {?>selected<?php }?>>
+                                                    EDTA紫頭管-全血</option>
+                                                <option value="Streck cfDNA BCT(迷彩管)-全血" <?php if ($_smarty_tpl->tpl_vars['SampleType_1']->value == "Streck cfDNA BCT(迷彩管)-全血") {?>selected<?php }?>>Streck
+                                                    cfDNA
+                                                    BCT(迷彩管)-全血</option>
+                                                <option value="Streck RNA Complete BCT(橘頭管)-全血" <?php if ($_smarty_tpl->tpl_vars['SampleType_1']->value == "Streck RNA Complete BCT(橘頭管)-全血") {?>selected<?php }?>>
+                                                    Streck
+                                                    RNA Complete BCT(橘頭管)-全血</option>
+                                                <option value="5 ㎛ FFPE玻片(不含圈片)" <?php if ($_smarty_tpl->tpl_vars['SampleType_1']->value == "5 ㎛ FFPE玻片(不含圈片)") {?>selected<?php }?>>5 ㎛ FFPE玻片(不含圈片)</option>
+                                                <option value="10 ㎛ FFPE玻片(不含圈片)" <?php if ($_smarty_tpl->tpl_vars['SampleType_1']->value == "10 ㎛ FFPE玻片(不含圈片)") {?>selected<?php }?>>10 ㎛ FFPE玻片(不含圈片)</option>
+                                                <option value="染色圈片" <?php if ($_smarty_tpl->tpl_vars['SampleType_1']->value == "染色圈片") {?>selected<?php }?>>染色圈片
+                                                </option>
+                                                <option value="粗針穿刺檢體" <?php if ($_smarty_tpl->tpl_vars['SampleType_1']->value == "粗針穿刺檢體") {?>selected<?php }?>>粗針穿刺檢體
+                                                </option>
+                                                <option value="gDNA" <?php if ($_smarty_tpl->tpl_vars['SampleType_1']->value == "gDNA") {?>selected<?php }?>>gDNA
+                                                </option>
+                                                <option value="口腔拭子-口腔黏膜細胞" <?php if ($_smarty_tpl->tpl_vars['SampleType_1']->value == "口腔拭子-口腔黏膜細胞") {?>selected<?php }?>>
+                                                    口腔拭子-口腔黏膜細胞</option>
+                                                <option value="生資分析" <?php if ($_smarty_tpl->tpl_vars['SampleType_1']->value == "生資分析") {?>selected<?php }?>>生資分析
+                                                </option>
+                                                <option value="細胞懸浮液" <?php if ($_smarty_tpl->tpl_vars['SampleType_1']->value == "細胞懸浮液") {?>selected<?php }?>>細胞懸浮液
+                                                </option>
+                                                <option value="其他(請手動輸入樣品種類)" <?php if ($_smarty_tpl->tpl_vars['SampleType_1']->value == "其他(請手動輸入樣品種類)") {?>selected<?php }?>>其他(請手動輸入樣品種類)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <!-- 樣品數量一 (with unit next to the input) -->
+                                    <div class="form-group row">
+                                        <label for="SampleQuantity_1" class="col-md-3 control-label">樣品數量一:</label>
+                                        <div class="col-md-8 input-group">
+                                            <input type="number" id="SampleQuantity_1" name="SampleQuantity_1"
+                                                class="form-control" value="<?php echo $_smarty_tpl->tpl_vars['SampleQuantity_1']->value;?>
+">
+                                            <span class="input-group-addon" id="SampleUnit_1"><?php echo $_smarty_tpl->tpl_vars['SampleUnit_1']->value;?>
+</span>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <legend>樣品二</legend>
+
+                                    <!---- 樣品種類二 ---->
+                                    <div class="form-group">
+                                        <label for="SampleType_2" class="col-md-3 control-label">樣品種類二:</label>
+                                        <div class="col-md-8">
+                                            <select id="SampleType_2" name="SampleType_2" class="form-control"
+                                                onchange="updateUnit_2()">
+                                                <option value="">請選擇樣品種類</option>
+                                                <option value="EDTA紫頭管-全血" <?php if ($_smarty_tpl->tpl_vars['SampleType_2']->value == "EDTA紫頭管-全血") {?>selected<?php }?>>
+                                                    EDTA紫頭管-全血</option>
+                                                <option value="Streck cfDNA BCT(迷彩管)-全血" <?php if ($_smarty_tpl->tpl_vars['SampleType_2']->value == "Streck cfDNA BCT(迷彩管)-全血") {?>selected<?php }?>>Streck
+                                                    cfDNA
+                                                    BCT(迷彩管)-全血</option>
+                                                <option value="Streck RNA Complete BCT(橘頭管)-全血" <?php if ($_smarty_tpl->tpl_vars['SampleType_2']->value == "Streck RNA Complete BCT(橘頭管)-全血") {?>selected<?php }?>>
+                                                    Streck
+                                                    RNA Complete BCT(橘頭管)-全血</option>
+                                                <option value="5 ㎛ FFPE玻片(不含圈片)" <?php if ($_smarty_tpl->tpl_vars['SampleType_2']->value == "5 ㎛ FFPE玻片(不含圈片)") {?>selected<?php }?>>5 ㎛ FFPE玻片(不含圈片)</option>
+                                                <option value="10 ㎛ FFPE玻片(不含圈片)" <?php if ($_smarty_tpl->tpl_vars['SampleType_2']->value == "10 ㎛ FFPE玻片(不含圈片)") {?>selected<?php }?>>10 ㎛ FFPE玻片(不含圈片)</option>
+                                                <option value="染色圈片" <?php if ($_smarty_tpl->tpl_vars['SampleType_2']->value == "染色圈片") {?>selected<?php }?>>染色圈片
+                                                </option>
+                                                <option value="粗針穿刺檢體" <?php if ($_smarty_tpl->tpl_vars['SampleType_2']->value == "粗針穿刺檢體") {?>selected<?php }?>>粗針穿刺檢體
+                                                </option>
+                                                <option value="gDNA" <?php if ($_smarty_tpl->tpl_vars['SampleType_2']->value == "gDNA") {?>selected<?php }?>>gDNA
+                                                </option>
+                                                <option value="口腔拭子-口腔黏膜細胞" <?php if ($_smarty_tpl->tpl_vars['SampleType_2']->value == "口腔拭子-口腔黏膜細胞") {?>selected<?php }?>>
+                                                    口腔拭子-口腔黏膜細胞</option>
+                                                <option value="生資分析" <?php if ($_smarty_tpl->tpl_vars['SampleType_2']->value == "生資分析") {?>selected<?php }?>>生資分析
+                                                </option>
+                                                <option value="細胞懸浮液" <?php if ($_smarty_tpl->tpl_vars['SampleType_2']->value == "細胞懸浮液") {?>selected<?php }?>>細胞懸浮液
+                                                </option>
+                                                <option value="其他(請手動輸入樣品種類)" <?php if ($_smarty_tpl->tpl_vars['SampleType_2']->value == "其他(請手動輸入樣品種類)") {?>selected<?php }?>>其他(請手動輸入樣品種類)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <!-- 樣品數量二 (with unit next to the input) -->
+                                    <div class="form-group row">
+                                        <label for="SampleQuantity_2" class="col-md-3 control-label">樣品數量二:</label>
+                                        <div class="col-md-8 input-group">
+                                            <input type="number" id="SampleQuantity_2" name="SampleQuantity_2"
+                                                class="form-control" value="<?php echo $_smarty_tpl->tpl_vars['SampleQuantity_2']->value;?>
+">
+                                            <span class="input-group-addon" id="SampleUnit_2"><?php echo $_smarty_tpl->tpl_vars['SampleUnit_2']->value;?>
+</span>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <legend>樣品三</legend>
+
+                                    <!---- 樣品種類三 ---->
+                                    <div class="form-group ">
+                                        <label for="SampleType_3" class="col-md-3 control-label">樣品種類三:</label>
+                                        <div class="col-md-8">
+                                            <select id="SampleType_3" name="SampleType_3" class="form-control"
+                                                onchange="updateUnit_3()">
+                                                <option value="">請選擇樣品種類</option>
+                                                <option value="EDTA紫頭管-全血" <?php if ($_smarty_tpl->tpl_vars['SampleType_3']->value == "EDTA紫頭管-全血") {?>selected<?php }?>>
+                                                    EDTA紫頭管-全血</option>
+                                                <option value="Streck cfDNA BCT(迷彩管)-全血" <?php if ($_smarty_tpl->tpl_vars['SampleType_3']->value == "Streck cfDNA BCT(迷彩管)-全血") {?>selected<?php }?>>Streck
+                                                    cfDNA
+                                                    BCT(迷彩管)-全血</option>
+                                                <option value="Streck RNA Complete BCT(橘頭管)-全血" <?php if ($_smarty_tpl->tpl_vars['SampleType_3']->value == "Streck RNA Complete BCT(橘頭管)-全血") {?>selected<?php }?>>
+                                                    Streck
+                                                    RNA Complete BCT(橘頭管)-全血</option>
+                                                <option value="5 ㎛ FFPE玻片(不含圈片)" <?php if ($_smarty_tpl->tpl_vars['SampleType_3']->value == "5 ㎛ FFPE玻片(不含圈片)") {?>selected<?php }?>>5 ㎛ FFPE玻片(不含圈片)</option>
+                                                <option value="10 ㎛ FFPE玻片(不含圈片)" <?php if ($_smarty_tpl->tpl_vars['SampleType_3']->value == "10 ㎛ FFPE玻片(不含圈片)") {?>selected<?php }?>>10 ㎛ FFPE玻片(不含圈片)</option>
+                                                <option value="染色圈片" <?php if ($_smarty_tpl->tpl_vars['SampleType_3']->value == "染色圈片") {?>selected<?php }?>>染色圈片
+                                                </option>
+                                                <option value="粗針穿刺檢體" <?php if ($_smarty_tpl->tpl_vars['SampleType_3']->value == "粗針穿刺檢體") {?>selected<?php }?>>粗針穿刺檢體
+                                                </option>
+                                                <option value="gDNA" <?php if ($_smarty_tpl->tpl_vars['SampleType_3']->value == "gDNA") {?>selected<?php }?>>gDNA
+                                                </option>
+                                                <option value="口腔拭子-口腔黏膜細胞" <?php if ($_smarty_tpl->tpl_vars['SampleType_3']->value == "口腔拭子-口腔黏膜細胞") {?>selected<?php }?>>
+                                                    口腔拭子-口腔黏膜細胞</option>
+                                                <option value="生資分析" <?php if ($_smarty_tpl->tpl_vars['SampleType_3']->value == "生資分析") {?>selected<?php }?>>生資分析
+                                                </option>
+                                                <option value="細胞懸浮液" <?php if ($_smarty_tpl->tpl_vars['SampleType_3']->value == "細胞懸浮液") {?>selected<?php }?>>細胞懸浮液
+                                                </option>
+                                                <option value="其他(請手動輸入樣品種類)" <?php if ($_smarty_tpl->tpl_vars['SampleType_3']->value == "其他(請手動輸入樣品種類)") {?>selected<?php }?>>其他(請手動輸入樣品種類)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="SampleQuantity_3" class="col-md-3 control-label">樣品數量三:</label>
+                                        <div class="col-md-8 input-group">
+                                            <input type="number" id="SampleQuantity_3" name="SampleQuantity_3"
+                                                class="form-control" value="<?php echo $_smarty_tpl->tpl_vars['SampleQuantity_3']->value;?>
+">
+                                            <span class="input-group-addon" id="SampleUnit_3"><?php echo $_smarty_tpl->tpl_vars['SampleUnit_3']->value;?>
+</span>
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                                <fieldset>
+                                    <legend>樣品四</legend>
+
+                                    <!---- 樣品種類四 ---->
+                                    <div class="form-group ">
+                                        <label for="SampleType_4" class="col-md-3 control-label">樣品種類四:</label>
+                                        <div class="col-md-8">
+                                            <select id="SampleType_4" name="SampleType_4" class="form-control"
+                                                onchange="updateUnit_4()">
+                                                <option value="">請選擇樣品種類</option>
+                                                <option value="EDTA紫頭管-全血" <?php if ($_smarty_tpl->tpl_vars['SampleType_4']->value == "EDTA紫頭管-全血") {?>selected<?php }?>>
+                                                    EDTA紫頭管-全血</option>
+                                                <option value="Streck cfDNA BCT(迷彩管)-全血" <?php if ($_smarty_tpl->tpl_vars['SampleType_4']->value == "Streck cfDNA BCT(迷彩管)-全血") {?>selected<?php }?>>Streck
+                                                    cfDNA
+                                                    BCT(迷彩管)-全血</option>
+                                                <option value="Streck RNA Complete BCT(橘頭管)-全血" <?php if ($_smarty_tpl->tpl_vars['SampleType_4']->value == "Streck RNA Complete BCT(橘頭管)-全血") {?>selected<?php }?>>
+                                                    Streck
+                                                    RNA Complete BCT(橘頭管)-全血</option>
+                                                <option value="5 ㎛ FFPE玻片(不含圈片)" <?php if ($_smarty_tpl->tpl_vars['SampleType_4']->value == "5 ㎛ FFPE玻片(不含圈片)") {?>selected<?php }?>>5 ㎛ FFPE玻片(不含圈片)</option>
+                                                <option value="10 ㎛ FFPE玻片(不含圈片)" <?php if ($_smarty_tpl->tpl_vars['SampleType_4']->value == "10 ㎛ FFPE玻片(不含圈片)") {?>selected<?php }?>>10 ㎛ FFPE玻片(不含圈片)</option>
+                                                <option value="染色圈片" <?php if ($_smarty_tpl->tpl_vars['SampleType_4']->value == "染色圈片") {?>selected<?php }?>>染色圈片
+                                                </option>
+                                                <option value="粗針穿刺檢體" <?php if ($_smarty_tpl->tpl_vars['SampleType_4']->value == "粗針穿刺檢體") {?>selected<?php }?>>粗針穿刺檢體
+                                                </option>
+                                                <option value="gDNA" <?php if ($_smarty_tpl->tpl_vars['SampleType_4']->value == "gDNA") {?>selected<?php }?>>gDNA
+                                                </option>
+                                                <option value="口腔拭子-口腔黏膜細胞" <?php if ($_smarty_tpl->tpl_vars['SampleType_4']->value == "口腔拭子-口腔黏膜細胞") {?>selected<?php }?>>
+                                                    口腔拭子-口腔黏膜細胞</option>
+                                                <option value="生資分析" <?php if ($_smarty_tpl->tpl_vars['SampleType_4']->value == "生資分析") {?>selected<?php }?>>生資分析
+                                                </option>
+                                                <option value="細胞懸浮液" <?php if ($_smarty_tpl->tpl_vars['SampleType_4']->value == "細胞懸浮液") {?>selected<?php }?>>細胞懸浮液
+                                                </option>
+                                                <option value="其他(請手動輸入樣品種類)" <?php if ($_smarty_tpl->tpl_vars['SampleType_4']->value == "其他(請手動輸入樣品種類)") {?>selected<?php }?>>其他(請手動輸入樣品種類)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="SampleQuantity_4" class="col-md-3 control-label">樣品數量四:</label>
+                                        <div class="col-md-8 input-group">
+                                            <input type="number" id="SampleQuantity_4" name="SampleQuantity_4"
+                                                class="form-control" value="<?php echo $_smarty_tpl->tpl_vars['SampleQuantity_4']->value;?>
+">
+                                            <span class="input-group-addon" id="SampleUnit_4"><?php echo $_smarty_tpl->tpl_vars['SampleUnit_4']->value;?>
+</span>
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                                <fieldset>
+                                    <legend>樣品五</legend>
+
+                                    <!---- 樣品種類五 ---->
+                                    <div class="form-group ">
+                                        <label for="SampleType_5" class="col-md-3 control-label">樣品種類五:</label>
+                                        <div class="col-md-8">
+                                            <select id="SampleType_5" name="SampleType_5" class="form-control"
+                                                onchange="updateUnit_5()">
+                                                <option value="">請選擇樣品種類</option>
+                                                <option value="EDTA紫頭管-全血" <?php if ($_smarty_tpl->tpl_vars['SampleType_5']->value == "EDTA紫頭管-全血") {?>selected<?php }?>>
+                                                    EDTA紫頭管-全血</option>
+                                                <option value="Streck cfDNA BCT(迷彩管)-全血" <?php if ($_smarty_tpl->tpl_vars['SampleType_5']->value == "Streck cfDNA BCT(迷彩管)-全血") {?>selected<?php }?>>Streck
+                                                    cfDNA
+                                                    BCT(迷彩管)-全血</option>
+                                                <option value="Streck RNA Complete BCT(橘頭管)-全血" <?php if ($_smarty_tpl->tpl_vars['SampleType_5']->value == "Streck RNA Complete BCT(橘頭管)-全血") {?>selected<?php }?>>
+                                                    Streck
+                                                    RNA Complete BCT(橘頭管)-全血</option>
+                                                <option value="5 ㎛ FFPE玻片(不含圈片)" <?php if ($_smarty_tpl->tpl_vars['SampleType_5']->value == "5 ㎛ FFPE玻片(不含圈片)") {?>selected<?php }?>>5 ㎛ FFPE玻片(不含圈片)</option>
+                                                <option value="10 ㎛ FFPE玻片(不含圈片)" <?php if ($_smarty_tpl->tpl_vars['SampleType_5']->value == "10 ㎛ FFPE玻片(不含圈片)") {?>selected<?php }?>>10 ㎛ FFPE玻片(不含圈片)</option>
+                                                <option value="染色圈片" <?php if ($_smarty_tpl->tpl_vars['SampleType_5']->value == "染色圈片") {?>selected<?php }?>>染色圈片
+                                                </option>
+                                                <option value="粗針穿刺檢體" <?php if ($_smarty_tpl->tpl_vars['SampleType_5']->value == "粗針穿刺檢體") {?>selected<?php }?>>粗針穿刺檢體
+                                                </option>
+                                                <option value="gDNA" <?php if ($_smarty_tpl->tpl_vars['SampleType_5']->value == "gDNA") {?>selected<?php }?>>gDNA
+                                                </option>
+                                                <option value="口腔拭子-口腔黏膜細胞" <?php if ($_smarty_tpl->tpl_vars['SampleType_5']->value == "口腔拭子-口腔黏膜細胞") {?>selected<?php }?>>
+                                                    口腔拭子-口腔黏膜細胞</option>
+                                                <option value="生資分析" <?php if ($_smarty_tpl->tpl_vars['SampleType_5']->value == "生資分析") {?>selected<?php }?>>生資分析
+                                                </option>
+                                                <option value="細胞懸浮液" <?php if ($_smarty_tpl->tpl_vars['SampleType_5']->value == "細胞懸浮液") {?>selected<?php }?>>細胞懸浮液
+                                                </option>
+                                                <option value="其他(請手動輸入樣品種類)" <?php if ($_smarty_tpl->tpl_vars['SampleType_5']->value == "其他(請手動輸入樣品種類)") {?>selected<?php }?>>其他(請手動輸入樣品種類)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="SampleQuantity_5" class="col-md-3 control-label">樣品數量五:</label>
+                                        <div class="col-md-8 input-group">
+                                            <input type="number" id="SampleQuantity_5" name="SampleQuantity_5"
+                                                class="form-control" value="<?php echo $_smarty_tpl->tpl_vars['SampleQuantity_5']->value;?>
+">
+                                            <span class="input-group-addon" id="SampleUnit_5"><?php echo $_smarty_tpl->tpl_vars['SampleUnit_5']->value;?>
+</span>
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+
+
                             </div>
 
                             <!---- 第三排 ---->
                             <div class="col-md-4">
+                                <!---- 簽收人 ---->
+                                <div class="form-group">
+                                    <label for="Receiving" class="col-md-3 control-label">簽收人:</label>
+                                    <div class="col-md-8">
+                                        <select id="Receiving" name="Receiving" class="form-control" required>
+                                            <option value="">請選擇簽收人</option>
+                                            <option value="王許安" <?php if ($_smarty_tpl->tpl_vars['Receiving']->value == "王許安") {?>selected<?php }?>>王許安</option>
+                                            <option value="林庭萱" <?php if ($_smarty_tpl->tpl_vars['Receiving']->value == "林庭萱") {?>selected<?php }?>>林庭萱</option>
+                                            <option value="黃志凱" <?php if ($_smarty_tpl->tpl_vars['Receiving']->value == "黃志凱") {?>selected<?php }?>>黃志凱</option>
+                                            <option value="陳奕勳" <?php if ($_smarty_tpl->tpl_vars['Receiving']->value == "陳奕勳") {?>selected<?php }?>>陳奕勳</option>
+                                            <option value="張本樺" <?php if ($_smarty_tpl->tpl_vars['Receiving']->value == "張本樺") {?>selected<?php }?>>張本樺</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!---- 覆核人員 ---->
+                                <div class="form-group">
+                                    <label for="Receiving2" class="col-md-3 control-label">覆核人員:</label>
+                                    <div class="col-md-8">
+                                        <select id="Receiving2" name="Receiving2" class="form-control" required>
+                                            <option value="">請選擇覆核人員</option>
+                                            <option value="黃志凱" <?php if ($_smarty_tpl->tpl_vars['Receiving2']->value == "黃志凱") {?>selected<?php }?>>黃志凱</option>
+                                            <option value="陳奕勳" <?php if ($_smarty_tpl->tpl_vars['Receiving2']->value == "陳奕勳") {?>selected<?php }?>>陳奕勳</option>
+                                            <option value="張本樺" <?php if ($_smarty_tpl->tpl_vars['Receiving2']->value == "張本樺") {?>selected<?php }?>>張本樺</option>
+                                        </select>
+                                    </div>
+                                </div>
                                 <!---- TAT最終日 ---->
                                 <div class="form-group">
                                     <label for="DueDate" class="col-md-3 control-label">TAT最終日:</label>
@@ -958,7 +1249,7 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
 >
 <?php echo '<script'; ?>
 >
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         var permission = document.getElementById('Permission').value;
 
         if (permission === '2') {
@@ -977,5 +1268,138 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
     });
 <?php echo '</script'; ?>
 >
+<?php echo '<script'; ?>
+>
+    function updateUnit_1() {
+        var sampleType = document.getElementById('SampleType_1').value;
+        var sampleUnit = document.getElementById('SampleUnit_1');
+
+        // Example logic for setting unit based on sample type
+        if (sampleType.includes('FFPE')) {
+            sampleUnit.innerText = '片';
+        } else if (sampleType.includes('全血')) {
+            sampleUnit.innerText = '毫升';
+        } else if (sampleType.includes('染色圈片')) {
+            sampleUnit.innerText = '片';
+        } else if (sampleType.includes('粗針穿刺檢體')) {
+            sampleUnit.innerText = '片';
+        } else if (sampleType.includes('gDNA')) {
+            sampleUnit.innerText = '管';
+        } else if (sampleType.includes('口腔拭子')) {
+            sampleUnit.innerText = '管';
+        } else if (sampleType.includes('生資分析')) {
+            sampleUnit.innerText = '';
+        } else if (sampleType.includes('細胞懸浮液')) {
+            sampleUnit.innerText = '管';
+        } else {
+            sampleUnit.innerText = '';
+        }
+    }
+    function updateUnit_2() {
+        var sampleType = document.getElementById('SampleType_2').value;
+        var sampleUnit = document.getElementById('SampleUnit_2');
+
+        // Example logic for setting unit based on sample type
+        if (sampleType.includes('FFPE')) {
+            sampleUnit.innerText = '片';
+        } else if (sampleType.includes('全血')) {
+            sampleUnit.innerText = '毫升';
+        } else if (sampleType.includes('染色圈片')) {
+            sampleUnit.innerText = '片';
+        } else if (sampleType.includes('粗針穿刺檢體')) {
+            sampleUnit.innerText = '片';
+        } else if (sampleType.includes('gDNA')) {
+            sampleUnit.innerText = '管';
+        } else if (sampleType.includes('口腔拭子')) {
+            sampleUnit.innerText = '管';
+        } else if (sampleType.includes('生資分析')) {
+            sampleUnit.innerText = '';
+        } else if (sampleType.includes('細胞懸浮液')) {
+            sampleUnit.innerText = '管';
+        } else {
+            sampleUnit.innerText = '';
+        }
+    }
+    function updateUnit_3() {
+        var sampleType = document.getElementById('SampleType_3').value;
+        var sampleUnit = document.getElementById('SampleUnit_3');
+
+        // Example logic for setting unit based on sample type
+        if (sampleType.includes('FFPE')) {
+            sampleUnit.innerText = '片';
+        } else if (sampleType.includes('全血')) {
+            sampleUnit.innerText = '毫升';
+        } else if (sampleType.includes('染色圈片')) {
+            sampleUnit.innerText = '片';
+        } else if (sampleType.includes('粗針穿刺檢體')) {
+            sampleUnit.innerText = '片';
+        } else if (sampleType.includes('gDNA')) {
+            sampleUnit.innerText = '管';
+        } else if (sampleType.includes('口腔拭子')) {
+            sampleUnit.innerText = '管';
+        } else if (sampleType.includes('生資分析')) {
+            sampleUnit.innerText = '';
+        } else if (sampleType.includes('細胞懸浮液')) {
+            sampleUnit.innerText = '管';
+        } else {
+            sampleUnit.innerText = '';
+        }
+    }
+    function updateUnit_4() {
+        var sampleType = document.getElementById('SampleType_4').value;
+        var sampleUnit = document.getElementById('SampleUnit_4');
+
+        // Example logic for setting unit based on sample type
+        if (sampleType.includes('FFPE')) {
+            sampleUnit.innerText = '片';
+        } else if (sampleType.includes('全血')) {
+            sampleUnit.innerText = '毫升';
+        } else if (sampleType.includes('染色圈片')) {
+            sampleUnit.innerText = '片';
+        } else if (sampleType.includes('粗針穿刺檢體')) {
+            sampleUnit.innerText = '片';
+        } else if (sampleType.includes('gDNA')) {
+            sampleUnit.innerText = '管';
+        } else if (sampleType.includes('口腔拭子')) {
+            sampleUnit.innerText = '管';
+        } else if (sampleType.includes('生資分析')) {
+            sampleUnit.innerText = '';
+        } else if (sampleType.includes('細胞懸浮液')) {
+            sampleUnit.innerText = '管';
+        } else {
+            sampleUnit.innerText = '';
+        }
+    }
+    function updateUnit_5() {
+        var sampleType = docu4ment.getElementById('SampleType_5').value;
+        var sampleUnit = document.getElementById('SampleUnit_5');
+
+        // Example logic for setting unit based on sample type
+        if (sampleType.includes('FFPE')) {
+            sampleUnit.innerText = '片';
+        } else if (sampleType.includes('全血')) {
+            sampleUnit.innerText = '毫升';
+        } else if (sampleType.includes('染色圈片')) {
+            sampleUnit.innerText = '片';
+        } else if (sampleType.includes('粗針穿刺檢體')) {
+            sampleUnit.innerText = '片';
+        } else if (sampleType.includes('gDNA')) {
+            sampleUnit.innerText = '管';
+        } else if (sampleType.includes('口腔拭子')) {
+            sampleUnit.innerText = '管';
+        } else if (sampleType.includes('生資分析')) {
+            sampleUnit.innerText = '';
+        } else if (sampleType.includes('細胞懸浮液')) {
+            sampleUnit.innerText = '管';
+        } else {
+            sampleUnit.innerText = '';
+        }
+
+
+    }
+
+<?php echo '</script'; ?>
+>
+
 <!---------------------------End-----------------------------><?php }
 }

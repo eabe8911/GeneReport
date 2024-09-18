@@ -46,14 +46,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ReportImportData") {
             $count = 0;
             foreach ($rows as $row) {
                 $count++;
-                if ($count <= 1) {
+                if ($count < 1) {
                     continue;
                 }
                 $datas[] = array_combine($header, $row);
             }
             $report = new Report();
-            $iterationCount1 = count($datas);
-            $iterationCount = $iterationCount1 - 3;
+            $iterationCount = count($datas);
+            // $iterationCount = $iterationCount1 - 1;
 
             //if no data in excel
             if ($iterationCount == 0) {
@@ -63,13 +63,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ReportImportData") {
             } else {
                 //add data
                     // 從$datas[3]開始執行foreach
-                    foreach (array_slice($datas, 3) as $data) {
+                    // foreach (array_slice($datas, 1) as $data) {
                         
-                        $report->AddReport1($data);
-                    }
-                    //     foreach ($datas as $data) {
                     //     $report->AddReport1($data);
                     // }
+                        foreach ($datas as $data) {
+                        $report->AddReport1($data);
+                    }
 
             }
             $Message = "資料匯入成功!";
