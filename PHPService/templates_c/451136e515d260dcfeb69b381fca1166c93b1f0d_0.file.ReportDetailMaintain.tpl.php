@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-09-18 15:50:01
+/* Smarty version 4.3.4, created on 2024-09-19 14:56:22
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\ReportDetailMaintain.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_66ea8629781f62_72291522',
+  'unifunc' => 'content_66ebcb16c1a925_85291419',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '451136e515d260dcfeb69b381fca1166c93b1f0d' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\ReportDetailMaintain.tpl',
-      1 => 1726645510,
+      1 => 1726728981,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_66ea8629781f62_72291522 (Smarty_Internal_Template $_smarty_tpl) {
+function content_66ebcb16c1a925_85291419 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\vendor\\smarty\\smarty\\libs\\plugins\\function.html_options.php','function'=>'smarty_function_html_options',),));
 ?>
 <!--POP UP MODAL TO VIEW MEMBER DETAILS AND RESULTS FOR Member Information-->
@@ -1251,20 +1251,26 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
 >
     document.addEventListener('DOMContentLoaded', function () {
         var permission = document.getElementById('Permission').value;
+        var ApplyFile = document.getElementById('ApplyFile');
+        var applyFileSrc = ApplyFile.getAttribute('src');
 
-        if (permission === '2') {
-            document.getElementById('BtnReportSubmit').addEventListener('click', function (event) {
-                var fileInput = document.getElementById('ReportApply');
-                var uploadWarning = document.getElementById('uploadWarning');
+        if (!applyFileSrc) {
+            console.log("apply_pdf is empty");
+            if (permission === '2') {
+                document.getElementById('BtnReportSubmit').addEventListener('click', function (event) {
+                    var fileInput = document.getElementById('ReportApply');
+                    var uploadWarning = document.getElementById('uploadWarning');
 
-                if (fileInput.files.length === 0) {
-                    event.preventDefault(); // 阻止表單提交
-                    uploadWarning.style.display = 'block'; // 顯示提示文字
-                } else {
-                    uploadWarning.style.display = 'none'; // 隱藏提示文字
-                }
-            });
-        }
+                    if (fileInput.files.length === 0) {
+                        event.preventDefault(); // 阻止表單提交
+                        uploadWarning.style.display = 'block'; // 顯示提示文字
+                    } else {
+                        uploadWarning.style.display = 'none'; // 隱藏提示文字
+                    }
+                });
+            }
+        } else {
+            console.log("apply_pdf value:", applyFileSrc);        }
     });
 <?php echo '</script'; ?>
 >

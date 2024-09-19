@@ -1,0 +1,20 @@
+{
+    "report_number": "JB_test0913",
+    "proband_name": "薛羽倢",
+    "sample_number": "JB_test0913",
+    "medical_record_number": "JB_test0913",
+    "sampling_number": "JB_test0913",
+    "sample_type_1": null,
+    "sample_type_2": null,
+    "sample_type_3": null,
+    "sample_type_4": null,
+    "sample_type_5": null,
+    "method": "NGS",
+    "sampling_date": "2024-09-13T11:00",
+    "collection_date": "2024-09-13T11:00",
+    "referral_physician": "陳先生",
+    "referral_agency": "國立臺灣大學醫學院附設醫院雲林分院",
+    "contact_name": "薛羽倢",
+    "contact_phone_number": "(02)8809-8388",
+    "contact_mail": "tina.xue@libobio.com"
+}

@@ -1207,20 +1207,26 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         var permission = document.getElementById('Permission').value;
+        var ApplyFile = document.getElementById('ApplyFile');
+        var applyFileSrc = ApplyFile.getAttribute('src');
 
-        if (permission === '2') {
-            document.getElementById('BtnReportSubmit').addEventListener('click', function (event) {
-                var fileInput = document.getElementById('ReportApply');
-                var uploadWarning = document.getElementById('uploadWarning');
+        if (!applyFileSrc) {
+            console.log("apply_pdf is empty");
+            if (permission === '2') {
+                document.getElementById('BtnReportSubmit').addEventListener('click', function (event) {
+                    var fileInput = document.getElementById('ReportApply');
+                    var uploadWarning = document.getElementById('uploadWarning');
 
-                if (fileInput.files.length === 0) {
-                    event.preventDefault(); // 阻止表單提交
-                    uploadWarning.style.display = 'block'; // 顯示提示文字
-                } else {
-                    uploadWarning.style.display = 'none'; // 隱藏提示文字
-                }
-            });
-        }
+                    if (fileInput.files.length === 0) {
+                        event.preventDefault(); // 阻止表單提交
+                        uploadWarning.style.display = 'block'; // 顯示提示文字
+                    } else {
+                        uploadWarning.style.display = 'none'; // 隱藏提示文字
+                    }
+                });
+            }
+        } else {
+            console.log("apply_pdf value:", applyFileSrc);        }
     });
 </script>
 <script>
