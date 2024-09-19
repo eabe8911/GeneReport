@@ -204,6 +204,9 @@
       $('#ReportName').prop('disabled', state);
       $('#proband_name').prop('disabled', state);
       $('#HospitalList').prop('disabled', state);
+      $('#HospitalList_Dr').prop('disabled', state);
+      $('#method').prop('disabled', state);
+      $('#proband_name').prop('readonly', state);
       $('#CustomerName').prop('readonly', state);
       $('#CustomerEmail').prop('readonly', state);
       $('#ccemail').prop('readonly', state);
@@ -213,11 +216,24 @@
       $('#PatientID').prop('disabled', state);
       $('#scID').prop('disabled', state);
       $('#scdate').prop('readonly', state);
-      $('#rcdate').prop('readonly', state);     
+      $('#rcdate').prop('readonly', state);  
+      $('#Submitdate').prop('readonly', state);   
       $('#DueDate').prop('readonly', state);
       $('#RejectReason').prop('readonly', state);
       $('#TemplateID').prop('disabled', state);
       $('#ReportStatus').prop('readonly', state);
+      $('#SampleType_1').prop('disabled', state);
+      $('#SampleType_2').prop('disabled', state);
+      $('#SampleType_3').prop('disabled', state);
+      $('#SampleType_4').prop('disabled', state);
+      $('#SampleType_5').prop('disabled', state);
+      $('#SampleQuantity_1').prop('disabled', state);
+      $('#SampleQuantity_2').prop('disabled', state);
+      $('#SampleQuantity_3').prop('disabled', state);
+      $('#SampleQuantity_4').prop('disabled', state);
+      $('#SampleQuantity_5').prop('disabled', state);
+      $('#Receiving').prop('disabled', state);
+      $('#Receiving2').prop('disabled', state);
       $('#DisplayUploadButton').prop('hidden', state);
     }
 

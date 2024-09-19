@@ -10,6 +10,27 @@
                         <div class="form-horizontal" role="form">
                             <!---- 第一排 ---->
                             <div class="col-md-4">
+                                <!---- 檢測單位 ---->
+                                <div class="form-group">
+                                    <label for="ReportType" class="col-md-3 control-label">檢測單位:</label>
+                                    <div class="col-md-8">
+
+                                        {html_options name=ReportType id=ReportType options=['' => '請選擇...'] +
+                                        $ReportTypeOptions
+                                        selected=$ReportTypeSelect class="form-control" onchange="checkTestUnit()" required="required"}
+
+                                    </div>
+                                </div>
+                                <!---- 姓   名 ---->
+                                <div class="form-group" id="proband_name_group">
+                                    <label for="proband_name" class="col-md-3 control-label">姓 名:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="proband_name" name="proband_name" class="form-control"
+                                            value="{$proband_name}">
+                                        <!-- <p id="proband_name_warning" style="color: red; display: none;">所選檢測單位不需填寫姓名</p> -->
+                                    </div>
+                                </div>
+
                                 <!---- 報告編號 ---->
                                 <div class="form-group">
                                     <label for="ReportID" class="col-md-3 control-label">報告編號:</label>
@@ -105,6 +126,8 @@
                                             <option value="37" {if $HospitalListSelect==37}selected{/if}>上明眼科</option>
                                             <option value="38" {if $HospitalListSelect==38}selected{/if}>台灣醫事檢驗學會
                                             </option>
+                                            <option value="39" {if $HospitalListSelect==39}selected{/if}>衛福部桃園醫院
+                                            </option>
                                         </select>
 
 
@@ -171,26 +194,6 @@
                                     <div class="col-md-8">
                                         <input type="text" id="method" name="method" class="form-control" required
                                             value="{$method}">
-                                    </div>
-                                </div>
-                                <!---- 檢測單位 ---->
-                                <div class="form-group">
-                                    <label for="ReportType" class="col-md-3 control-label">檢測單位:</label>
-                                    <div class="col-md-8">
-
-                                        {html_options name=ReportType id=ReportType options=['' => '請選擇...'] +
-                                        $ReportTypeOptions
-                                        selected=$ReportTypeSelect class="form-control" required="required"}
-
-                                    </div>
-                                </div>
-                                <!---- 姓   名 ---->
-                                <div class="form-group">
-                                    <label for="proband_name" class="col-md-3 control-label">姓 名:</label>
-                                    <div class="col-md-8">
-                                        <input type="text" id="proband_name" name="proband_name" class="form-control"
-                                            value="{$proband_name}">
-                                        <p id="proband_name_warning" style="color: red; display: none;">所選檢測單位不需填寫姓名</p>
                                     </div>
                                 </div>
 
@@ -1169,7 +1172,7 @@
         document.body.removeChild(a);
     }
 </script>
-<script>
+<!-- <script>
     document.getElementById('ReportType').addEventListener('change', function () {
         var probandNameGroup = document.getElementById('proband_name');
         var probandNameWarning = document.getElementById('proband_name_warning');
@@ -1197,6 +1200,21 @@
         }
 
     });
+</script> -->
+<script>
+    function checkTestUnit() {
+        var ReportType = document.getElementById('ReportType').value;
+        var probandNameGroup = document.getElementById('proband_name_group');
+
+        if (ReportType === '1') {
+            probandNameGroup.style.display = 'flex';
+        } else {
+            probandNameGroup.style.display = 'none';
+        }
+    }
+
+    // 初始化时检查一次
+    checkTestUnit();
 </script>
 <script>
     document.getElementById('FormReportDetail').addEventListener('submit', function () {
@@ -1211,7 +1229,7 @@
         var applyFileSrc = ApplyFile.getAttribute('src');
 
         if (!applyFileSrc) {
-            console.log("apply_pdf is empty");
+            // console.log("apply_pdf is empty");
             if (permission === '2') {
                 document.getElementById('BtnReportSubmit').addEventListener('click', function (event) {
                     var fileInput = document.getElementById('ReportApply');
@@ -1226,138 +1244,58 @@
                 });
             }
         } else {
-            console.log("apply_pdf value:", applyFileSrc);        }
+            // console.log("apply_pdf value:", applyFileSrc);
+        }
     });
 </script>
+
 <script>
+    function updateUnit(sampleTypeId, sampleUnitId) {
+        var sampleType = document.getElementById(sampleTypeId).value;
+        var sampleUnit = document.getElementById(sampleUnitId);
+
+        // Example logic for setting unit based on sample type
+        if (sampleType.includes('FFPE')) {
+            sampleUnit.innerText = '片';
+        } else if (sampleType.includes('全血')) {
+            sampleUnit.innerText = '毫升';
+        } else if (sampleType.includes('染色圈片')) {
+            sampleUnit.innerText = '片';
+        } else if (sampleType.includes('粗針穿刺檢體')) {
+            sampleUnit.innerText = '片';
+        } else if (sampleType.includes('gDNA')) {
+            sampleUnit.innerText = '管';
+        } else if (sampleType.includes('口腔拭子')) {
+            sampleUnit.innerText = '管';
+        } else if (sampleType.includes('生資分析')) {
+            sampleUnit.innerText = '';
+        } else if (sampleType.includes('細胞懸浮液')) {
+            sampleUnit.innerText = '管';
+        } else {
+            sampleUnit.innerText = '';
+        }
+    }
+
     function updateUnit_1() {
-        var sampleType = document.getElementById('SampleType_1').value;
-        var sampleUnit = document.getElementById('SampleUnit_1');
-
-        // Example logic for setting unit based on sample type
-        if (sampleType.includes('FFPE')) {
-            sampleUnit.innerText = '片';
-        } else if (sampleType.includes('全血')) {
-            sampleUnit.innerText = '毫升';
-        } else if (sampleType.includes('染色圈片')) {
-            sampleUnit.innerText = '片';
-        } else if (sampleType.includes('粗針穿刺檢體')) {
-            sampleUnit.innerText = '片';
-        } else if (sampleType.includes('gDNA')) {
-            sampleUnit.innerText = '管';
-        } else if (sampleType.includes('口腔拭子')) {
-            sampleUnit.innerText = '管';
-        } else if (sampleType.includes('生資分析')) {
-            sampleUnit.innerText = '';
-        } else if (sampleType.includes('細胞懸浮液')) {
-            sampleUnit.innerText = '管';
-        } else {
-            sampleUnit.innerText = '';
-        }
+        updateUnit('SampleType_1', 'SampleUnit_1');
     }
+
     function updateUnit_2() {
-        var sampleType = document.getElementById('SampleType_2').value;
-        var sampleUnit = document.getElementById('SampleUnit_2');
-
-        // Example logic for setting unit based on sample type
-        if (sampleType.includes('FFPE')) {
-            sampleUnit.innerText = '片';
-        } else if (sampleType.includes('全血')) {
-            sampleUnit.innerText = '毫升';
-        } else if (sampleType.includes('染色圈片')) {
-            sampleUnit.innerText = '片';
-        } else if (sampleType.includes('粗針穿刺檢體')) {
-            sampleUnit.innerText = '片';
-        } else if (sampleType.includes('gDNA')) {
-            sampleUnit.innerText = '管';
-        } else if (sampleType.includes('口腔拭子')) {
-            sampleUnit.innerText = '管';
-        } else if (sampleType.includes('生資分析')) {
-            sampleUnit.innerText = '';
-        } else if (sampleType.includes('細胞懸浮液')) {
-            sampleUnit.innerText = '管';
-        } else {
-            sampleUnit.innerText = '';
-        }
+        updateUnit('SampleType_2', 'SampleUnit_2');
     }
+
     function updateUnit_3() {
-        var sampleType = document.getElementById('SampleType_3').value;
-        var sampleUnit = document.getElementById('SampleUnit_3');
-
-        // Example logic for setting unit based on sample type
-        if (sampleType.includes('FFPE')) {
-            sampleUnit.innerText = '片';
-        } else if (sampleType.includes('全血')) {
-            sampleUnit.innerText = '毫升';
-        } else if (sampleType.includes('染色圈片')) {
-            sampleUnit.innerText = '片';
-        } else if (sampleType.includes('粗針穿刺檢體')) {
-            sampleUnit.innerText = '片';
-        } else if (sampleType.includes('gDNA')) {
-            sampleUnit.innerText = '管';
-        } else if (sampleType.includes('口腔拭子')) {
-            sampleUnit.innerText = '管';
-        } else if (sampleType.includes('生資分析')) {
-            sampleUnit.innerText = '';
-        } else if (sampleType.includes('細胞懸浮液')) {
-            sampleUnit.innerText = '管';
-        } else {
-            sampleUnit.innerText = '';
-        }
+        updateUnit('SampleType_3', 'SampleUnit_3');
     }
+
     function updateUnit_4() {
-        var sampleType = document.getElementById('SampleType_4').value;
-        var sampleUnit = document.getElementById('SampleUnit_4');
-
-        // Example logic for setting unit based on sample type
-        if (sampleType.includes('FFPE')) {
-            sampleUnit.innerText = '片';
-        } else if (sampleType.includes('全血')) {
-            sampleUnit.innerText = '毫升';
-        } else if (sampleType.includes('染色圈片')) {
-            sampleUnit.innerText = '片';
-        } else if (sampleType.includes('粗針穿刺檢體')) {
-            sampleUnit.innerText = '片';
-        } else if (sampleType.includes('gDNA')) {
-            sampleUnit.innerText = '管';
-        } else if (sampleType.includes('口腔拭子')) {
-            sampleUnit.innerText = '管';
-        } else if (sampleType.includes('生資分析')) {
-            sampleUnit.innerText = '';
-        } else if (sampleType.includes('細胞懸浮液')) {
-            sampleUnit.innerText = '管';
-        } else {
-            sampleUnit.innerText = '';
-        }
+        updateUnit('SampleType_4', 'SampleUnit_4');
     }
+
     function updateUnit_5() {
-        var sampleType = docu4ment.getElementById('SampleType_5').value;
-        var sampleUnit = document.getElementById('SampleUnit_5');
-
-        // Example logic for setting unit based on sample type
-        if (sampleType.includes('FFPE')) {
-            sampleUnit.innerText = '片';
-        } else if (sampleType.includes('全血')) {
-            sampleUnit.innerText = '毫升';
-        } else if (sampleType.includes('染色圈片')) {
-            sampleUnit.innerText = '片';
-        } else if (sampleType.includes('粗針穿刺檢體')) {
-            sampleUnit.innerText = '片';
-        } else if (sampleType.includes('gDNA')) {
-            sampleUnit.innerText = '管';
-        } else if (sampleType.includes('口腔拭子')) {
-            sampleUnit.innerText = '管';
-        } else if (sampleType.includes('生資分析')) {
-            sampleUnit.innerText = '';
-        } else if (sampleType.includes('細胞懸浮液')) {
-            sampleUnit.innerText = '管';
-        } else {
-            sampleUnit.innerText = '';
-        }
-
-
+        updateUnit('SampleType_5', 'SampleUnit_5');
     }
-
 </script>
+
 
 <!---------------------------End----------------------------->
