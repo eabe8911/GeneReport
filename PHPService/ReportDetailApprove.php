@@ -231,6 +231,9 @@ $smarty->assign('HospitalListOptions', $List, true);
 $smarty->assign('HospitalListSelect', $HospitalList, true);
 $smarty->assign('ReportTypeOptions', $Type, true);
 $smarty->assign('ReportTypeSelect', $ReportType, true);
+$smarty->assign("HospitalList_Dr", $report->ReportInfo('HospitalList_Dr'), true);
+$smarty->assign("method", $report->ReportInfo('method'), true);
+$smarty->assign("Submitdate", $report->ReportInfo('Submitdate'), true);
 $smarty->assign("FileName", $report->ReportInfo('FileName'), true);
 $smarty->assign("Approved1", $report->ReportInfo('Approved1'), true);
 $smarty->assign("Approved1At", $report->ReportInfo('Approved1At'), true);
@@ -251,6 +254,25 @@ $smarty->assign("PatientID", $report->ReportInfo('PatientID'), true);
 $smarty->assign("scID", $report->ReportInfo('scID'), true);
 $smarty->assign("scdate", $report->ReportInfo('scdate'), true);
 $smarty->assign("rcdate", $report->ReportInfo('rcdate'), true);
+$smarty->assign("SampleType_1", $report->ReportInfo('SampleType_1'), true);
+$smarty->assign("SampleType_2", $report->ReportInfo('SampleType_2'), true);
+$smarty->assign("SampleType_3", $report->ReportInfo('SampleType_3'), true);
+$smarty->assign("SampleType_4", $report->ReportInfo('SampleType_4'), true);
+$smarty->assign("SampleType_5", $report->ReportInfo('SampleType_5'), true);
+$smarty->assign("SampleQuantity_1", $report->ReportInfo('SampleQuantity_1'), true);
+$smarty->assign("SampleQuantity_2", $report->ReportInfo('SampleQuantity_2'), true);
+$smarty->assign("SampleQuantity_3", $report->ReportInfo('SampleQuantity_3'), true);
+$smarty->assign("SampleQuantity_4", $report->ReportInfo('SampleQuantity_4'), true);
+$smarty->assign("SampleQuantity_5", $report->ReportInfo('SampleQuantity_5'), true);
+$smarty->assign("SampleUnit_1", $report->ReportInfo('SampleUnit_1'), true);
+$smarty->assign("SampleUnit_2", $report->ReportInfo('SampleUnit_2'), true);
+$smarty->assign("SampleUnit_3", $report->ReportInfo('SampleUnit_3'), true);
+$smarty->assign("SampleUnit_4", $report->ReportInfo('SampleUnit_4'), true);
+$smarty->assign("SampleUnit_5", $report->ReportInfo('SampleUnit_5'), true);
+$smarty->assign("Receiving", $report->ReportInfo('Receiving'), true);
+$smarty->assign("Receiving2", $report->ReportInfo('Receiving2'), true);
+$smarty->assign("proband_name", $report->ReportInfo('proband_name'), true);
+
 // Display PDF File
 if ($ApplyFile == '') {
     $smarty->assign("ApplyFile", "", true);

@@ -1,11 +1,12 @@
 <!--POP UP MODAL TO VIEW MEMBER DETAILS AND RESULTS FOR Member Information-->
+
 <form method="post" action="{$FormAction}" name="FormReportDetail" id="FormReportDetail" enctype="multipart/form-data">
     {$Hiddenfield1}{$Hiddenfield2}{$Hiddenfield3}{$Hiddenfield4}{$Hiddenfield5}{$Hiddenfield6}
     <div class="container-fluid" style="width:100%;">
         <div class="row"><br>
             <!---- Member Details ---->
             <div class="col-sm-12">
-                <div class="card-box" style="height: 120%;">
+                <div class="card-box" style="height: 130%;">
                     <div class="row">
                         <div class="form-horizontal" role="form">
                             <!---- 第一排 ---->
@@ -17,7 +18,8 @@
 
                                         {html_options name=ReportType id=ReportType options=['' => '請選擇...'] +
                                         $ReportTypeOptions
-                                        selected=$ReportTypeSelect class="form-control" onchange="checkTestUnit()" required="required"}
+                                        selected=$ReportTypeSelect class="form-control" onchange="checkTestUnit()"
+                                        required="required"}
 
                                     </div>
                                 </div>
@@ -143,12 +145,11 @@
                                     </div>
                                 </div>
 
-                                {if $Permission eq 1 or $Permission eq 2 or $Permission eq 4 or $Permission eq 5 or
+                                {if $Permission eq 2 or $Permission eq 5 or
                                 $Permission eq 9 }
                                 <div class="form-group">
                                     <label for="main-menu" class="col-md-3 control-label">檢測項目系列:</label>
                                     <div class="col-md-8">
-
 
                                         <select id="ReportTemplate" name="ReportTemplate" class="form-control"
                                             onchange="populateSubmenu(this, document.getElementById('ReportName'))">
@@ -260,12 +261,15 @@
                                                     Streck
                                                     RNA Complete BCT(橘頭管)-全血</option>
                                                 <option value="5 ㎛ FFPE玻片(不含圈片)" {if $SampleType_1=="5 ㎛ FFPE玻片(不含圈片)"
-                                                    }selected{/if}>5 ㎛ FFPE玻片(不含圈片)</option>
+                                                    }selected{/if}>5 ㎛
+                                                    FFPE玻片(不含圈片)</option>
                                                 <option value="10 ㎛ FFPE玻片(不含圈片)" {if $SampleType_1=="10 ㎛ FFPE玻片(不含圈片)"
-                                                    }selected{/if}>10 ㎛ FFPE玻片(不含圈片)</option>
+                                                    }selected{/if}>10 ㎛
+                                                    FFPE玻片(不含圈片)</option>
                                                 <option value="染色圈片" {if $SampleType_1=="染色圈片" }selected{/if}>染色圈片
                                                 </option>
-                                                <option value="粗針穿刺檢體" {if $SampleType_1=="粗針穿刺檢體" }selected{/if}>粗針穿刺檢體
+                                                <option value="粗針穿刺檢體" {if $SampleType_1=="粗針穿刺檢體" }selected{/if}>
+                                                    粗針穿刺檢體
                                                 </option>
                                                 <option value="gDNA" {if $SampleType_1=="gDNA" }selected{/if}>gDNA
                                                 </option>
@@ -274,13 +278,15 @@
                                                     口腔拭子-口腔黏膜細胞</option>
                                                 <option value="生資分析" {if $SampleType_1=="生資分析" }selected{/if}>生資分析
                                                 </option>
-                                                <option value="細胞懸浮液" {if $SampleType_1=="細胞懸浮液" }selected{/if}>細胞懸浮液
+                                                <option value="細胞懸浮液" {if $SampleType_1=="細胞懸浮液" }selected{/if}>
+                                                    細胞懸浮液
                                                 </option>
                                                 <option value="其他(請手動輸入樣品種類)" {if $SampleType_1=="其他(請手動輸入樣品種類)"
                                                     }selected{/if}>其他(請手動輸入樣品種類)</option>
                                             </select>
                                         </div>
                                     </div>
+
                                     <!-- 樣品數量一 (with unit next to the input) -->
                                     <div class="form-group row">
                                         <label for="SampleQuantity_1" class="col-md-3 control-label">樣品數量一:</label>

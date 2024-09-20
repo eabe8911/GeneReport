@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-09-19 14:56:22
+/* Smarty version 4.3.4, created on 2024-09-20 15:35:20
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\ReportDetailMaintain.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_66ebcb16c1a925_85291419',
+  'unifunc' => 'content_66ed25b87ad610_86839772',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '451136e515d260dcfeb69b381fca1166c93b1f0d' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\ReportDetailMaintain.tpl',
-      1 => 1726728981,
+      1 => 1726817682,
       2 => 'file',
     ),
   ),
@@ -20,10 +20,11 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_66ebcb16c1a925_85291419 (Smarty_Internal_Template $_smarty_tpl) {
+function content_66ed25b87ad610_86839772 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\vendor\\smarty\\smarty\\libs\\plugins\\function.html_options.php','function'=>'smarty_function_html_options',),));
 ?>
 <!--POP UP MODAL TO VIEW MEMBER DETAILS AND RESULTS FOR Member Information-->
+
 <form method="post" action="<?php echo $_smarty_tpl->tpl_vars['FormAction']->value;?>
 " name="FormReportDetail" id="FormReportDetail" enctype="multipart/form-data">
     <?php echo $_smarty_tpl->tpl_vars['Hiddenfield1']->value;
@@ -37,11 +38,32 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
         <div class="row"><br>
             <!---- Member Details ---->
             <div class="col-sm-12">
-                <div class="card-box" style="height: 120%;">
+                <div class="card-box" style="height: 130%;">
                     <div class="row">
                         <div class="form-horizontal" role="form">
                             <!---- 第一排 ---->
                             <div class="col-md-4">
+                                <!---- 檢測單位 ---->
+                                <div class="form-group">
+                                    <label for="ReportType" class="col-md-3 control-label">檢測單位:</label>
+                                    <div class="col-md-8">
+
+                                        <?php echo smarty_function_html_options(array('name'=>'ReportType','id'=>'ReportType','options'=>array(''=>'請選擇...')+$_smarty_tpl->tpl_vars['ReportTypeOptions']->value,'selected'=>$_smarty_tpl->tpl_vars['ReportTypeSelect']->value,'class'=>"form-control",'onchange'=>"checkTestUnit()",'required'=>"required"),$_smarty_tpl);?>
+
+
+                                    </div>
+                                </div>
+                                <!---- 姓   名 ---->
+                                <div class="form-group" id="proband_name_group">
+                                    <label for="proband_name" class="col-md-3 control-label">姓 名:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="proband_name" name="proband_name" class="form-control"
+                                            value="<?php echo $_smarty_tpl->tpl_vars['proband_name']->value;?>
+">
+                                        <!-- <p id="proband_name_warning" style="color: red; display: none;">所選檢測單位不需填寫姓名</p> -->
+                                    </div>
+                                </div>
+
                                 <!---- 報告編號 ---->
                                 <div class="form-group">
                                     <label for="ReportID" class="col-md-3 control-label">報告編號:</label>
@@ -140,6 +162,8 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                             <option value="37" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 37) {?>selected<?php }?>>上明眼科</option>
                                             <option value="38" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 38) {?>selected<?php }?>>台灣醫事檢驗學會
                                             </option>
+                                            <option value="39" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 39) {?>selected<?php }?>>衛福部桃園醫院
+                                            </option>
                                         </select>
 
 
@@ -156,11 +180,10 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                     </div>
                                 </div>
 
-                                <?php if ($_smarty_tpl->tpl_vars['Permission']->value == 1 || $_smarty_tpl->tpl_vars['Permission']->value == 2 || $_smarty_tpl->tpl_vars['Permission']->value == 4 || $_smarty_tpl->tpl_vars['Permission']->value == 5 || $_smarty_tpl->tpl_vars['Permission']->value == 9) {?>
+                                <?php if ($_smarty_tpl->tpl_vars['Permission']->value == 2 || $_smarty_tpl->tpl_vars['Permission']->value == 5 || $_smarty_tpl->tpl_vars['Permission']->value == 9) {?>
                                 <div class="form-group">
                                     <label for="main-menu" class="col-md-3 control-label">檢測項目系列:</label>
                                     <div class="col-md-8">
-
 
                                         <select id="ReportTemplate" name="ReportTemplate" class="form-control"
                                             onchange="populateSubmenu(this, document.getElementById('ReportName'))">
@@ -209,26 +232,6 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                         <input type="text" id="method" name="method" class="form-control" required
                                             value="<?php echo $_smarty_tpl->tpl_vars['method']->value;?>
 ">
-                                    </div>
-                                </div>
-                                <!---- 檢測單位 ---->
-                                <div class="form-group">
-                                    <label for="ReportType" class="col-md-3 control-label">檢測單位:</label>
-                                    <div class="col-md-8">
-
-                                        <?php echo smarty_function_html_options(array('name'=>'ReportType','id'=>'ReportType','options'=>array(''=>'請選擇...')+$_smarty_tpl->tpl_vars['ReportTypeOptions']->value,'selected'=>$_smarty_tpl->tpl_vars['ReportTypeSelect']->value,'class'=>"form-control",'required'=>"required"),$_smarty_tpl);?>
-
-
-                                    </div>
-                                </div>
-                                <!---- 姓   名 ---->
-                                <div class="form-group">
-                                    <label for="proband_name" class="col-md-3 control-label">姓 名:</label>
-                                    <div class="col-md-8">
-                                        <input type="text" id="proband_name" name="proband_name" class="form-control"
-                                            value="<?php echo $_smarty_tpl->tpl_vars['proband_name']->value;?>
-">
-                                        <p id="proband_name_warning" style="color: red; display: none;">所選檢測單位不需填寫姓名</p>
                                     </div>
                                 </div>
 
@@ -292,11 +295,14 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                                 <option value="Streck RNA Complete BCT(橘頭管)-全血" <?php if ($_smarty_tpl->tpl_vars['SampleType_1']->value == "Streck RNA Complete BCT(橘頭管)-全血") {?>selected<?php }?>>
                                                     Streck
                                                     RNA Complete BCT(橘頭管)-全血</option>
-                                                <option value="5 ㎛ FFPE玻片(不含圈片)" <?php if ($_smarty_tpl->tpl_vars['SampleType_1']->value == "5 ㎛ FFPE玻片(不含圈片)") {?>selected<?php }?>>5 ㎛ FFPE玻片(不含圈片)</option>
-                                                <option value="10 ㎛ FFPE玻片(不含圈片)" <?php if ($_smarty_tpl->tpl_vars['SampleType_1']->value == "10 ㎛ FFPE玻片(不含圈片)") {?>selected<?php }?>>10 ㎛ FFPE玻片(不含圈片)</option>
+                                                <option value="5 ㎛ FFPE玻片(不含圈片)" <?php if ($_smarty_tpl->tpl_vars['SampleType_1']->value == "5 ㎛ FFPE玻片(不含圈片)") {?>selected<?php }?>>5 ㎛
+                                                    FFPE玻片(不含圈片)</option>
+                                                <option value="10 ㎛ FFPE玻片(不含圈片)" <?php if ($_smarty_tpl->tpl_vars['SampleType_1']->value == "10 ㎛ FFPE玻片(不含圈片)") {?>selected<?php }?>>10 ㎛
+                                                    FFPE玻片(不含圈片)</option>
                                                 <option value="染色圈片" <?php if ($_smarty_tpl->tpl_vars['SampleType_1']->value == "染色圈片") {?>selected<?php }?>>染色圈片
                                                 </option>
-                                                <option value="粗針穿刺檢體" <?php if ($_smarty_tpl->tpl_vars['SampleType_1']->value == "粗針穿刺檢體") {?>selected<?php }?>>粗針穿刺檢體
+                                                <option value="粗針穿刺檢體" <?php if ($_smarty_tpl->tpl_vars['SampleType_1']->value == "粗針穿刺檢體") {?>selected<?php }?>>
+                                                    粗針穿刺檢體
                                                 </option>
                                                 <option value="gDNA" <?php if ($_smarty_tpl->tpl_vars['SampleType_1']->value == "gDNA") {?>selected<?php }?>>gDNA
                                                 </option>
@@ -304,12 +310,14 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                                     口腔拭子-口腔黏膜細胞</option>
                                                 <option value="生資分析" <?php if ($_smarty_tpl->tpl_vars['SampleType_1']->value == "生資分析") {?>selected<?php }?>>生資分析
                                                 </option>
-                                                <option value="細胞懸浮液" <?php if ($_smarty_tpl->tpl_vars['SampleType_1']->value == "細胞懸浮液") {?>selected<?php }?>>細胞懸浮液
+                                                <option value="細胞懸浮液" <?php if ($_smarty_tpl->tpl_vars['SampleType_1']->value == "細胞懸浮液") {?>selected<?php }?>>
+                                                    細胞懸浮液
                                                 </option>
                                                 <option value="其他(請手動輸入樣品種類)" <?php if ($_smarty_tpl->tpl_vars['SampleType_1']->value == "其他(請手動輸入樣品種類)") {?>selected<?php }?>>其他(請手動輸入樣品種類)</option>
                                             </select>
                                         </div>
                                     </div>
+
                                     <!-- 樣品數量一 (with unit next to the input) -->
                                     <div class="form-group row">
                                         <label for="SampleQuantity_1" class="col-md-3 control-label">樣品數量一:</label>
@@ -1208,7 +1216,7 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
     }
 <?php echo '</script'; ?>
 >
-<?php echo '<script'; ?>
+<!-- <?php echo '<script'; ?>
 >
     document.getElementById('ReportType').addEventListener('change', function () {
         var probandNameGroup = document.getElementById('proband_name');
@@ -1238,6 +1246,23 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
 
     });
 <?php echo '</script'; ?>
+> -->
+<?php echo '<script'; ?>
+>
+    function checkTestUnit() {
+        var ReportType = document.getElementById('ReportType').value;
+        var probandNameGroup = document.getElementById('proband_name_group');
+
+        if (ReportType === '1') {
+            probandNameGroup.style.display = 'flex';
+        } else {
+            probandNameGroup.style.display = 'none';
+        }
+    }
+
+    // 初始化时检查一次
+    checkTestUnit();
+<?php echo '</script'; ?>
 >
 <?php echo '<script'; ?>
 >
@@ -1255,7 +1280,7 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
         var applyFileSrc = ApplyFile.getAttribute('src');
 
         if (!applyFileSrc) {
-            console.log("apply_pdf is empty");
+            // console.log("apply_pdf is empty");
             if (permission === '2') {
                 document.getElementById('BtnReportSubmit').addEventListener('click', function (event) {
                     var fileInput = document.getElementById('ReportApply');
@@ -1270,142 +1295,62 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                 });
             }
         } else {
-            console.log("apply_pdf value:", applyFileSrc);        }
+            // console.log("apply_pdf value:", applyFileSrc);
+        }
     });
 <?php echo '</script'; ?>
 >
+
 <?php echo '<script'; ?>
 >
+    function updateUnit(sampleTypeId, sampleUnitId) {
+        var sampleType = document.getElementById(sampleTypeId).value;
+        var sampleUnit = document.getElementById(sampleUnitId);
+
+        // Example logic for setting unit based on sample type
+        if (sampleType.includes('FFPE')) {
+            sampleUnit.innerText = '片';
+        } else if (sampleType.includes('全血')) {
+            sampleUnit.innerText = '毫升';
+        } else if (sampleType.includes('染色圈片')) {
+            sampleUnit.innerText = '片';
+        } else if (sampleType.includes('粗針穿刺檢體')) {
+            sampleUnit.innerText = '片';
+        } else if (sampleType.includes('gDNA')) {
+            sampleUnit.innerText = '管';
+        } else if (sampleType.includes('口腔拭子')) {
+            sampleUnit.innerText = '管';
+        } else if (sampleType.includes('生資分析')) {
+            sampleUnit.innerText = '';
+        } else if (sampleType.includes('細胞懸浮液')) {
+            sampleUnit.innerText = '管';
+        } else {
+            sampleUnit.innerText = '';
+        }
+    }
+
     function updateUnit_1() {
-        var sampleType = document.getElementById('SampleType_1').value;
-        var sampleUnit = document.getElementById('SampleUnit_1');
-
-        // Example logic for setting unit based on sample type
-        if (sampleType.includes('FFPE')) {
-            sampleUnit.innerText = '片';
-        } else if (sampleType.includes('全血')) {
-            sampleUnit.innerText = '毫升';
-        } else if (sampleType.includes('染色圈片')) {
-            sampleUnit.innerText = '片';
-        } else if (sampleType.includes('粗針穿刺檢體')) {
-            sampleUnit.innerText = '片';
-        } else if (sampleType.includes('gDNA')) {
-            sampleUnit.innerText = '管';
-        } else if (sampleType.includes('口腔拭子')) {
-            sampleUnit.innerText = '管';
-        } else if (sampleType.includes('生資分析')) {
-            sampleUnit.innerText = '';
-        } else if (sampleType.includes('細胞懸浮液')) {
-            sampleUnit.innerText = '管';
-        } else {
-            sampleUnit.innerText = '';
-        }
+        updateUnit('SampleType_1', 'SampleUnit_1');
     }
+
     function updateUnit_2() {
-        var sampleType = document.getElementById('SampleType_2').value;
-        var sampleUnit = document.getElementById('SampleUnit_2');
-
-        // Example logic for setting unit based on sample type
-        if (sampleType.includes('FFPE')) {
-            sampleUnit.innerText = '片';
-        } else if (sampleType.includes('全血')) {
-            sampleUnit.innerText = '毫升';
-        } else if (sampleType.includes('染色圈片')) {
-            sampleUnit.innerText = '片';
-        } else if (sampleType.includes('粗針穿刺檢體')) {
-            sampleUnit.innerText = '片';
-        } else if (sampleType.includes('gDNA')) {
-            sampleUnit.innerText = '管';
-        } else if (sampleType.includes('口腔拭子')) {
-            sampleUnit.innerText = '管';
-        } else if (sampleType.includes('生資分析')) {
-            sampleUnit.innerText = '';
-        } else if (sampleType.includes('細胞懸浮液')) {
-            sampleUnit.innerText = '管';
-        } else {
-            sampleUnit.innerText = '';
-        }
+        updateUnit('SampleType_2', 'SampleUnit_2');
     }
+
     function updateUnit_3() {
-        var sampleType = document.getElementById('SampleType_3').value;
-        var sampleUnit = document.getElementById('SampleUnit_3');
-
-        // Example logic for setting unit based on sample type
-        if (sampleType.includes('FFPE')) {
-            sampleUnit.innerText = '片';
-        } else if (sampleType.includes('全血')) {
-            sampleUnit.innerText = '毫升';
-        } else if (sampleType.includes('染色圈片')) {
-            sampleUnit.innerText = '片';
-        } else if (sampleType.includes('粗針穿刺檢體')) {
-            sampleUnit.innerText = '片';
-        } else if (sampleType.includes('gDNA')) {
-            sampleUnit.innerText = '管';
-        } else if (sampleType.includes('口腔拭子')) {
-            sampleUnit.innerText = '管';
-        } else if (sampleType.includes('生資分析')) {
-            sampleUnit.innerText = '';
-        } else if (sampleType.includes('細胞懸浮液')) {
-            sampleUnit.innerText = '管';
-        } else {
-            sampleUnit.innerText = '';
-        }
+        updateUnit('SampleType_3', 'SampleUnit_3');
     }
+
     function updateUnit_4() {
-        var sampleType = document.getElementById('SampleType_4').value;
-        var sampleUnit = document.getElementById('SampleUnit_4');
-
-        // Example logic for setting unit based on sample type
-        if (sampleType.includes('FFPE')) {
-            sampleUnit.innerText = '片';
-        } else if (sampleType.includes('全血')) {
-            sampleUnit.innerText = '毫升';
-        } else if (sampleType.includes('染色圈片')) {
-            sampleUnit.innerText = '片';
-        } else if (sampleType.includes('粗針穿刺檢體')) {
-            sampleUnit.innerText = '片';
-        } else if (sampleType.includes('gDNA')) {
-            sampleUnit.innerText = '管';
-        } else if (sampleType.includes('口腔拭子')) {
-            sampleUnit.innerText = '管';
-        } else if (sampleType.includes('生資分析')) {
-            sampleUnit.innerText = '';
-        } else if (sampleType.includes('細胞懸浮液')) {
-            sampleUnit.innerText = '管';
-        } else {
-            sampleUnit.innerText = '';
-        }
+        updateUnit('SampleType_4', 'SampleUnit_4');
     }
+
     function updateUnit_5() {
-        var sampleType = docu4ment.getElementById('SampleType_5').value;
-        var sampleUnit = document.getElementById('SampleUnit_5');
-
-        // Example logic for setting unit based on sample type
-        if (sampleType.includes('FFPE')) {
-            sampleUnit.innerText = '片';
-        } else if (sampleType.includes('全血')) {
-            sampleUnit.innerText = '毫升';
-        } else if (sampleType.includes('染色圈片')) {
-            sampleUnit.innerText = '片';
-        } else if (sampleType.includes('粗針穿刺檢體')) {
-            sampleUnit.innerText = '片';
-        } else if (sampleType.includes('gDNA')) {
-            sampleUnit.innerText = '管';
-        } else if (sampleType.includes('口腔拭子')) {
-            sampleUnit.innerText = '管';
-        } else if (sampleType.includes('生資分析')) {
-            sampleUnit.innerText = '';
-        } else if (sampleType.includes('細胞懸浮液')) {
-            sampleUnit.innerText = '管';
-        } else {
-            sampleUnit.innerText = '';
-        }
-
-
+        updateUnit('SampleType_5', 'SampleUnit_5');
     }
-
 <?php echo '</script'; ?>
 >
+
 
 <!---------------------------End-----------------------------><?php }
 }

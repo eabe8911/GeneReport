@@ -583,6 +583,9 @@ class Report implements ReportInterface
 
             }
 
+            //重出報告狀踏
+            
+
 
 
 
@@ -595,21 +598,40 @@ class Report implements ReportInterface
                 TemplateID=:TemplateID,
                 ccemail=:ccemail,
                 HospitalList=:HospitalList,
+                HospitalList_Dr=:HospitalList_Dr,
+                method=:method,
+                Submitdate=:Submitdate,
                 ReportStatus=:ReportStatus,
                 UpdatedAt=:UpdatedAt,
                 DueDate=:DueDate,
                 CustomerName=:CustomerName,
                 CustomerEmail=:CustomerEmail,
                 CustomerPhone=:CustomerPhone,
-
                 RejectReason=:RejectReason,
-                SampleID=:SampleID,
+                SampleNo=:SampleNo,
                 PatientID=:PatientID,
                 scID=:scID,
                 scdate=:scdate,
                 rcdate=:rcdate, 
                 ReportTemplate = :ReportTemplate,
-                proband_name = :proband_name
+                proband_name = :proband_name,
+                SampleType_1 = :SampleType_1,
+                SampleQuantity_1 = :SampleQuantity_1,
+                SampleUnit_1 = :SampleUnit_1,
+                SampleType_2 = :SampleType_2,
+                SampleQuantity_2 = :SampleQuantity_2,
+                SampleUnit_2 = :SampleUnit_2,
+                SampleType_3 = :SampleType_3,
+                SampleQuantity_3 = :SampleQuantity_3,
+                SampleUnit_3 = :SampleUnit_3,
+                SampleType_4 = :SampleType_4,
+                SampleQuantity_4 = :SampleQuantity_4,
+                SampleUnit_4 = :SampleUnit_4,
+                SampleType_5 = :SampleType_5,
+                SampleQuantity_5 = :SampleQuantity_5,
+                SampleUnit_5 = :SampleUnit_5,
+                Receiving = :Receiving,
+                Receiving2 = :Receiving2
                 WHERE ID=:ID";
 
                 
@@ -621,6 +643,9 @@ class Report implements ReportInterface
                 TemplateID=:TemplateID,
                 ccemail=:ccemail,
                 HospitalList=:HospitalList,
+                HospitalList_Dr=:HospitalList_Dr,
+                method=:method,
+                Submitdate=:Submitdate,
                 ReportStatus=:ReportStatus,
                 UpdatedAt=:UpdatedAt,
                 DueDate=:DueDate,
@@ -628,13 +653,30 @@ class Report implements ReportInterface
                 CustomerEmail=:CustomerEmail,
                 CustomerPhone=:CustomerPhone,
                 RejectReason=:RejectReason,
-                SampleID=:SampleID,
+                SampleNo=:SampleNo,
                 PatientID=:PatientID,
                 scID=:scID,
                 scdate=:scdate,
                 rcdate=:rcdate,
                 ReportTemplate = :ReportTemplate,
-                proband_name = :proband_name
+                proband_name = :proband_name,
+                SampleType_1 = :SampleType_1,
+                SampleQuantity_1 = :SampleQuantity_1,
+                SampleUnit_1 = :SampleUnit_1,
+                SampleType_2 = :SampleType_2,
+                SampleQuantity_2 = :SampleQuantity_2,
+                SampleUnit_2 = :SampleUnit_2,
+                SampleType_3 = :SampleType_3,
+                SampleQuantity_3 = :SampleQuantity_3,
+                SampleUnit_3 = :SampleUnit_3,
+                SampleType_4 = :SampleType_4,
+                SampleQuantity_4 = :SampleQuantity_4,
+                SampleUnit_4 = :SampleUnit_4,
+                SampleType_5 = :SampleType_5,
+                SampleQuantity_5 = :SampleQuantity_5,
+                SampleUnit_5 = :SampleUnit_5,
+                Receiving = :Receiving,
+                Receiving2 = :Receiving2
                 WHERE ID=:ID";
 
             if (!empty($_FILES['ReportApply']['name']) ) {
@@ -647,6 +689,9 @@ class Report implements ReportInterface
                 $stmt->bindParam(':TemplateID', $ReportInfo['TemplateID']);
                 $stmt->bindParam(':ccemail', $ReportInfo['ccemail']);
                 $stmt->bindParam(':HospitalList', $ReportInfo['HospitalList']);
+                $stmt->bindParam(':HospitalList_Dr', $ReportInfo['HospitalList_Dr']);
+                $stmt->bindParam(':method', $ReportInfo['method']);
+                $stmt->bindParam(':Submitdate', $ReportInfo['Submitdate']);
                 $stmt->bindParam(':ReportStatus', $ReportStatus);
                 $stmt->bindParam(':UpdatedAt', $now);
                 $stmt->bindParam(':DueDate', $ReportInfo['DueDate']);
@@ -654,7 +699,7 @@ class Report implements ReportInterface
                 $stmt->bindParam(':CustomerEmail', $ReportInfo['CustomerEmail']);
                 $stmt->bindParam(':CustomerPhone', $ReportInfo['CustomerPhone']);
                 $stmt->bindParam(':RejectReason', $RejectReason);
-                $stmt->bindParam(':SampleID', $ReportInfo['SampleID']);
+                $stmt->bindParam(':SampleNo', $ReportInfo['SampleNo']);
                 $stmt->bindParam(':PatientID', $ReportInfo['PatientID']);
                 $stmt->bindParam(':scID', $ReportInfo['scID']);
                 $stmt->bindParam(':scdate', $ReportInfo['scdate']);
@@ -662,6 +707,24 @@ class Report implements ReportInterface
                 $stmt->bindParam(':ReportTemplate', $ReportInfo['ReportTemplate']);
                 $stmt->bindParam(':ID', $ReportInfo['ID']);
                 $stmt->bindParam(':proband_name', $ReportInfo['proband_name']);
+                $stmt->bindParam(':SampleType_1', $ReportInfo['SampleType_1']);
+                $stmt->bindParam(':SampleQuantity_1', $ReportInfo['SampleQuantity_1']);
+                $stmt->bindParam(':SampleUnit_1', $ReportInfo['SampleUnit_1']);
+                $stmt->bindParam(':SampleType_2', $ReportInfo['SampleType_2']);
+                $stmt->bindParam(':SampleQuantity_2', $ReportInfo['SampleQuantity_2']);
+                $stmt->bindParam(':SampleUnit_2', $ReportInfo['SampleUnit_2']);
+                $stmt->bindParam(':SampleType_3', $ReportInfo['SampleType_3']);
+                $stmt->bindParam(':SampleQuantity_3', $ReportInfo['SampleQuantity_3']);
+                $stmt->bindParam(':SampleUnit_3', $ReportInfo['SampleUnit_3']);
+                $stmt->bindParam(':SampleType_4', $ReportInfo['SampleType_4']);
+                $stmt->bindParam(':SampleQuantity_4', $ReportInfo['SampleQuantity_4']);
+                $stmt->bindParam(':SampleUnit_4', $ReportInfo['SampleUnit_4']);
+                $stmt->bindParam(':SampleType_5', $ReportInfo['SampleType_5']);
+                $stmt->bindParam(':SampleQuantity_5', $ReportInfo['SampleQuantity_5']);
+                $stmt->bindParam(':SampleUnit_5', $ReportInfo['SampleUnit_5']);
+                $stmt->bindParam(':Receiving', $ReportInfo['Receiving']);
+                $stmt->bindParam(':Receiving2', $ReportInfo['Receiving2']);
+
                 // $stmt->execute();
 
             }else{
@@ -672,6 +735,9 @@ class Report implements ReportInterface
                 $stmt->bindParam(':TemplateID', $ReportInfo['TemplateID']);
                 $stmt->bindParam(':ccemail', $ReportInfo['ccemail']);
                 $stmt->bindParam(':HospitalList', $ReportInfo['HospitalList']);
+                $stmt->bindParam(':HospitalList_Dr', $ReportInfo['HospitalList_Dr']);
+                $stmt->bindParam(':method', $ReportInfo['method']);
+                $stmt->bindParam(':Submitdate', $ReportInfo['Submitdate']);
                 $stmt->bindParam(':ReportStatus', $ReportStatus);
                 $stmt->bindParam(':UpdatedAt', $now);
                 $stmt->bindParam(':DueDate', $ReportInfo['DueDate']);
@@ -679,7 +745,7 @@ class Report implements ReportInterface
                 $stmt->bindParam(':CustomerEmail', $ReportInfo['CustomerEmail']);
                 $stmt->bindParam(':CustomerPhone', $ReportInfo['CustomerPhone']);
                 $stmt->bindParam(':RejectReason', $RejectReason);
-                $stmt->bindParam(':SampleID', $ReportInfo['SampleID']);
+                $stmt->bindParam(':SampleNo', $ReportInfo['SampleNo']);
                 $stmt->bindParam(':PatientID', $ReportInfo['PatientID']);
                 $stmt->bindParam(':scID', $ReportInfo['scID']);
                 $stmt->bindParam(':scdate', $ReportInfo['scdate']);
@@ -687,6 +753,23 @@ class Report implements ReportInterface
                 $stmt->bindParam(':ReportTemplate', $ReportInfo['ReportTemplate']);
                 $stmt->bindParam(':ID', $ReportInfo['ID']);
                 $stmt->bindParam(':proband_name', $ReportInfo['proband_name']);
+                $stmt->bindParam(':SampleType_1', $ReportInfo['SampleType_1']);
+                $stmt->bindParam(':SampleQuantity_1', $ReportInfo['SampleQuantity_1']);
+                $stmt->bindParam(':SampleUnit_1', $ReportInfo['SampleUnit_1']);
+                $stmt->bindParam(':SampleType_2', $ReportInfo['SampleType_2']);
+                $stmt->bindParam(':SampleQuantity_2', $ReportInfo['SampleQuantity_2']);
+                $stmt->bindParam(':SampleUnit_2', $ReportInfo['SampleUnit_2']);
+                $stmt->bindParam(':SampleType_3', $ReportInfo['SampleType_3']);
+                $stmt->bindParam(':SampleQuantity_3', $ReportInfo['SampleQuantity_3']);
+                $stmt->bindParam(':SampleUnit_3', $ReportInfo['SampleUnit_3']);
+                $stmt->bindParam(':SampleType_4', $ReportInfo['SampleType_4']);
+                $stmt->bindParam(':SampleQuantity_4', $ReportInfo['SampleQuantity_4']);
+                $stmt->bindParam(':SampleUnit_4', $ReportInfo['SampleUnit_4']);
+                $stmt->bindParam(':SampleType_5', $ReportInfo['SampleType_5']);
+                $stmt->bindParam(':SampleQuantity_5', $ReportInfo['SampleQuantity_5']);
+                $stmt->bindParam(':SampleUnit_5', $ReportInfo['SampleUnit_5']);
+                $stmt->bindParam(':Receiving', $ReportInfo['Receiving']);
+                $stmt->bindParam(':Receiving2', $ReportInfo['Receiving2']);
 
             }
 

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-09-13 13:56:56
+/* Smarty version 4.3.4, created on 2024-09-19 16:29:58
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\js_ReportDetail.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_66e3d428662ae1_63245983',
+  'unifunc' => 'content_66ebe106add216_84057242',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '9dc2a2755c788183a0b94980392c5a85ac9efbe8' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\js_ReportDetail.tpl',
-      1 => 1726207014,
+      1 => 1726734596,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_66e3d428662ae1_63245983 (Smarty_Internal_Template $_smarty_tpl) {
+function content_66ebe106add216_84057242 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
  type="text/javascript">
   
@@ -228,6 +228,9 @@ echo '<script'; ?>
       $('#ReportName').prop('disabled', state);
       $('#proband_name').prop('disabled', state);
       $('#HospitalList').prop('disabled', state);
+      $('#HospitalList_Dr').prop('disabled', state);
+      $('#method').prop('disabled', state);
+      $('#proband_name').prop('readonly', state);
       $('#CustomerName').prop('readonly', state);
       $('#CustomerEmail').prop('readonly', state);
       $('#ccemail').prop('readonly', state);
@@ -237,11 +240,24 @@ echo '<script'; ?>
       $('#PatientID').prop('disabled', state);
       $('#scID').prop('disabled', state);
       $('#scdate').prop('readonly', state);
-      $('#rcdate').prop('readonly', state);     
+      $('#rcdate').prop('readonly', state);  
+      $('#Submitdate').prop('readonly', state);   
       $('#DueDate').prop('readonly', state);
       $('#RejectReason').prop('readonly', state);
       $('#TemplateID').prop('disabled', state);
       $('#ReportStatus').prop('readonly', state);
+      $('#SampleType_1').prop('disabled', state);
+      $('#SampleType_2').prop('disabled', state);
+      $('#SampleType_3').prop('disabled', state);
+      $('#SampleType_4').prop('disabled', state);
+      $('#SampleType_5').prop('disabled', state);
+      $('#SampleQuantity_1').prop('disabled', state);
+      $('#SampleQuantity_2').prop('disabled', state);
+      $('#SampleQuantity_3').prop('disabled', state);
+      $('#SampleQuantity_4').prop('disabled', state);
+      $('#SampleQuantity_5').prop('disabled', state);
+      $('#Receiving').prop('disabled', state);
+      $('#Receiving2').prop('disabled', state);
       $('#DisplayUploadButton').prop('hidden', state);
     }
 
