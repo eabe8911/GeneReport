@@ -23,7 +23,9 @@ class Report implements ReportInterface
     private $_ReportInfo = [];
     private $_ReportInfoList = [];
     private $_PDFFile;
+    private $startReportId;
 
+    private $endReportId;
     public function __construct($data = [])
     {
         try {
@@ -248,6 +250,46 @@ class Report implements ReportInterface
         }
         return true;
     }
+    // find report by startReportId & endReportId to get report list
+
+
+
+
+    public function setReportID($startReportId, $endReportId) {
+
+        $this->startReportId = $startReportId;
+
+        $this->endReportId = $endReportId;
+
+    }
+
+
+    public function getReportID() {
+
+        $sql = "SELECT  ReportID, proband_name, SampleNo, PatientID, scID, sample_type_r1, sample_type_r2, sample_type_r3, sample_type_r4, sample_type_r5, method, scdate, rcdate, HospitalList_Dr, HospitalList, CustomerName, CustomerPhone, CustomerEmail  FROM ReportView WHERE ReportID BETWEEN :start_report_id AND :end_report_id";
+        $stmt = $this->_conn->prepare($sql);
+        $stmt->execute(['start_report_id' => $this->startReportId, 'end_report_id' => $this->endReportId]);
+        $response = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if ($response) {
+            return $response;
+        } else {
+            return false;
+        }
+
+        // return [
+
+        //     'start_report_id' => $this->startReportId,
+
+        //     'end_report_id' => $this->endReportId
+
+        // ];
+
+    }
+
+
+
+
+
     public function AddReport($ReportInfo)
     {
         try {

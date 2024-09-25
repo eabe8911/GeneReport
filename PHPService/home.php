@@ -9,7 +9,7 @@ if (extension_loaded('xdebug')) {
 xdebug_break();
 session_start();
 require __DIR__ . "/vendor/autoload.php";
-
+require_once __DIR__ . "/class/Report.php";
 if (empty($_SESSION["AUTH"]) || $_SESSION["AUTH"] != TRUE) {
     session_unset();
     header("Location: index.php");
@@ -46,6 +46,61 @@ $smarty->assign("jqGrid", "jqGrid", true);
 $smarty->assign("jqGridPager", "jqGridPager", true);
 $smarty->assign("jqGrid_Log", "jqGrid_Log", true);
 $smarty->assign("jqGridPager_Log", "jqGridPager_Log", true);
+
+// 处理 AJAX 请求
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && strpos($_SERVER['CONTENT_TYPE'], 'application/json') !== false) {
+    header('Content-Type: application/json');
+
+    try {
+        // 获取原始 POST 数据
+        $data = file_get_contents('php://input');
+
+        // 将 JSON 数据转换为 PHP 数组
+        $data = json_decode($data, true);
+
+        // 验证数据
+        if (!isset($data['start_report_id']) || !isset($data['end_report_id'])) {
+            throw new Exception('Missing report ID range');
+        }
+
+        $startReportId = $data['start_report_id'];
+        $endReportId = $data['end_report_id'];
+
+        // if (!is_numeric($startReportId) || !is_numeric($endReportId)) {
+        //     throw new Exception('Report IDs must be numeric');
+        // }
+
+        // 查詢資料庫
+
+
+
+
+        if ($startReportId > $endReportId) {
+            throw new Exception('Start report ID must be less than or equal to end report ID');
+        }
+
+        $Report = new Report();
+        $Report->setReportID($startReportId, $endReportId);
+        //get setReportID response
+        $response = $Report->getReportID();
+        // 返回 JSON 数据
+        //if response is empty  return error
+        if (empty($response)) {
+            throw new Exception('No report found');
+        }
+        echo json_encode($response);
+        // echo json_encode($response);
+
+
+    } catch (Exception $e) {
+        // 返回错误信息
+        http_response_code(400);
+        $errorResponse = array('error' => $e->getMessage());
+        echo json_encode($errorResponse);
+    }
+    exit;
+}
+
 
 /**PAGES***/
 $smarty->display('home.tpl');

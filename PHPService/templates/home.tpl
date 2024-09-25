@@ -20,23 +20,25 @@
     <!--header.tpl THIS PAGE IS FOR HEADER OF HOME.PHP (LOGO AND AGENT NAME)--->
     {include file="header_home.tpl"}
     <div class="row" style="margin-left: 10px;margin-right: 10px;">
-        <!---- 預約日期 ---->
-        <div class="col-md-5" style="padding:10px">
-            <!-- <label for="query_appoint_date" style="text-align:right;font-size:20px;">日期：</label>
-            <input type="text" id="query_appoint_date" style="font-weight:bold;font-size:20px;">
-            <button id="BtnQuery" class="btn btn-custom btn-info btn-md" style="font-size:16px"><i
-                    class="fa fa-search"></i> 查 詢 </button> -->
-        </div>
-        <!---- 查詢 ---->
-        <!-- 如果permission = 4 不顯示search欄位 -->
-        {if $Permission != 4 && $Permission != 0 && $Permission != 2 && $Permission != 3}
-        <!-- <button id="BtnQuery" class="btn btn-custom btn-info btn-md" style="font-size:16px">
-            <i class="fa fa-search"></i>
-            <a href="log_table.php">查看紀錄</a></button> -->
-            <br>
 
-        <!-- <button class="btn btn-primary btn-md" onclick="location.href='log_table.php'" ><i class="fa fa-search"></i>&nbsp;&nbsp;查看紀錄</button> -->
-        {/if}
+        <!-- {if $Permission != 4 && $Permission != 0 && $Permission != 2 && $Permission != 3} -->
+        <div class="col-md-5" style="padding:10px">
+            <form id="reportForm" action="../PHPService/home.php" method="POST">
+                <label for="start_report_id" style="text-align:right;font-size:14px;">請輸入報告編號區間：</label>
+                <input type="text" id="start_report_id" name="start_report_id" style="font-weight:bold;font-size:14px;">
+
+                <label for="end_report_id" style="text-align:right;font-size:14px;">-</label>
+                <input type="text" id="end_report_id" name="end_report_id" style="font-weight:bold;font-size:14px;">
+
+                <button type="submit" class="btn btn-custom btn-info btn-md" style="font-size:14px">
+                    <i class="fa fa-download"></i> JSON
+                </button>
+            </form>
+            <!-- show reportForm response -->
+            <div id="response">輸出的報告ID</div>
+
+        </div>
+        <!-- {/if} -->
         <div class="col-md-3" style="float:right;padding:10px">
             <input type="search" class="form-control input-md" id="SearchTable" name="SearchTable" placeholder="Search"
                 style="font-weight:bold;font-size:20px;">
@@ -67,7 +69,67 @@
 
 
 
+    <script>
+        document.getElementById('reportForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // 阻止表單默認提交
 
+            // get the value of the input fields
+            var startReportId = document.getElementById('start_report_id').value;
+            var endReportId = document.getElementById('end_report_id').value;
+
+            // create a JSON object
+            var data = {
+                start_report_id: startReportId,
+                end_report_id: endReportId
+            };
+
+            // AJAX request to the server
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', this.action, true); // 表單action屬性的值
+            xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) { // 请求完成
+                    if (xhr.status === 200) { // 请求成功
+                        // 处理后端返回的数据
+                        var response = JSON.parse(xhr.responseText);
+                        console.log(response); // 打印整个响应对象以检查其结构
+
+                        // 确保响应是一个数组并且不为空
+                        if (Array.isArray(response) && response.length > 0) {
+                            // 抓取所有的 ReportID
+                            var reportIds = response.map(function (item) {
+                                return item.ReportID;
+                            });
+
+                            // 在页面上显示所有的 ReportID
+                            var responseDiv = document.getElementById('response');
+                            responseDiv.innerHTML = 'Total Report IDs: ' + reportIds.length + '<br>' +
+                                'Report IDs: ' + reportIds.join(', ') + '<br>';
+
+                            // 创建 JSON 文件并下载
+                            var blob = new Blob([JSON.stringify(response, null, 2)], { type: 'application/json' });
+                            var url = URL.createObjectURL(blob);
+                            var a = document.createElement('a');
+                            a.href = url;
+                            a.download = 'report_data.json';
+                            document.body.appendChild(a);
+                            a.click();
+                            document.body.removeChild(a);
+                            URL.revokeObjectURL(url);
+                        } else {
+                            console.error('Unexpected response format or empty response');
+                        }
+                    } else {
+                        // 处理错误
+                        console.error('Error: ' + xhr.status + ' - ' + xhr.statusText);
+                        var errorResponse = JSON.parse(xhr.responseText);
+                        alert('Error: ' + errorResponse.error);
+                    }
+                }
+            };
+            xhr.send(JSON.stringify(data));
+        });
+    </script>
 </body>
 
 </html>
