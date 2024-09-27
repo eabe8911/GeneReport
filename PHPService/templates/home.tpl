@@ -43,6 +43,18 @@
             <input type="search" class="form-control input-md" id="SearchTable" name="SearchTable" placeholder="Search"
                 style="font-weight:bold;font-size:20px;">
             <!-- <label for="reportType" class="form-control input-md">報告類型：</label> -->
+            <!-- permission !=4 -->
+             {if $Permission == 4}
+            <select id="SearchStatus" class="form-control input-md">
+                <option value="">請選擇</option>
+                <option value="實驗室已審核">實驗室已審核</option>
+                <option value="實驗室退回">醫檢師退回</option>
+                <option value="醫師已審核">醫師已審核</option>
+                <option value="醫師已退回">醫師退回</option>
+                <option value="重出">重出</option>
+                <option value="已寄送報告">已寄送</option>
+            </select>
+            {else}
             <select id="SearchStatus" class="form-control input-md">
                 <option value="">請選擇</option>
                 <option value="報告未上傳">報告未上傳</option>
@@ -52,9 +64,10 @@
                 <option value="醫師已審核">醫師已審核</option>
                 <option value="醫師已退回">醫師退回</option>
                 <option value="可寄送報告">待寄送</option>
-                <option value="無報告">重出</option>
+                <option value="重出">重出</option>
                 <option value="已寄送報告">已寄送</option>
             </select>
+            {/if}
         </div>
 
         <div class="row">
@@ -96,18 +109,42 @@
 
                         // 确保响应是一个数组并且不为空
                         if (Array.isArray(response) && response.length > 0) {
-                            // 抓取所有的 ReportID
-                            var reportIds = response.map(function (item) {
-                                return item.ReportID;
+                            // 转换字段名称
+                            var transformedResponse = response.map(function(item) {
+                                return {
+                                    report_number: item.ReportID,
+                                    proband_name: item.proband_name,
+                                    sample_number: item.SampleNo,
+                                    medical_record_number: item.PatientID,
+                                    sampling_number: item.scID,
+                                    sample_type_r1: item.sample_type_r1,
+                                    sample_type_r2: item.sample_type_r2,
+                                    sample_type_r3: item.sample_type_r3,
+                                    sample_type_r4: item.sample_type_r4,
+                                    sample_type_r5: item.sample_type_r5,
+                                    method: item.method,
+                                    sampling_date: item.scdate,
+                                    collection_date: item.rcdate,
+                                    referral_physician: item.HospitalList_Dr,
+                                    referral_agency: item.HospitalList,
+                                    contact_name: item.CustomerName,
+                                    contact_phone_number: item.CustomerPhone,
+                                    contact_mail: item.CustomerEmail
+                                };
                             });
 
-                            // 在页面上显示所有的 ReportID
+                            // 抓取所有的 report_number
+                            var reportNumbers = transformedResponse.map(function(item) {
+                                return item.report_number;
+                            });
+
+                            // 在页面上显示所有的 report_number
                             var responseDiv = document.getElementById('response');
-                            responseDiv.innerHTML = 'Total Report IDs: ' + reportIds.length + '<br>' +
-                                'Report IDs: ' + reportIds.join(', ') + '<br>';
+                            responseDiv.innerHTML = 'Total Report Numbers: ' + reportNumbers.length + '<br>' +
+                                                    'Report Numbers: ' + reportNumbers.join(', ') + '<br>';
 
                             // 创建 JSON 文件并下载
-                            var blob = new Blob([JSON.stringify(response, null, 2)], { type: 'application/json' });
+                            var blob = new Blob([JSON.stringify(transformedResponse, null, 2)], { type: 'application/json' });
                             var url = URL.createObjectURL(blob);
                             var a = document.createElement('a');
                             a.href = url;

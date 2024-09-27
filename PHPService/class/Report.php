@@ -308,17 +308,216 @@ class Report implements ReportInterface
                 } else {
                     $ReportStatus = '1';
                 }
+
+                //switch case
+                switch ($ReportInfo['SampleType_1']) {
+                    case 'EDTA紫頭管-全血':
+                        $ReportInfo['sample_type_r1'] = "血液檢體";
+                        break;
+                    case 'Streck cfDNA BCT(迷彩管)-全血':
+                        $ReportInfo['sample_type_r1'] = "血液檢體";
+                        break;
+                    case 'Streck RNA Complete BCT(橘頭管)-全血':
+                        $ReportInfo['sample_type_r1'] = "血液檢體";
+                        break;
+                    case '5 ㎛ FFPE玻片(不含圈片)':
+                        $ReportInfo['sample_type_r1'] = "FFPE";
+                        break;
+                    case '10 ㎛ FFPE玻片(不含圈片)':
+                        $ReportInfo['sample_type_r1'] = "FFPE";
+                        break;
+                    case '染色圈片':
+                        $ReportInfo['sample_type_r1'] = "FFPE";
+                        break;
+                    case '粗針穿刺檢體':
+                        $ReportInfo['sample_type_r1'] = "FFPE";
+                        break;
+                    case 'gDNA':
+                        $ReportInfo['sample_type_r1'] = "gDNA";
+                        break;
+                    case '口腔拭子-口腔黏膜細胞':
+                        $ReportInfo['sample_type_r1'] = "口腔黏膜";
+                        break;
+                    case '生資分析':
+                        $ReportInfo['sample_type_r1'] = "生資分析";
+                        break;
+                    case '細胞懸浮液':
+                        $ReportInfo['sample_type_r1'] = "細胞懸浮液";
+                        break;
+                default:
+                    break;
+            
+                }
+                
+                switch ($ReportInfo['SampleType_2']) {
+                    case 'EDTA紫頭管-全血':
+                        $ReportInfo['sample_type_r2'] = "血液檢體";
+                        break;
+                    case 'Streck cfDNA BCT(迷彩管)-全血':
+                        $ReportInfo['sample_type_r2'] = "血液檢體";
+                        break;
+                    case 'Streck RNA Complete BCT(橘頭管)-全血':
+                        $ReportInfo['sample_type_r2'] = "血液檢體";
+                        break;
+                    case '5 ㎛ FFPE玻片(不含圈片)':
+                        $ReportInfo['sample_type_r2'] = "FFPE";
+                        break;
+                    case '10 ㎛ FFPE玻片(不含圈片)':
+                        $ReportInfo['sample_type_r2'] = "FFPE";
+                        break;
+                    case '染色圈片':
+                        $ReportInfo['sample_type_r2'] = "FFPE";
+                        break;
+                    case '粗針穿刺檢體':
+                        $ReportInfo['sample_type_r2'] = "FFPE";
+                        break;
+                    case 'gDNA':
+                        $ReportInfo['sample_type_r2'] = "gDNA";
+                        break;
+                    case '口腔拭子-口腔黏膜細胞':
+                        $ReportInfo['sample_type_r2'] = "口腔黏膜";
+                        break;
+                    case '生資分析':
+                        $ReportInfo['sample_type_r2'] = "生資分析";
+                        break;
+                    case '細胞懸浮液':
+                        $ReportInfo['sample_type_r2'] = "細胞懸浮液";
+                        break;
+                default:
+                    break;
+            
+                }
+                switch ($ReportInfo['SampleType_3']) {
+                    case 'EDTA紫頭管-全血':
+                        $ReportInfo['sample_type_r3'] = "血液檢體";
+                        break;
+                    case 'Streck cfDNA BCT(迷彩管)-全血':
+                        $ReportInfo['sample_type_r3'] = "血液檢體";
+                        break;
+                    case 'Streck RNA Complete BCT(橘頭管)-全血':
+                        $ReportInfo['sample_type_r3'] = "血液檢體";
+                        break;
+                    case '5 ㎛ FFPE玻片(不含圈片)':
+                        $ReportInfo['sample_type_r3'] = "FFPE";
+                        break;
+                    case '10 ㎛ FFPE玻片(不含圈片)':
+                        $ReportInfo['sample_type_r3'] = "FFPE";
+                        break;
+                    case '染色圈片':
+                        $ReportInfo['sample_type_r3'] = "FFPE";
+                        break;
+                    case '粗針穿刺檢體':
+                        $ReportInfo['sample_type_r3'] = "FFPE";
+                        break;
+                    case 'gDNA':
+                        $ReportInfo['sample_type_r3'] = "gDNA";
+                        break;
+                    case '口腔拭子-口腔黏膜細胞':
+                        $ReportInfo['sample_type_r3'] = "口腔黏膜";
+                        break;
+                    case '生資分析':
+                        $ReportInfo['sample_type_r3'] = "生資分析";
+                        break;
+                    case '細胞懸浮液':
+                        $ReportInfo['sample_type_r3'] = "細胞懸浮液";
+                        break;
+                default:
+                    break;
+            
+                }
+                switch ($ReportInfo['SampleType_4']) {
+                    case 'EDTA紫頭管-全血':
+                        $ReportInfo['sample_type_r4'] = "血液檢體";
+                        break;
+                    case 'Streck cfDNA BCT(迷彩管)-全血':
+                        $ReportInfo['sample_type_r4'] = "血液檢體";
+                        break;
+                    case 'Streck RNA Complete BCT(橘頭管)-全血':
+                        $ReportInfo['sample_type_r4'] = "血液檢體";
+                        break;
+                    case '5 ㎛ FFPE玻片(不含圈片)':
+                        $ReportInfo['sample_type_r4'] = "FFPE";
+                        break;
+                    case '10 ㎛ FFPE玻片(不含圈片)':
+                        $ReportInfo['sample_type_r4'] = "FFPE";
+                        break;
+                    case '染色圈片':
+                        $ReportInfo['sample_type_r4'] = "FFPE";
+                        break;
+                    case '粗針穿刺檢體':
+                        $ReportInfo['sample_type_r4'] = "FFPE";
+                        break;
+                    case 'gDNA':
+                        $ReportInfo['sample_type_r4'] = "gDNA";
+                        break;
+                    case '口腔拭子-口腔黏膜細胞':
+                        $ReportInfo['sample_type_r4'] = "口腔黏膜";
+                        break;
+                    case '生資分析':
+                        $ReportInfo['sample_type_r4'] = "生資分析";
+                        break;
+                    case '細胞懸浮液':
+                        $ReportInfo['sample_type_r4'] = "細胞懸浮液";
+                        break;
+                default:
+                    break;
+            
+                }                
+                switch ($ReportInfo['SampleType_5']) {
+                    case 'EDTA紫頭管-全血':
+                        $ReportInfo['sample_type_r5'] = "血液檢體";
+                        break;
+                    case 'Streck cfDNA BCT(迷彩管)-全血':
+                        $ReportInfo['sample_type_r5'] = "血液檢體";
+                        break;
+                    case 'Streck RNA Complete BCT(橘頭管)-全血':
+                        $ReportInfo['sample_type_r5'] = "血液檢體";
+                        break;
+                    case '5 ㎛ FFPE玻片(不含圈片)':
+                        $ReportInfo['sample_type_r5'] = "FFPE";
+                        break;
+                    case '10 ㎛ FFPE玻片(不含圈片)':
+                        $ReportInfo['sample_type_r5'] = "FFPE";
+                        break;
+                    case '染色圈片':
+                        $ReportInfo['sample_type_r5'] = "FFPE";
+                        break;
+                    case '粗針穿刺檢體':
+                        $ReportInfo['sample_type_r5'] = "FFPE";
+                        break;
+                    case 'gDNA':
+                        $ReportInfo['sample_type_r5'] = "gDNA";
+                        break;
+                    case '口腔拭子-口腔黏膜細胞':
+                        $ReportInfo['sample_type_r5'] = "口腔黏膜";
+                        break;
+                    case '生資分析':
+                        $ReportInfo['sample_type_r5'] = "生資分析";
+                        break;
+                    case '細胞懸浮液':
+                        $ReportInfo['sample_type_r5'] = "細胞懸浮液";
+                        break;
+                default:
+                    break;
+            
+                }  
+
+
+
+
+
+
                 $now = date("Y-m-d H:i:s");
                 $sql = "INSERT INTO Report (
                 ReportID, PatientID, SampleNo, scID, HospitalList, HospitalList_Dr, ReportTemplate, ReportTemplateID, method, ReportType, ReportName,
                 TemplateID, scdate, rcdate, Submitdate, proband_name, SampleType_1, SampleQuantity_1, SampleUnit_1, SampleType_2, SampleQuantity_2, SampleUnit_2
                 , SampleType_3, SampleQuantity_3, SampleUnit_3, SampleType_4, SampleQuantity_4, SampleUnit_4, SampleType_5, SampleQuantity_5, SampleUnit_5, Receiving, Receiving2, DueDate, CustomerName, CustomerEmail, CustomerPhone, ccemail,
-                ReportStatus, FileName, apply_pdf, CreatedAt
+                ReportStatus, FileName, apply_pdf, CreatedAt, sample_type_r1, sample_type_r2, sample_type_r3, sample_type_r4, sample_type_r5
                 ) VALUES (
                 :ReportID, :PatientID, :SampleNo, :scID, :HospitalList, :HospitalList_Dr, :ReportTemplate, :ReportTemplateID, :method, :ReportType, :ReportName,
                 :TemplateID, :scdate, :rcdate, :Submitdate, :proband_name, :SampleType_1, :SampleQuantity_1, :SampleUnit_1, :SampleType_2, :SampleQuantity_2, :SampleUnit_2
                 , :SampleType_3, :SampleQuantity_3, :SampleUnit_3, :SampleType_4, :SampleQuantity_4, :SampleUnit_4, :SampleType_5, :SampleQuantity_5, :SampleUnit_5, :Receiving, :Receiving2,  :DueDate,:CustomerName, :CustomerEmail, :CustomerPhone, :ccemail,
-                :ReportStatus, :FileName, :apply_pdf, :CreatedAt 
+                :ReportStatus, :FileName, :apply_pdf, :CreatedAt, :sample_type_r1, :sample_type_r2, :sample_type_r3, :sample_type_r4, :sample_type_r5 
                )";
                 $stmt = $this->_conn->prepare($sql);
                 $stmt->bindParam(':ReportID', $ReportInfo['ReportID']);
@@ -392,6 +591,11 @@ class Report implements ReportInterface
                 $stmt->bindParam(':SampleType_5', $ReportInfo['SampleType_5']);
                 $stmt->bindParam(':SampleQuantity_5', $ReportInfo['SampleQuantity_5']);
                 $stmt->bindParam(':SampleUnit_5', $ReportInfo['SampleUnit_5']);
+                $stmt->bindParam(':sample_type_r1', $ReportInfo['sample_type_r1']);
+                $stmt->bindParam(':sample_type_r2', $ReportInfo['sample_type_r2']);
+                $stmt->bindParam(':sample_type_r3', $ReportInfo['sample_type_r3']);
+                $stmt->bindParam(':sample_type_r4', $ReportInfo['sample_type_r4']);
+                $stmt->bindParam(':sample_type_r5', $ReportInfo['sample_type_r5']);
 
                 $stmt->execute();
             }
@@ -625,7 +829,199 @@ class Report implements ReportInterface
 
             }
 
-            //重出報告狀踏
+                //switch case
+                switch ($ReportInfo['SampleType_1']) {
+                    case 'EDTA紫頭管-全血':
+                        $ReportInfo['sample_type_r1'] = "血液檢體";
+                        break;
+                    case 'Streck cfDNA BCT(迷彩管)-全血':
+                        $ReportInfo['sample_type_r1'] = "血液檢體";
+                        break;
+                    case 'Streck RNA Complete BCT(橘頭管)-全血':
+                        $ReportInfo['sample_type_r1'] = "血液檢體";
+                        break;
+                    case '5 ㎛ FFPE玻片(不含圈片)':
+                        $ReportInfo['sample_type_r1'] = "FFPE";
+                        break;
+                    case '10 ㎛ FFPE玻片(不含圈片)':
+                        $ReportInfo['sample_type_r1'] = "FFPE";
+                        break;
+                    case '染色圈片':
+                        $ReportInfo['sample_type_r1'] = "FFPE";
+                        break;
+                    case '粗針穿刺檢體':
+                        $ReportInfo['sample_type_r1'] = "FFPE";
+                        break;
+                    case 'gDNA':
+                        $ReportInfo['sample_type_r1'] = "gDNA";
+                        break;
+                    case '口腔拭子-口腔黏膜細胞':
+                        $ReportInfo['sample_type_r1'] = "口腔黏膜";
+                        break;
+                    case '生資分析':
+                        $ReportInfo['sample_type_r1'] = "生資分析";
+                        break;
+                    case '細胞懸浮液':
+                        $ReportInfo['sample_type_r1'] = "細胞懸浮液";
+                        break;
+                default:
+                    break;
+            
+                }
+                
+                switch ($ReportInfo['SampleType_2']) {
+                    case 'EDTA紫頭管-全血':
+                        $ReportInfo['sample_type_r2'] = "血液檢體";
+                        break;
+                    case 'Streck cfDNA BCT(迷彩管)-全血':
+                        $ReportInfo['sample_type_r2'] = "血液檢體";
+                        break;
+                    case 'Streck RNA Complete BCT(橘頭管)-全血':
+                        $ReportInfo['sample_type_r2'] = "血液檢體";
+                        break;
+                    case '5 ㎛ FFPE玻片(不含圈片)':
+                        $ReportInfo['sample_type_r2'] = "FFPE";
+                        break;
+                    case '10 ㎛ FFPE玻片(不含圈片)':
+                        $ReportInfo['sample_type_r2'] = "FFPE";
+                        break;
+                    case '染色圈片':
+                        $ReportInfo['sample_type_r2'] = "FFPE";
+                        break;
+                    case '粗針穿刺檢體':
+                        $ReportInfo['sample_type_r2'] = "FFPE";
+                        break;
+                    case 'gDNA':
+                        $ReportInfo['sample_type_r2'] = "gDNA";
+                        break;
+                    case '口腔拭子-口腔黏膜細胞':
+                        $ReportInfo['sample_type_r2'] = "口腔黏膜";
+                        break;
+                    case '生資分析':
+                        $ReportInfo['sample_type_r2'] = "生資分析";
+                        break;
+                    case '細胞懸浮液':
+                        $ReportInfo['sample_type_r2'] = "細胞懸浮液";
+                        break;
+                default:
+                    break;
+            
+                }
+                switch ($ReportInfo['SampleType_3']) {
+                    case 'EDTA紫頭管-全血':
+                        $ReportInfo['sample_type_r3'] = "血液檢體";
+                        break;
+                    case 'Streck cfDNA BCT(迷彩管)-全血':
+                        $ReportInfo['sample_type_r3'] = "血液檢體";
+                        break;
+                    case 'Streck RNA Complete BCT(橘頭管)-全血':
+                        $ReportInfo['sample_type_r3'] = "血液檢體";
+                        break;
+                    case '5 ㎛ FFPE玻片(不含圈片)':
+                        $ReportInfo['sample_type_r3'] = "FFPE";
+                        break;
+                    case '10 ㎛ FFPE玻片(不含圈片)':
+                        $ReportInfo['sample_type_r3'] = "FFPE";
+                        break;
+                    case '染色圈片':
+                        $ReportInfo['sample_type_r3'] = "FFPE";
+                        break;
+                    case '粗針穿刺檢體':
+                        $ReportInfo['sample_type_r3'] = "FFPE";
+                        break;
+                    case 'gDNA':
+                        $ReportInfo['sample_type_r3'] = "gDNA";
+                        break;
+                    case '口腔拭子-口腔黏膜細胞':
+                        $ReportInfo['sample_type_r3'] = "口腔黏膜";
+                        break;
+                    case '生資分析':
+                        $ReportInfo['sample_type_r3'] = "生資分析";
+                        break;
+                    case '細胞懸浮液':
+                        $ReportInfo['sample_type_r3'] = "細胞懸浮液";
+                        break;
+                default:
+                    break;
+            
+                }
+                switch ($ReportInfo['SampleType_4']) {
+                    case 'EDTA紫頭管-全血':
+                        $ReportInfo['sample_type_r4'] = "血液檢體";
+                        break;
+                    case 'Streck cfDNA BCT(迷彩管)-全血':
+                        $ReportInfo['sample_type_r4'] = "血液檢體";
+                        break;
+                    case 'Streck RNA Complete BCT(橘頭管)-全血':
+                        $ReportInfo['sample_type_r4'] = "血液檢體";
+                        break;
+                    case '5 ㎛ FFPE玻片(不含圈片)':
+                        $ReportInfo['sample_type_r4'] = "FFPE";
+                        break;
+                    case '10 ㎛ FFPE玻片(不含圈片)':
+                        $ReportInfo['sample_type_r4'] = "FFPE";
+                        break;
+                    case '染色圈片':
+                        $ReportInfo['sample_type_r4'] = "FFPE";
+                        break;
+                    case '粗針穿刺檢體':
+                        $ReportInfo['sample_type_r4'] = "FFPE";
+                        break;
+                    case 'gDNA':
+                        $ReportInfo['sample_type_r4'] = "gDNA";
+                        break;
+                    case '口腔拭子-口腔黏膜細胞':
+                        $ReportInfo['sample_type_r4'] = "口腔黏膜";
+                        break;
+                    case '生資分析':
+                        $ReportInfo['sample_type_r4'] = "生資分析";
+                        break;
+                    case '細胞懸浮液':
+                        $ReportInfo['sample_type_r4'] = "細胞懸浮液";
+                        break;
+                default:
+                    break;
+            
+                }                
+                switch ($ReportInfo['SampleType_5']) {
+                    case 'EDTA紫頭管-全血':
+                        $ReportInfo['sample_type_r5'] = "血液檢體";
+                        break;
+                    case 'Streck cfDNA BCT(迷彩管)-全血':
+                        $ReportInfo['sample_type_r5'] = "血液檢體";
+                        break;
+                    case 'Streck RNA Complete BCT(橘頭管)-全血':
+                        $ReportInfo['sample_type_r5'] = "血液檢體";
+                        break;
+                    case '5 ㎛ FFPE玻片(不含圈片)':
+                        $ReportInfo['sample_type_r5'] = "FFPE";
+                        break;
+                    case '10 ㎛ FFPE玻片(不含圈片)':
+                        $ReportInfo['sample_type_r5'] = "FFPE";
+                        break;
+                    case '染色圈片':
+                        $ReportInfo['sample_type_r5'] = "FFPE";
+                        break;
+                    case '粗針穿刺檢體':
+                        $ReportInfo['sample_type_r5'] = "FFPE";
+                        break;
+                    case 'gDNA':
+                        $ReportInfo['sample_type_r5'] = "gDNA";
+                        break;
+                    case '口腔拭子-口腔黏膜細胞':
+                        $ReportInfo['sample_type_r5'] = "口腔黏膜";
+                        break;
+                    case '生資分析':
+                        $ReportInfo['sample_type_r5'] = "生資分析";
+                        break;
+                    case '細胞懸浮液':
+                        $ReportInfo['sample_type_r5'] = "細胞懸浮液";
+                        break;
+                default:
+                    break;
+            
+                }  
+
             
 
 
@@ -673,7 +1069,12 @@ class Report implements ReportInterface
                 SampleQuantity_5 = :SampleQuantity_5,
                 SampleUnit_5 = :SampleUnit_5,
                 Receiving = :Receiving,
-                Receiving2 = :Receiving2
+                Receiving2 = :Receiving2,
+                sample_type_r1 = :sample_type_r1,
+                sample_type_r2 = :sample_type_r2,
+                sample_type_r3 = :sample_type_r3,
+                sample_type_r4 = :sample_type_r4,
+                sample_type_r5 = :sample_type_r5
                 WHERE ID=:ID";
 
                 
@@ -718,7 +1119,12 @@ class Report implements ReportInterface
                 SampleQuantity_5 = :SampleQuantity_5,
                 SampleUnit_5 = :SampleUnit_5,
                 Receiving = :Receiving,
-                Receiving2 = :Receiving2
+                Receiving2 = :Receiving2,
+                sample_type_r1 = :sample_type_r1,
+                sample_type_r2 = :sample_type_r2,
+                sample_type_r3 = :sample_type_r3,
+                sample_type_r4 = :sample_type_r4,
+                sample_type_r5 = :sample_type_r5
                 WHERE ID=:ID";
 
             if (!empty($_FILES['ReportApply']['name']) ) {
@@ -766,6 +1172,12 @@ class Report implements ReportInterface
                 $stmt->bindParam(':SampleUnit_5', $ReportInfo['SampleUnit_5']);
                 $stmt->bindParam(':Receiving', $ReportInfo['Receiving']);
                 $stmt->bindParam(':Receiving2', $ReportInfo['Receiving2']);
+                $stmt->bindParam(':sample_type_r1', $ReportInfo['sample_type_r1']);
+                $stmt->bindParam(':sample_type_r2', $ReportInfo['sample_type_r2']);
+                $stmt->bindParam(':sample_type_r3', $ReportInfo['sample_type_r3']);
+                $stmt->bindParam(':sample_type_r4', $ReportInfo['sample_type_r4']);
+                $stmt->bindParam(':sample_type_r5', $ReportInfo['sample_type_r5']);
+
 
                 // $stmt->execute();
 
@@ -812,6 +1224,11 @@ class Report implements ReportInterface
                 $stmt->bindParam(':SampleUnit_5', $ReportInfo['SampleUnit_5']);
                 $stmt->bindParam(':Receiving', $ReportInfo['Receiving']);
                 $stmt->bindParam(':Receiving2', $ReportInfo['Receiving2']);
+                $stmt->bindParam(':sample_type_r1', $ReportInfo['sample_type_r1']);
+                $stmt->bindParam(':sample_type_r2', $ReportInfo['sample_type_r2']);
+                $stmt->bindParam(':sample_type_r3', $ReportInfo['sample_type_r3']);
+                $stmt->bindParam(':sample_type_r4', $ReportInfo['sample_type_r4']);
+                $stmt->bindParam(':sample_type_r5', $ReportInfo['sample_type_r5']);
 
             }
 
@@ -828,6 +1245,28 @@ class Report implements ReportInterface
 
         } catch (PDOException | Exception $th) {
             throw new Exception($th->getMessage() . ' Error code: ' . $th->getCode());
+        }
+        return true;
+    }
+
+    public function UpdateReportCustomer($ReportInfo)
+    {
+        try {
+            $sql = "UPDATE Report SET CustomerName=:CustomerName, CustomerEmail=:CustomerEmail, CustomerPhone=:CustomerPhone, ccemail=:ccemail, ReportStatus=:ReportStatus WHERE id=:ID";
+            $stmt = $this->_conn->prepare($sql);
+            // $FileName = '[重出]_'. $hospitalList . "_(" . $ReportInfo['ReportID'] . ")_".$ReportInfo['ReportName'].".pdf";
+
+            $stmt->bindParam(':CustomerName', $ReportInfo['CustomerName']);
+            $stmt->bindParam(':CustomerEmail', $ReportInfo['CustomerEmail']);
+            $stmt->bindParam(':CustomerPhone', $ReportInfo['CustomerPhone']);
+            $stmt->bindParam(':ccemail', $ReportInfo['ccemail']);
+            $ReportStatus = '7';
+            $stmt->bindParam(':ReportStatus', $ReportStatus);
+            // $stmt->bindParam(':FileName', $FileName);
+            $stmt->bindParam(':ID', $ReportInfo['ID']);
+            $stmt->execute();
+        } catch (PDOException | Exception $th) {
+            throw new Exception($th->getMessage(), $th->getCode());
         }
         return true;
     }
@@ -1102,6 +1541,7 @@ class Report implements ReportInterface
         }
         return true;
     }
+    
 
     /**
      * @return mixed

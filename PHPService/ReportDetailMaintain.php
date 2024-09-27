@@ -55,45 +55,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
         $hospitalList = $hospitalList[$reportInfo['HospitalList']];
 
                 //轉換成JSON數據
-                $jdata = [
-                    'report_number' => $reportInfo['ReportID'],
-                    'proband_name' => $reportInfo['proband_name'],
-                    'sample_number' => $reportInfo['SampleNo'],
-                    'medical_record_number' => $reportInfo['PatientID'],
-                    'sampling_number' => $reportInfo['scID'],
-                    'sample_type_1' => $reportInfo['sample_type_r1'],
-                    'sample_type_2' => $reportInfo['sample_type_r2'],
-                    'sample_type_3' => $reportInfo['sample_type_r3'],
-                    'sample_type_4' => $reportInfo['sample_type_r4'],
-                    'sample_type_5' => $reportInfo['sample_type_r5'],
-                    'method' => $reportInfo['method'],
-                    'sampling_date' => $reportInfo['scdate'],
-                    'collection_date' => $reportInfo['rcdate'],
-                    'referral_physician' => $reportInfo['HospitalList_Dr'],
-                    'referral_agency' => $hospitalList,
-                    'contact_name' => $reportInfo['CustomerName'],
-                    'contact_phone_number' => $reportInfo['CustomerPhone'],
-                    'contact_mail' => $reportInfo['CustomerEmail']
-                ];
+                // $jdata = [
+                //     'report_number' => $reportInfo['ReportID'],
+                //     'proband_name' => $reportInfo['proband_name'],
+                //     'sample_number' => $reportInfo['SampleNo'],
+                //     'medical_record_number' => $reportInfo['PatientID'],
+                //     'sampling_number' => $reportInfo['scID'],
+                //     'sample_type_1' => $reportInfo['sample_type_r1'],
+                //     'sample_type_2' => $reportInfo['sample_type_r2'],
+                //     'sample_type_3' => $reportInfo['sample_type_r3'],
+                //     'sample_type_4' => $reportInfo['sample_type_r4'],
+                //     'sample_type_5' => $reportInfo['sample_type_r5'],
+                //     'method' => $reportInfo['method'],
+                //     'sampling_date' => $reportInfo['scdate'],
+                //     'collection_date' => $reportInfo['rcdate'],
+                //     'referral_physician' => $reportInfo['HospitalList_Dr'],
+                //     'referral_agency' => $hospitalList,
+                //     'contact_name' => $reportInfo['CustomerName'],
+                //     'contact_phone_number' => $reportInfo['CustomerPhone'],
+                //     'contact_mail' => $reportInfo['CustomerEmail']
+                // ];
 
                 //轉換成JSON數據
-                $json_data = json_encode($jdata, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+                // $json_data = json_encode($jdata, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 
                 // 將 JSON 字符串寫入檔案
-                $file_name = $ReportID . '.json';
-                $file_path = "./uploads/".$ReportID . '/' . $file_name;
-                $directory = dirname($file_path);
+                // $file_name = $ReportID . '.json';
+                // $file_path = "./uploads/".$ReportID . '/' . $file_name;
+                // $directory = dirname($file_path);
 
-                if (!file_exists($directory)) {
-                    mkdir($directory, 0777, true); // create the directory if it doesn't exist
-                }
+                // if (!file_exists($directory)) {
+                //     mkdir($directory, 0777, true); // create the directory if it doesn't exist
+                // }
 
                 // 將 JSON 格式寫入檔案
-                if (file_put_contents($file_path, $json_data) === false) {
-                    echo 'Failed to save data in ' . $file_path;
-                } else {
-                    echo 'Data successfully saved in ' . $file_path;
-                }
+                // if (file_put_contents($file_path, $json_data) === false) {
+                //     echo 'Failed to save data in ' . $file_path;
+                // } else {
+                //     echo 'Data successfully saved in ' . $file_path;
+                // }
             //   die();
         switch ($ReportMode) {
             case 'ADD':
@@ -183,6 +183,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
 
                     $updatelog = "報告編號：" . $ReportID .  "報告狀態：" . $ReportStatus;
                     $log->SaveLog("上傳報告", $Username, "UpdateReportInfo", date("Y-m-d H:i:s"), $updatelog);
+
+
+                } elseif ($Permission == 4) {
+                    $report->UpdateReportCustomer($_POST);
+                    $ReportID = $_POST['ReportID'];
+                    $CustomerName = $_POST['CustomerName'];
+                    $CustomerEmail = $_POST['CustomerEmail'];
+                    $ccemail = $_POST['ccemail'];
+                    $CustomerPhone = $_POST['CustomerPhone'];
+                    $ReportStatus = $_POST['ReportStatus'];
+
+                    $updatelog = "報告編號：" . $ReportID . "\n" 
+                                . "聯絡人名稱：" . $CustomerName . "\n" 
+                                . "聯絡人信箱：" . $CustomerEmail . "\n" 
+                                . "信箱(副本)：" . $ccemail . "\n" 
+                                . "聯絡電話：" . $CustomerPhone . "\n" 
+                                . "報告狀態：" . $ReportStatus;
+                    $log->SaveLog("修改聯絡人資訊", $Username, "UpdateReportInfo", date("Y-m-d H:i:s"), $updatelog);
 
 
                 } elseif ($report->UpdateReport($_POST)) {
@@ -442,7 +460,7 @@ switch ($ReportStatus) {
         $ReportStatus = "已簽核完成，可寄送報告";
         break;
     case '7':
-        $ReportStatus = "";
+        $ReportStatus = "修改聯絡人資料，請重出報告";
         break;
     case '8':
         $ReportStatus = "已寄送報告";

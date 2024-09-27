@@ -75,7 +75,7 @@ class Email
             $_mail->SMTPAuth = true;
             // sender email setting
             $_mail->Username = 'liboreport@libobio.com';
-            $_mail->Password = 'Xu41l3libo';
+            $_mail->Password = 'SdLiioReport!';
             $_mail->SetFrom('liboreport@libobio.com', '麗寶生醫');
 
 
