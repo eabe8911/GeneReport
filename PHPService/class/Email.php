@@ -143,16 +143,16 @@ class Email
             }
 
             $_mail->send();
-            // $log->SaveLog("SendEmail", $Username, "Emailer", date("Y-m-d H:i:s"), $ReportID."報告已寄出");
+            $log->SaveLog("SendEmail", $Username, "Emailer", date("Y-m-d H:i:s"), $ReportID."報告已寄出");
 
             echo '<script>
-                    alert("Message has been sent");
+                    alert("Mail has been sent");
                     window.location.href = "home.php";
                 </script>';
 
 
         } catch (Exception $e) {
-            echo "Message could not be sent. Mailer Error";
+            echo "Mail could not be sent. Mailer Error";
             $log->SaveLog("SendEmail", $Username, "Emailer", date("Y-m-d H:i:s"), $ReportID . "報告寄送失敗");
 
 

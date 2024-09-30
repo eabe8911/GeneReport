@@ -126,10 +126,18 @@
                                             <option value="36" {if $HospitalListSelect==36}selected{/if}>一般客戶or泓采代採
                                             </option>
                                             <option value="37" {if $HospitalListSelect==37}selected{/if}>上明眼科</option>
-                                            <option value="38" {if $HospitalListSelect==38}selected{/if}>台灣醫事檢驗學會
-                                            </option>
-                                            <option value="39" {if $HospitalListSelect==39}selected{/if}>衛福部桃園醫院
-                                            </option>
+                                            <option value="38" {if $HospitalListSelect==38}selected{/if}>泓采診所</option>
+                                            <option value="39" {if $HospitalListSelect==39}selected{/if}>衛福部桃園醫院</option>
+                                            <option value="40" {if $HospitalListSelect==40}selected{/if}>台灣病理學會_PT</option>
+                                            <option value="41" {if $HospitalListSelect==41}selected{/if}>台灣醫事檢驗學會-PT</option>
+                                            <option value="42" {if $HospitalListSelect==42}selected{/if}>GenQA-PT</option>
+                                            <option value="43" {if $HospitalListSelect==43}selected{/if}>API_PT</option>
+                                            <option value="44" {if $HospitalListSelect==44}selected{/if}>EMQN_PT</option>
+                                            <option value="45" {if $HospitalListSelect==45}selected{/if}>台美_PT</option>
+                                            <option value="46" {if $HospitalListSelect==46}selected{/if}>RD_評鑑實作</option>
+                                            <option value="47" {if $HospitalListSelect==47}selected{/if}>室間比對</option>
+
+                                            
                                         </select>
 
 

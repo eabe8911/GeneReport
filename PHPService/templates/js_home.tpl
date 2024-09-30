@@ -62,7 +62,7 @@
         jQuery("#jqGrid").jqGrid({
             // 連結資料擷取程式
             // url: "GetReportList.php?userid=" + UserID + "&permission=" + Permission + "&role=" + Role + "&character=" + Character ,
-            url: "GetReportList.php?userid=" + UserID + "&permission=" + Permission + "&role=" + Role + "&character=" + Character ,
+            url: "GetReportList.php?userid=" + UserID + "&permission=" + Permission + "&role=" + Role + "&character=" + Character,
             datatype: "json",
             width: Width,
             height: Height,
@@ -74,11 +74,11 @@
                 { label: "客戶姓名", name: "CustomerName", width: '3%' },
                 { label: "名稱", name: "ReportName", width: '5%' },
                 { label: "檔案", name: "FileName", hidden: true },
-                { label: "實驗室審核", name: "Approved1", width: "4%", align: "center" , hidden: true },
+                { label: "實驗室審核", name: "Approved1", width: "4%", align: "center", hidden: true },
                 { label: "日期", name: "Approved1At", width: '6%', align: "center", formatter: "date", formatoptions: { srcformat: "ISO8601Long", newformat: "Y-m-d H:i:s" }, hidden: true },
-                { label: "醫師審核", name: "Approved2", width: '4%', align: "center" , hidden: true },
+                { label: "醫師審核", name: "Approved2", width: '4%', align: "center", hidden: true },
                 { label: "日期", name: "Approved2At", width: '6%', align: "center", formatter: "date", formatoptions: { srcformat: "ISO8601Long", newformat: "Y-m-d H:i:s" }, hidden: true },
-                { label: "檢測單位", name: "ReportTypeName", width: '4%'},
+                { label: "檢測單位", name: "ReportTypeName", width: '4%' },
                 // { label: "檢測單位", name: "OrgName", width: '5%' },
                 { label: "TAT最終日", name: "DueDate", width: '3%', align: "center", formatter: "date", formatoptions: { srcformat: "ISO8601Long", newformat: "Y-m-d" } },
                 { label: "送檢單位", name: "HospitalList", width: '4%', align: "center" },
@@ -91,12 +91,8 @@
                         return imageLinkFormatter(cellvalue, options, rowObject, 'ui-icon-pencil', 'edit-link-class', Permission);
                     }
                 },
-                // {label:"修  改", name: "Update", width:'5%', align: "center", formatter: function (cellvalue, options, rowObject) {
-                // return imageLinkFormatter(cellvalue, options, rowObject, 'ui-icon-pencil', 'edit-link-class', 'Edit'); } },
-                // {label:"核  准", name: "CheckIn", width:'5%', align: "center", formatter: function (cellvalue, options, rowObject) {
-                // return imageLinkFormatter(cellvalue, options, rowObject, 'ui-icon-pencil', 'edit-link-class', 'Appove'); } },
             ],
-            // rowNum:NumOfRow,
+
             rowNum: 1000,
             rowTotal: 10000,
             loadonce: true,
@@ -104,12 +100,23 @@
             gridview: true,
             pager: "#jqGridPager",
             viewrecords: true,
-            // ondblClickRow: function (id) {
-            //     setDataEmpty();
-            //     rowData = jQuery(this).getRowData(id);
-            //     mode = "Query";
+            ondblClickRow: function (id) {
+                var rowData = jQuery(this).getRowData(id);
+                // 将数据存储到 sessionStorage
+                sessionStorage.setItem('selectedRowData', JSON.stringify(rowData));
+                // 跳转到目标页面
+                window.location.href = 'ReportDetailMaintain.php?ReportMode=EDIT&id=' + id;
+            }
+        });
 
-            // }
+        // 添加事件监听器到动态生成的按钮
+        jQuery(document).on('click', '.edit-link-class', function () {
+            var rowData = jQuery(this).data('row');
+            // 将数据存储到 sessionStorage
+            sessionStorage.setItem('selectedRowData', rowData);
+            // 跳转到目标页面
+            var rowId = jQuery(this).data('id');
+            window.location.href = 'ReportDetailMaintain.php?ReportMode=EDIT&id=' + rowId;
         });
 
 
@@ -133,12 +140,12 @@
     });
 
     function imageLinkFormatter(cellval, options, rowObject, icon, link_class, link_action) {
-        //get ID
-        var ID = rowObject[0];
-        //console.log(dump(rowObject));
-        // var img = '<span class="ui-icon ' + icon + ' icon"><span/>';    
-        // var link = '<a href="#' + link_action + '/id/' + rowObject.id + '" class="' +
-        //     link_class + '" rel="' + rowObject.id + '">' + img + '</a>';
+        //get rowId
+        var ID = options.rowId;
+        //get rowData
+        // var rowData = jQuery("#jqGrid").jqGrid('getRowData', rowId);
+        // var ID = rowObject[0];
+
         switch (link_action) {
             case '0':
             case '6':
@@ -156,7 +163,7 @@
             case '2':
                 var link0 = "<button class='btn btn-primary' onclick='ReportApprove(" + ID + ");'>報告簽核</button>";
                 var link1 = "<button class='btn btn-primary' onclick='ReportEdit(" + ID + ");'>檢視報告</button>";
-                var link = link0 + " " + link1;                
+                var link = link0 + " " + link1;
                 break;
             case '3':
                 var link = "<button class='btn btn-primary' onclick='ReportApprove(" + ID + ");'>報告簽核</button>";

@@ -578,7 +578,12 @@ if ($PDFFile == '') {
     $output = '<br><h4 style="justify-content: center; display: flex;color:#FF0000">待醫檢師簽核</h4>';
     // echo '<div id="pdf-output">' . $output . '</div>';
 
-} else {
+} elseif ($ReportStatus == '修改聯絡人資料，請重出報告'){
+    $smarty->assign("PDFPreview", "");
+    $output = '<br><h4 style="justify-content: center; display: flex;color:#FF0000">請重新上傳PDF報告</h4>';
+
+}
+else {
     $smarty->assign("PDFPreview", $PDFFile);
     $output =
         '<div style="justify-content: center; display: flex; ">
