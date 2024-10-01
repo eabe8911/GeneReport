@@ -74,8 +74,8 @@ class Email
             $_mail->SMTPSecure = 'tls';
             $_mail->SMTPAuth = true;
             // sender email setting
-            $_mail->Username = 'liboreport@libobio.com';
-            $_mail->Password = 'SdLiioReport!';
+            $_mail->Username = getenv('SMTP_USERNAME');
+            $_mail->Password = getenv('SMTP_PASSWORD');
             $_mail->SetFrom('liboreport@libobio.com', '麗寶生醫');
 
 
