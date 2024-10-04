@@ -591,7 +591,7 @@
                                             <button type="button" class="btn btn-danger btn-md "
                                                 id="BtnReportEditccemail"
                                                 style="font-weight:bold;font-size:13px;margin:23px;">
-                                                <i class="fa fa-edit"></i>修改郵件
+                                                <i class="fa fa-edit"></i>修改副本對象
                                             </button>
                                         </div>
                                     </div>
