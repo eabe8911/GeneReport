@@ -303,7 +303,9 @@ class Report implements ReportInterface
                 throw new Exception("此報告編號已存在", 1);
             } else {
                 // check if file exists
-                if (empty($ReportInfo['FileName'])) { // if no file uploaded
+                if ($ReportInfo['TemplateID'] == 3) { // if report doesn't need to upload file
+                    $ReportStatus = '10';
+                } elseif (empty($ReportInfo['FileName'])) { // if no file uploaded
                     $ReportStatus = '0';
                 } else {
                     $ReportStatus = '1';
@@ -502,11 +504,6 @@ class Report implements ReportInterface
             
                 }  
 
-
-
-
-
-
                 $now = date("Y-m-d H:i:s");
                 $sql = "INSERT INTO Report (
                 ReportID, PatientID, SampleNo, scID, HospitalList, HospitalList_Dr, ReportTemplate, ReportTemplateID, method, ReportType, ReportName,
@@ -613,11 +610,21 @@ class Report implements ReportInterface
                 throw new Exception("此報告編號已存在", 1);
             } else {
                 // check if file exists
-                if (empty($ReportInfo['FileName'])) { // if no file uploaded
-                    $ReportStatus = '0';
-                } else {
-                    $ReportStatus = '1';
-                }
+                // if (empty($ReportInfo['FileName'])) { // if no file uploaded
+                //     $ReportStatus = '0';
+                // } else {
+                //     $ReportStatus = '1';
+                // }
+
+            // check if file exists
+            if ($ReportInfo['TemplateID'] == 3) { // if report doesn't need to upload file
+                $ReportStatus = '10';
+            } elseif (empty($ReportInfo['FileName'])) { // if no file uploaded
+                $ReportStatus = '0';
+            } else {
+                $ReportStatus = '1';
+            }
+
                 $now = date("Y-m-d H:i:s");
                 $sql = "INSERT INTO Report (
                 SampleID, PatientID, SampleNo, scID, HospitalList, HospitalList_Dr, ReportTemplate, ReportTemplateID,
@@ -816,7 +823,11 @@ class Report implements ReportInterface
             $hospitalList = $hospitalList->getHospitalList();
             //get hospitalList name
             $hospitalList = $hospitalList[$ReportInfo['HospitalList']];
-            if (empty($ReportInfo['FileName'])) {
+            if ($ReportInfo['TemplateID'] == 3) {
+                $ReportStatus = '10';
+                $RejectReason = '';
+                $FileName = '';
+            } elseif (empty($ReportInfo['FileName'])) {
                 $ReportStatus = '0';
                 $RejectReason = $ReportInfo['RejectReason'];
                 $FileName = '';
@@ -1436,6 +1447,13 @@ class Report implements ReportInterface
                 Reject1='', Reject1At='',
                 UpdatedAt=:UpdatedAt
                 WHERE id=:ID";
+            if ($ApprovedBy == 'penhua.chang'){
+                $ApprovedBy = '張本樺';
+            } elseif ($ApprovedBy == 'ivan' ) {
+                $ApprovedBy = '陳奕勳';            
+            } elseif ($ApprovedBy == 'cindy.huang' ) {
+                $ApprovedBy = '黃馨慧';            
+            }    
             $stmt = $this->_conn->prepare($sql);
             $stmt->bindParam(':FileName', $FileName);
             $stmt->bindParam(':ApprovedBy', $ApprovedBy);
@@ -1463,6 +1481,13 @@ class Report implements ReportInterface
             }
 
             $Reject = $UserInfo['DisplayName'];
+            if ($Reject == 'penhua.chang'){
+                $Reject = '張本樺';
+            } elseif ($Reject == 'ivan' ) {
+                $Reject = '陳奕勳';            
+            } elseif ($Reject == 'cindy.huang' ) {
+                $Reject = '黃馨慧';            
+            }    
             $ID = $ReportInfo['ID'];
             $now = date("Y-m-d H:i:s");
             // $FileName_Reject = "Reject_" . $ReportInfo["FileName"];

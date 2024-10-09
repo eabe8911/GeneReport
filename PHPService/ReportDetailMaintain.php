@@ -135,6 +135,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
                     $ReportStatus = '報告未上傳';
                 } elseif ($ReportStatus == '1') {
                     $ReportStatus = '報告已上傳，未審核';
+                } elseif ($ReportStatus == '10') {
+                    $ReportStatus = '不需發報告';
                 }
 
 
@@ -465,6 +467,9 @@ switch ($ReportStatus) {
     case '8':
         $ReportStatus = "已寄送報告";
         break;
+    case '10':
+        $ReportStatus = "不需發報告";
+        break;
     default:
         $ReportStatus = "";
         break;
@@ -530,7 +535,7 @@ $smarty->assign("proband_name", $report->ReportInfo('proband_name'), true);
 
 if ($ApplyFile == '') {
     $smarty->assign("ApplyFile", "", true);
-    if($Permission == 2 or $Permission == 4 or $Permission == 5 )
+    if($Permission == 2 or $Permission == 21 or $Permission == 22 or  $Permission == 4 or $Permission == 5 )
     {
         $output_apply = '<br><h4 style="justify-content: center; display: flex;color:#FF0000">請上傳申請單</h4>';
     }else{
@@ -568,7 +573,10 @@ $SampleNo = $report->ReportInfo('SampleNo');
 
 // Display PDF File if empty show error message
 
-if ($PDFFile == '') {
+if ($ReportStatus == "不需發報告") {
+    $smarty->assign("PDFPreview", "");
+    $output = '<br><h4 style="justify-content: center; display: flex;color:#FF0000"></h4>';
+} elseif ($PDFFile == '') {
     $smarty->assign("PDFPreview", "");
     $output = '<br><h4 style="justify-content: center; display: flex;color:#FF0000">請上傳PDF報告</h4>';
     // echo '<div id="pdf-output">' . $output . '</div>';

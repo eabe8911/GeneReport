@@ -23,6 +23,14 @@
             <li style="display: inline-block;">
                 <h3>{$DisplayName} 您好 （身分：簽核醫檢師）</h3>
             </li>
+            {elseif $Permission eq 21}
+            <li style="display: inline-block;">
+                <h3>{$DisplayName} 您好 （身分：專任ISO簽核醫檢師）</h3>
+            </li>
+            {elseif $Permission eq 22}
+            <li style="display: inline-block;">
+                <h3>{$DisplayName} 您好 （身分：專任LDTS簽核醫檢師）</h3>
+            </li>
             {elseif $Permission eq 3}
             <li style="display: inline-block;">
                 <h3>{$DisplayName} 您好 （身分：醫師）</h3>
@@ -33,7 +41,7 @@
             </li>
             {elseif $Permission eq 5}
             <li style="display: inline-block;">
-                <h3>{$DisplayName} 您好 （身分：醫檢師）</h3>
+                <h3>{$DisplayName} 您好 （身分：收檢人員）</h3>
             </li>
             {elseif $Permission eq 6}
             <li style="display: inline-block;">

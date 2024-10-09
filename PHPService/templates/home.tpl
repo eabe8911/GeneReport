@@ -66,6 +66,7 @@
                 <option value="可寄送報告">待寄送</option>
                 <option value="重出">重出</option>
                 <option value="已寄送報告">已寄送</option>
+                <option value="不需發報告">不需發報告</option>
             </select>
             {/if}
         </div>

@@ -36,6 +36,10 @@ switch ($Character) {
         // 如果 Permission 是 9, 代表是最大管理者, 可以看到所有資料，不用設定 Where
         if ($Permission == 9) {
             $where = "";
+        } elseif ($Permission == 21) { 
+            $where = " WHERE  ReportType='1' ";
+        } elseif ($Permission ==22) {
+            $where = " WHERE  ReportType='2' ";
         }elseif ($Permission == 4) { //Permission =4 只能看到Reportstatus=4、8的資料
             $where = " WHERE  ReportStatus='2' or ReportStatus='8' or ReportStatus='7' ";
         }elseif ($Permission == 0) { //抓到Report裡面的CustomerName資料
@@ -292,6 +296,9 @@ function getReportStatus($type)
             break;
         case '8':
             $status = "已寄送報告";
+            break;
+        case '10':
+            $status = "不需發報告";
             break;
         default:
             $status = "";

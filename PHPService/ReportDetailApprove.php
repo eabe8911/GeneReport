@@ -157,7 +157,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewApproveDetail") {
     $ReportStatus = $report->ReportInfo('ReportStatus');
     $Reject1 = $report->ReportInfo('Reject1');
     $Reject2 = $report->ReportInfo('Reject2');
-    if ($Reject1 == 'penhua') {
+    if ($Reject1 == 'penhua.chang') {
         $Reject1 = '張本樺';
     }elseif ($Reject1 == 'ivan') {
         $Reject1 = '陳奕勳';
@@ -175,6 +175,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewApproveDetail") {
         $ErrorMessage = "醫檢師" . $Reject1 . "於" . $Reject1At . "退回此報告</br>請重新上傳報告";
     } elseif ($ReportStatus == '5') {
         $ErrorMessage = "醫師於'$Reject2At'退回此報告</br>請重新上傳報告";
+    } elseif ($ReportStatus == '10') {
+        $ErrorMessage = "無需簽核";
     } else {
         $ErrorMessage = "尚未有報告資料上傳";
     }
@@ -276,7 +278,7 @@ $smarty->assign("proband_name", $report->ReportInfo('proband_name'), true);
 // Display PDF File
 if ($ApplyFile == '') {
     $smarty->assign("ApplyFile", "", true);
-    if($Permission == 2 or $Permission == 4 or $Permission ==5 )
+    if($Permission == 2 or $Permission == 21 or $Permission == 22 or $Permission == 4 or $Permission == 5 )
     {
         $output_apply = '<br><h4 style="justify-content: center; display: flex;color:#FF0000">請上傳申請單</h4>';
     }else{
