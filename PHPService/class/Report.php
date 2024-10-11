@@ -44,7 +44,7 @@ class Report implements ReportInterface
                 'ReportTemplateID' => $data['ReportTemplateID'] ?? '', //報告範本編號
                 'ReportType' => $data['ReportType'] ?? '', //報告類型
                 'scdate' => $data['scdate'] ?? '', //採集日期
-                // 'Submitdate' => $data['Submitdate'] ?? '', //送檢日期
+                'Submitdate' => $data['Submitdate'] ?? '', //送檢日期
                 'rcdate' => $data['rcdate'] ?? '', //收檢日期
                 // 'ReceivingDate' => $data['ReceivingDate'] ?? '', //收檢日期
                 'Receiving' => $data['Receiving'] ?? '', //收檢人員
@@ -628,13 +628,13 @@ class Report implements ReportInterface
                 $now = date("Y-m-d H:i:s");
                 $sql = "INSERT INTO Report (
                 SampleID, PatientID, SampleNo, scID, HospitalList, HospitalList_Dr, ReportTemplate, ReportTemplateID,
-                ReportType, scdate, rcdate, Receiving, Receiving2, TemplateID, 
+                ReportType, scdate, rcdate, Submitdate, Receiving, Receiving2, TemplateID, 
                 ReportID, ReportName, CustomerName, CustomerEmail, CustomerPhone, ReportStatus, HospitalList_ERP,
                 CreatedAt, DueDate, SampleType_1, SampleQuantity_1, SampleUnit_1, SampleType_2, SampleQuantity_2, SampleUnit_2
                 , SampleType_3, SampleQuantity_3, SampleUnit_3, SampleType_4, SampleQuantity_4, SampleUnit_4, SampleType_5, SampleQuantity_5, SampleUnit_5, proband_name, method, sample_type_r1, sample_type_r2, sample_type_r3, sample_type_r4, sample_type_r5
                 ) VALUES (
                 :SampleID, :PatientID, :SampleNo, :scID, :HospitalList, :HospitalList_Dr, :ReportTemplate, :ReportTemplateID,
-                :ReportType, :scdate, :rcdate, :Receiving, :Receiving2, :TemplateID, 
+                :ReportType, :scdate, :rcdate, :Submitdate, :Receiving, :Receiving2, :TemplateID, 
                 :ReportID, :ReportName, :CustomerName, :CustomerEmail, :CustomerPhone, :ReportStatus, :HospitalList_ERP,
                 :CreatedAt, :DueDate, :SampleType_1, :SampleQuantity_1, :SampleUnit_1, :SampleType_2, :SampleQuantity_2, :SampleUnit_2
                 , :SampleType_3, :SampleQuantity_3, :SampleUnit_3, :SampleType_4, :SampleQuantity_4, :SampleUnit_4, :SampleType_5, :SampleQuantity_5, :SampleUnit_5, :proband_name, :method, :sample_type_r1, :sample_type_r2, :sample_type_r3, :sample_type_r4, :sample_type_r5
@@ -647,14 +647,14 @@ class Report implements ReportInterface
                     // 假设 $ReportInfo 是包含所有信息的数组
                     $ReportDate = [
                         'scdate' => $ReportInfo['scdate'],
-                        // 'Submitdate' => $ReportInfo['Submitdate'],
+                        'Submitdate' => $ReportInfo['Submitdate'],
                         'rcdate' => $ReportInfo['rcdate'],
                         // 'ReceivingDate' => $ReportInfo['ReceivingDate'],
                         'DueDate' => $ReportInfo['DueDate'],
                     ];
                 
                     // 定义需要转换的日期时间字段
-                    $dateTimeFields = ['scdate', 'rcdate'];
+                    $dateTimeFields = ['scdate', 'rcdate', 'Submitdate'];
                     $dateFields = ['DueDate'];
                 
                     // 遍历需要转换的字段
@@ -713,7 +713,7 @@ class Report implements ReportInterface
                 $stmt->bindParam(':ReportTemplateID', $ReportInfo['ReportTemplateID']);
                 $stmt->bindParam(':ReportType', $ReportInfo['ReportType']);
                 $stmt->bindParam(':scdate', $ReportDate['scdate']);
-                // $stmt->bindParam(':Submitdate', $ReportDate['Submitdate']);
+                $stmt->bindParam(':Submitdate', $ReportDate['Submitdate']);
                 $stmt->bindParam(':rcdate', $ReportDate['rcdate']);
                 // $stmt->bindParam(':ReceivingDate', $ReportDate['ReceivingDate']);
                 $stmt->bindParam(':Receiving', $ReportInfo['Receiving']);
