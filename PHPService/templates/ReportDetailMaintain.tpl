@@ -124,8 +124,7 @@
                                             <option value="34" {if $HospitalListSelect==34}selected{/if}>高雄醫學大學附設醫院
                                             </option>
                                             <option value="35" {if $HospitalListSelect==35}selected{/if}>連江醫院</option>
-                                            <option value="36" {if $HospitalListSelect==36}selected{/if}>一般客戶or泓采代採
-                                            </option>
+                                            <option value="36" {if $HospitalListSelect==36}selected{/if}>一般客戶</option>
                                             <option value="37" {if $HospitalListSelect==37}selected{/if}>上明眼科</option>
                                             <option value="38" {if $HospitalListSelect==38}selected{/if}>泓采診所</option>
                                             <option value="39" {if $HospitalListSelect==39}selected{/if}>衛福部桃園醫院
@@ -582,6 +581,7 @@
                                             <option value="黃志凱" {if $Receiving=="黃志凱" }selected{/if}>黃志凱</option>
                                             <option value="陳奕勳" {if $Receiving=="陳奕勳" }selected{/if}>陳奕勳</option>
                                             <option value="張本樺" {if $Receiving=="張本樺" }selected{/if}>張本樺</option>
+                                            <option value="沈英涵" {if $Receiving=="沈英涵" }selected{/if}>沈英涵</option>
                                         </select>
                                     </div>
                                 </div>
@@ -595,6 +595,9 @@
                                             <option value="黃志凱" {if $Receiving2=="黃志凱" }selected{/if}>黃志凱</option>
                                             <option value="陳奕勳" {if $Receiving2=="陳奕勳" }selected{/if}>陳奕勳</option>
                                             <option value="張本樺" {if $Receiving2=="張本樺" }selected{/if}>張本樺</option>
+                                            <option value="王許安" {if $Receiving2=="王許安" }selected{/if}>王許安</option>
+                                            <option value="林庭萱" {if $Receiving2=="林庭萱" }selected{/if}>林庭萱</option>
+                                            <option value="沈英涵" {if $Receiving2=="沈英涵" }selected{/if}>沈英涵</option>
                                         </select>
                                     </div>
                                 </div>

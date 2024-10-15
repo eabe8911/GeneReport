@@ -303,6 +303,8 @@ class Report implements ReportInterface
                 throw new Exception("此報告編號已存在", 1);
             } else {
                 // check if file exists
+                $ReportInfo['TemplateID'] = substr($ReportInfo['TemplateID'], 0, 1);
+
                 if ($ReportInfo['TemplateID'] == 3) { // if report doesn't need to upload file
                     $ReportStatus = '10';
                 } elseif (empty($ReportInfo['FileName'])) { // if no file uploaded
@@ -617,6 +619,7 @@ class Report implements ReportInterface
                 // }
 
             // check if file exists
+            $ReportInfo['TemplateID'] = substr($ReportInfo['TemplateID'], 0, 1);
             if ($ReportInfo['TemplateID'] == 3) { // if report doesn't need to upload file
                 $ReportStatus = '10';
             } elseif (empty($ReportInfo['FileName'])) { // if no file uploaded
