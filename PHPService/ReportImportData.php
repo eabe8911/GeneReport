@@ -75,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ReportImportData") {
             $Message = "資料匯入成功!";
             echo "<script>alert('資料匯入成功'); window.location.href = 'home.php';</script>";
 
-            $log->SaveLog("IMPORTADD", $DisplayName, "ReportImportData", date("Y-m-d H:i:s"), "批次匯入資料共 " . $iterationCount . " 筆");
+            $log->SaveLog("批次上傳資料", $DisplayName, "ReportImportData", date("Y-m-d H:i:s"), "批次匯入資料共 " . $iterationCount . " 筆");
         } else {
             $ErrorMessage = "上傳檔案失敗!";
             $log->SaveLog("ERROR", $DisplayName, "ReportImportData", date("Y-m-d H:i:s"), $ErrorMessage);

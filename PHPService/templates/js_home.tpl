@@ -81,8 +81,9 @@
                 { label: "檢測單位", name: "ReportTypeName", width: '4%' },
                 // { label: "檢測單位", name: "OrgName", width: '5%' },
                 { label: "TAT最終日", name: "DueDate", width: '3%', align: "center", formatter: "date", formatoptions: { srcformat: "ISO8601Long", newformat: "Y-m-d" } },
-                { label: "送檢單位", name: "HospitalList", width: '4%', align: "center" },
-                { label: "狀態", name: "ReportStatus", width: '4%', align: "center" },
+                { label: "送檢單位", name: "HospitalList", width: '5%', align: "center"},
+                // { label: "狀態", name: "ReportStatus", width: '4%', align: "center" },
+                { label: "操作", name: "ReportStatus", width: '4%', align: "center", cellattr: function () { return 'style="text-align: center; vertical-align: middle;"'; } },
                 { label: "建立日期", name: "CreatedAt", formatter: "date", formatoptions: { srcformat: "ISO8601Long", newformat: "Y-m-d H:i:s" }, hidden: true },
                 { label: "更新日期", name: "UpdatedAt", width: '10%', formatter: "date", formatoptions: { srcformat: "ISO8601Long", newformat: "Y-m-d H:i:s" }, hidden: true },
                 // 設定功能欄位，依照Permission設定為修改或審核

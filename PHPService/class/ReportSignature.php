@@ -30,13 +30,21 @@ class ReportSignature
         switch ($UserInfo['permission']) {
             case '1': // Operator
                 throw new Exception("Permission denied1", 1);
-            case '2': // Medical Examiner
+            case '21': // Medical Examiner
                 if ($TemplateInfo['Approve'] == 1 || $TemplateInfo['Approve'] == 2) {
                     $this->AddSignature3($reportInfo, $TemplateInfo, $UserInfo, '1', $PDFFileName);
                 } else {
                     throw new Exception("Permission denied2", 2);
                 }
                 break;
+                case '22': // Medical Examiner
+                    if ($TemplateInfo['Approve'] == 1 || $TemplateInfo['Approve'] == 2) {
+                        $this->AddSignature3($reportInfo, $TemplateInfo, $UserInfo, '1', $PDFFileName);
+                    } else {
+                        throw new Exception("Permission denied2", 2);
+                    }
+                    break;
+    
             case '3': // Doctor
                 if ($TemplateInfo['Approve'] == 2) {
                     $this->AddSignature3($reportInfo, $TemplateInfo, $UserInfo, '2', $PDFFileName);
@@ -57,6 +65,13 @@ class ReportSignature
             case '2':
                 $this->RemoveSignature1($PDFFile);
                 break;
+                case '21':
+                    $this->RemoveSignature1($PDFFile);
+                    break;
+                    case '22':
+                        $this->RemoveSignature1($PDFFile);
+                        break;
+            
             case '3':
                 // RemoveSignature2($PDFFile);
                 break;

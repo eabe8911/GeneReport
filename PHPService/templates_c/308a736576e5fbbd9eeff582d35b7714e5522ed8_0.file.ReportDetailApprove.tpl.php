@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-09-20 14:47:23
+/* Smarty version 4.3.4, created on 2024-10-15 15:03:25
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\ReportDetailApprove.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_66ed1a7bb0e332_64602267',
+  'unifunc' => 'content_670e13bdd155b7_42377637',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '308a736576e5fbbd9eeff582d35b7714e5522ed8' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\ReportDetailApprove.tpl',
-      1 => 1726814838,
+      1 => 1728975802,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_66ed1a7bb0e332_64602267 (Smarty_Internal_Template $_smarty_tpl) {
+function content_670e13bdd155b7_42377637 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\vendor\\smarty\\smarty\\libs\\plugins\\function.html_options.php','function'=>'smarty_function_html_options',),));
 ?>
 <!--POP UP MODAL TO VIEW MEMBER DETAILS AND RESULTS FOR Member Information-->
@@ -51,7 +51,8 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield7']->value;?>
             <button id="navButton" class="btn btn-primary" onclick="navigatePage(event)">查看簽核狀態</button>
 
             <div class="col-sm-12">
-                <div class="card-box" style="height:130%;">
+                <!-- Page 1 -->
+                <div class="card-box" style="height: 820px;">
                     <div id="page1" class="page active" class="row">
                         <div class="form-horizontal" role="form">
                             <!---- 第一排 ---->
@@ -511,6 +512,7 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield7']->value;?>
                                             <option value="黃志凱" <?php if ($_smarty_tpl->tpl_vars['Receiving']->value == "黃志凱") {?>selected<?php }?>>黃志凱</option>
                                             <option value="陳奕勳" <?php if ($_smarty_tpl->tpl_vars['Receiving']->value == "陳奕勳") {?>selected<?php }?>>陳奕勳</option>
                                             <option value="張本樺" <?php if ($_smarty_tpl->tpl_vars['Receiving']->value == "張本樺") {?>selected<?php }?>>張本樺</option>
+                                            <option value="沈英涵" <?php if ($_smarty_tpl->tpl_vars['Receiving']->value == "沈英涵") {?>selected<?php }?>>沈英涵</option>
                                         </select>
                                     </div>
                                 </div>
@@ -524,6 +526,7 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield7']->value;?>
                                             <option value="黃志凱" <?php if ($_smarty_tpl->tpl_vars['Receiving2']->value == "黃志凱") {?>selected<?php }?>>黃志凱</option>
                                             <option value="陳奕勳" <?php if ($_smarty_tpl->tpl_vars['Receiving2']->value == "陳奕勳") {?>selected<?php }?>>陳奕勳</option>
                                             <option value="張本樺" <?php if ($_smarty_tpl->tpl_vars['Receiving2']->value == "張本樺") {?>selected<?php }?>>張本樺</option>
+                                            <option value="王許安" <?php if ($_smarty_tpl->tpl_vars['Receiving2']->value == "王許安") {?>selected<?php }?>>王許安</option>
                                         </select>
                                     </div>
                                 </div>
@@ -567,240 +570,242 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield7']->value;?>
                                             value="<?php echo $_smarty_tpl->tpl_vars['ccemail']->value;?>
 " placeholder="請輸入正確E-mail格式" readonly>
                                     </div>
+                                </div>
 
 
 
 
-                                    <!---- 客戶電話 ---->
-                                    <div class="form-group">
-                                        <label for="CustomerPhone" class="col-md-3 control-label">聯絡電話:</label>
-                                        <div class="col-md-8">
-                                            <input type="text" id="CustomerPhone" name="CustomerPhone"
-                                                class="form-control" required value="<?php echo $_smarty_tpl->tpl_vars['CustomerPhone']->value;?>
+                                <!---- 客戶電話 ---->
+                                <div class="form-group">
+                                    <label for="CustomerPhone" class="col-md-3 control-label">聯絡電話:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="CustomerPhone" name="CustomerPhone" class="form-control"
+                                            required value="<?php echo $_smarty_tpl->tpl_vars['CustomerPhone']->value;?>
 " readonly>
-                                        </div>
                                     </div>
-                                    <!---- 報告發送狀態 ---->
+                                </div>
+                                <!---- 報告發送狀態 ---->
 
-                                    <div class="form-group">
-                                        <label for="ReportStatus" class="col-md-3 control-label">報告進度:</label>
-                                        <div class="col-md-8">
-                                            <input type="text" id="ReportStatus" name="ReportStatus"
-                                                class="form-control" value="<?php echo $_smarty_tpl->tpl_vars['ReportStatus']->value;?>
+                                <div class="form-group">
+                                    <label for="ReportStatus" class="col-md-3 control-label">報告進度:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="ReportStatus" name="ReportStatus" class="form-control"
+                                            value="<?php echo $_smarty_tpl->tpl_vars['ReportStatus']->value;?>
 " readonly>
-                                        </div>
-                                    </div>
-
-                                    <!---- 報告退回原因，有值才顯示欄位 ---->
-                                    <?php if ($_smarty_tpl->tpl_vars['RejectReason']->value) {?>
-                                    <div class="form-group">
-                                        <label for="RejectReason" class="col-md-3 control-label">報告退回原因:</label>
-                                        <div class="col-md-8">
-                                            <input type="text" id="RejectReason" name="RejectReason"
-                                                class="form-control" value="<?php echo $_smarty_tpl->tpl_vars['RejectReason']->value;?>
-" readonly>
-                                        </div>
-                                    </div>
-                                    <?php }?>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Page 2 -->
-                    <div id="page2" class="page">
-                        <div class="form-horizontal" role="form">
-
-                            <div class="col-md-6">
-
-
-                                <!---- 實驗室核准 ---->
-                                <div class="form-group">
-                                    <!--MEMBER NAME FIELD , THIS FIELD IS CONNECTED TO HOME.PHP-->
-                                    <label for="Approved1" class="col-md-3 control-label">核准醫檢師:</label>
-                                    <div class="col-md-8">
-                                        <input type="text" id="Approved1" name=Approved1 class="form-control" readonly
-                                            value="<?php echo $_smarty_tpl->tpl_vars['Approved1']->value;?>
-">
-                                    </div>
-                                </div>
-                                <!---- 醫師核准 ---->
-                                <div class="form-group">
-                                    <label for="Approved2" class="col-md-3 control-label">核准醫師:</label>
-                                    <div class="col-md-8">
-                                        <input type="text" id="Approved2" name=Approved2 class="form-control" readonly
-                                            value="<?php echo $_smarty_tpl->tpl_vars['Approved2']->value;?>
-">
-                                    </div>
-                                </div>
-                                <!---- 實驗室核准 ---->
-                                <div class="form-group">
-                                    <!--MEMBER NAME FIELD , THIS FIELD IS CONNECTED TO HOME.PHP-->
-                                    <label for="Reject1" class="col-md-3 control-label">退回醫檢師:</label>
-                                    <div class="col-md-8">
-                                        <input type="text" id="Reject1" name=Reject1 class="form-control" readonly
-                                            value="<?php echo $_smarty_tpl->tpl_vars['Reject1']->value;?>
-">
-                                    </div>
-                                </div>
-                                <!---- 醫師核准 ---->
-                                <div class="form-group">
-                                    <label for="Reject2" class="col-md-3 control-label">退回醫師:</label>
-                                    <div class="col-md-8">
-                                        <input type="text" id="Reject2" name=Reject2 class="form-control" readonly
-                                            value="<?php echo $_smarty_tpl->tpl_vars['Reject2']->value;?>
-">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <!---- 實驗室核准日期 ---->
-                                <div class="form-group">
-                                    <!--MEMBER NAME FIELD , THIS FIELD IS CONNECTED TO HOME.PHP-->
-                                    <label for="Approved1At" class="col-md-3 control-label">實驗室核准日:</label>
-                                    <div class="col-md-8">
-                                        <input type="text" id="Approved1At" name=Approved1At class="form-control"
-                                            readonly value="<?php echo $_smarty_tpl->tpl_vars['Approved1At']->value;?>
-">
-                                    </div>
-                                </div>
-                                <!---- 醫師核准日期 ---->
-                                <div class="form-group">
-                                    <label for="Approved2At" class="col-md-3 control-label">醫師核准日:</label>
-                                    <div class="col-md-8">
-                                        <input type="text" id="Approved2At" name=Approved2At class="form-control"
-                                            readonly value="<?php echo $_smarty_tpl->tpl_vars['Approved2At']->value;?>
-">
                                     </div>
                                 </div>
 
-
-                                <!---- 實驗室核准日期 ---->
+                                <!---- 報告退回原因，有值才顯示欄位 ---->
+                                <?php if ($_smarty_tpl->tpl_vars['RejectReason']->value) {?>
                                 <div class="form-group">
-                                    <!--MEMBER NAME FIELD , THIS FIELD IS CONNECTED TO HOME.PHP-->
-                                    <label for="Reject1At" class="col-md-3 control-label">實驗室退回日:</label>
+                                    <label for="RejectReason" class="col-md-3 control-label">報告退回原因:</label>
                                     <div class="col-md-8">
-                                        <input type="text" id="Reject1At" name=Reject1At class="form-control" readonly
-                                            value="<?php echo $_smarty_tpl->tpl_vars['Reject1At']->value;?>
-">
-                                    </div>
-                                </div>
-
-                                <!---- 醫師核准日期 ---->
-                                <div class="form-group">
-                                    <label for="Reject2At" class="col-md-3 control-label">醫師退回日:</label>
-                                    <div class="col-md-8">
-                                        <input type="text" id="Reject2At" name=Reject2At class="form-control" readonly
-                                            value="<?php echo $_smarty_tpl->tpl_vars['Reject2At']->value;?>
-">
-                                    </div>
-                                </div>
-
-                                <!---- 報告建議/退回原因 ---->
-                                <div class="form-group">
-                                    <label for="RejectReason" class="col-md-3 control-label">退回原因:</label>
-                                    <div class="col-md-8">
-                                        <input type="text" id="RejectReason" name=RejectReason class="form-control"
+                                        <input type="text" id="RejectReason" name="RejectReason" class="form-control"
                                             value="<?php echo $_smarty_tpl->tpl_vars['RejectReason']->value;?>
 " readonly>
-
                                     </div>
+                                </div>
+                                <?php }?>
+
+                            </div>
+                        </div>
+                    </div>
+
+                <!-- Page 2 -->
+                <div id="page2" class="page">
+                    <div class="form-horizontal" role="form">
+
+                        <div class="col-md-6">
+
+
+                            <!---- 實驗室核准 ---->
+                            <div class="form-group">
+                                <!--MEMBER NAME FIELD , THIS FIELD IS CONNECTED TO HOME.PHP-->
+                                <label for="Approved1" class="col-md-3 control-label">核准醫檢師:</label>
+                                <div class="col-md-8">
+                                    <input type="text" id="Approved1" name=Approved1 class="form-control" readonly
+                                        value="<?php echo $_smarty_tpl->tpl_vars['Approved1']->value;?>
+">
+                                </div>
+                            </div>
+                            <!---- 醫師核准 ---->
+                            <div class="form-group">
+                                <label for="Approved2" class="col-md-3 control-label">核准醫師:</label>
+                                <div class="col-md-8">
+                                    <input type="text" id="Approved2" name=Approved2 class="form-control" readonly
+                                        value="<?php echo $_smarty_tpl->tpl_vars['Approved2']->value;?>
+">
+                                </div>
+                            </div>
+                            <!---- 實驗室核准 ---->
+                            <div class="form-group">
+                                <!--MEMBER NAME FIELD , THIS FIELD IS CONNECTED TO HOME.PHP-->
+                                <label for="Reject1" class="col-md-3 control-label">退回醫檢師:</label>
+                                <div class="col-md-8">
+                                    <input type="text" id="Reject1" name=Reject1 class="form-control" readonly
+                                        value="<?php echo $_smarty_tpl->tpl_vars['Reject1']->value;?>
+">
+                                </div>
+                            </div>
+                            <!---- 醫師核准 ---->
+                            <div class="form-group">
+                                <label for="Reject2" class="col-md-3 control-label">退回醫師:</label>
+                                <div class="col-md-8">
+                                    <input type="text" id="Reject2" name=Reject2 class="form-control" readonly
+                                        value="<?php echo $_smarty_tpl->tpl_vars['Reject2']->value;?>
+">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <!---- 實驗室核准日期 ---->
+                            <div class="form-group">
+                                <!--MEMBER NAME FIELD , THIS FIELD IS CONNECTED TO HOME.PHP-->
+                                <label for="Approved1At" class="col-md-3 control-label">實驗室核准日:</label>
+                                <div class="col-md-8">
+                                    <input type="text" id="Approved1At" name=Approved1At class="form-control" readonly
+                                        value="<?php echo $_smarty_tpl->tpl_vars['Approved1At']->value;?>
+">
+                                </div>
+                            </div>
+                            <!---- 醫師核准日期 ---->
+                            <div class="form-group">
+                                <label for="Approved2At" class="col-md-3 control-label">醫師核准日:</label>
+                                <div class="col-md-8">
+                                    <input type="text" id="Approved2At" name=Approved2At class="form-control" readonly
+                                        value="<?php echo $_smarty_tpl->tpl_vars['Approved2At']->value;?>
+">
+                                </div>
+                            </div>
+
+
+                            <!---- 實驗室核准日期 ---->
+                            <div class="form-group">
+                                <!--MEMBER NAME FIELD , THIS FIELD IS CONNECTED TO HOME.PHP-->
+                                <label for="Reject1At" class="col-md-3 control-label">實驗室退回日:</label>
+                                <div class="col-md-8">
+                                    <input type="text" id="Reject1At" name=Reject1At class="form-control" readonly
+                                        value="<?php echo $_smarty_tpl->tpl_vars['Reject1At']->value;?>
+">
+                                </div>
+                            </div>
+
+                            <!---- 醫師核准日期 ---->
+                            <div class="form-group">
+                                <label for="Reject2At" class="col-md-3 control-label">醫師退回日:</label>
+                                <div class="col-md-8">
+                                    <input type="text" id="Reject2At" name=Reject2At class="form-control" readonly
+                                        value="<?php echo $_smarty_tpl->tpl_vars['Reject2At']->value;?>
+">
+                                </div>
+                            </div>
+
+                            <!---- 報告建議/退回原因 ---->
+                            <div class="form-group">
+                                <label for="RejectReason" class="col-md-3 control-label">退回原因:</label>
+                                <div class="col-md-8">
+                                    <input type="text" id="RejectReason" name=RejectReason class="form-control"
+                                        value="<?php echo $_smarty_tpl->tpl_vars['RejectReason']->value;?>
+" readonly>
+
                                 </div>
                             </div>
                         </div>
                     </div>
-                
-                    <!---- button area ---->
-                    <div>
-                        <div id="ds1" align="center">
-                            <p id="Message">
-                            <div class="alert alert-danger alert-container" id="alert" <?php echo $_smarty_tpl->tpl_vars['ShowErrorMessage']->value;?>
->
-                                <strong>
-                                    <center>
-                                        <h1><?php echo $_smarty_tpl->tpl_vars['ErrorMessage']->value;?>
-</h1>
-                                    </center>
-                                </strong>
-                            </div>
-                            </p>
-                            <?php if ($_smarty_tpl->tpl_vars['ReportStatus']->value == '0') {?>
-                            <p id="ReportApproveButton">
-                                <button type="button" class="btn btn-danger btn-md" id="BtnApproveExit"
-                                    name="BtnApproveExit" style="font-weight:bold;font-size:20px;margin:30px;">
-                                    <i class="fa fa-home"></i> 離 開</button>
-                            </p>
-                            <?php } elseif ($_smarty_tpl->tpl_vars['ReportStatus']->value == '1') {?>
-                            <p id="ReportApproveButton">
-                                <button type="button" class="btn btn-danger btn-md" id="BtnApproveExit"
-                                    name="BtnApproveExit" style="font-weight:bold;font-size:20px;margin:30px;">
-                                    <i class="fa fa-home"></i> 離 開</button>
-                                <button type="button" class="btn btn-danger btn-md" id="BtnApproveReject"
-                                    name="BtnApproveReject" style="font-weight:bold;font-size:20px;margin:30px;">
-                                    <i class="fa fa-eject"></i> 退 回</button>
-                                <button type="button" class="btn btn-danger btn-md" id="BtnApprovePass"
-                                    name="BtnApprovePass" style="font-weight:bold;font-size:20px;margin:30px;">
-                                    <i class="fa fa-thumbs-up"></i> 核 准</button>
-                            </p>
-                            <?php } else { ?>
-                            <p id="ReportApproveButton">
-                                <button type="button" class="btn btn-danger btn-md" id="BtnApproveExit"
-                                    name="BtnApproveExit" style="font-weight:bold;font-size:20px;margin:30px;">
-                                    <i class="fa fa-home"></i> 離 開</button>
-                                <button type="button" class="btn btn-danger btn-md" id="BtnApproveReject"
-                                    name="BtnApproveReject" style="font-weight:bold;font-size:20px;margin:30px;">
-                                    <i class="fa fa-eject"></i> 退 回</button>
+                </div>
 
-                            </p>
-                            <?php }?>
+
+            </div>
+                <!---- button area ---->
+                <div>
+                    <div id="ds1" align="center">
+                        <p id="Message">
+                        <div class="alert alert-danger alert-container" id="alert" <?php echo $_smarty_tpl->tpl_vars['ShowErrorMessage']->value;?>
+>
+                            <strong>
+                                <center>
+                                    <h1><?php echo $_smarty_tpl->tpl_vars['ErrorMessage']->value;?>
+</h1>
+                                </center>
+                            </strong>
                         </div>
+                        </p>
+                        <?php if ($_smarty_tpl->tpl_vars['ReportStatus']->value == '0' || $_smarty_tpl->tpl_vars['ReportStatus']->value == '10') {?>
+                        <p id="ReportApproveButton">
+                            <button type="button" class="btn btn-danger btn-md" id="BtnApproveExit"
+                                name="BtnApproveExit" style="font-weight:bold;font-size:20px;margin:30px;">
+                                <i class="fa fa-home"></i> 離 開</button>
+                        </p>
+                        <?php } elseif ($_smarty_tpl->tpl_vars['ReportStatus']->value == '1') {?>
+                        <p id="ReportApproveButton">
+                            <button type="button" class="btn btn-danger btn-md" id="BtnApproveExit"
+                                name="BtnApproveExit" style="font-weight:bold;font-size:20px;margin:30px;">
+                                <i class="fa fa-home"></i> 離 開</button>
+                            <button type="button" class="btn btn-danger btn-md" id="BtnApproveReject"
+                                name="BtnApproveReject" style="font-weight:bold;font-size:20px;margin:30px;">
+                                <i class="fa fa-eject"></i> 退 回</button>
+                            <button type="button" class="btn btn-danger btn-md" id="BtnApprovePass"
+                                name="BtnApprovePass" style="font-weight:bold;font-size:20px;margin:30px;">
+                                <i class="fa fa-thumbs-up"></i> 核 准</button>
+                        </p>
+                        <?php } else { ?>
+                        <p id="ReportApproveButton">
+                            <button type="button" class="btn btn-danger btn-md" id="BtnApproveExit"
+                                name="BtnApproveExit" style="font-weight:bold;font-size:20px;margin:30px;">
+                                <i class="fa fa-home"></i> 離 開</button>
+                            <button type="button" class="btn btn-danger btn-md" id="BtnApproveReject"
+                                name="BtnApproveReject" style="font-weight:bold;font-size:20px;margin:30px;">
+                                <i class="fa fa-eject"></i> 退 回</button>
+
+                        </p>
+                        <?php }?>
                     </div>
-                        <!---- PDF Preview ---->
-                        <div class="row" id="PDFArea">
-                            <!-- <div class="form-horizontal" role="form">
+                </div>
+                <!---- PDF Preview ---->
+                <div class="row" id="PDFArea">
+                    <!-- <div class="form-horizontal" role="form">
                             <div class="col-md-12">
                                 <embed id='PDFPreview' name='PDFPreview' src='<?php echo $_smarty_tpl->tpl_vars['PDFPreview']->value;?>
 ' type='application/pdf'
                                     width='100%' height='1000px' /> -->
-                            <!-- <button type="button" class="btn btn-primary" id="BtnSendEmail">Send Email</button> -->
+                    <!-- <button type="button" class="btn btn-primary" id="BtnSendEmail">Send Email</button> -->
 
-                            <!-- </div> -->
-                            <div class="col-md-12">
-                                <?php if ($_smarty_tpl->tpl_vars['PDFPreview']->value != '請再上傳一次報告') {?>
-                                <embed id='PDFPreview' name='PDFPreview' src='<?php echo $_smarty_tpl->tpl_vars['PDFPreview']->value;?>
-' type='application/pdf'
-                                    width='100%' height='1000px' />
-                                <?php } else { ?>
-                                <div class="alert alert-danger alert-container" id="alert" <?php echo $_smarty_tpl->tpl_vars['PDFPreview']->value;?>
+                    <!-- </div> -->
+                    <div class="col-md-12">
+                        <?php if ($_smarty_tpl->tpl_vars['PDFPreview']->value != '請再上傳一次報告') {?>
+                        <embed id='PDFPreview' name='PDFPreview' src='<?php echo $_smarty_tpl->tpl_vars['PDFPreview']->value;?>
+' type='application/pdf' width='100%'
+                            height='1000px' />
+                        <?php } else { ?>
+                        <div class="alert alert-danger alert-container" id="alert" <?php echo $_smarty_tpl->tpl_vars['PDFPreview']->value;?>
 >
-                                    <strong>
-                                        <center>
-                                            <h1><?php echo $_smarty_tpl->tpl_vars['PDFPreview']->value;?>
+                            <strong>
+                                <center>
+                                    <h1><?php echo $_smarty_tpl->tpl_vars['PDFPreview']->value;?>
 </h1>
-                                        </center>
-                                    </strong>
-                                </div>
-                                <?php }?>
-                                <!-- <button type="button" class="btn btn-primary" id="BtnSendEmail">Send Email</button> -->
-                            </div>
+                                </center>
+                            </strong>
                         </div>
-                        <br>
-                        <br>
-                        <!---- Apply Preview -->
-                        <div class="row" id="ApplyArea">
-                            <div class="form-horizontal" role="form">
-                                <div class="col-md-12">
-                                    <embed id='ApplyFile' name='ApplyFile' src='<?php echo $_smarty_tpl->tpl_vars['ApplyFile']->value;?>
+                        <?php }?>
+                        <!-- <button type="button" class="btn btn-primary" id="BtnSendEmail">Send Email</button> -->
+                    </div>
+                </div>
+                <br>
+                <br>
+                <!---- Apply Preview -->
+                <div class="row" id="ApplyArea">
+                    <div class="form-horizontal" role="form">
+                        <div class="col-md-12">
+                            <embed id='ApplyFile' name='ApplyFile' src='<?php echo $_smarty_tpl->tpl_vars['ApplyFile']->value;?>
 ' type='application/pdf'
-                                        width='100%' height='1000px' />
-                                </div>
-                            </div>
+                                width='100%' height='1000px' />
                         </div>
                     </div>
-                
+                </div>
             </div>
+
         </div>
+    </div>
     </div>
 </form>
 <?php echo '<script'; ?>

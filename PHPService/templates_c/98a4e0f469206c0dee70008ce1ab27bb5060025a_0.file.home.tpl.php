@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-02-17 03:03:39
+/* Smarty version 4.3.4, created on 2024-10-08 14:21:07
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_65d013fb3463c1_73470906',
+  'unifunc' => 'content_6704cf53397cc0_39455012',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '98a4e0f469206c0dee70008ce1ab27bb5060025a' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\home.tpl',
-      1 => 1706586830,
+      1 => 1728368448,
       2 => 'file',
     ),
   ),
@@ -24,7 +24,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_65d013fb3463c1_73470906 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6704cf53397cc0_39455012 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 <title>麗寶基因報告系統</title>
@@ -55,27 +55,41 @@ function content_65d013fb3463c1_73470906 (Smarty_Internal_Template $_smarty_tpl)
     <?php $_smarty_tpl->_subTemplateRender("file:header_home.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
     <div class="row" style="margin-left: 10px;margin-right: 10px;">
-        <!---- 預約日期 ---->
-        <div class="col-md-5" style="padding:10px">
-            <!-- <label for="query_appoint_date" style="text-align:right;font-size:20px;">日期：</label>
-            <input type="text" id="query_appoint_date" style="font-weight:bold;font-size:20px;">
-            <button id="BtnQuery" class="btn btn-custom btn-info btn-md" style="font-size:16px"><i
-                    class="fa fa-search"></i> 查 詢 </button> -->
-        </div>
-        <!---- 查詢 ---->
-        <!-- 如果permission = 4 不顯示search欄位 -->
-        <?php if ($_smarty_tpl->tpl_vars['Permission']->value != 4 && $_smarty_tpl->tpl_vars['Permission']->value != 0 && $_smarty_tpl->tpl_vars['Permission']->value != 2 && $_smarty_tpl->tpl_vars['Permission']->value != 3) {?>
-        <!-- <button id="BtnQuery" class="btn btn-custom btn-info btn-md" style="font-size:16px">
-            <i class="fa fa-search"></i>
-            <a href="log_table.php">查看紀錄</a></button> -->
-            <br>
 
-        <!-- <button class="btn btn-primary btn-md" onclick="location.href='log_table.php'" ><i class="fa fa-search"></i>&nbsp;&nbsp;查看紀錄</button> -->
-        <?php }?>
+        <!-- <?php if ($_smarty_tpl->tpl_vars['Permission']->value != 4 && $_smarty_tpl->tpl_vars['Permission']->value != 0 && $_smarty_tpl->tpl_vars['Permission']->value != 2 && $_smarty_tpl->tpl_vars['Permission']->value != 3) {?> -->
+        <div class="col-md-5" style="padding:10px">
+            <form id="reportForm" action="../PHPService/home.php" method="POST">
+                <label for="start_report_id" style="text-align:right;font-size:14px;">請輸入報告編號區間：</label>
+                <input type="text" id="start_report_id" name="start_report_id" style="font-weight:bold;font-size:14px;">
+
+                <label for="end_report_id" style="text-align:right;font-size:14px;">-</label>
+                <input type="text" id="end_report_id" name="end_report_id" style="font-weight:bold;font-size:14px;">
+
+                <button type="submit" class="btn btn-custom btn-info btn-md" style="font-size:14px">
+                    <i class="fa fa-download"></i> JSON
+                </button>
+            </form>
+            <!-- show reportForm response -->
+            <div id="response">輸出的報告ID</div>
+
+        </div>
+        <!-- <?php }?> -->
         <div class="col-md-3" style="float:right;padding:10px">
             <input type="search" class="form-control input-md" id="SearchTable" name="SearchTable" placeholder="Search"
                 style="font-weight:bold;font-size:20px;">
             <!-- <label for="reportType" class="form-control input-md">報告類型：</label> -->
+            <!-- permission !=4 -->
+             <?php if ($_smarty_tpl->tpl_vars['Permission']->value == 4) {?>
+            <select id="SearchStatus" class="form-control input-md">
+                <option value="">請選擇</option>
+                <option value="實驗室已審核">實驗室已審核</option>
+                <option value="實驗室退回">醫檢師退回</option>
+                <option value="醫師已審核">醫師已審核</option>
+                <option value="醫師已退回">醫師退回</option>
+                <option value="重出">重出</option>
+                <option value="已寄送報告">已寄送</option>
+            </select>
+            <?php } else { ?>
             <select id="SearchStatus" class="form-control input-md">
                 <option value="">請選擇</option>
                 <option value="報告未上傳">報告未上傳</option>
@@ -85,9 +99,11 @@ function content_65d013fb3463c1_73470906 (Smarty_Internal_Template $_smarty_tpl)
                 <option value="醫師已審核">醫師已審核</option>
                 <option value="醫師已退回">醫師退回</option>
                 <option value="可寄送報告">待寄送</option>
-                <option value="無報告">重出</option>
+                <option value="重出">重出</option>
                 <option value="已寄送報告">已寄送</option>
+                <option value="不需發報告">不需發報告</option>
             </select>
+            <?php }?>
         </div>
 
         <div class="row">
@@ -105,7 +121,93 @@ function content_65d013fb3463c1_73470906 (Smarty_Internal_Template $_smarty_tpl)
 
 
 
+    <?php echo '<script'; ?>
+>
+        document.getElementById('reportForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // 阻止表單默認提交
 
+            // get the value of the input fields
+            var startReportId = document.getElementById('start_report_id').value;
+            var endReportId = document.getElementById('end_report_id').value;
+
+            // create a JSON object
+            var data = {
+                start_report_id: startReportId,
+                end_report_id: endReportId
+            };
+
+            // AJAX request to the server
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', this.action, true); // 表單action屬性的值
+            xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) { // 请求完成
+                    if (xhr.status === 200) { // 请求成功
+                        // 处理后端返回的数据
+                        var response = JSON.parse(xhr.responseText);
+                        console.log(response); // 打印整个响应对象以检查其结构
+
+                        // 确保响应是一个数组并且不为空
+                        if (Array.isArray(response) && response.length > 0) {
+                            // 转换字段名称
+                            var transformedResponse = response.map(function(item) {
+                                return {
+                                    report_number: item.ReportID,
+                                    proband_name: item.proband_name,
+                                    sample_number: item.SampleNo,
+                                    medical_record_number: item.PatientID,
+                                    sampling_number: item.scID,
+                                    sample_type_r1: item.sample_type_r1,
+                                    sample_type_r2: item.sample_type_r2,
+                                    sample_type_r3: item.sample_type_r3,
+                                    sample_type_r4: item.sample_type_r4,
+                                    sample_type_r5: item.sample_type_r5,
+                                    method: item.method,
+                                    sampling_date: item.scdate,
+                                    collection_date: item.rcdate,
+                                    referral_physician: item.HospitalList_Dr,
+                                    referral_agency: item.HospitalList,
+                                    contact_name: item.CustomerName,
+                                    contact_phone_number: item.CustomerPhone,
+                                    contact_mail: item.CustomerEmail
+                                };
+                            });
+
+                            // 抓取所有的 report_number
+                            var reportNumbers = transformedResponse.map(function(item) {
+                                return item.report_number;
+                            });
+
+                            // 在页面上显示所有的 report_number
+                            var responseDiv = document.getElementById('response');
+                            responseDiv.innerHTML = 'Total Report Numbers: ' + reportNumbers.length + '<br>' +
+                                                    'Report Numbers: ' + reportNumbers.join(', ') + '<br>';
+
+                            // 创建 JSON 文件并下载
+                            var blob = new Blob([JSON.stringify(transformedResponse, null, 2)], { type: 'application/json' });
+                            var url = URL.createObjectURL(blob);
+                            var a = document.createElement('a');
+                            a.href = url;
+                            a.download = 'report_data.json';
+                            document.body.appendChild(a);
+                            a.click();
+                            document.body.removeChild(a);
+                            URL.revokeObjectURL(url);
+                        } else {
+                            console.error('Unexpected response format or empty response');
+                        }
+                    } else {
+                        // 处理错误
+                        console.error('Error: ' + xhr.status + ' - ' + xhr.statusText);
+                        var errorResponse = JSON.parse(xhr.responseText);
+                        alert('Error: ' + errorResponse.error);
+                    }
+                }
+            };
+            xhr.send(JSON.stringify(data));
+        });
+    <?php echo '</script'; ?>
+>
 </body>
 
 </html>

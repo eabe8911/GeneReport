@@ -85,8 +85,20 @@
     <h2><b>麗寶基因報告-LOG紀錄查詢</b></h2>
     <!-- <button class="btn btn-danger btn-md"> <a href="home.php">回首頁</a></button> -->
     <button class="btn btn-primary btn-md" onclick="location.href='home.php'">回首頁</button>
-    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search" style="float: right;">
-    <input type="date" id="myDateInput" onchange="myFunction()" style="float: right;">
+    <!-- <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search" style="float: right;"> -->
+    <!-- <input type="date" id="myDateInput" onchange="myFunction()" style="float: right;"> -->
+    <div class="row">
+        <!---- 預約日期 ---->
+        <div class="col-md-5" style="padding:10px">
+            <label for="query_appoint_date" style="text-align:right;font-size:20px;">日期：</label>
+            <input type="text" id="query_appoint_date" style="font-weight:bold;font-size:20px;">
+            <button id="BtnQuery" class="btn btn-custom btn-info btn-md" style="font-size:18px"><i class="fa fa-search"></i> 查 詢 </button>
+        </div>
+        <!---- 查詢 ---->
+        <div class="col-md-3" style="float:right;">
+            <input type="search" class="form-control input-md" id="myInput" onkeyup="myFunction()" placeholder="Search" style="font-weight:bold;font-size:20px;">
+        </div>
+    </div>
     <br><br>
     <table id="log_table" border='1' style="text-align: center;">
         <tr style="text-align: center;">
@@ -95,7 +107,7 @@
             <th style="width:40px; text-align: center; font-size: 20px;">ID</th>
             <th style="width:30px; text-align: center; font-size: 20px;">人員</th>
             <th style="width:100px; text-align: center; font-size: 20px;">異動日期</th>
-            <th style="width:80px; text-align: center; font-size: 20px;">狀態</th>
+            <th style="width:80px; text-align: center; font-size: 20px;">操作</th>
             <!-- <th style="width:120px; text-align: center; font-size: 20px;">指令</th> -->
             <th style="width:220px; text-align: center; font-size: 20px;">內容</th>
         </tr>

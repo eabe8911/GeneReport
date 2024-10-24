@@ -79,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewApproveDetail") {
 
                 $rejectlog = "報告編號：" . $ReportID . "已被退回" . "\n" . "退回原因：" . $RejectReason . "\n" . "報告名稱：" . $ReportName . "\n" . "送檢單位：" . $Role . "\n" . "聯絡人姓名：" . $CustomerName . "\n" . "聯絡人信箱：" . $CustomerEmail . "\n" . "聯絡電話：" . $CustomerPhone . "\n";
 
-                $log->SaveLog("REJECT", $Username, "ReportDetailApprove", date("Y-m-d H:i:s"), $rejectlog);
+                $log->SaveLog("退回報告", $Username, "ReportDetailApprove", date("Y-m-d H:i:s"), $rejectlog);
 
                 $messageData = [
                     'report_id' => $_POST['ReportID'],
@@ -123,7 +123,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewApproveDetail") {
                     . "客戶姓名：" . $CustomerName . "\n" . "客戶信箱：" . $CustomerEmail . "\n" . "客戶連絡電話：" . $CustomerPhone . "\n";
 
                 // $logDataJson = json_encode($logData, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
-                $log->SaveLog("PASS", $Username, "ReportDetailApprove", date("Y-m-d H:i:s"), $passlog);
+                $log->SaveLog("簽核報告", $Username, "ReportDetailApprove", date("Y-m-d H:i:s"), $passlog);
 
                 // $log->SaveLog("PASS", $Username, "ReportDetailApprove", date("Y-m-d H:i:s"), json_encode($_POST));
                 $messageData = [

@@ -143,7 +143,7 @@ class Email
             }
 
             $_mail->send();
-            $log->SaveLog("SendEmail", $Username, "Emailer", date("Y-m-d H:i:s"), $ReportID."報告已寄出");
+            $log->SaveLog("寄送報告成功", $Username, "Emailer", date("Y-m-d H:i:s"), $ReportID."報告已寄出");
 
             echo '<script>
                     alert("Mail has been sent");
@@ -153,7 +153,7 @@ class Email
 
         } catch (Exception $e) {
             echo "Mail could not be sent. Mailer Error";
-            $log->SaveLog("SendEmail", $Username, "Emailer", date("Y-m-d H:i:s"), $ReportID . "報告寄送失敗");
+            $log->SaveLog("寄送報告失敗", $Username, "Emailer", date("Y-m-d H:i:s"), $ReportID . "報告寄送失敗");
 
 
             throw new Exception($e->getMessage(), $e->getCode());

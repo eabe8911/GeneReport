@@ -297,7 +297,8 @@ class Report implements ReportInterface
             $hospitalList = $hospitalList->getHospitalList();
             //get hospitalList name
             $hospitalList = $hospitalList[$ReportInfo['HospitalList']];
-
+            // $ReportInfo['ReportName'] = str_replace([' ', '/'], '_', $ReportInfo['ReportName']);
+            $ReportInfo['ReportName'] = str_replace([' ', '/','*'], ['_', '／','＊'], $ReportInfo['ReportName']);
             // 重複編號
             if ($this->_CheckReport($ReportInfo['ReportID'])) {
                 throw new Exception("此報告編號已存在", 1);
@@ -561,7 +562,6 @@ class Report implements ReportInterface
                     $stmt->bindValue(':FileName', '');
                 } else {
                     // $stmt->bindValue(':FileName', $ReportInfo['ReportID'] . '.pdf');
-                    $ReportInfo['ReportName'] = str_replace(' ', '_', $ReportInfo['ReportName']);
                     $stmt->bindValue(':FileName', '[檢測報告] '. $hospitalList . "_(" . $ReportInfo['ReportID'] . ")_".$ReportInfo['ReportName'].".pdf");
                 }
                 //如果沒有上傳檔案，就不要寫入apply_pdf檔案名稱
@@ -620,6 +620,9 @@ class Report implements ReportInterface
 
             // check if file exists
             $ReportInfo['TemplateID'] = substr($ReportInfo['TemplateID'], 0, 1);
+            // $ReportInfo['ReportName'] = str_replace([' ', '/'], '_', $ReportInfo['ReportName']);
+            $ReportInfo['ReportName'] = str_replace([' ', '/','*'], ['_', '／','＊'], $ReportInfo['ReportName']);
+
             if ($ReportInfo['TemplateID'] == 3) { // if report doesn't need to upload file
                 $ReportStatus = '10';
             } elseif (empty($ReportInfo['FileName'])) { // if no file uploaded
@@ -771,7 +774,8 @@ class Report implements ReportInterface
             $hospitalList = $hospitalList[$ReportInfo['HospitalList']];
 
             $sql = "UPDATE Report SET FileName=:FileName, RejectReason='', ReportStatus=:ReportDtatus  WHERE ReportID=:ReportID";
-            $ReportInfo['ReportName'] = str_replace(' ', '_', $ReportInfo['ReportName']);
+            // $ReportInfo['ReportName'] = str_replace([' ', '/'], '_', $ReportInfo['ReportName']);
+            $ReportInfo['ReportName'] = str_replace([' ', '/','*'], ['_', '／','＊'], $ReportInfo['ReportName']);
 
             $FileName = '[檢測報告]_'. $hospitalList . "_(" . $ReportInfo['ReportID'] . ")_".$ReportInfo['ReportName'].".pdf";
             $ReportStatus = '1';
@@ -821,6 +825,8 @@ class Report implements ReportInterface
     public function UpdateReport($ReportInfo)
     {
         try {
+            // $ReportInfo['ReportName'] = str_replace([' ', '/'], '_', $ReportInfo['ReportName']);
+            $ReportInfo['ReportName'] = str_replace([' ', '/','*'], ['_', '／','＊'], $ReportInfo['ReportName']);
 
             $hospitalList = new Report();
             $hospitalList = $hospitalList->getHospitalList();
@@ -837,7 +843,6 @@ class Report implements ReportInterface
             } else {
                 $ReportStatus = '1';
                 $RejectReason = '';
-                $ReportInfo['ReportName'] = str_replace(' ', '_', $ReportInfo['ReportName']);
 
                 $FileName = '[檢測報告]_'. $hospitalList . "_(" . $ReportInfo['ReportID'] . ")_".$ReportInfo['ReportName'].".pdf";
 
@@ -1348,9 +1353,12 @@ class Report implements ReportInterface
     {
         try {
             switch ($UserInfo['Permission']) {
-                case '2':
+                case '21':
                     $this->RejectBy1($ReportInfo, $UserInfo);
                     break;
+                    case '22':
+                        $this->RejectBy1($ReportInfo, $UserInfo);
+                        break;
                 case '3':
                     $this->RejectBy2($ReportInfo, $UserInfo);
                     break;
@@ -1371,13 +1379,21 @@ class Report implements ReportInterface
             // Get the file name without extension
             $tmpFileName = explode('.', $ReportInfo['FileName'])[0];
             switch ($UserInfo['permission']) {
-                case '2': // 醫檢師
+                case '21': // 醫檢師
                     $FileName = $tmpFileName . '_1.pdf';
                     // Change $ReportInfo['FileName'] to the new file name
                     $this->PDFSignature($ReportInfo, $UserInfo, $FileName);
                     $ReportInfo['FileName'] = $FileName;
                     $this->ApproveBy1($ReportInfo['ID'], $UserInfo['username'], $FileName);
                     break;
+                    case '22': // 醫檢師
+                        $FileName = $tmpFileName . '_1.pdf';
+                        // Change $ReportInfo['FileName'] to the new file name
+                        $this->PDFSignature($ReportInfo, $UserInfo, $FileName);
+                        $ReportInfo['FileName'] = $FileName;
+                        $this->ApproveBy1($ReportInfo['ID'], $UserInfo['username'], $FileName);
+                        break;
+    
                 case '3': // 醫師
                     $FileName = $tmpFileName . '_2.pdf';
                     // Change $ReportInfo['FileName'] to the new file name

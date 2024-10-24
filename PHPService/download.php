@@ -25,33 +25,38 @@ try {
     $objPHPExcel = new PhpSpreadsheet();
 
     // Set document properties
-    $objPHPExcel->getProperties()->setCreator("You")
-                                 ->setLastModifiedBy("You")
+    $objPHPExcel->getProperties()->setCreator("LiboBio")
+                                 ->setLastModifiedBy("User")
                                  ->setTitle("Customer Satisfaction Report")
                                  ->setSubject("Customer Satisfaction Report")
                                  ->setDescription("Report of customer satisfaction.");
-    $objPHPExcel->getActiveSheet()->getStyle('A:L')
+    $objPHPExcel->getActiveSheet()->getStyle('A:O')
     ->getAlignment()
     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER)
     ->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER);
     // Add some data
     $rowNumber = 1;
-    $headings = array("編號", "報告編號", "Email", "送檢單位", "原樣本代號", "檢測項目名稱", "報告內容滿意度", "檢測分析處理速度", "服務態度" ,"解決問題的能力及效率", "整體服務滿意度", "其他意見"); // Replace with your columns
+    // $headings = array("編號", "報告編號", "Email", "送檢單位", "原樣本代號", "檢測項目名稱", "報告內容滿意度", "檢測分析處理速度", "服務態度" ,"解決問題的能力及效率", "整體服務滿意度", "其他意見"); // Replace with your columns
+    $headings = array("編號", "報告編號", "Email", "送檢單位", "原樣本代號", "病歷編號", "採檢單號", "檢測項目名稱","報告內容滿意度", "檢測分析處理速度", "服務態度" ,"解決問題的能力及效率", "整體服務滿意度", "其他意見" ,"建立日期"); // Replace with your columns
+
     $objPHPExcel->getActiveSheet()->fromArray(array($headings),NULL,'A'.$rowNumber);
 
-    $objPHPExcel->getActiveSheet()->getStyle('A1:L1')->getFont()->setBold(true);
+    $objPHPExcel->getActiveSheet()->getStyle('A1:O1')->getFont()->setBold(true);
     $objPHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(4.5);
-    $objPHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(13);
+    $objPHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(10);
     $objPHPExcel->getActiveSheet()->getColumnDimension('C')->setWidth(25);
-    $objPHPExcel->getActiveSheet()->getColumnDimension('D')->setWidth(13);
+    $objPHPExcel->getActiveSheet()->getColumnDimension('D')->setWidth(20);
     $objPHPExcel->getActiveSheet()->getColumnDimension('E')->setWidth(11);
-    $objPHPExcel->getActiveSheet()->getColumnDimension('F')->setWidth(28);
-    $objPHPExcel->getActiveSheet()->getColumnDimension('G')->setWidth(20);
-    $objPHPExcel->getActiveSheet()->getColumnDimension('H')->setWidth(20);
-    $objPHPExcel->getActiveSheet()->getColumnDimension('I')->setWidth(20);
-    $objPHPExcel->getActiveSheet()->getColumnDimension('J')->setWidth(20);
-    $objPHPExcel->getActiveSheet()->getColumnDimension('K')->setWidth(20);
-    $objPHPExcel->getActiveSheet()->getColumnDimension('L')->setWidth(20);
+    $objPHPExcel->getActiveSheet()->getColumnDimension('F')->setWidth(11);
+    $objPHPExcel->getActiveSheet()->getColumnDimension('G')->setWidth(11);
+    $objPHPExcel->getActiveSheet()->getColumnDimension('H')->setWidth(42);
+    $objPHPExcel->getActiveSheet()->getColumnDimension('I')->setWidth(18);
+    $objPHPExcel->getActiveSheet()->getColumnDimension('J')->setWidth(18);
+    $objPHPExcel->getActiveSheet()->getColumnDimension('K')->setWidth(18);
+    $objPHPExcel->getActiveSheet()->getColumnDimension('L')->setWidth(18);
+    $objPHPExcel->getActiveSheet()->getColumnDimension('M')->setWidth(18);
+    $objPHPExcel->getActiveSheet()->getColumnDimension('N')->setWidth(18);
+    $objPHPExcel->getActiveSheet()->getColumnDimension('O')->setWidth(18);
 
     $rowNumber++;
     foreach ($response as $data) {

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-08-22 09:41:18
+/* Smarty version 4.3.4, created on 2024-10-09 14:45:14
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\header_home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_66c6eb9ec2a1a0_66836537',
+  'unifunc' => 'content_6706267a7e3ab1_27080319',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '72709b614568c486ecb409360a8ed7cd772c3200' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\header_home.tpl',
-      1 => 1724312472,
+      1 => 1728456294,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_66c6eb9ec2a1a0_66836537 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6706267a7e3ab1_27080319 (Smarty_Internal_Template $_smarty_tpl) {
 ?><header style="border-bottom: 1px solid #ccc; display: flex; padding: 0.5em 1em; justify-content: space-between;">
     <div class="member-site-identity">
         <?php echo $_smarty_tpl->tpl_vars['Logo']->value;?>
@@ -50,6 +50,16 @@ function content_66c6eb9ec2a1a0_66836537 (Smarty_Internal_Template $_smarty_tpl)
                 <h3><?php echo $_smarty_tpl->tpl_vars['DisplayName']->value;?>
  您好 （身分：簽核醫檢師）</h3>
             </li>
+            <?php } elseif ($_smarty_tpl->tpl_vars['Permission']->value == 21) {?>
+            <li style="display: inline-block;">
+                <h3><?php echo $_smarty_tpl->tpl_vars['DisplayName']->value;?>
+ 您好 （身分：專任ISO簽核醫檢師）</h3>
+            </li>
+            <?php } elseif ($_smarty_tpl->tpl_vars['Permission']->value == 22) {?>
+            <li style="display: inline-block;">
+                <h3><?php echo $_smarty_tpl->tpl_vars['DisplayName']->value;?>
+ 您好 （身分：專任LDTS簽核醫檢師）</h3>
+            </li>
             <?php } elseif ($_smarty_tpl->tpl_vars['Permission']->value == 3) {?>
             <li style="display: inline-block;">
                 <h3><?php echo $_smarty_tpl->tpl_vars['DisplayName']->value;?>
@@ -63,7 +73,7 @@ function content_66c6eb9ec2a1a0_66836537 (Smarty_Internal_Template $_smarty_tpl)
             <?php } elseif ($_smarty_tpl->tpl_vars['Permission']->value == 5) {?>
             <li style="display: inline-block;">
                 <h3><?php echo $_smarty_tpl->tpl_vars['DisplayName']->value;?>
- 您好 （身分：醫檢師）</h3>
+ 您好 （身分：收檢人員）</h3>
             </li>
             <?php } elseif ($_smarty_tpl->tpl_vars['Permission']->value == 6) {?>
             <li style="display: inline-block;">
@@ -114,12 +124,12 @@ function content_66c6eb9ec2a1a0_66836537 (Smarty_Internal_Template $_smarty_tpl)
             <?php if ($_smarty_tpl->tpl_vars['Permission']->value == 9) {?>
             <li style="display: inline-block;"><a id="addReport" name="addReport" href="<?php echo $_smarty_tpl->tpl_vars['addReport']->value;?>
 ">
-                    <h3>新增報告</h3>
+                    <h3>新增基本資料</h3>
                 </a></li>
 
             <li style="display: inline-block;"><a id="ImportReport" name="ImportReport" href="<?php echo $_smarty_tpl->tpl_vars['ImportReport']->value;?>
 ">
-                    <h3>批次匯入報告</h3>
+                    <h3>批次匯入基本資料</h3>
                 </a></li>
 
             <li style="display: inline-block;">
@@ -149,12 +159,12 @@ function content_66c6eb9ec2a1a0_66836537 (Smarty_Internal_Template $_smarty_tpl)
             <?php } elseif ($_smarty_tpl->tpl_vars['Permission']->value == 4) {?>
             <li style="display: inline-block;"><a id="addReport" name="addReport" href="<?php echo $_smarty_tpl->tpl_vars['addReport']->value;?>
 ">
-                    <h3>新增報告</h3>
+                    <h3>新增基本資料</h3>
                 </a></li>
 
             <li style="display: inline-block;"><a id="ImportReport" name="ImportReport" href="<?php echo $_smarty_tpl->tpl_vars['ImportReport']->value;?>
 ">
-                    <h3>批次匯入報告</h3>
+                    <h3>批次匯入基本資料</h3>
                 </a></li>
 
             <li style="display: inline-block;">
@@ -168,12 +178,12 @@ function content_66c6eb9ec2a1a0_66836537 (Smarty_Internal_Template $_smarty_tpl)
             <?php } elseif ($_smarty_tpl->tpl_vars['Permission']->value == 2 || $_smarty_tpl->tpl_vars['Permission']->value == 5) {?>
             <li style="display: inline-block;"><a id="addReport" name="addReport" href="<?php echo $_smarty_tpl->tpl_vars['addReport']->value;?>
 ">
-                    <h3>新增報告</h3>
+                    <h3>新增基本資料</h3>
                 </a></li>
 
             <li style="display: inline-block;"><a id="ImportReport" name="ImportReport" href="<?php echo $_smarty_tpl->tpl_vars['ImportReport']->value;?>
 ">
-                    <h3>批次匯入報告</h3>
+                    <h3>批次匯入基本資料</h3>
                 </a></li>
 
             <li style="display: inline-block;">

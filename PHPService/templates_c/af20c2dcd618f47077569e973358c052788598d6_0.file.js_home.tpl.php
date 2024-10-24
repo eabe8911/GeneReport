@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-08-30 10:49:03
+/* Smarty version 4.3.4, created on 2024-10-22 17:23:40
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\js_home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_66d1877f6c4621_62713357',
+  'unifunc' => 'content_67176f1c3929f8_94271128',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'af20c2dcd618f47077569e973358c052788598d6' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\js_home.tpl',
-      1 => 1725007533,
+      1 => 1729589004,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_66d1877f6c4621_62713357 (Smarty_Internal_Template $_smarty_tpl) {
+function content_67176f1c3929f8_94271128 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!--THIS JQUERY AND CSS IS FOR JQGRID TABLE-->
 <?php echo '<script'; ?>
  type="text/ecmascript" src="js/prettify/prettify.js"><?php echo '</script'; ?>
@@ -130,7 +130,7 @@ function content_66d1877f6c4621_62713357 (Smarty_Internal_Template $_smarty_tpl)
         jQuery("#jqGrid").jqGrid({
             // 連結資料擷取程式
             // url: "GetReportList.php?userid=" + UserID + "&permission=" + Permission + "&role=" + Role + "&character=" + Character ,
-            url: "GetReportList.php?userid=" + UserID + "&permission=" + Permission + "&role=" + Role + "&character=" + Character ,
+            url: "GetReportList.php?userid=" + UserID + "&permission=" + Permission + "&role=" + Role + "&character=" + Character,
             datatype: "json",
             width: Width,
             height: Height,
@@ -142,15 +142,16 @@ function content_66d1877f6c4621_62713357 (Smarty_Internal_Template $_smarty_tpl)
                 { label: "客戶姓名", name: "CustomerName", width: '3%' },
                 { label: "名稱", name: "ReportName", width: '5%' },
                 { label: "檔案", name: "FileName", hidden: true },
-                { label: "實驗室審核", name: "Approved1", width: "4%", align: "center" , hidden: true },
+                { label: "實驗室審核", name: "Approved1", width: "4%", align: "center", hidden: true },
                 { label: "日期", name: "Approved1At", width: '6%', align: "center", formatter: "date", formatoptions: { srcformat: "ISO8601Long", newformat: "Y-m-d H:i:s" }, hidden: true },
-                { label: "醫師審核", name: "Approved2", width: '4%', align: "center" , hidden: true },
+                { label: "醫師審核", name: "Approved2", width: '4%', align: "center", hidden: true },
                 { label: "日期", name: "Approved2At", width: '6%', align: "center", formatter: "date", formatoptions: { srcformat: "ISO8601Long", newformat: "Y-m-d H:i:s" }, hidden: true },
-                { label: "檢測單位", name: "ReportTypeName", width: '4%'},
+                { label: "檢測單位", name: "ReportTypeName", width: '4%' },
                 // { label: "檢測單位", name: "OrgName", width: '5%' },
                 { label: "TAT最終日", name: "DueDate", width: '3%', align: "center", formatter: "date", formatoptions: { srcformat: "ISO8601Long", newformat: "Y-m-d" } },
-                { label: "送檢單位", name: "HospitalList", width: '4%', align: "center" },
-                { label: "狀態", name: "ReportStatus", width: '4%', align: "center" },
+                { label: "送檢單位", name: "HospitalList", width: '5%', align: "center"},
+                // { label: "狀態", name: "ReportStatus", width: '4%', align: "center" },
+                { label: "操作", name: "ReportStatus", width: '4%', align: "center", cellattr: function () { return 'style="text-align: center; vertical-align: middle;"'; } },
                 { label: "建立日期", name: "CreatedAt", formatter: "date", formatoptions: { srcformat: "ISO8601Long", newformat: "Y-m-d H:i:s" }, hidden: true },
                 { label: "更新日期", name: "UpdatedAt", width: '10%', formatter: "date", formatoptions: { srcformat: "ISO8601Long", newformat: "Y-m-d H:i:s" }, hidden: true },
                 // 設定功能欄位，依照Permission設定為修改或審核
@@ -159,12 +160,8 @@ function content_66d1877f6c4621_62713357 (Smarty_Internal_Template $_smarty_tpl)
                         return imageLinkFormatter(cellvalue, options, rowObject, 'ui-icon-pencil', 'edit-link-class', Permission);
                     }
                 },
-                // {label:"修  改", name: "Update", width:'5%', align: "center", formatter: function (cellvalue, options, rowObject) {
-                // return imageLinkFormatter(cellvalue, options, rowObject, 'ui-icon-pencil', 'edit-link-class', 'Edit'); } },
-                // {label:"核  准", name: "CheckIn", width:'5%', align: "center", formatter: function (cellvalue, options, rowObject) {
-                // return imageLinkFormatter(cellvalue, options, rowObject, 'ui-icon-pencil', 'edit-link-class', 'Appove'); } },
             ],
-            // rowNum:NumOfRow,
+
             rowNum: 1000,
             rowTotal: 10000,
             loadonce: true,
@@ -172,12 +169,23 @@ function content_66d1877f6c4621_62713357 (Smarty_Internal_Template $_smarty_tpl)
             gridview: true,
             pager: "#jqGridPager",
             viewrecords: true,
-            // ondblClickRow: function (id) {
-            //     setDataEmpty();
-            //     rowData = jQuery(this).getRowData(id);
-            //     mode = "Query";
+            ondblClickRow: function (id) {
+                var rowData = jQuery(this).getRowData(id);
+                // 将数据存储到 sessionStorage
+                sessionStorage.setItem('selectedRowData', JSON.stringify(rowData));
+                // 跳转到目标页面
+                window.location.href = 'ReportDetailMaintain.php?ReportMode=EDIT&id=' + id;
+            }
+        });
 
-            // }
+        // 添加事件监听器到动态生成的按钮
+        jQuery(document).on('click', '.edit-link-class', function () {
+            var rowData = jQuery(this).data('row');
+            // 将数据存储到 sessionStorage
+            sessionStorage.setItem('selectedRowData', rowData);
+            // 跳转到目标页面
+            var rowId = jQuery(this).data('id');
+            window.location.href = 'ReportDetailMaintain.php?ReportMode=EDIT&id=' + rowId;
         });
 
 
@@ -201,12 +209,12 @@ function content_66d1877f6c4621_62713357 (Smarty_Internal_Template $_smarty_tpl)
     });
 
     function imageLinkFormatter(cellval, options, rowObject, icon, link_class, link_action) {
-        //get ID
-        var ID = rowObject[0];
-        //console.log(dump(rowObject));
-        // var img = '<span class="ui-icon ' + icon + ' icon"><span/>';    
-        // var link = '<a href="#' + link_action + '/id/' + rowObject.id + '" class="' +
-        //     link_class + '" rel="' + rowObject.id + '">' + img + '</a>';
+        //get rowId
+        var ID = options.rowId;
+        //get rowData
+        // var rowData = jQuery("#jqGrid").jqGrid('getRowData', rowId);
+        // var ID = rowObject[0];
+
         switch (link_action) {
             case '0':
             case '6':
@@ -221,16 +229,23 @@ function content_66d1877f6c4621_62713357 (Smarty_Internal_Template $_smarty_tpl)
             case 'Delete':
                 var link = "<button class='btn btn-primary' onclick='ReportDelete(" + ID + ");'>刪  除</button>";
                 break;
-            case '2':
+            case '2': //簽核醫檢師可看兩所的報告
                 var link0 = "<button class='btn btn-primary' onclick='ReportApprove(" + ID + ");'>報告簽核</button>";
                 var link1 = "<button class='btn btn-primary' onclick='ReportEdit(" + ID + ");'>檢視報告</button>";
-                var link = link0 + " " + link1;                
+                var link = link0 + " " + link1;
                 break;
-            case '3':
+            case '21': //鎖定ISO專任簽核醫檢師
+                var link = "<button class='btn btn-primary' onclick='ReportApprove(" + ID + ");'>報告簽核</button>";
+                break;
+            case '22': //鎖定LDTS專任簽核醫檢師
+                var link = "<button class='btn btn-primary' onclick='ReportApprove(" + ID + ");'>報告簽核</button>";
+                break;
+            case '3': //簽核醫師
                 var link = "<button class='btn btn-primary' onclick='ReportApprove(" + ID + ");'>報告簽核</button>";
                 // var link1 = "<button class='btn btn-primary' onclick='ReportEdit(" + ID + ");'>檢視報告</button>";
                 // var link = link0 + " " + link1;                
                 break;
+
             default:
                 var link = "<button class='btn btn-primary' onclick='ViewAppointPage(" + ID + ");'>無權限</button>";
                 break;

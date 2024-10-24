@@ -308,6 +308,13 @@
                                                     <option value="細胞懸浮液" {if $SampleType_1=="細胞懸浮液" }selected{/if}>
                                                         細胞懸浮液
                                                     </option>
+                                                    <option value="cDNA" {if $SampleType_1=="cDNA" }selected{/if}>
+                                                        cDNA
+                                                    </option>
+                                                    <option value="蠟捲" {if $SampleType_1=="蠟捲" }selected{/if}>
+                                                        蠟捲
+                                                    </option>
+
                                                     <option value="其他(請手動輸入樣品種類)" {if $SampleType_1=="其他(請手動輸入樣品種類)"
                                                         }selected{/if}>其他(請手動輸入樣品種類)</option>
                                                 </select>
