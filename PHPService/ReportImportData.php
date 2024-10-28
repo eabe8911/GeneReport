@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ReportImportData") {
             // Validate file type
             if ($fileType != "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") {
                 $ErrorMessage = "上傳檔案格式錯誤!";
-                $log->SaveLog("ERROR", "ReportImportData", date("Y-m-d H:i:s"), json_encode($_POST));
+                $log->SaveLog("上傳檔案格式錯誤", "ReportImportData", date("Y-m-d H:i:s"), json_encode($_POST));
                 throw new Exception($ErrorMessage, 1);
             }
             // Process the Excel file
@@ -78,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ReportImportData") {
             $log->SaveLog("批次上傳資料", $DisplayName, "ReportImportData", date("Y-m-d H:i:s"), "批次匯入資料共 " . $iterationCount . " 筆");
         } else {
             $ErrorMessage = "上傳檔案失敗!";
-            $log->SaveLog("ERROR", $DisplayName, "ReportImportData", date("Y-m-d H:i:s"), $ErrorMessage);
+            $log->SaveLog("上傳檔案失敗", $DisplayName, "ReportImportData", date("Y-m-d H:i:s"), $ErrorMessage);
         }
         // $importlog = "報告編號：" . $ReportID . "已新增". "\n"  . "報告名稱：" . $ReportName . "\n" . "送檢單位：" . $HospitalList . "\n" . "送檢單位：" . $ReportType . "\n" . "報告模板：" . $TemplateID . "\n" . "TAT最終日：" . $DueDate . "\n" . "客戶姓名：" . $CustomerName . "\n" . "客戶信箱：" . $CustomerEmail . "\n" . "客戶連絡電話：" . $CustomerPhone ;
 

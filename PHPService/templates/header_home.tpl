@@ -121,7 +121,7 @@
             </li>
             {elseif $Permission eq 4}
             <li style="display: inline-block;"><a id="addReport" name="addReport" href="{$addReport}">
-                    <h3>新增基本資料</h3>
+                    <!-- <h3>新增基本資料</h3> -->
                 </a></li>
 
             <li style="display: inline-block;"><a id="ImportReport" name="ImportReport" href="{$ImportReport}">
@@ -138,7 +138,7 @@
             </li>
             {elseif $Permission eq 2 or $Permission eq 5}
             <li style="display: inline-block;"><a id="addReport" name="addReport" href="{$addReport}">
-                    <h3>新增基本資料</h3>
+                    <!-- <h3>新增基本資料</h3> -->
                 </a></li>
 
             <li style="display: inline-block;"><a id="ImportReport" name="ImportReport" href="{$ImportReport}">

@@ -10,6 +10,7 @@ xdebug_break();
 session_start();
 require __DIR__ . "/vendor/autoload.php";
 require_once __DIR__ . "/class/Report.php";
+require_once __DIR__ . "/class/Log.php";
 if (empty($_SESSION["AUTH"]) || $_SESSION["AUTH"] != TRUE) {
     session_unset();
     header("Location: index.php");
@@ -52,6 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && strpos($_SERVER['CONTENT_TYPE'], 'a
     header('Content-Type: application/json');
 
     try {
+        $log = new Log();
         // 获取原始 POST 数据
         $data = file_get_contents('php://input');
 
@@ -77,6 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && strpos($_SERVER['CONTENT_TYPE'], 'a
 
         if ($startReportId > $endReportId) {
             throw new Exception('Start report ID must be less than or equal to end report ID');
+            // $log->SaveLog("ERROR", $DisplayName, "JSON", date("Y-m-d H:i:s"), "Start report ID must be less than or equal to end report ID");
         }
 
         $Report = new Report();

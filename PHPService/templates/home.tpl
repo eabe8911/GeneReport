@@ -24,6 +24,8 @@
         <!-- {if $Permission != 4 && $Permission != 0 && $Permission != 2 && $Permission != 3} -->
         <div class="col-md-5" style="padding:10px">
             <form id="reportForm" action="../PHPService/home.php" method="POST">
+            <!-- 正式環境要改路徑 -->
+            <!-- <form id="reportForm" action="../home.php" method="POST"> --> 
                 <label for="start_report_id" style="text-align:right;font-size:14px;">請輸入報告編號區間：</label>
                 <input type="text" id="start_report_id" name="start_report_id" style="font-weight:bold;font-size:14px;">
 
@@ -149,7 +151,7 @@
                             var url = URL.createObjectURL(blob);
                             var a = document.createElement('a');
                             a.href = url;
-                            a.download = 'report_data.json';
+                            a.download = startReportId + '-' + endReportId + '.json';
                             document.body.appendChild(a);
                             a.click();
                             document.body.removeChild(a);

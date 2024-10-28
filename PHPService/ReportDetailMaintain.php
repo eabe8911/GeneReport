@@ -53,48 +53,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
         $hospitalList = $hospitalList->getHospitalList();
         //get hospitalList name
         $hospitalList = $hospitalList[$reportInfo['HospitalList']];
+        $ReportType = new Report();
+        $ReportType = $ReportType->getReportTypeList();
+        $ReportType = $ReportType[$reportInfo['ReportType']];
 
-                //轉換成JSON數據
-                // $jdata = [
-                //     'report_number' => $reportInfo['ReportID'],
-                //     'proband_name' => $reportInfo['proband_name'],
-                //     'sample_number' => $reportInfo['SampleNo'],
-                //     'medical_record_number' => $reportInfo['PatientID'],
-                //     'sampling_number' => $reportInfo['scID'],
-                //     'sample_type_1' => $reportInfo['sample_type_r1'],
-                //     'sample_type_2' => $reportInfo['sample_type_r2'],
-                //     'sample_type_3' => $reportInfo['sample_type_r3'],
-                //     'sample_type_4' => $reportInfo['sample_type_r4'],
-                //     'sample_type_5' => $reportInfo['sample_type_r5'],
-                //     'method' => $reportInfo['method'],
-                //     'sampling_date' => $reportInfo['scdate'],
-                //     'collection_date' => $reportInfo['rcdate'],
-                //     'referral_physician' => $reportInfo['HospitalList_Dr'],
-                //     'referral_agency' => $hospitalList,
-                //     'contact_name' => $reportInfo['CustomerName'],
-                //     'contact_phone_number' => $reportInfo['CustomerPhone'],
-                //     'contact_mail' => $reportInfo['CustomerEmail']
-                // ];
-
-                //轉換成JSON數據
-                // $json_data = json_encode($jdata, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
-
-                // 將 JSON 字符串寫入檔案
-                // $file_name = $ReportID . '.json';
-                // $file_path = "./uploads/".$ReportID . '/' . $file_name;
-                // $directory = dirname($file_path);
-
-                // if (!file_exists($directory)) {
-                //     mkdir($directory, 0777, true); // create the directory if it doesn't exist
-                // }
-
-                // 將 JSON 格式寫入檔案
-                // if (file_put_contents($file_path, $json_data) === false) {
-                //     echo 'Failed to save data in ' . $file_path;
-                // } else {
-                //     echo 'Data successfully saved in ' . $file_path;
-                // }
-            //   die();
         switch ($ReportMode) {
             case 'ADD':
                 $report->AddReport($_POST);
@@ -142,7 +104,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
 
                 $addlog = "報告編號：" . $ReportID . "已新增" . "\n"
                         . "報告名稱：" . $ReportName . "\n" 
-                        . "送檢單位：" . $$hospitalList . "\n" 
+                        . "送檢單位：" . $hospitalList . "\n" 
                         . "檢測實驗室：" . $ReportType . "\n" 
                         . "TAT最終日：" . $DueDate . "\n" 
                         . "聯絡人名稱：" . $CustomerName ."\n" 
@@ -214,7 +176,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
                     $ReportID = $_POST['ReportID'];
                     $ReportName = $_POST['ReportName'];
                     $HospitalList = $_POST['HospitalList'];
-                    $ReportType = $_POST['ReportType'];
+                    // $ReportType = $_POST['ReportType'];
                     $TemplateID = $_POST['TemplateID'];
                     $ReportTemplate = $_POST['ReportTemplate'];
                     $DueDate = $_POST['DueDate'];
@@ -239,7 +201,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
 
                     $updatelog = "報告編號：" . $ReportID . "\n" 
                     . "報告名稱：" . $ReportName . "\n" 
-                    . "送檢單位：" . $$hospitalList . "\n" 
+                    . "送檢單位：" . $hospitalList . "\n" 
                     . "檢測實驗室：" . $ReportType . "\n" 
                     . "TAT最終日：" . $DueDate . "\n" 
                     . "聯絡人名稱：" . $CustomerName . "\n" 
@@ -252,8 +214,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
                     . "採檢日期：" . $scdate . "\n"
                     . "收檢日期：" . $rcdate . "\n"
                     . "報告狀態：" . $ReportStatus;
+
+                    if (!empty($_FILES['ReportApply']['name'])) {
+                        $log->SaveLog("修改檢體資料(含上傳申請單)", $Username, "UpdateReportInfo", date("Y-m-d H:i:s"), $updatelog);
+
+                    } else{
+
                     $log->SaveLog("修改檢體資料", $Username, "UpdateReportInfo", date("Y-m-d H:i:s"), $updatelog);
 
+                    }
                 }
                 CheckPDF($_FILES, $HospitalList, $ReportInfo,$ReportName);
 

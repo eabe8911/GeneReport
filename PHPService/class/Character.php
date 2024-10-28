@@ -13,7 +13,7 @@ class Character
             if ($user->Login($Account, $Password)) {
                 $UserData = $user->getUserInfo();
                 $_SESSION['UserID'] = $UserData['id'];
-                $_SESSION['DisplayName'] = $UserData['username'];
+                $_SESSION['DisplayName'] = $UserData['cname'];
                 $_SESSION['Account'] = $UserData['username'];
                 ;
                 $_SESSION['AUTH'] = true;
