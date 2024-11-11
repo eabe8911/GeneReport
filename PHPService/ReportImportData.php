@@ -53,7 +53,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ReportImportData") {
             }
             $report = new Report();
             $iterationCount = count($datas);
-            // $iterationCount = $iterationCount1 - 1;
+            //get all datas ReportID
+            $ReportID[] = array_column($datas, 'ReportID');
+            //show all datas ReportID
+            print_r($ReportID);
+            // print_r($ReportID)寫入Log
+            // $log->SaveLog("ReportID", "ReportImportData", date("Y-m-d H:i:s"), json_encode($ReportID));
 
             //if no data in excel
             if ($iterationCount == 0) {
@@ -71,11 +76,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ReportImportData") {
                         $report->AddReport1($data);
                     }
 
+
             }
             $Message = "資料匯入成功!";
             echo "<script>alert('資料匯入成功'); window.location.href = 'home.php';</script>";
 
-            $log->SaveLog("批次上傳資料", $DisplayName, "ReportImportData", date("Y-m-d H:i:s"), "批次匯入資料共 " . $iterationCount . " 筆");
+            $log->SaveLog("批次上傳資料", $DisplayName, "ReportImportData", date("Y-m-d H:i:s"), "批次匯入資料共 " . $iterationCount . " 筆" . "\n" . json_encode($ReportID));
         } else {
             $ErrorMessage = "上傳檔案失敗!";
             $log->SaveLog("上傳檔案失敗", $DisplayName, "ReportImportData", date("Y-m-d H:i:s"), $ErrorMessage);

@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-10-28 11:32:50
+/* Smarty version 4.3.4, created on 2024-06-05 10:19:13
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\changePassword.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_671f05e20882f3_12714460',
+  'unifunc' => 'content_665fcb219f8d15_40344967',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -23,7 +23,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:indexheader.tpl' => 1,
   ),
 ),false)) {
-function content_671f05e20882f3_12714460 (Smarty_Internal_Template $_smarty_tpl) {
+function content_665fcb219f8d15_40344967 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <title>麗寶基因報告系統</title>

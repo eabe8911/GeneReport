@@ -104,16 +104,16 @@
         <tr style="text-align: center;">
         </tr>
         <tr style="text-align: center;">
-            <th style="width:40px; text-align: center; font-size: 20px;">ID</th>
-            <th style="width:30px; text-align: center; font-size: 20px;">人員</th>
-            <th style="width:100px; text-align: center; font-size: 20px;">異動日期</th>
-            <th style="width:80px; text-align: center; font-size: 20px;">操作</th>
+            <th style="text-align: center; font-size: 20px;" hidden >ID</th>
+            <th style="text-align: center; font-size: 20px;">人員</th>
+            <th style="text-align: center; font-size: 20px;">異動日期</th>
+            <th style="text-align: center; font-size: 20px;">操作</th>
             <!-- <th style="width:120px; text-align: center; font-size: 20px;">指令</th> -->
-            <th style="width:220px; text-align: center; font-size: 20px;">內容</th>
+            <th style="text-align: center; font-size: 20px;">內容</th>
         </tr>
         {foreach $logdata as $row}
         <tr>
-            <td style="text-align: center; font-size: 18px;">{$row['ID']|escape}</td>
+            <td style="text-align: center; font-size: 18px;" hidden>{$row['ID']|escape}</td>
             <td style="text-align: center; font-size: 18px;">{$row['user']|escape}</td>
             <td style="text-align: center; font-size: 18px;">{$row['transaction']|escape}</td>
             <td style="text-align: center; font-size: 18px;">{$row['status']|escape}</td>

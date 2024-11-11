@@ -216,7 +216,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
                     . "報告狀態：" . $ReportStatus;
 
                     if (!empty($_FILES['ReportApply']['name'])) {
-                        $log->SaveLog("修改檢體資料(含上傳申請單)", $Username, "UpdateReportInfo", date("Y-m-d H:i:s"), $updatelog);
+                        $log->SaveLog("修改檢體資料&上傳申請單", $Username, "UpdateReportInfo", date("Y-m-d H:i:s"), $updatelog);
 
                     } else{
 

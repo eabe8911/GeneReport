@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-10-15 15:03:25
+/* Smarty version 4.3.4, created on 2024-10-28 17:01:21
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\ReportDetailApprove.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_670e13bdd155b7_42377637',
+  'unifunc' => 'content_671f52e1c8db50_56722351',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '308a736576e5fbbd9eeff582d35b7714e5522ed8' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\ReportDetailApprove.tpl',
-      1 => 1728975802,
+      1 => 1728983125,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_670e13bdd155b7_42377637 (Smarty_Internal_Template $_smarty_tpl) {
+function content_671f52e1c8db50_56722351 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\vendor\\smarty\\smarty\\libs\\plugins\\function.html_options.php','function'=>'smarty_function_html_options',),));
 ?>
 <!--POP UP MODAL TO VIEW MEMBER DETAILS AND RESULTS FOR Member Information-->
@@ -171,13 +171,24 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield7']->value;?>
                                             <option value="34" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 34) {?>selected<?php }?>>高雄醫學大學附設醫院
                                             </option>
                                             <option value="35" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 35) {?>selected<?php }?>>連江醫院</option>
-                                            <option value="36" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 36) {?>selected<?php }?>>一般客戶or泓采代採
-                                            </option>
+                                            <option value="36" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 36) {?>selected<?php }?>>一般客戶</option>
                                             <option value="37" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 37) {?>selected<?php }?>>上明眼科</option>
-                                            <option value="38" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 38) {?>selected<?php }?>>台灣醫事檢驗學會
-                                            </option>
+                                            <option value="38" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 38) {?>selected<?php }?>>泓采診所</option>
                                             <option value="39" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 39) {?>selected<?php }?>>衛福部桃園醫院
                                             </option>
+                                            <option value="40" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 40) {?>selected<?php }?>>台灣病理學會_PT
+                                            </option>
+                                            <option value="41" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 41) {?>selected<?php }?>>台灣醫事檢驗學會-PT
+                                            </option>
+                                            <option value="42" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 42) {?>selected<?php }?>>GenQA-PT
+                                            </option>
+                                            <option value="43" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 43) {?>selected<?php }?>>API_PT</option>
+                                            <option value="44" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 44) {?>selected<?php }?>>EMQN_PT
+                                            </option>
+                                            <option value="45" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 45) {?>selected<?php }?>>台美_PT</option>
+                                            <option value="46" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 46) {?>selected<?php }?>>RD_評鑑實作
+                                            </option>
+                                            <option value="47" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 47) {?>selected<?php }?>>室間比對</option>
                                         </select>
 
 
@@ -527,6 +538,8 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield7']->value;?>
                                             <option value="陳奕勳" <?php if ($_smarty_tpl->tpl_vars['Receiving2']->value == "陳奕勳") {?>selected<?php }?>>陳奕勳</option>
                                             <option value="張本樺" <?php if ($_smarty_tpl->tpl_vars['Receiving2']->value == "張本樺") {?>selected<?php }?>>張本樺</option>
                                             <option value="王許安" <?php if ($_smarty_tpl->tpl_vars['Receiving2']->value == "王許安") {?>selected<?php }?>>王許安</option>
+                                            <option value="林庭萱" <?php if ($_smarty_tpl->tpl_vars['Receiving2']->value == "林庭萱") {?>selected<?php }?>>林庭萱</option>
+                                            <option value="沈英涵" <?php if ($_smarty_tpl->tpl_vars['Receiving2']->value == "沈英涵") {?>selected<?php }?>>沈英涵</option>
                                         </select>
                                     </div>
                                 </div>

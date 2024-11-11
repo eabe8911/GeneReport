@@ -145,7 +145,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewApproveDetail") {
 
     } catch (Exception $e) {
         $ErrorMessage = $e->getMessage();
-        $log->SaveLog("ERROR", $ApproveMode, date("Y-m-d H:i:s"), json_encode($_POST));
+        // $log->SaveLog("ERROR", $ApproveMode, date("Y-m-d H:i:s"), json_encode($_POST));
+        $log->SaveLog("ERROR", $Username, date("Y-m-d H:i:s"), json_encode($_POST));
+
     }
 } else {
     //第一次進入
