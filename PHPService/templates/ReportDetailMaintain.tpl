@@ -256,6 +256,22 @@
                                             class="form-control" required value="{$Submitdate}">
                                     </div>
                                 </div>
+                                <!---- 疾病及症狀 ---->
+                                <div class="form-group">
+                                    <label for="Diseases" class="col-md-3 control-label">疾病及症狀:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="Diseases" name="Diseases" class="form-control" 
+                                            value="{$Diseases}">
+                                    </div>
+                                </div>
+                                <!---- 腫瘤百分比 ---->
+                                <div class="form-group">
+                                    <label for="Tumor_percentage" class="col-md-3 control-label">腫瘤百分比:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="Tumor_percentage" name="Tumor_percentage" class="form-control"
+                                             value="{$Tumor_percentage}">
+                                    </div>
+                                </div>
 
                             </div>
                             <!---- 第二排 ---->
@@ -589,6 +605,8 @@
                                             <option value="陳奕勳" {if $Receiving=="陳奕勳" }selected{/if}>陳奕勳</option>
                                             <option value="張本樺" {if $Receiving=="張本樺" }selected{/if}>張本樺</option>
                                             <option value="沈英涵" {if $Receiving=="沈英涵" }selected{/if}>沈英涵</option>
+                                            <option value="黃馨慧" {if $Receiving=="黃馨慧" }selected{/if}>黃馨慧</option>
+                                            <option value="雷善婷" {if $Receiving=="雷善婷" }selected{/if}>雷善婷</option>
                                         </select>
                                     </div>
                                 </div>
@@ -599,12 +617,14 @@
                                     <div class="col-md-8">
                                         <select id="Receiving2" name="Receiving2" class="form-control" required>
                                             <option value="">請選擇覆核人員</option>
+                                            <option value="王許安" {if $Receiving2=="王許安" }selected{/if}>王許安</option>
+                                            <option value="林庭萱" {if $Receiving2=="林庭萱" }selected{/if}>林庭萱</option>
                                             <option value="黃志凱" {if $Receiving2=="黃志凱" }selected{/if}>黃志凱</option>
                                             <option value="陳奕勳" {if $Receiving2=="陳奕勳" }selected{/if}>陳奕勳</option>
                                             <option value="張本樺" {if $Receiving2=="張本樺" }selected{/if}>張本樺</option>
-                                            <option value="王許安" {if $Receiving2=="王許安" }selected{/if}>王許安</option>
-                                            <option value="林庭萱" {if $Receiving2=="林庭萱" }selected{/if}>林庭萱</option>
                                             <option value="沈英涵" {if $Receiving2=="沈英涵" }selected{/if}>沈英涵</option>
+                                            <option value="黃馨慧" {if $Receiving2=="黃馨慧" }selected{/if}>黃馨慧</option>
+                                            <option value="雷善婷" {if $Receiving2=="雷善婷" }selected{/if}>雷善婷</option>
                                         </select>
                                     </div>
                                 </div>

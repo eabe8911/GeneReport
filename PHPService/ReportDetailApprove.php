@@ -276,6 +276,8 @@ $smarty->assign("SampleUnit_5", $report->ReportInfo('SampleUnit_5'), true);
 $smarty->assign("Receiving", $report->ReportInfo('Receiving'), true);
 $smarty->assign("Receiving2", $report->ReportInfo('Receiving2'), true);
 $smarty->assign("proband_name", $report->ReportInfo('proband_name'), true);
+$smarty->assign("Diseases", $report->ReportInfo('Diseases'), true);
+$smarty->assign("Tumor_percentage", $report->ReportInfo('Tumor_percentage'), true);
 
 // Display PDF File
 if ($ApplyFile == '') {

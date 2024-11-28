@@ -87,6 +87,8 @@ class Report implements ReportInterface
                 'SampleUnit_5' => $data['SampleUnit_5'] ?? '', //樣本單位5
                 'proband_name' => $data['proband_name'] ?? '', //被檢者姓名
                 'method' => $data['method'] ?? '', //檢測方法
+                'Diseases' => $data['Diseases'] ?? '', //疾病及症狀
+                'Tumor_percentage' => $data['Tumor_percentage'] ?? '', //腫瘤百分比
 
             ];
         } catch (PDOException | Exception $th) {
@@ -512,12 +514,12 @@ class Report implements ReportInterface
                 ReportID, PatientID, SampleNo, scID, HospitalList, HospitalList_Dr, ReportTemplate, ReportTemplateID, method, ReportType, ReportName,
                 TemplateID, scdate, rcdate, Submitdate, proband_name, SampleType_1, SampleQuantity_1, SampleUnit_1, SampleType_2, SampleQuantity_2, SampleUnit_2
                 , SampleType_3, SampleQuantity_3, SampleUnit_3, SampleType_4, SampleQuantity_4, SampleUnit_4, SampleType_5, SampleQuantity_5, SampleUnit_5, Receiving, Receiving2, DueDate, CustomerName, CustomerEmail, CustomerPhone, ccemail,
-                ReportStatus, FileName, apply_pdf, CreatedAt, sample_type_r1, sample_type_r2, sample_type_r3, sample_type_r4, sample_type_r5
+                ReportStatus, FileName, apply_pdf, CreatedAt, sample_type_r1, sample_type_r2, sample_type_r3, sample_type_r4, sample_type_r5, Diseases, Tumor_percentage
                 ) VALUES (
                 :ReportID, :PatientID, :SampleNo, :scID, :HospitalList, :HospitalList_Dr, :ReportTemplate, :ReportTemplateID, :method, :ReportType, :ReportName,
                 :TemplateID, :scdate, :rcdate, :Submitdate, :proband_name, :SampleType_1, :SampleQuantity_1, :SampleUnit_1, :SampleType_2, :SampleQuantity_2, :SampleUnit_2
                 , :SampleType_3, :SampleQuantity_3, :SampleUnit_3, :SampleType_4, :SampleQuantity_4, :SampleUnit_4, :SampleType_5, :SampleQuantity_5, :SampleUnit_5, :Receiving, :Receiving2,  :DueDate,:CustomerName, :CustomerEmail, :CustomerPhone, :ccemail,
-                :ReportStatus, :FileName, :apply_pdf, :CreatedAt, :sample_type_r1, :sample_type_r2, :sample_type_r3, :sample_type_r4, :sample_type_r5 
+                :ReportStatus, :FileName, :apply_pdf, :CreatedAt, :sample_type_r1, :sample_type_r2, :sample_type_r3, :sample_type_r4, :sample_type_r5, :Diseases, :Tumor_percentage
                )";
                 $stmt = $this->_conn->prepare($sql);
                 $stmt->bindParam(':ReportID', $ReportInfo['ReportID']);
@@ -595,6 +597,8 @@ class Report implements ReportInterface
                 $stmt->bindParam(':sample_type_r3', $ReportInfo['sample_type_r3']);
                 $stmt->bindParam(':sample_type_r4', $ReportInfo['sample_type_r4']);
                 $stmt->bindParam(':sample_type_r5', $ReportInfo['sample_type_r5']);
+                $stmt->bindParam(':Diseases', $ReportInfo['Diseases']);
+                $stmt->bindParam(':Tumor_percentage', $ReportInfo['Tumor_percentage']);
 
                 $stmt->execute();
             }
@@ -637,13 +641,13 @@ class Report implements ReportInterface
                 ReportType, scdate, rcdate, Submitdate, Receiving, Receiving2, TemplateID, 
                 ReportID, ReportName, CustomerName, CustomerEmail, CustomerPhone, ReportStatus, HospitalList_ERP,
                 CreatedAt, DueDate, SampleType_1, SampleQuantity_1, SampleUnit_1, SampleType_2, SampleQuantity_2, SampleUnit_2
-                , SampleType_3, SampleQuantity_3, SampleUnit_3, SampleType_4, SampleQuantity_4, SampleUnit_4, SampleType_5, SampleQuantity_5, SampleUnit_5, proband_name, method, sample_type_r1, sample_type_r2, sample_type_r3, sample_type_r4, sample_type_r5
+                , SampleType_3, SampleQuantity_3, SampleUnit_3, SampleType_4, SampleQuantity_4, SampleUnit_4, SampleType_5, SampleQuantity_5, SampleUnit_5, proband_name, method, sample_type_r1, sample_type_r2, sample_type_r3, sample_type_r4, sample_type_r5, Diseases, Tumor_percentage
                 ) VALUES (
                 :SampleID, :PatientID, :SampleNo, :scID, :HospitalList, :HospitalList_Dr, :ReportTemplate, :ReportTemplateID,
                 :ReportType, :scdate, :rcdate, :Submitdate, :Receiving, :Receiving2, :TemplateID, 
                 :ReportID, :ReportName, :CustomerName, :CustomerEmail, :CustomerPhone, :ReportStatus, :HospitalList_ERP,
                 :CreatedAt, :DueDate, :SampleType_1, :SampleQuantity_1, :SampleUnit_1, :SampleType_2, :SampleQuantity_2, :SampleUnit_2
-                , :SampleType_3, :SampleQuantity_3, :SampleUnit_3, :SampleType_4, :SampleQuantity_4, :SampleUnit_4, :SampleType_5, :SampleQuantity_5, :SampleUnit_5, :proband_name, :method, :sample_type_r1, :sample_type_r2, :sample_type_r3, :sample_type_r4, :sample_type_r5
+                , :SampleType_3, :SampleQuantity_3, :SampleUnit_3, :SampleType_4, :SampleQuantity_4, :SampleUnit_4, :SampleType_5, :SampleQuantity_5, :SampleUnit_5, :proband_name, :method, :sample_type_r1, :sample_type_r2, :sample_type_r3, :sample_type_r4, :sample_type_r5, :Diseases, :Tumor_percentage
                 )";
                 $stmt = $this->_conn->prepare($sql);
 
@@ -756,6 +760,8 @@ class Report implements ReportInterface
                 $stmt->bindParam(':sample_type_r3', $ReportInfo['sample_type_r3']);
                 $stmt->bindParam(':sample_type_r4', $ReportInfo['sample_type_r4']);
                 $stmt->bindParam(':sample_type_r5', $ReportInfo['sample_type_r5']);
+                $stmt->bindParam(':Diseases', $ReportInfo['Diseases']);
+                $stmt->bindParam(':Tumor_percentage', $ReportInfo['Tumor_percentage']);
 
 
                 $stmt->execute();
@@ -845,6 +851,7 @@ class Report implements ReportInterface
                 $RejectReason = '';
 
                 $FileName = '[檢測報告]_'. $hospitalList . "_(" . $ReportInfo['ReportID'] . ")_".$ReportInfo['ReportName'].".pdf";
+                $ReportApplyName = '[服務申請單] '. $hospitalList . "_(" . $ReportInfo['ReportID'] . ").pdf";
 
             }
 
@@ -1045,7 +1052,7 @@ class Report implements ReportInterface
 
 
 
-
+            $ReportApplyName = '[服務申請單] '. $hospitalList . "_(" . $ReportInfo['ReportID'] . ").pdf";
             $now = date("Y-m-d H:i:s");
             $sql = "UPDATE Report SET
                 ReportName=:ReportName,
@@ -1093,7 +1100,9 @@ class Report implements ReportInterface
                 sample_type_r2 = :sample_type_r2,
                 sample_type_r3 = :sample_type_r3,
                 sample_type_r4 = :sample_type_r4,
-                sample_type_r5 = :sample_type_r5
+                sample_type_r5 = :sample_type_r5,
+                Diseases = :Diseases,
+                Tumor_percentage = :Tumor_percentage
                 WHERE ID=:ID";
 
                 
@@ -1101,6 +1110,7 @@ class Report implements ReportInterface
             $sql1 = "UPDATE Report SET
                 ReportName=:ReportName,
                 FileName=:FileName,
+                apply_pdf=:apply_pdf,
                 ReportType=:ReportType,
                 TemplateID=:TemplateID,
                 ccemail=:ccemail,
@@ -1143,14 +1153,15 @@ class Report implements ReportInterface
                 sample_type_r2 = :sample_type_r2,
                 sample_type_r3 = :sample_type_r3,
                 sample_type_r4 = :sample_type_r4,
-                sample_type_r5 = :sample_type_r5
+                sample_type_r5 = :sample_type_r5,
+                Diseases = :Diseases,
+                Tumor_percentage = :Tumor_percentage
                 WHERE ID=:ID";
 
             if (!empty($_FILES['ReportApply']['name']) ) {
                 $stmt = $this->_conn->prepare($sql);
                 $stmt->bindParam(':ReportName', $ReportInfo['ReportName']);    
                 $stmt->bindValue(':FileName', $FileName);
-                $ReportApplyName = '[服務申請單] '. $hospitalList . "_(" . $ReportInfo['ReportID'] . ").pdf";
                 $stmt->bindValue(':apply_pdf', $ReportApplyName);
                 $stmt->bindParam(':ReportType', $ReportInfo['ReportType']);
                 $stmt->bindParam(':TemplateID', $ReportInfo['TemplateID']);
@@ -1196,6 +1207,8 @@ class Report implements ReportInterface
                 $stmt->bindParam(':sample_type_r3', $ReportInfo['sample_type_r3']);
                 $stmt->bindParam(':sample_type_r4', $ReportInfo['sample_type_r4']);
                 $stmt->bindParam(':sample_type_r5', $ReportInfo['sample_type_r5']);
+                $stmt->bindParam(':Diseases', $ReportInfo['Diseases']);
+                $stmt->bindParam(':Tumor_percentage', $ReportInfo['Tumor_percentage']);
 
 
                 // $stmt->execute();
@@ -1204,6 +1217,7 @@ class Report implements ReportInterface
                 $stmt = $this->_conn->prepare($sql1);
                 $stmt->bindParam(':ReportName', $ReportInfo['ReportName']);    
                 $stmt->bindValue(':FileName', $FileName);
+                $stmt->bindValue(':apply_pdf', $ReportApplyName);
                 $stmt->bindParam(':ReportType', $ReportInfo['ReportType']);
                 $stmt->bindParam(':TemplateID', $ReportInfo['TemplateID']);
                 $stmt->bindParam(':ccemail', $ReportInfo['ccemail']);
@@ -1248,17 +1262,10 @@ class Report implements ReportInterface
                 $stmt->bindParam(':sample_type_r3', $ReportInfo['sample_type_r3']);
                 $stmt->bindParam(':sample_type_r4', $ReportInfo['sample_type_r4']);
                 $stmt->bindParam(':sample_type_r5', $ReportInfo['sample_type_r5']);
+                $stmt->bindParam(':Diseases', $ReportInfo['Diseases']);
+                $stmt->bindParam(':Tumor_percentage', $ReportInfo['Tumor_percentage']);
 
             }
-
-            // if(!empty($_FILES['ReportApply']['name'])){
-            //     $ReportApplyName = $_FILES['ReportApply']['name'] ;
-            //     $stmt->bindValue(':apply_pdf', $_FILES['ReportApply']['name']);
-
-            // }else{
-            //     $stmt = $this->_conn->prepare($sql1);
-            //     $ReportApplyName = null;
-            // }
 
                 $stmt->execute();
 
@@ -1312,11 +1319,7 @@ class Report implements ReportInterface
             $stmt = $this->_conn->prepare($sql);
             $stmt->bindParam(':ID', $ReportInfo['ID']);
             $stmt->execute();
-            // if (!empty($ReportInfo['FileName'])) {
-            //     if (file_exists("./uploads/" . $ReportInfo['FileName'])) {
-            //         unlink("./uploads/" . $ReportInfo['FileName']);
-            //     }
-            // }
+
             if (!empty($ReportInfo['FileName'])) {
                 if (file_exists("__DIR__ . '/../uploads/" . $ReportInfo['FileName'])) {
                     unlink("__DIR__ . '/../uploads/" . $ReportInfo['FileName']);
@@ -1520,12 +1523,6 @@ class Report implements ReportInterface
             $stmt->bindParam(':ID', $ID);
             $stmt->execute();
 
-            // Delete the PDF file from the server
-            // if (!empty($ReportInfo['PDFFilename'])) {
-            //     if (file_exists(__DIR__ . '/../uploads/' . $ReportInfo['PDFFilename'])) {
-            //         unlink(__DIR__ . '/../uploads/' . $ReportInfo['PDFFilename']);
-            //     }
-            // }
         } catch (PDOException | Exception $th) {
             throw new Exception($th->getMessage(), $th->getCode());
         }
