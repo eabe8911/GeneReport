@@ -232,6 +232,8 @@
       $('#SampleQuantity_3').prop('disabled', state);
       $('#SampleQuantity_4').prop('disabled', state);
       $('#SampleQuantity_5').prop('disabled', state);
+      $('#Diseases').prop('disabled', state);
+      $('#Tumor_percentage').prop('disabled', state);
       $('#Receiving').prop('disabled', state);
       $('#Receiving2').prop('disabled', state);
       $('#DisplayUploadButton').prop('hidden', state);
