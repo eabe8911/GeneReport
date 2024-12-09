@@ -68,15 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && strpos($_SERVER['CONTENT_TYPE'], 'a
         $startReportId = $data['start_report_id'];
         $endReportId = $data['end_report_id'];
 
-        // if (!is_numeric($startReportId) || !is_numeric($endReportId)) {
-        //     throw new Exception('Report IDs must be numeric');
-        // }
-
         // 查詢資料庫
-
-
-
-
         if ($startReportId > $endReportId) {
             throw new Exception('Start report ID must be less than or equal to end report ID');
             // $log->SaveLog("ERROR", $DisplayName, "JSON", date("Y-m-d H:i:s"), "Start report ID must be less than or equal to end report ID");
@@ -92,7 +84,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && strpos($_SERVER['CONTENT_TYPE'], 'a
             throw new Exception('No report found');
         }
         echo json_encode($response);
-        // echo json_encode($response);
 
 
     } catch (Exception $e) {
@@ -107,5 +98,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && strpos($_SERVER['CONTENT_TYPE'], 'a
 
 /**PAGES***/
 $smarty->display('home.tpl');
+
+
+
 
 ?>
