@@ -39,6 +39,7 @@ class Report implements ReportInterface
                 'SampleNo' => $data['SampleNo'] ?? '', //樣本編號
                 'scID' => $data['scID'] ?? '', //採檢單號
                 'HospitalList' => $data['HospitalList'] ?? '', //醫院名稱
+                'Department' => $data['Department'] ?? '', //科別
                 'HospitalList_Dr' => $data['HospitalList_Dr'] ?? '', //送檢醫師
                 'ReportTemplate' => $data['ReportTemplate'] ?? '', //報告範本
                 'ReportTemplateID' => $data['ReportTemplateID'] ?? '', //報告範本編號
@@ -511,12 +512,12 @@ class Report implements ReportInterface
 
                 $now = date("Y-m-d H:i:s");
                 $sql = "INSERT INTO Report (
-                ReportID, PatientID, SampleNo, scID, HospitalList, HospitalList_Dr, ReportTemplate, ReportTemplateID, method, ReportType, ReportName,
+                ReportID, PatientID, SampleNo, scID, HospitalList, Department, HospitalList_Dr, ReportTemplate, ReportTemplateID, method, ReportType, ReportName,
                 TemplateID, scdate, rcdate, Submitdate, proband_name, SampleType_1, SampleQuantity_1, SampleUnit_1, SampleType_2, SampleQuantity_2, SampleUnit_2
                 , SampleType_3, SampleQuantity_3, SampleUnit_3, SampleType_4, SampleQuantity_4, SampleUnit_4, SampleType_5, SampleQuantity_5, SampleUnit_5, Receiving, Receiving2, DueDate, CustomerName, CustomerEmail, CustomerPhone, ccemail,
                 ReportStatus, FileName, apply_pdf, CreatedAt, sample_type_r1, sample_type_r2, sample_type_r3, sample_type_r4, sample_type_r5, Diseases, Tumor_percentage
                 ) VALUES (
-                :ReportID, :PatientID, :SampleNo, :scID, :HospitalList, :HospitalList_Dr, :ReportTemplate, :ReportTemplateID, :method, :ReportType, :ReportName,
+                :ReportID, :PatientID, :SampleNo, :scID, :HospitalList, :Department, :HospitalList_Dr, :ReportTemplate, :ReportTemplateID, :method, :ReportType, :ReportName,
                 :TemplateID, :scdate, :rcdate, :Submitdate, :proband_name, :SampleType_1, :SampleQuantity_1, :SampleUnit_1, :SampleType_2, :SampleQuantity_2, :SampleUnit_2
                 , :SampleType_3, :SampleQuantity_3, :SampleUnit_3, :SampleType_4, :SampleQuantity_4, :SampleUnit_4, :SampleType_5, :SampleQuantity_5, :SampleUnit_5, :Receiving, :Receiving2,  :DueDate,:CustomerName, :CustomerEmail, :CustomerPhone, :ccemail,
                 :ReportStatus, :FileName, :apply_pdf, :CreatedAt, :sample_type_r1, :sample_type_r2, :sample_type_r3, :sample_type_r4, :sample_type_r5, :Diseases, :Tumor_percentage
@@ -528,6 +529,7 @@ class Report implements ReportInterface
                 $stmt->bindParam(':scID', $ReportInfo['scID']);
                 $ReportInfo['HospitalList'] = substr($ReportInfo['HospitalList'], 0, 1);
                 $stmt->bindParam(':HospitalList', $ReportInfo['HospitalList']);
+                $stmt->bindParam(':Department', $ReportInfo['Department']);
                 $stmt->bindParam(':ReportTemplate', $ReportInfo['ReportTemplate']);
                 $stmt->bindParam(':ReportTemplateID', $ReportInfo['ReportTemplateID']);
                 $stmt->bindParam(':method', $ReportInfo['method']);
@@ -637,17 +639,19 @@ class Report implements ReportInterface
 
                 $now = date("Y-m-d H:i:s");
                 $sql = "INSERT INTO Report (
-                SampleID, PatientID, SampleNo, scID, HospitalList, HospitalList_Dr, ReportTemplate, ReportTemplateID,
+                SampleID, PatientID, SampleNo, scID, HospitalList, Department, HospitalList_Dr, ReportTemplate, ReportTemplateID,
                 ReportType, scdate, rcdate, Submitdate, Receiving, Receiving2, TemplateID, 
                 ReportID, ReportName, CustomerName, CustomerEmail, CustomerPhone, ReportStatus, HospitalList_ERP,
                 CreatedAt, DueDate, SampleType_1, SampleQuantity_1, SampleUnit_1, SampleType_2, SampleQuantity_2, SampleUnit_2
-                , SampleType_3, SampleQuantity_3, SampleUnit_3, SampleType_4, SampleQuantity_4, SampleUnit_4, SampleType_5, SampleQuantity_5, SampleUnit_5, proband_name, method, sample_type_r1, sample_type_r2, sample_type_r3, sample_type_r4, sample_type_r5, Diseases, Tumor_percentage
+                , SampleType_3, SampleQuantity_3, SampleUnit_3, SampleType_4, SampleQuantity_4, SampleUnit_4, SampleType_5, SampleQuantity_5, SampleUnit_5, proband_name, method, 
+                sample_type_r1, sample_type_r2, sample_type_r3, sample_type_r4, sample_type_r5, Diseases, Tumor_percentage
                 ) VALUES (
-                :SampleID, :PatientID, :SampleNo, :scID, :HospitalList, :HospitalList_Dr, :ReportTemplate, :ReportTemplateID,
+                :SampleID, :PatientID, :SampleNo, :scID, :HospitalList, :Department, :HospitalList_Dr, :ReportTemplate, :ReportTemplateID,
                 :ReportType, :scdate, :rcdate, :Submitdate, :Receiving, :Receiving2, :TemplateID, 
                 :ReportID, :ReportName, :CustomerName, :CustomerEmail, :CustomerPhone, :ReportStatus, :HospitalList_ERP,
                 :CreatedAt, :DueDate, :SampleType_1, :SampleQuantity_1, :SampleUnit_1, :SampleType_2, :SampleQuantity_2, :SampleUnit_2
-                , :SampleType_3, :SampleQuantity_3, :SampleUnit_3, :SampleType_4, :SampleQuantity_4, :SampleUnit_4, :SampleType_5, :SampleQuantity_5, :SampleUnit_5, :proband_name, :method, :sample_type_r1, :sample_type_r2, :sample_type_r3, :sample_type_r4, :sample_type_r5, :Diseases, :Tumor_percentage
+                , :SampleType_3, :SampleQuantity_3, :SampleUnit_3, :SampleType_4, :SampleQuantity_4, :SampleUnit_4, :SampleType_5, :SampleQuantity_5, :SampleUnit_5, :proband_name, :method, 
+                :sample_type_r1, :sample_type_r2, :sample_type_r3, :sample_type_r4, :sample_type_r5, :Diseases, :Tumor_percentage
                 )";
                 $stmt = $this->_conn->prepare($sql);
 
@@ -718,6 +722,7 @@ class Report implements ReportInterface
                 $stmt->bindParam(':SampleNo', $ReportInfo['SampleNo']);
                 $stmt->bindParam(':scID', $ReportInfo['scID']);
                 $stmt->bindParam(':HospitalList', $ReportInfo['HospitalList']);
+                $stmt->bindParam(':Department', $ReportInfo['Department']);
                 $stmt->bindParam(':HospitalList_Dr', $ReportInfo['HospitalList_Dr']);
                 $stmt->bindParam(':ReportTemplate', $ReportInfo['ReportTemplate']);
                 $stmt->bindParam(':ReportTemplateID', $ReportInfo['ReportTemplateID']);
@@ -1062,6 +1067,7 @@ class Report implements ReportInterface
                 TemplateID=:TemplateID,
                 ccemail=:ccemail,
                 HospitalList=:HospitalList,
+                Department=:Department,
                 HospitalList_Dr=:HospitalList_Dr,
                 method=:method,
                 Submitdate=:Submitdate,
@@ -1115,6 +1121,7 @@ class Report implements ReportInterface
                 TemplateID=:TemplateID,
                 ccemail=:ccemail,
                 HospitalList=:HospitalList,
+                Department=:Department,
                 HospitalList_Dr=:HospitalList_Dr,
                 method=:method,
                 Submitdate=:Submitdate,
@@ -1167,6 +1174,7 @@ class Report implements ReportInterface
                 $stmt->bindParam(':TemplateID', $ReportInfo['TemplateID']);
                 $stmt->bindParam(':ccemail', $ReportInfo['ccemail']);
                 $stmt->bindParam(':HospitalList', $ReportInfo['HospitalList']);
+                $stmt->bindParam(':Department', $ReportInfo['Department']);
                 $stmt->bindParam(':HospitalList_Dr', $ReportInfo['HospitalList_Dr']);
                 $stmt->bindParam(':method', $ReportInfo['method']);
                 $stmt->bindParam(':Submitdate', $ReportInfo['Submitdate']);
@@ -1222,6 +1230,7 @@ class Report implements ReportInterface
                 $stmt->bindParam(':TemplateID', $ReportInfo['TemplateID']);
                 $stmt->bindParam(':ccemail', $ReportInfo['ccemail']);
                 $stmt->bindParam(':HospitalList', $ReportInfo['HospitalList']);
+                $stmt->bindParam(':Department', $ReportInfo['Department']);
                 $stmt->bindParam(':HospitalList_Dr', $ReportInfo['HospitalList_Dr']);
                 $stmt->bindParam(':method', $ReportInfo['method']);
                 $stmt->bindParam(':Submitdate', $ReportInfo['Submitdate']);

@@ -100,16 +100,15 @@
         </div>
     </div>
     <br><br>
-    <table id="log_table" border='1' style="text-align: center;">
+    <!-- <table id="log_table" border='1' style="text-align: center;"> -->
+    <table id="log_table" border='1' style="text-align: center; table-layout: fixed; width: 100%;">
         <tr style="text-align: center;">
-        </tr>
-        <tr style="text-align: center;">
-            <th style="text-align: center; font-size: 20px;" hidden >ID</th>
-            <th style="text-align: center; font-size: 20px;">人員</th>
-            <th style="text-align: center; font-size: 20px;">異動日期</th>
-            <th style="text-align: center; font-size: 20px;">操作</th>
+            <th style="text-align: center; font-size: 20px; width: 5%;" hidden>ID</th>
+            <th style="text-align: center; font-size: 20px; width: 8%;">人員</th>
+            <th style="text-align: center; font-size: 20px; width: 12%;">異動日期</th>
+            <th style="text-align: center; font-size: 20px; width: 12%;">操作</th>
             <!-- <th style="width:120px; text-align: center; font-size: 20px;">指令</th> -->
-            <th style="text-align: center; font-size: 20px;">內容</th>
+            <th style="text-align: center; font-size: 20px; width: 55%;">內容</th>
         </tr>
         {foreach $logdata as $row}
         <tr>

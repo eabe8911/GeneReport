@@ -70,7 +70,8 @@
             shrinkToFit: true,
             colModel: [
                 { label: "id", name: "id", hidden: true },
-                { label: "編號", name: "ReportID", width: "3%", align: "center" },
+                // { label: "編號", name: "ReportID", width: "3%", align: "center" },
+                { label: "編號", name: "ReportID", width: "3%", align: "center", sorttype: "int", sortable: true },
                 { label: "客戶姓名", name: "CustomerName", width: '3%' },
                 { label: "名稱", name: "ReportName", width: '5%' },
                 { label: "檔案", name: "FileName", hidden: true },
@@ -94,13 +95,15 @@
                 },
             ],
 
-            rowNum: 1000,
+            rowNum: 50,
             rowTotal: 10000,
             loadonce: true,
             mtype: "GET",
             gridview: true,
             pager: "#jqGridPager",
             viewrecords: true,
+            sortname: 'ReportID',
+            sortorder: 'desc',
             ondblClickRow: function (id) {
                 var rowData = jQuery(this).getRowData(id);
                 // 将数据存储到 sessionStorage

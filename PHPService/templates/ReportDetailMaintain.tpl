@@ -142,6 +142,8 @@
                                             <option value="46" {if $HospitalListSelect==46}selected{/if}>RD_評鑑實作
                                             </option>
                                             <option value="47" {if $HospitalListSelect==47}selected{/if}>室間比對</option>
+                                            <option value="48" {if $HospitalListSelect==48}selected{/if}>嘉義基督教醫院神經內科</option>
+                                            <option value="49" {if $HospitalListSelect==49}selected{/if}>衛生福利部嘉義醫院</option>
 
 
                                         </select>
@@ -150,6 +152,15 @@
                                     </div>
 
                                 </div>
+                                <!---- 科別 ---->
+                                <div class="form-group">
+                                    <label for="Department" class="col-md-3 control-label">科別:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="Department" name="Department" class="form-control" required
+                                            value="{$Department}">
+                                    </div>
+                                </div>
+                                
                                 <!---- 送件人 ---->
                                 <div class="form-group ">
                                     <label for="HospitalList_Dr" class="col-md-3 control-label">送件人:</label>
@@ -346,6 +357,8 @@
                                                 <span class="input-group-addon" id="SampleUnit_1">{$SampleUnit_1}</span>
                                             </div>
                                         </div>
+
+
                                     </div>
                                 </fieldset>
 
@@ -942,7 +955,8 @@
                 "P115 Lihpao Multi-cancer Target Drug Panel_HS",
                 "P116 Lihpao CRC Target Drug Panel_HS",
                 "P117 Lihpao NSCLC Target Drug Panel_HS",
-                "P118 Lihpao Multi-cancer Target Drug Panel (Comprehensive Version)"
+                "P118 Lihpao Multi-cancer Target Drug Panel (Comprehensive Version)",
+                "P120 Next-generation Sequencing for Colon Cancer",
             ],
             "P2": [
                 "P201 BRCA1/2 of Somatic Genetic Testing",
@@ -971,6 +985,10 @@
                 "S206 NOTCH3 R544C Genotyping",
                 "S208 CYP2C19 *2/*3 Genotyping",
                 "S209 TGFBI (Hotspots) Genetic Testing",
+                "S210 Obesity and Metabolism Genetic Testing",
+                "S211 BDNF rs6265 Genotyping",
+                "S212 Alcohol Metabolism Genotyping",
+                "S213 APOE, NOTCH3 R544C, CYP2C19*2/*3, and BDNF Genotyping",
             ],
             "S3": [
                 "S301 Sanger Sequencing",

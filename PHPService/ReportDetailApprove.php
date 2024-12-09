@@ -1,4 +1,6 @@
 <?php
+
+ob_start();
 // Enable Xdebug
 if (extension_loaded('xdebug')) {
     ini_set('xdebug.remote_enable', 1);
@@ -142,6 +144,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewApproveDetail") {
                 break;
         }
         header("Location: home.php");
+        ob_end_flush();
 
     } catch (Exception $e) {
         $ErrorMessage = $e->getMessage();

@@ -119,8 +119,10 @@
       });
 
       $('#BtnReportViewExit').click(function() {
+        // $('#ReportMode').val('EXIT');
+        // window.location.replace('home.php');
         $('#ReportMode').val('EXIT');
-        window.location.replace('home.php');
+        window.history.back();
       });
 
       $('#BtnReportExit').click(function() {
@@ -204,6 +206,7 @@
       $('#ReportName').prop('disabled', state);
       $('#proband_name').prop('disabled', state);
       $('#HospitalList').prop('disabled', state);
+      $('#Department').prop('disabled', state);
       $('#HospitalList_Dr').prop('disabled', state);
       $('#method').prop('disabled', state);
       $('#proband_name').prop('readonly', state);

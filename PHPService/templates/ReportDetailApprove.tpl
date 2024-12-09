@@ -154,12 +154,24 @@
                                             <option value="46" {if $HospitalListSelect==46}selected{/if}>RD_評鑑實作
                                             </option>
                                             <option value="47" {if $HospitalListSelect==47}selected{/if}>室間比對</option>
+                                                <option value="48" {if $HospitalListSelect==48}selected{/if}>嘉義基督教醫院神經內科</option>
+                                                    <option value="49" {if $HospitalListSelect==49}selected{/if}>衛生福利部嘉義醫院</option>
+        
                                         </select>
 
 
                                     </div>
 
                                 </div>
+                                <!---- 科別 ---->
+                                <div class="form-group">
+                                    <label for="Department" class="col-md-3 control-label">科別:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="Department" name="Department" class="form-control" required
+                                            value="{$Department}">
+                                    </div>
+                                </div>
+                                
                                 <!---- 送件人 ---->
                                 <div class="form-group ">
                                     <label for="HospitalList_Dr" class="col-md-3 control-label">送件人:</label>

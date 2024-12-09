@@ -36,6 +36,7 @@ $Permission = $_SESSION['Permission'];
 $Role = $_SESSION['Role'];
 $FormName = filter_input(INPUT_POST, 'FormName');
 $ReportMode = $ReportID = $PDFFile = $ApplyFile = $LogoFile = $ID = $ReportStatus = $ReportTemplate = $proband_name = "";
+$Receiving = $Receiving2 = $Submitdate = $SampleType_1 = $SampleQuantity_1 = $SampleUnit_1 = $TemplateID = $method = $Diseases = $Tumor_percentage = $Department="";
 $ErrorMessage = '';
 $result1 = $resultID = array();
 //檢查是否第二次進入
@@ -92,6 +93,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
                 $scdate = $_POST['scdate'];
                 $rcdate = $_POST['rcdate'];
                 $proband_name = $_POST['proband_name'];
+                $Receiving = $_POST['Receiving'];
+                $Receiving2 = $_POST['Receiving2'];
+
 
                 if ($ReportStatus == '0' || $ReportStatus == '') {
                     $ReportStatus = '報告未上傳';
@@ -115,7 +119,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
                         . "病歷號碼：" . $PatientID . "\n"
                         . "採檢單號：" . $scID . "\n"
                         . "採檢日期：" . $scdate . "\n"
-                        . "收檢日期：" . $rcdate ;
+                        . "收檢日期：" . $rcdate  . "\n"
+                        . "簽收人：" . $Receiving . "\n"
+                        . "覆核人員：" . $Receiving2 . "\n";
 
                 // CheckPDF($_FILES);
                 CheckPDF($_FILES, $HospitalList, $ReportInfo,$ReportName);
@@ -190,6 +196,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
                     $scdate = $_POST['scdate'];
                     $rcdate = $_POST['rcdate'];
                     $proband_name = $_POST['proband_name'];
+                    $Receiving = $_POST['Receiving'];
+                    $Receiving2 = $_POST['Receiving2'];
+                    $Submitdate = $_POST['Submitdate'];
+                    $SampleType_1 = $_POST['SampleType_1'];
+                    $SampleQuantity_1 = $_POST['SampleQuantity_1'];
+                    $SampleUnit_1 = $_POST['SampleUnit_1'];
+                    $method = $_POST['method'];
+                    $Diseases = $_POST['Diseases'];
+                    $Tumor_percentage = $_POST['Tumor_percentage'];
+                    $Department = $_POST['Department'];
                     // echo $ReportTemplate;die();
 
                     //if ReportUploadPDF click ReportStaus = 1
@@ -200,8 +216,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
                     } 
 
                     $updatelog = "報告編號：" . $ReportID . "\n" 
-                    . "報告名稱：" . $ReportName . "\n" 
+                    . "專案項目：" . $ReportName . "\n" 
                     . "送檢單位：" . $hospitalList . "\n" 
+                    . "科別：" . $Department . "\n" 
+                    . "姓名：" . $proband_name . "\n" 
                     . "檢測實驗室：" . $ReportType . "\n" 
                     . "TAT最終日：" . $DueDate . "\n" 
                     . "聯絡人名稱：" . $CustomerName . "\n" 
@@ -213,6 +231,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
                     . "採檢單號：" . $scID . "\n"
                     . "採檢日期：" . $scdate . "\n"
                     . "收檢日期：" . $rcdate . "\n"
+                    . "送檢日期：" . $Submitdate . "\n"
+                    . "簽收人：" . $Receiving . "\n"
+                    . "覆核人員：" . $Receiving2 . "\n"
+                    . "報告模板：" . $TemplateID . "\n"
+                    . "樣品種類(一)：" . $SampleType_1 . "\n"
+                    . "檢體數量(一)：" . $SampleQuantity_1 . "\n"
+                    . "檢體單位(一)：" . $SampleUnit_1 . "\n"
+                    . "檢測方法：" . $method . "\n"
+                    . "疾病及症狀：" . $Diseases . "\n"
+                    . "腫瘤百分比：" . $Tumor_percentage . "\n"
                     . "報告狀態：" . $ReportStatus;
 
                     if (!empty($_FILES['ReportApply']['name'])) {
@@ -503,6 +531,7 @@ $smarty->assign("Receiving2", $report->ReportInfo('Receiving2'), true);
 $smarty->assign("proband_name", $report->ReportInfo('proband_name'), true);
 $smarty->assign("Diseases", $report->ReportInfo('Diseases'), true);
 $smarty->assign("Tumor_percentage", $report->ReportInfo('Tumor_percentage'), true);
+$smarty->assign("Department", $report->ReportInfo('Department'), true);
 
 if ($ApplyFile == '') {
     $smarty->assign("ApplyFile", "", true);
@@ -564,6 +593,8 @@ if ($ReportStatus == "不需發報告") {
 }
 else {
     $smarty->assign("PDFPreview", $PDFFile);
+    $smarty->assign("ApplyFile", $ApplyFile, true);
+
     $output =
         '<div style="justify-content: center; display: flex; ">
             <form id="email_report" method="post" action="send_email.php">
@@ -603,22 +634,31 @@ else {
                 <input type="hidden" name="SampleNo" value="' . $SampleNo . '">
                 
                 <input type="submit" style="margin-left: 10px;height: 40px;" name="BtnSendPDF" id="BtnSendPDF" class="btn btn-primary" value="Send E-mail">
+                <button id="downloadButton" style="margin-left: 10px;height: 40px;" class="btn btn-primary" type="button">One Click Download</button>
+                    <a id="downloadPDF" style="display:none;" href="' . $PDFFile . '" download></a>
+                    <a id="downloadApply" style="display:none;" href="' . $ApplyFile . '" download></a>
+            </form>
 
-            <button style="margin-left: 10px;height: 40px;" class="btn btn-primary" type="button">
-                <a style="color:white;" href="' . $PDFFile . '" download>Download </a>
-            </button>
+
+
+            
+            
           </div>';
+
+
+
+
     //if permission = 6 don't show email button
-    if ($Permission != 4) {
-        $output = '<br><h4 style="justify-content: center; display: flex;color:#FF0000">請再次確認檢測報告資訊</h4>' .
-            '<div style="justify-content: center; display: flex; ">
-            <button style="margin-left: 10px;height: 40px;" class="btn btn-primary" type="button">
-                <a style="color:white;" href="' . $PDFFile . '" download>Download </a>
-            </button>
-          </div>';
-    } elseif ($Permission == 5) {
-        $output = '';
-    } 
+    // if ($Permission != 4) {
+    //     $output = '<br><h4 style="justify-content: center; display: flex;color:#FF0000">請再次確認檢測報告資訊</h4>' .
+    //         '<div style="justify-content: center; display: flex; ">
+    //         <button style="margin-left: 10px;height: 40px;" class="btn btn-primary" type="button">
+    //             <a style="color:white;" href="' . $PDFFile . '" download>Download </a>
+    //         </button>
+    //       </div>';
+    // } elseif ($Permission == 5) {
+    //     $output = '';
+    // } 
 
     // echo '<div id="pdf-output">' . $output . '</div>';
     }
@@ -628,6 +668,16 @@ else {
 // Display Smarty Template
 $smarty->assign("IncludePage", "ReportDetailMaintain.tpl");
 $smarty->display("ViewReportDetail.tpl");
+
+
+echo '<script>
+document.getElementById("downloadButton").addEventListener("click", function() {
+    // 自動觸發下載
+    document.getElementById("downloadPDF").click();
+    document.getElementById("downloadApply").click();
+});
+</script>';
+
 // JavaScript code
 echo '<script>
     const pdfOutput = document.getElementById("pdf-output");
