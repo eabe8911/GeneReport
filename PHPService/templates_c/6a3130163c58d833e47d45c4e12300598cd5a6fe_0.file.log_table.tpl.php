@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-10-28 17:40:30
+/* Smarty version 4.3.4, created on 2024-12-02 16:02:55
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\log_table.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_671f5c0eba67a3_59114640',
+  'unifunc' => 'content_674d69af00c818_14938243',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '6a3130163c58d833e47d45c4e12300598cd5a6fe' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\log_table.tpl',
-      1 => 1730108427,
+      1 => 1733126573,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_671f5c0eba67a3_59114640 (Smarty_Internal_Template $_smarty_tpl) {
+function content_674d69af00c818_14938243 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 
@@ -125,16 +125,15 @@ function content_671f5c0eba67a3_59114640 (Smarty_Internal_Template $_smarty_tpl)
         </div>
     </div>
     <br><br>
-    <table id="log_table" border='1' style="text-align: center;">
+    <!-- <table id="log_table" border='1' style="text-align: center;"> -->
+    <table id="log_table" border='1' style="text-align: center; table-layout: fixed; width: 100%;">
         <tr style="text-align: center;">
-        </tr>
-        <tr style="text-align: center;">
-            <th style="text-align: center; font-size: 20px;" hidden >ID</th>
-            <th style="text-align: center; font-size: 20px;">人員</th>
-            <th style="text-align: center; font-size: 20px;">異動日期</th>
-            <th style="text-align: center; font-size: 20px;">操作</th>
+            <th style="text-align: center; font-size: 20px; width: 5%;" hidden>ID</th>
+            <th style="text-align: center; font-size: 20px; width: 8%;">人員</th>
+            <th style="text-align: center; font-size: 20px; width: 12%;">異動日期</th>
+            <th style="text-align: center; font-size: 20px; width: 12%;">操作</th>
             <!-- <th style="width:120px; text-align: center; font-size: 20px;">指令</th> -->
-            <th style="text-align: center; font-size: 20px;">內容</th>
+            <th style="text-align: center; font-size: 20px; width: 55%;">內容</th>
         </tr>
         <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['logdata']->value, 'row');

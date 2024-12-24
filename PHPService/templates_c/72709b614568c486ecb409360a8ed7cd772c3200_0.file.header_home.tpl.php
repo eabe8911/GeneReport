@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-10-09 14:45:14
+/* Smarty version 4.3.4, created on 2024-12-09 14:28:01
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\header_home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_6706267a7e3ab1_27080319',
+  'unifunc' => 'content_67568df11efe35_46708707',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '72709b614568c486ecb409360a8ed7cd772c3200' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\header_home.tpl',
-      1 => 1728456294,
+      1 => 1733725671,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6706267a7e3ab1_27080319 (Smarty_Internal_Template $_smarty_tpl) {
+function content_67568df11efe35_46708707 (Smarty_Internal_Template $_smarty_tpl) {
 ?><header style="border-bottom: 1px solid #ccc; display: flex; padding: 0.5em 1em; justify-content: space-between;">
     <div class="member-site-identity">
         <?php echo $_smarty_tpl->tpl_vars['Logo']->value;?>
@@ -136,6 +136,7 @@ function content_6706267a7e3ab1_27080319 (Smarty_Internal_Template $_smarty_tpl)
                 <select id="userOptions" name="userOptions" onchange="location = this.value;">
                     <option value="">會員管理</option>
                     <option value="changePassword.php">更改密碼</option>
+                    <option value="insert_hospital.php">新增送檢單位</option>
                     <option value="log_table.php">紀錄查詢</option>
                     <option value="Statistics.php">統計管理</option>
                     <option value="download.html">下載滿意度問卷</option>
@@ -159,7 +160,7 @@ function content_6706267a7e3ab1_27080319 (Smarty_Internal_Template $_smarty_tpl)
             <?php } elseif ($_smarty_tpl->tpl_vars['Permission']->value == 4) {?>
             <li style="display: inline-block;"><a id="addReport" name="addReport" href="<?php echo $_smarty_tpl->tpl_vars['addReport']->value;?>
 ">
-                    <h3>新增基本資料</h3>
+                    <!-- <h3>新增基本資料</h3> -->
                 </a></li>
 
             <li style="display: inline-block;"><a id="ImportReport" name="ImportReport" href="<?php echo $_smarty_tpl->tpl_vars['ImportReport']->value;?>
@@ -178,7 +179,7 @@ function content_6706267a7e3ab1_27080319 (Smarty_Internal_Template $_smarty_tpl)
             <?php } elseif ($_smarty_tpl->tpl_vars['Permission']->value == 2 || $_smarty_tpl->tpl_vars['Permission']->value == 5) {?>
             <li style="display: inline-block;"><a id="addReport" name="addReport" href="<?php echo $_smarty_tpl->tpl_vars['addReport']->value;?>
 ">
-                    <h3>新增基本資料</h3>
+                    <!-- <h3>新增基本資料</h3> -->
                 </a></li>
 
             <li style="display: inline-block;"><a id="ImportReport" name="ImportReport" href="<?php echo $_smarty_tpl->tpl_vars['ImportReport']->value;?>
@@ -190,6 +191,7 @@ function content_6706267a7e3ab1_27080319 (Smarty_Internal_Template $_smarty_tpl)
                 <select id="userOptions" name="userOptions" onchange="location = this.value;">
                     <option value="">會員管理</option>
                     <option value="changePassword.php">更改密碼</option>
+                    <option value="insert_hospital.php">新增送檢單位</option>
                     <option value="index.php">登出</option>
                 </select>
             </li>

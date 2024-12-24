@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-10-24 16:01:15
+/* Smarty version 4.3.4, created on 2024-12-23 17:34:06
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\ReportDetailMaintain.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_6719fecbba08d9_04787318',
+  'unifunc' => 'content_67692e8e8fbc05_98665866',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '451136e515d260dcfeb69b381fca1166c93b1f0d' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\ReportDetailMaintain.tpl',
-      1 => 1729753698,
+      1 => 1734946349,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6719fecbba08d9_04787318 (Smarty_Internal_Template $_smarty_tpl) {
+function content_67692e8e8fbc05_98665866 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\vendor\\smarty\\smarty\\libs\\plugins\\function.html_options.php','function'=>'smarty_function_html_options',),));
 ?>
 <!--POP UP MODAL TO VIEW MEMBER DETAILS AND RESULTS FOR Member Information-->
@@ -38,7 +38,7 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
         <div class="row"><br>
             <!---- Member Details ---->
             <div class="col-sm-12">
-                <div class="card-box" style="height: 130%;">
+                <div class="card-box" style="height: 150%;">
                     <div class="row">
                         <div class="form-horizontal" role="form">
                             <!---- 第一排 ---->
@@ -176,6 +176,9 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                             <option value="46" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 46) {?>selected<?php }?>>RD_評鑑實作
                                             </option>
                                             <option value="47" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 47) {?>selected<?php }?>>室間比對</option>
+                                            <option value="48" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 48) {?>selected<?php }?>>嘉義基督教醫院</option>
+                                            <option value="49" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 49) {?>selected<?php }?>>衛生福利部嘉義醫院</option>
+                                            <option value="50" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 50) {?>selected<?php }?>>彰化基督教醫院</option>
 
 
                                         </select>
@@ -184,6 +187,16 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                     </div>
 
                                 </div>
+                                <!---- 科別 ---->
+                                <div class="form-group">
+                                    <label for="Department" class="col-md-3 control-label">科別:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="Department" name="Department" class="form-control" required
+                                            value="<?php echo $_smarty_tpl->tpl_vars['Department']->value;?>
+">
+                                    </div>
+                                </div>
+                                
                                 <!---- 送件人 ---->
                                 <div class="form-group ">
                                     <label for="HospitalList_Dr" class="col-md-3 control-label">送件人:</label>
@@ -293,6 +306,24 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
 ">
                                     </div>
                                 </div>
+                                <!---- 疾病及症狀 ---->
+                                <div class="form-group">
+                                    <label for="Diseases" class="col-md-3 control-label">疾病及症狀:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="Diseases" name="Diseases" class="form-control" 
+                                            value="<?php echo $_smarty_tpl->tpl_vars['Diseases']->value;?>
+">
+                                    </div>
+                                </div>
+                                <!---- 腫瘤百分比 ---->
+                                <div class="form-group">
+                                    <label for="Tumor_percentage" class="col-md-3 control-label">腫瘤百分比:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="Tumor_percentage" name="Tumor_percentage" class="form-control"
+                                             value="<?php echo $_smarty_tpl->tpl_vars['Tumor_percentage']->value;?>
+">
+                                    </div>
+                                </div>
 
                             </div>
                             <!---- 第二排 ---->
@@ -362,6 +393,8 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
 </span>
                                             </div>
                                         </div>
+
+
                                     </div>
                                 </fieldset>
 
@@ -601,6 +634,8 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                             <option value="陳奕勳" <?php if ($_smarty_tpl->tpl_vars['Receiving']->value == "陳奕勳") {?>selected<?php }?>>陳奕勳</option>
                                             <option value="張本樺" <?php if ($_smarty_tpl->tpl_vars['Receiving']->value == "張本樺") {?>selected<?php }?>>張本樺</option>
                                             <option value="沈英涵" <?php if ($_smarty_tpl->tpl_vars['Receiving']->value == "沈英涵") {?>selected<?php }?>>沈英涵</option>
+                                            <option value="黃馨慧" <?php if ($_smarty_tpl->tpl_vars['Receiving']->value == "黃馨慧") {?>selected<?php }?>>黃馨慧</option>
+                                            <option value="雷善婷" <?php if ($_smarty_tpl->tpl_vars['Receiving']->value == "雷善婷") {?>selected<?php }?>>雷善婷</option>
                                         </select>
                                     </div>
                                 </div>
@@ -611,12 +646,14 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                     <div class="col-md-8">
                                         <select id="Receiving2" name="Receiving2" class="form-control" required>
                                             <option value="">請選擇覆核人員</option>
+                                            <option value="王許安" <?php if ($_smarty_tpl->tpl_vars['Receiving2']->value == "王許安") {?>selected<?php }?>>王許安</option>
+                                            <option value="林庭萱" <?php if ($_smarty_tpl->tpl_vars['Receiving2']->value == "林庭萱") {?>selected<?php }?>>林庭萱</option>
                                             <option value="黃志凱" <?php if ($_smarty_tpl->tpl_vars['Receiving2']->value == "黃志凱") {?>selected<?php }?>>黃志凱</option>
                                             <option value="陳奕勳" <?php if ($_smarty_tpl->tpl_vars['Receiving2']->value == "陳奕勳") {?>selected<?php }?>>陳奕勳</option>
                                             <option value="張本樺" <?php if ($_smarty_tpl->tpl_vars['Receiving2']->value == "張本樺") {?>selected<?php }?>>張本樺</option>
-                                            <option value="王許安" <?php if ($_smarty_tpl->tpl_vars['Receiving2']->value == "王許安") {?>selected<?php }?>>王許安</option>
-                                            <option value="林庭萱" <?php if ($_smarty_tpl->tpl_vars['Receiving2']->value == "林庭萱") {?>selected<?php }?>>林庭萱</option>
                                             <option value="沈英涵" <?php if ($_smarty_tpl->tpl_vars['Receiving2']->value == "沈英涵") {?>selected<?php }?>>沈英涵</option>
+                                            <option value="黃馨慧" <?php if ($_smarty_tpl->tpl_vars['Receiving2']->value == "黃馨慧") {?>selected<?php }?>>黃馨慧</option>
+                                            <option value="雷善婷" <?php if ($_smarty_tpl->tpl_vars['Receiving2']->value == "雷善婷") {?>selected<?php }?>>雷善婷</option>
                                         </select>
                                     </div>
                                 </div>
@@ -707,6 +744,15 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                     <label for="downloadJsonBtn" class="col-md-3 control-label"></label>
                                 </div>
 
+                                <!-- button 前往填寫實驗數據Addsample.php -->
+                                 <?php if ($_smarty_tpl->tpl_vars['Permission']->value == 50 || $_smarty_tpl->tpl_vars['Permission']->value == 9) {?>
+                                <div class="form-group text-center">
+                                    <a href="Addsample.php?ReportID=<?php echo $_smarty_tpl->tpl_vars['ReportID']->value;?>
+" class="btn btn-primary btn-md" id="BtnAddSample" style="font-weight:bold;font-size:20px;margin:30px;">
+                                        <i class="fa fa-plus"></i> 實驗數據
+                                    </a>
+                                </div>
+                                <?php }?>
 
 
                                 <!-- 發信通知按紐，permission == 2 才顯示按紐 -->
@@ -952,7 +998,8 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                 "P115 Lihpao Multi-cancer Target Drug Panel_HS",
                 "P116 Lihpao CRC Target Drug Panel_HS",
                 "P117 Lihpao NSCLC Target Drug Panel_HS",
-                "P118 Lihpao Multi-cancer Target Drug Panel (Comprehensive Version)"
+                "P118 Lihpao Multi-cancer Target Drug Panel (Comprehensive Version)",
+                "P120 Next-generation Sequencing for Colon Cancer",
             ],
             "P2": [
                 "P201 BRCA1/2 of Somatic Genetic Testing",
@@ -981,6 +1028,10 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                 "S206 NOTCH3 R544C Genotyping",
                 "S208 CYP2C19 *2/*3 Genotyping",
                 "S209 TGFBI (Hotspots) Genetic Testing",
+                "S210 Obesity and Metabolism Genetic Testing",
+                "S211 BDNF rs6265 Genotyping",
+                "S212 Alcohol Metabolism Genotyping",
+                "S213 APOE, NOTCH3 R544C, CYP2C19*2/*3, and BDNF Genotyping",
             ],
             "S3": [
                 "S301 Sanger Sequencing",

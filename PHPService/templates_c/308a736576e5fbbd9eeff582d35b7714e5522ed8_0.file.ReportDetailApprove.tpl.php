@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-10-28 17:01:21
+/* Smarty version 4.3.4, created on 2024-12-10 16:06:01
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\ReportDetailApprove.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_671f52e1c8db50_56722351',
+  'unifunc' => 'content_6757f669b19754_30511704',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '308a736576e5fbbd9eeff582d35b7714e5522ed8' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\ReportDetailApprove.tpl',
-      1 => 1728983125,
+      1 => 1733815322,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_671f52e1c8db50_56722351 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6757f669b19754_30511704 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\vendor\\smarty\\smarty\\libs\\plugins\\function.html_options.php','function'=>'smarty_function_html_options',),));
 ?>
 <!--POP UP MODAL TO VIEW MEMBER DETAILS AND RESULTS FOR Member Information-->
@@ -52,7 +52,7 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield7']->value;?>
 
             <div class="col-sm-12">
                 <!-- Page 1 -->
-                <div class="card-box" style="height: 820px;">
+                <div class="card-box" style="height: 880px;">
                     <div id="page1" class="page active" class="row">
                         <div class="form-horizontal" role="form">
                             <!---- 第一排 ---->
@@ -189,12 +189,25 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield7']->value;?>
                                             <option value="46" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 46) {?>selected<?php }?>>RD_評鑑實作
                                             </option>
                                             <option value="47" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 47) {?>selected<?php }?>>室間比對</option>
+                                                <option value="48" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 48) {?>selected<?php }?>>嘉義基督教醫院</option>
+                                                    <option value="49" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 49) {?>selected<?php }?>>衛生福利部嘉義醫院</option>
+        
                                         </select>
 
 
                                     </div>
 
                                 </div>
+                                <!---- 科別 ---->
+                                <div class="form-group">
+                                    <label for="Department" class="col-md-3 control-label">科別:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="Department" name="Department" class="form-control" required
+                                            value="<?php echo $_smarty_tpl->tpl_vars['Department']->value;?>
+" readonly>
+                                    </div>
+                                </div>
+                                
                                 <!---- 送件人 ---->
                                 <div class="form-group ">
                                     <label for="HospitalList_Dr" class="col-md-3 control-label">送件人:</label>
@@ -253,6 +266,24 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield7']->value;?>
                                     <div class="col-md-8">
                                         <input type="datetime-local" id="Submitdate" name="Submitdate"
                                             class="form-control" required value="<?php echo $_smarty_tpl->tpl_vars['Submitdate']->value;?>
+" readonly>
+                                    </div>
+                                </div>
+                                <!---- 疾病及症狀 ---->
+                                <div class="form-group">
+                                    <label for="Diseases" class="col-md-3 control-label">疾病及症狀:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="Diseases" name="Diseases" class="form-control" 
+                                            value="<?php echo $_smarty_tpl->tpl_vars['Diseases']->value;?>
+" readonly>
+                                    </div>
+                                </div>
+                                <!---- 腫瘤百分比 ---->
+                                <div class="form-group">
+                                    <label for="Tumor_percentage" class="col-md-3 control-label">腫瘤百分比:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="Tumor_percentage" name="Tumor_percentage" class="form-control"
+                                                value="<?php echo $_smarty_tpl->tpl_vars['Tumor_percentage']->value;?>
 " readonly>
                                     </div>
                                 </div>
@@ -524,6 +555,8 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield7']->value;?>
                                             <option value="陳奕勳" <?php if ($_smarty_tpl->tpl_vars['Receiving']->value == "陳奕勳") {?>selected<?php }?>>陳奕勳</option>
                                             <option value="張本樺" <?php if ($_smarty_tpl->tpl_vars['Receiving']->value == "張本樺") {?>selected<?php }?>>張本樺</option>
                                             <option value="沈英涵" <?php if ($_smarty_tpl->tpl_vars['Receiving']->value == "沈英涵") {?>selected<?php }?>>沈英涵</option>
+                                            <option value="黃馨慧" <?php if ($_smarty_tpl->tpl_vars['Receiving']->value == "黃馨慧") {?>selected<?php }?>>黃馨慧</option>
+                                            <option value="雷善婷" <?php if ($_smarty_tpl->tpl_vars['Receiving']->value == "雷善婷") {?>selected<?php }?>>雷善婷</option>
                                         </select>
                                     </div>
                                 </div>
@@ -534,12 +567,14 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield7']->value;?>
                                         <select id="Receiving2" name="Receiving2" class="form-control" required
                                             disabled>
                                             <option value="">請選擇覆核人員</option>
+                                            <option value="王許安" <?php if ($_smarty_tpl->tpl_vars['Receiving2']->value == "王許安") {?>selected<?php }?>>王許安</option>
+                                            <option value="林庭萱" <?php if ($_smarty_tpl->tpl_vars['Receiving2']->value == "林庭萱") {?>selected<?php }?>>林庭萱</option>
                                             <option value="黃志凱" <?php if ($_smarty_tpl->tpl_vars['Receiving2']->value == "黃志凱") {?>selected<?php }?>>黃志凱</option>
                                             <option value="陳奕勳" <?php if ($_smarty_tpl->tpl_vars['Receiving2']->value == "陳奕勳") {?>selected<?php }?>>陳奕勳</option>
                                             <option value="張本樺" <?php if ($_smarty_tpl->tpl_vars['Receiving2']->value == "張本樺") {?>selected<?php }?>>張本樺</option>
-                                            <option value="王許安" <?php if ($_smarty_tpl->tpl_vars['Receiving2']->value == "王許安") {?>selected<?php }?>>王許安</option>
-                                            <option value="林庭萱" <?php if ($_smarty_tpl->tpl_vars['Receiving2']->value == "林庭萱") {?>selected<?php }?>>林庭萱</option>
                                             <option value="沈英涵" <?php if ($_smarty_tpl->tpl_vars['Receiving2']->value == "沈英涵") {?>selected<?php }?>>沈英涵</option>
+                                            <option value="黃馨慧" <?php if ($_smarty_tpl->tpl_vars['Receiving2']->value == "黃馨慧") {?>selected<?php }?>>黃馨慧</option>
+                                            <option value="雷善婷" <?php if ($_smarty_tpl->tpl_vars['Receiving2']->value == "雷善婷") {?>selected<?php }?>>雷善婷</option>
                                         </select>
                                     </div>
                                 </div>

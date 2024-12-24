@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-09-19 16:29:58
+/* Smarty version 4.3.4, created on 2024-12-24 11:42:09
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\js_ReportDetail.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_66ebe106add216_84057242',
+  'unifunc' => 'content_676a2d91c3a870_52511899',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '9dc2a2755c788183a0b94980392c5a85ac9efbe8' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\js_ReportDetail.tpl',
-      1 => 1726734596,
+      1 => 1735011728,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_66ebe106add216_84057242 (Smarty_Internal_Template $_smarty_tpl) {
+function content_676a2d91c3a870_52511899 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
  type="text/javascript">
   
@@ -90,6 +90,20 @@ echo '<script'; ?>
           $('#ReportConfirmButton').show();
           setFieldsReadonly(false);
           break;
+        case 'ADDsample':
+          $('#ReportViewButton').hide();
+          $('#ReportQueryButton').show();
+          $('#ReportConfirmButton').hide();
+          setSampleFieldsReadonly(true);
+          $('#ReportID').prop('readonly', true);
+          break;
+        case 'UpdateSample':
+          $('#ReportViewButton').hide();
+          $('#ReportQueryButton').show();
+          $('#ReportConfirmButton').hide();
+          setSampleFieldsReadonly(true);
+          $('#ReportID').prop('readonly', true);
+          break;
         default:
           $('#ReportViewButton').hide();
           $('#ReportQueryButton').show();
@@ -143,8 +157,10 @@ echo '<script'; ?>
       });
 
       $('#BtnReportViewExit').click(function() {
+        // $('#ReportMode').val('EXIT');
+        // window.location.replace('home.php');
         $('#ReportMode').val('EXIT');
-        window.location.replace('home.php');
+        window.history.back();
       });
 
       $('#BtnReportExit').click(function() {
@@ -215,6 +231,21 @@ echo '<script'; ?>
         }
       });
 
+      $('#BtnSampleEdit').click(function() {
+        $('#ReportMode').val('ADDsample');
+        // set button for confirm
+        $('#ReportQueryButton').hide();
+        $('#ReportConfirmButton').show();
+        setSampleFieldsReadonly(false);
+      });
+
+      $('#BtnSampleUpdate').click(function() {
+        $('#ReportMode').val('UpdateSample');
+        // set button for confirm
+        $('#ReportQueryButton').hide();
+        $('#ReportConfirmButton').show();
+        setSampleFieldsReadonly(false);
+      });
 
       
     });
@@ -228,6 +259,7 @@ echo '<script'; ?>
       $('#ReportName').prop('disabled', state);
       $('#proband_name').prop('disabled', state);
       $('#HospitalList').prop('disabled', state);
+      $('#Department').prop('disabled', state);
       $('#HospitalList_Dr').prop('disabled', state);
       $('#method').prop('disabled', state);
       $('#proband_name').prop('readonly', state);
@@ -256,6 +288,8 @@ echo '<script'; ?>
       $('#SampleQuantity_3').prop('disabled', state);
       $('#SampleQuantity_4').prop('disabled', state);
       $('#SampleQuantity_5').prop('disabled', state);
+      $('#Diseases').prop('disabled', state);
+      $('#Tumor_percentage').prop('disabled', state);
       $('#Receiving').prop('disabled', state);
       $('#Receiving2').prop('disabled', state);
       $('#DisplayUploadButton').prop('hidden', state);
@@ -270,6 +304,36 @@ echo '<script'; ?>
       $('#CustomerPhone').prop('readonly', state);
     }
 
+    function setSampleFieldsReadonly(state) {
+      // $('#ReportID').prop('readonly', state);
+      
+      $('#Nanodrop_Conc').prop('readonly', state);
+      $('#Qubit_Conc').prop('readonly', state);
+      $('#Volumn').prop('readonly', state);
+      $('#Nanodrop_Yield').prop('readonly', state);
+      $('#Qubit_Yield').prop('readonly', state);
+      $('#OD280').prop('readonly', state);
+      $('#OD230').prop('readonly', state);
+      $('#Length').prop('readonly', state);
+      $('#Storage ').prop('readonly', state);
+      $('#ChipID').prop('readonly', state);
+      $('#F_Method').prop('disabled', state);
+      $('#F_Conc').prop('readonly', state);
+      $('#F_Length').prop('readonly', state);
+      $('#BarcodeNo').prop('readonly', state);
+      $('#Library_Conc').prop('readonly', state);
+      $('#Library_Volumn').prop('readonly', state);
+      $('#Library_Yield').prop('readonly', state);
+      $('#Library_Meansize').prop('readonly', state);
+      $('#Platform').prop('disabled', state);
+      $('#Remark').prop('readonly', state);
+      $('#Clean_reads').prop('readonly', state);
+      $('#Extraction_date').prop('disabled', state);
+      $('#Library_date').prop('disabled', state);
+      $('#On_date').prop('disabled', state);
+      $('#Analysis_date').prop('readonly', state);
+      $('#Remark').prop('readonly', state);
+    }
 
     
     //set email editable

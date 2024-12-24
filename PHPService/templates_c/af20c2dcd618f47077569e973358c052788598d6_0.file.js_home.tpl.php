@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-10-22 17:23:40
+/* Smarty version 4.3.4, created on 2024-12-02 11:46:11
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\js_home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_67176f1c3929f8_94271128',
+  'unifunc' => 'content_674d2d833ac5a9_21570468',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'af20c2dcd618f47077569e973358c052788598d6' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\js_home.tpl',
-      1 => 1729589004,
+      1 => 1733110857,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_67176f1c3929f8_94271128 (Smarty_Internal_Template $_smarty_tpl) {
+function content_674d2d833ac5a9_21570468 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!--THIS JQUERY AND CSS IS FOR JQGRID TABLE-->
 <?php echo '<script'; ?>
  type="text/ecmascript" src="js/prettify/prettify.js"><?php echo '</script'; ?>
@@ -138,7 +138,8 @@ function content_67176f1c3929f8_94271128 (Smarty_Internal_Template $_smarty_tpl)
             shrinkToFit: true,
             colModel: [
                 { label: "id", name: "id", hidden: true },
-                { label: "編號", name: "ReportID", width: "3%", align: "center" },
+                // { label: "編號", name: "ReportID", width: "3%", align: "center" },
+                { label: "編號", name: "ReportID", width: "3%", align: "center", sorttype: "int", sortable: true },
                 { label: "客戶姓名", name: "CustomerName", width: '3%' },
                 { label: "名稱", name: "ReportName", width: '5%' },
                 { label: "檔案", name: "FileName", hidden: true },
@@ -162,13 +163,15 @@ function content_67176f1c3929f8_94271128 (Smarty_Internal_Template $_smarty_tpl)
                 },
             ],
 
-            rowNum: 1000,
+            rowNum: 50,
             rowTotal: 10000,
             loadonce: true,
             mtype: "GET",
             gridview: true,
             pager: "#jqGridPager",
             viewrecords: true,
+            sortname: 'ReportID',
+            sortorder: 'desc',
             ondblClickRow: function (id) {
                 var rowData = jQuery(this).getRowData(id);
                 // 将数据存储到 sessionStorage
