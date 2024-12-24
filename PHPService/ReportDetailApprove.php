@@ -35,6 +35,8 @@ $Permission = $_SESSION['Permission'];
 $Role = $_SESSION['Role'];
 $FormName = filter_input(INPUT_POST, 'FormName');
 $ApproveMode = $ReportID = $PDFFile = $ReportApply = $ApplyFile = $ID = $ReportStatus ="";
+$Receiving = $Receiving2 = $Submitdate = $SampleType_1 = $SampleQuantity_1 = $SampleUnit_1 = $TemplateID = $method = $Diseases = $Tumor_percentage = $Department="";
+
 $ErrorMessage = '';
 
 $report = new Report($_POST);
@@ -281,6 +283,8 @@ $smarty->assign("Receiving2", $report->ReportInfo('Receiving2'), true);
 $smarty->assign("proband_name", $report->ReportInfo('proband_name'), true);
 $smarty->assign("Diseases", $report->ReportInfo('Diseases'), true);
 $smarty->assign("Tumor_percentage", $report->ReportInfo('Tumor_percentage'), true);
+$smarty->assign("Department", $report->ReportInfo('Department'), true);
+
 
 // Display PDF File
 if ($ApplyFile == '') {

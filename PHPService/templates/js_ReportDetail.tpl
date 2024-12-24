@@ -66,6 +66,20 @@
           $('#ReportConfirmButton').show();
           setFieldsReadonly(false);
           break;
+        case 'ADDsample':
+          $('#ReportViewButton').hide();
+          $('#ReportQueryButton').show();
+          $('#ReportConfirmButton').hide();
+          setSampleFieldsReadonly(true);
+          $('#ReportID').prop('readonly', true);
+          break;
+        case 'UpdateSample':
+          $('#ReportViewButton').hide();
+          $('#ReportQueryButton').show();
+          $('#ReportConfirmButton').hide();
+          setSampleFieldsReadonly(true);
+          $('#ReportID').prop('readonly', true);
+          break;
         default:
           $('#ReportViewButton').hide();
           $('#ReportQueryButton').show();
@@ -193,6 +207,21 @@
         }
       });
 
+      $('#BtnSampleEdit').click(function() {
+        $('#ReportMode').val('ADDsample');
+        // set button for confirm
+        $('#ReportQueryButton').hide();
+        $('#ReportConfirmButton').show();
+        setSampleFieldsReadonly(false);
+      });
+
+      $('#BtnSampleUpdate').click(function() {
+        $('#ReportMode').val('UpdateSample');
+        // set button for confirm
+        $('#ReportQueryButton').hide();
+        $('#ReportConfirmButton').show();
+        setSampleFieldsReadonly(false);
+      });
 
       
     });
@@ -251,6 +280,36 @@
       $('#CustomerPhone').prop('readonly', state);
     }
 
+    function setSampleFieldsReadonly(state) {
+      // $('#ReportID').prop('readonly', state);
+      
+      $('#Nanodrop_Conc').prop('readonly', state);
+      $('#Qubit_Conc').prop('readonly', state);
+      $('#Volumn').prop('readonly', state);
+      $('#Nanodrop_Yield').prop('readonly', state);
+      $('#Qubit_Yield').prop('readonly', state);
+      $('#OD280').prop('readonly', state);
+      $('#OD230').prop('readonly', state);
+      $('#Length').prop('readonly', state);
+      $('#Storage ').prop('readonly', state);
+      $('#ChipID').prop('readonly', state);
+      $('#F_Method').prop('disabled', state);
+      $('#F_Conc').prop('readonly', state);
+      $('#F_Length').prop('readonly', state);
+      $('#BarcodeNo').prop('readonly', state);
+      $('#Library_Conc').prop('readonly', state);
+      $('#Library_Volumn').prop('readonly', state);
+      $('#Library_Yield').prop('readonly', state);
+      $('#Library_Meansize').prop('readonly', state);
+      $('#Platform').prop('disabled', state);
+      $('#Remark').prop('readonly', state);
+      $('#Clean_reads').prop('readonly', state);
+      $('#Extraction_date').prop('disabled', state);
+      $('#Library_date').prop('disabled', state);
+      $('#On_date').prop('disabled', state);
+      $('#Analysis_date').prop('readonly', state);
+      $('#Remark').prop('readonly', state);
+    }
 
     
     //set email editable

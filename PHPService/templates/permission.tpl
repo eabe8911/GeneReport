@@ -44,10 +44,12 @@
                             <select class="form-control" name="Permission" id="Permission" required>
                                 <option value="">請選擇權限</option>
                                 <option value="0">0 唯讀</option>
-                                <option value="1">1 管理者(新增、刪除、修改報告)</option>
-                                <option value="2">2 醫檢師(簽核、退回報告)</option>
+                                <option value="1">1 生資人員(上傳報告)</option>
+                                <option value="21">21 ISO簽核醫檢師(簽核、退回報告)</option>
+                                <option value="22">22 LDTS簽核醫師(簽核、退回報告)</option>
                                 <option value="3">3 醫師(簽核、退回報告)</option>
                                 <option value="4">4 實驗室專人(寄送報告)</option>
+                                <option value="5">5 收檢人員(新增、修改、上傳申請單)</option>
                                 <option value="6">6 監控查核(查看紀錄)</option>
                             </select>
                         </div>

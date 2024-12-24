@@ -90,6 +90,32 @@ class Report implements ReportInterface
                 'method' => $data['method'] ?? '', //檢測方法
                 'Diseases' => $data['Diseases'] ?? '', //疾病及症狀
                 'Tumor_percentage' => $data['Tumor_percentage'] ?? '', //腫瘤百分比
+                //Sample
+                'Nanodrop_Conc' => $data['Nanodrop_Conc'] ?? '', // Nanodrop 濃度
+                'Qubit_Conc' => $data['Qubit_Conc'] ?? '', // Qubit 濃度
+                'Volumn' => $data['Volumn'] ?? '', // 體積
+                'Nanodrop_Yield' => $data['Nanodrop_Yield'] ?? '', // 產量
+                'Qubit_Yield' => $data['Qubit_Yield'] ?? '', // 260/280
+                'OD280' => $data['OD280'] ?? '', // OD 260/280
+                'OD230' => $data['OD230'] ?? '', // OD 260/230
+                'Length' => $data['Length'] ?? '', // 長度
+                'Storage' => $data['Storage'] ?? '', // 儲存位置
+                'ChipID' => $data['ChipID'] ?? '', // 晶片ID
+                'F_Method' => $data['F_Method'] ?? '', // 方法
+                'F_Conc' => $data['F_Conc'] ?? '', // 濃度
+                'F_Length' => $data['F_Length'] ?? '', // 長度
+                'BarcodeNo' => $data['BarcodeNo'] ?? '', // 條碼號
+                'Library_Conc' => $data['Library_Conc'] ?? '', // 庫濃度
+                'Library_Volumn' => $data['Library_Volumn'] ?? '', // 庫體積
+                'Library_Yield' => $data['Library_Yield'] ?? '', // 庫產量
+                'Library_Meansize' => $data['Library_Meansize'] ?? '', // 庫平均大小
+                'Platform' => $data['Platform'] ?? '', // 平台
+                'Remark' => $data['Remark'] ?? '', // 備註
+                'Clean_reads' => $data['Clean_reads'] ?? '', // 清潔讀數
+                'Extraction_date' => $data['Extraction_date'] ?? '', // 提取日期
+                'Library_date' => $data['Library_date'] ?? '', // 庫日期
+                'On_date' => $data['On_date'] ?? '', // 上機日期
+                'Analysis_date' => $data['Analysis_date'] ?? '', // 分析日期
 
             ];
         } catch (PDOException | Exception $th) {
@@ -256,8 +282,6 @@ class Report implements ReportInterface
     // find report by startReportId & endReportId to get report list
 
 
-
-
     public function setReportID($startReportId, $endReportId) {
 
         $this->startReportId = $startReportId;
@@ -288,9 +312,6 @@ class Report implements ReportInterface
         // ];
 
     }
-
-
-
 
 
     public function AddReport($ReportInfo)
@@ -610,6 +631,7 @@ class Report implements ReportInterface
         return true;
     }
 
+    //批次上傳檔案
     public function AddReport1($ReportInfo)
     {
         try {
@@ -776,6 +798,7 @@ class Report implements ReportInterface
         }
         return true;
     }
+
     public function UpdateReportFileName($ReportInfo)
     {
         try {
@@ -801,6 +824,7 @@ class Report implements ReportInterface
         }
         return true;
     }
+
     public function UpdateReportStatus($ReportID, $ReportStatus)
     {
         try {
@@ -1392,14 +1416,14 @@ class Report implements ReportInterface
             $tmpFileName = explode('.', $ReportInfo['FileName'])[0];
             switch ($UserInfo['permission']) {
                 case '21': // 醫檢師
-                    $FileName = $tmpFileName . '_1.pdf';
+                    $FileName = $tmpFileName . '.pdf';
                     // Change $ReportInfo['FileName'] to the new file name
                     $this->PDFSignature($ReportInfo, $UserInfo, $FileName);
                     $ReportInfo['FileName'] = $FileName;
                     $this->ApproveBy1($ReportInfo['ID'], $UserInfo['username'], $FileName);
                     break;
                     case '22': // 醫檢師
-                        $FileName = $tmpFileName . '_1.pdf';
+                        $FileName = $tmpFileName . '.pdf';
                         // Change $ReportInfo['FileName'] to the new file name
                         $this->PDFSignature($ReportInfo, $UserInfo, $FileName);
                         $ReportInfo['FileName'] = $FileName;
@@ -1591,6 +1615,156 @@ class Report implements ReportInterface
         }
         return true;
     }
+
+    //insert the sample to Sample database
+    public function AddSample($sampleData)
+    {
+        try {
+            $sql = "INSERT INTO Sample (
+                ReportID, Nanodrop_Conc, Qubit_Conc, Volumn, Nanodrop_Yield, Qubit_Yield, OD280, OD230, Length, Storage, 
+                ChipID, F_Method, F_Conc, F_Length, BarcodeNo, Library_Conc, Library_Volumn, Library_Yield, Library_Meansize, 
+                Platform, Remark, Extraction_date, Library_date, On_date, CreatedAt
+            ) VALUES (
+                :ReportID, :Nanodrop_Conc, :Qubit_Conc, :Volumn, :Nanodrop_Yield, :Qubit_Yield, :OD280, :OD230, :Length, :Storage, 
+                :ChipID, :F_Method, :F_Conc, :F_Length, :BarcodeNo, :Library_Conc, :Library_Volumn, :Library_Yield, :Library_Meansize, 
+                :Platform, :Remark, :Extraction_date, :Library_date, :On_date, :CreatedAt
+            )";
+            $now = date("Y-m-d H:i:s");
+            $stmt = $this->_conn->prepare($sql);
+            $stmt->bindParam(':ReportID', $sampleData['ReportID']);
+            $stmt->bindParam(':Nanodrop_Conc', $sampleData['Nanodrop_Conc']);
+            $stmt->bindParam(':Qubit_Conc', $sampleData['Qubit_Conc']);
+            $stmt->bindParam(':Volumn', $sampleData['Volumn']);
+            $stmt->bindParam(':Nanodrop_Yield', $sampleData['Nanodrop_Yield']);
+            $stmt->bindParam(':Qubit_Yield', $sampleData['Qubit_Yield']);
+            $stmt->bindParam(':OD280', $sampleData['OD280']);
+            $stmt->bindParam(':OD230', $sampleData['OD230']);
+            $stmt->bindParam(':Length', $sampleData['Length']);
+            $stmt->bindParam(':Storage', $sampleData['Storage']);
+            $stmt->bindParam(':ChipID', $sampleData['ChipID']);
+            $stmt->bindParam(':F_Method', $sampleData['F_Method']);
+            $stmt->bindParam(':F_Conc', $sampleData['F_Conc']);
+            $stmt->bindParam(':F_Length', $sampleData['F_Length']);
+            $stmt->bindParam(':BarcodeNo', $sampleData['BarcodeNo']);
+            $stmt->bindParam(':Library_Conc', $sampleData['Library_Conc']);
+            $stmt->bindParam(':Library_Volumn', $sampleData['Library_Volumn']);
+            $stmt->bindParam(':Library_Yield', $sampleData['Library_Yield']);
+            $stmt->bindParam(':Library_Meansize', $sampleData['Library_Meansize']);
+            $stmt->bindParam(':Platform', $sampleData['Platform']);
+            $stmt->bindParam(':Remark', $sampleData['Remark']);
+            $stmt->bindParam(':Extraction_date', $sampleData['Extraction_date']);
+            $stmt->bindParam(':Library_date', $sampleData['Library_date']);
+            $stmt->bindParam(':On_date', $sampleData['On_date']);
+            $stmt->bindParam(':CreatedAt',$now );
+            $stmt->execute();
+        } catch (PDOException | Exception $th) {
+            throw new Exception($th->getMessage(), $th->getCode());
+        }
+        return true;
+    }
+
+    //update the sample to Sample database
+    public function UpdateSample($sampleData)
+    {
+        try {
+            $sql = "UPDATE Sample SET 
+                Nanodrop_Conc=:Nanodrop_Conc, Qubit_Conc=:Qubit_Conc, Volumn=:Volumn, Nanodrop_Yield=:Nanodrop_Yield, Qubit_Yield=:Qubit_Yield, 
+                OD280=:OD280, OD230=:OD230, Length=:Length, Storage=:Storage, ChipID=:ChipID, F_Method=:F_Method, F_Conc=:F_Conc, F_Length=:F_Length, 
+                BarcodeNo=:BarcodeNo, Library_Conc=:Library_Conc, Library_Volumn=:Library_Volumn, Library_Yield=:Library_Yield, Library_Meansize=:Library_Meansize, 
+                Platform=:Platform, Remark=:Remark, Extraction_date=:Extraction_date, Library_date=:Library_date, 
+                On_date=:On_date, UpdatedAt=:UpdatedAt
+                WHERE ReportID=:ReportID";
+            $now = date("Y-m-d H:i:s");
+            $stmt = $this->_conn->prepare($sql);
+            $stmt->bindParam(':ReportID', $sampleData['ReportID']);
+            $stmt->bindParam(':Nanodrop_Conc', $sampleData['Nanodrop_Conc']);
+            $stmt->bindParam(':Qubit_Conc', $sampleData['Qubit_Conc']);
+            $stmt->bindParam(':Volumn', $sampleData['Volumn']);
+            $stmt->bindParam(':Nanodrop_Yield', $sampleData['Nanodrop_Yield']);
+            $stmt->bindParam(':Qubit_Yield', $sampleData['Qubit_Yield']);
+            $stmt->bindParam(':OD280', $sampleData['OD280']);
+            $stmt->bindParam(':OD230', $sampleData['OD230']);
+            $stmt->bindParam(':Length', $sampleData['Length']);
+            $stmt->bindParam(':Storage', $sampleData['Storage']);
+            $stmt->bindParam(':ChipID', $sampleData['ChipID']);
+            $stmt->bindParam(':F_Method', $sampleData['F_Method']);
+            $stmt->bindParam(':F_Conc', $sampleData['F_Conc']);
+            $stmt->bindParam(':F_Length', $sampleData['F_Length']);
+            $stmt->bindParam(':BarcodeNo', $sampleData['BarcodeNo']);
+            $stmt->bindParam(':Library_Conc', $sampleData['Library_Conc']);
+            $stmt->bindParam(':Library_Volumn', $sampleData['Library_Volumn']);
+            $stmt->bindParam(':Library_Yield', $sampleData['Library_Yield']);
+            $stmt->bindParam(':Library_Meansize', $sampleData['Library_Meansize']);
+            $stmt->bindParam(':Platform', $sampleData['Platform']);
+            $stmt->bindParam(':Remark', $sampleData['Remark']);
+            $stmt->bindParam(':Extraction_date', $sampleData['Extraction_date']);
+            $stmt->bindParam(':Library_date', $sampleData['Library_date']);
+            $stmt->bindParam(':On_date', $sampleData['On_date']);
+            $stmt->bindParam(':UpdatedAt', $now);
+            $stmt->execute();
+        } catch (PDOException | Exception $th) {
+            throw new Exception($th->getMessage(), $th->getCode());
+        }
+        return true;
+
+    }
+    
+    // //InsertHospital
+    // public function InsertHospital($HospitalName, $SubmittedBy)
+    // {
+    //     try {
+    //         $sql = "INSERT INTO PendingHospitalList (HospitalName, SubmittedBy) VALUES (:HospitalName, :SubmittedBy)";
+    //         $stmt = $this->_conn->prepare($sql);
+    //         $stmt->bindParam(':HospitalName', $HospitalName);
+    //         $stmt->bindParam(':SubmittedBy', $SubmittedBy);
+    //         $stmt->execute();
+    //     } catch (PDOException | Exception $th) {
+    //         throw new Exception($th->getMessage(), $th->getCode());
+    //     }
+    //     return true;
+    // }
+
+    // //UpdateHospital
+    // public function UpdateHospital($HospitalName)
+    // {
+    //     try {
+    //         $sql = "UPDATE PendingHospitalList SET Status = :Status, UpdatedAt = :UpdatedAt WHERE HospitalName = :HospitalName";
+    //         $stmt = $this->_conn->prepare($sql);
+    //         $status = "approved";
+    //         $stmt->bindParam(':Status', $status);
+    //         $stmt->bindParam(':UpdatedAt', $updatedAt);
+    //         $stmt->bindParam(':HospitalName', $HospitalName);
+    //         $updatedAt = date("Y-m-d H:i:s");
+    //         $stmt->execute();
+    //     } catch (PDOException | Exception $th) {
+    //         throw new Exception($th->getMessage(), $th->getCode());
+    //     }
+    //     return true;
+    // }
+
+    // //SelectHospital
+    // public function get_PendingHospitalList($HospitalName)
+    // {
+    //     try {
+    //         $sql = "SELECT HospitalName FROM PendingHospitalList";
+    //         $stmt = $this->_conn->prepare($sql);
+    //         $stmt->execute();
+    //         $response = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+    //         if ($response) {
+    //             $hospitalNames = array();
+    //             foreach ($response as $row) {
+    //                 // 處理每一行數據
+    //                 return $hospitalNames;            
+    //             }
+    //         } else {
+    //             return false;
+    //         }
+    //     } catch (PDOException | Exception $th) {
+    //         throw new Exception($th->getMessage(), $th->getCode());
+    //     }
+    //     return true;
+    // }
     
 
     /**
@@ -1637,6 +1811,7 @@ class Report implements ReportInterface
     {
         return $this->_ReportInfo;
     }
+    
 
     public function RejectReason($rejectReason, $ReportID): bool
     {
@@ -1651,6 +1826,26 @@ class Report implements ReportInterface
             $response = $stmt->fetch(PDO::FETCH_ASSOC);
             if ($response) {
                 $this->_UserInfo = $response;
+            } else {
+                return false;
+            }
+        } catch (PDOException | Exception $th) {
+            throw new Exception($th->getMessage(), $th->getCode());
+        }
+        return true;
+    }
+
+    public function getSampleData($ReportID)
+    {
+        try {
+            $sql = "SELECT * FROM Sample WHERE ReportID = :ReportID";
+            $stmt = $this->_conn->prepare($sql);
+            $stmt->bindParam(':ReportID', $ReportID);
+            $stmt->execute();
+            $sampleData = $stmt->fetch(PDO::FETCH_ASSOC);
+            if ($sampleData) {
+                $this->_SampleData = $sampleData;
+                return $sampleData;
             } else {
                 return false;
             }

@@ -61,9 +61,16 @@ class Character
     {
         $user = new User();
         $member = new Member();
+        //如果$Account不存在，新增一個帳號
+        if (!$user->CheckUser($Account)) {
+            $user->AddUser($Account, $Permission);
+            $ErrorMessage = "新增成功，請重新登入！";
+        }
+
+
         if ($user->Permission($Account, $Permission)) {
             //display success message
-            $Message = "權限更改成功，請使用者重新登入！";
+            $Message = "新增、修改權限成功，請使用者重新登入！";
             return $Message;
         } else if ($member->Permission($Account, $Permission)) {
             return true;

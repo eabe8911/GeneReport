@@ -6,7 +6,7 @@
         <div class="row"><br>
             <!---- Member Details ---->
             <div class="col-sm-12">
-                <div class="card-box" style="height: 130%;">
+                <div class="card-box" style="height: 150%;">
                     <div class="row">
                         <div class="form-horizontal" role="form">
                             <!---- 第一排 ---->
@@ -142,8 +142,9 @@
                                             <option value="46" {if $HospitalListSelect==46}selected{/if}>RD_評鑑實作
                                             </option>
                                             <option value="47" {if $HospitalListSelect==47}selected{/if}>室間比對</option>
-                                            <option value="48" {if $HospitalListSelect==48}selected{/if}>嘉義基督教醫院神經內科</option>
+                                            <option value="48" {if $HospitalListSelect==48}selected{/if}>嘉義基督教醫院</option>
                                             <option value="49" {if $HospitalListSelect==49}selected{/if}>衛生福利部嘉義醫院</option>
+                                            <option value="50" {if $HospitalListSelect==50}selected{/if}>彰化基督教醫院</option>
 
 
                                         </select>
@@ -721,6 +722,14 @@
                                     <label for="downloadJsonBtn" class="col-md-3 control-label"></label>
                                 </div>
 
+                                <!-- button 前往填寫實驗數據Addsample.php -->
+                                 {if $Permission eq 50 or $Permission eq 9 }
+                                <div class="form-group text-center">
+                                    <a href="Addsample.php?ReportID={$ReportID}" class="btn btn-primary btn-md" id="BtnAddSample" style="font-weight:bold;font-size:20px;margin:30px;">
+                                        <i class="fa fa-plus"></i> 實驗數據
+                                    </a>
+                                </div>
+                                {/if}
 
 
                                 <!-- 發信通知按紐，permission == 2 才顯示按紐 -->
