@@ -43,7 +43,7 @@ $result1 = $resultID = array();
 if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
     try {
         $report = new Report($_POST);
-
+        $report->checkAndSendNotifications();
         $ccemail = filter_input(INPUT_POST, 'ccemail');
         $ReportMode = filter_input(INPUT_POST, 'ReportMode');
         $ReportID = filter_input(INPUT_POST, 'ReportID');

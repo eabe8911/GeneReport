@@ -154,11 +154,16 @@
                                             <option value="46" {if $HospitalListSelect==46}selected{/if}>RD_評鑑實作
                                             </option>
                                             <option value="47" {if $HospitalListSelect==47}selected{/if}>室間比對</option>
-                                                <option value="48" {if $HospitalListSelect==48}selected{/if}>嘉義基督教醫院</option>
-                                                    <option value="49" {if $HospitalListSelect==49}selected{/if}>衛生福利部嘉義醫院</option>
-                                                        <option value="50" {if $HospitalListSelect==50}selected{/if}>彰化基督教醫院</option>
-
-        
+                                            <option value="48" {if $HospitalListSelect==48}selected{/if}>嘉義基督教醫院
+                                            </option>
+                                            <option value="49" {if $HospitalListSelect==49}selected{/if}>衛生福利部嘉義醫院
+                                            </option>
+                                            <option value="50" {if $HospitalListSelect==50}selected{/if}>彰化基督教醫院
+                                            </option>
+                                            <option value="51" {if $HospitalListSelect==51}selected{/if}>北秀健康管理診所
+                                            </option>
+                                            <option value="52" {if $HospitalListSelect==52}selected{/if}>台中榮總嘉義分院
+                                            </option>
                                         </select>
 
 
@@ -169,11 +174,11 @@
                                 <div class="form-group">
                                     <label for="Department" class="col-md-3 control-label">科別:</label>
                                     <div class="col-md-8">
-                                        <input type="text" id="Department" name="Department" class="form-control" required
-                                            value="{$Department}" readonly>
+                                        <input type="text" id="Department" name="Department" class="form-control"
+                                            required value="{$Department}" readonly>
                                     </div>
                                 </div>
-                                
+
                                 <!---- 送件人 ---->
                                 <div class="form-group ">
                                     <label for="HospitalList_Dr" class="col-md-3 control-label">送件人:</label>
@@ -232,7 +237,7 @@
                                 <div class="form-group">
                                     <label for="Diseases" class="col-md-3 control-label">疾病及症狀:</label>
                                     <div class="col-md-8">
-                                        <input type="text" id="Diseases" name="Diseases" class="form-control" 
+                                        <input type="text" id="Diseases" name="Diseases" class="form-control"
                                             value="{$Diseases}" readonly>
                                     </div>
                                 </div>
@@ -240,8 +245,8 @@
                                 <div class="form-group">
                                     <label for="Tumor_percentage" class="col-md-3 control-label">腫瘤百分比:</label>
                                     <div class="col-md-8">
-                                        <input type="text" id="Tumor_percentage" name="Tumor_percentage" class="form-control"
-                                                value="{$Tumor_percentage}" readonly>
+                                        <input type="text" id="Tumor_percentage" name="Tumor_percentage"
+                                            class="form-control" value="{$Tumor_percentage}" readonly>
                                     </div>
                                 </div>
 
@@ -632,102 +637,102 @@
                         </div>
                     </div>
 
-                <!-- Page 2 -->
-                <div id="page2" class="page">
-                    <div class="form-horizontal" role="form">
+                    <!-- Page 2 -->
+                    <div id="page2" class="page">
+                        <div class="form-horizontal" role="form">
 
-                        <div class="col-md-6">
-
-
-                            <!---- 實驗室核准 ---->
-                            <div class="form-group">
-                                <!--MEMBER NAME FIELD , THIS FIELD IS CONNECTED TO HOME.PHP-->
-                                <label for="Approved1" class="col-md-3 control-label">核准醫檢師:</label>
-                                <div class="col-md-8">
-                                    <input type="text" id="Approved1" name=Approved1 class="form-control" readonly
-                                        value="{$Approved1}">
-                                </div>
-                            </div>
-                            <!---- 醫師核准 ---->
-                            <div class="form-group">
-                                <label for="Approved2" class="col-md-3 control-label">核准醫師:</label>
-                                <div class="col-md-8">
-                                    <input type="text" id="Approved2" name=Approved2 class="form-control" readonly
-                                        value="{$Approved2}">
-                                </div>
-                            </div>
-                            <!---- 實驗室核准 ---->
-                            <div class="form-group">
-                                <!--MEMBER NAME FIELD , THIS FIELD IS CONNECTED TO HOME.PHP-->
-                                <label for="Reject1" class="col-md-3 control-label">退回醫檢師:</label>
-                                <div class="col-md-8">
-                                    <input type="text" id="Reject1" name=Reject1 class="form-control" readonly
-                                        value="{$Reject1}">
-                                </div>
-                            </div>
-                            <!---- 醫師核准 ---->
-                            <div class="form-group">
-                                <label for="Reject2" class="col-md-3 control-label">退回醫師:</label>
-                                <div class="col-md-8">
-                                    <input type="text" id="Reject2" name=Reject2 class="form-control" readonly
-                                        value="{$Reject2}">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <!---- 實驗室核准日期 ---->
-                            <div class="form-group">
-                                <!--MEMBER NAME FIELD , THIS FIELD IS CONNECTED TO HOME.PHP-->
-                                <label for="Approved1At" class="col-md-3 control-label">實驗室核准日:</label>
-                                <div class="col-md-8">
-                                    <input type="text" id="Approved1At" name=Approved1At class="form-control" readonly
-                                        value="{$Approved1At}">
-                                </div>
-                            </div>
-                            <!---- 醫師核准日期 ---->
-                            <div class="form-group">
-                                <label for="Approved2At" class="col-md-3 control-label">醫師核准日:</label>
-                                <div class="col-md-8">
-                                    <input type="text" id="Approved2At" name=Approved2At class="form-control" readonly
-                                        value="{$Approved2At}">
-                                </div>
-                            </div>
+                            <div class="col-md-6">
 
 
-                            <!---- 實驗室核准日期 ---->
-                            <div class="form-group">
-                                <!--MEMBER NAME FIELD , THIS FIELD IS CONNECTED TO HOME.PHP-->
-                                <label for="Reject1At" class="col-md-3 control-label">實驗室退回日:</label>
-                                <div class="col-md-8">
-                                    <input type="text" id="Reject1At" name=Reject1At class="form-control" readonly
-                                        value="{$Reject1At}">
+                                <!---- 實驗室核准 ---->
+                                <div class="form-group">
+                                    <!--MEMBER NAME FIELD , THIS FIELD IS CONNECTED TO HOME.PHP-->
+                                    <label for="Approved1" class="col-md-3 control-label">核准醫檢師:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="Approved1" name=Approved1 class="form-control" readonly
+                                            value="{$Approved1}">
+                                    </div>
+                                </div>
+                                <!---- 醫師核准 ---->
+                                <div class="form-group">
+                                    <label for="Approved2" class="col-md-3 control-label">核准醫師:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="Approved2" name=Approved2 class="form-control" readonly
+                                            value="{$Approved2}">
+                                    </div>
+                                </div>
+                                <!---- 實驗室核准 ---->
+                                <div class="form-group">
+                                    <!--MEMBER NAME FIELD , THIS FIELD IS CONNECTED TO HOME.PHP-->
+                                    <label for="Reject1" class="col-md-3 control-label">退回醫檢師:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="Reject1" name=Reject1 class="form-control" readonly
+                                            value="{$Reject1}">
+                                    </div>
+                                </div>
+                                <!---- 醫師核准 ---->
+                                <div class="form-group">
+                                    <label for="Reject2" class="col-md-3 control-label">退回醫師:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="Reject2" name=Reject2 class="form-control" readonly
+                                            value="{$Reject2}">
+                                    </div>
                                 </div>
                             </div>
-
-                            <!---- 醫師核准日期 ---->
-                            <div class="form-group">
-                                <label for="Reject2At" class="col-md-3 control-label">醫師退回日:</label>
-                                <div class="col-md-8">
-                                    <input type="text" id="Reject2At" name=Reject2At class="form-control" readonly
-                                        value="{$Reject2At}">
+                            <div class="col-md-6">
+                                <!---- 實驗室核准日期 ---->
+                                <div class="form-group">
+                                    <!--MEMBER NAME FIELD , THIS FIELD IS CONNECTED TO HOME.PHP-->
+                                    <label for="Approved1At" class="col-md-3 control-label">實驗室核准日:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="Approved1At" name=Approved1At class="form-control"
+                                            readonly value="{$Approved1At}">
+                                    </div>
                                 </div>
-                            </div>
+                                <!---- 醫師核准日期 ---->
+                                <div class="form-group">
+                                    <label for="Approved2At" class="col-md-3 control-label">醫師核准日:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="Approved2At" name=Approved2At class="form-control"
+                                            readonly value="{$Approved2At}">
+                                    </div>
+                                </div>
 
-                            <!---- 報告建議/退回原因 ---->
-                            <div class="form-group">
-                                <label for="RejectReason" class="col-md-3 control-label">退回原因:</label>
-                                <div class="col-md-8">
-                                    <input type="text" id="RejectReason" name=RejectReason class="form-control"
-                                        value="{$RejectReason}" readonly>
 
+                                <!---- 實驗室核准日期 ---->
+                                <div class="form-group">
+                                    <!--MEMBER NAME FIELD , THIS FIELD IS CONNECTED TO HOME.PHP-->
+                                    <label for="Reject1At" class="col-md-3 control-label">實驗室退回日:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="Reject1At" name=Reject1At class="form-control" readonly
+                                            value="{$Reject1At}">
+                                    </div>
+                                </div>
+
+                                <!---- 醫師核准日期 ---->
+                                <div class="form-group">
+                                    <label for="Reject2At" class="col-md-3 control-label">醫師退回日:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="Reject2At" name=Reject2At class="form-control" readonly
+                                            value="{$Reject2At}">
+                                    </div>
+                                </div>
+
+                                <!---- 報告建議/退回原因 ---->
+                                <div class="form-group">
+                                    <label for="RejectReason" class="col-md-3 control-label">退回原因:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="RejectReason" name=RejectReason class="form-control"
+                                            value="{$RejectReason}" readonly>
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+
                 </div>
-
-
-            </div>
                 <!---- button area ---->
                 <div>
                     <div id="ds1" align="center">

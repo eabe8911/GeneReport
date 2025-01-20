@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-10-08 14:21:07
+/* Smarty version 4.3.4, created on 2024-12-26 16:02:33
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_6704cf53397cc0_39455012',
+  'unifunc' => 'content_676d0d9987a294_63354007',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '98a4e0f469206c0dee70008ce1ab27bb5060025a' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\home.tpl',
-      1 => 1728368448,
+      1 => 1735200151,
       2 => 'file',
     ),
   ),
@@ -24,7 +24,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_6704cf53397cc0_39455012 (Smarty_Internal_Template $_smarty_tpl) {
+function content_676d0d9987a294_63354007 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 <title>麗寶基因報告系統</title>
@@ -59,6 +59,8 @@ function content_6704cf53397cc0_39455012 (Smarty_Internal_Template $_smarty_tpl)
         <!-- <?php if ($_smarty_tpl->tpl_vars['Permission']->value != 4 && $_smarty_tpl->tpl_vars['Permission']->value != 0 && $_smarty_tpl->tpl_vars['Permission']->value != 2 && $_smarty_tpl->tpl_vars['Permission']->value != 3) {?> -->
         <div class="col-md-5" style="padding:10px">
             <form id="reportForm" action="../PHPService/home.php" method="POST">
+            <!-- 正式環境要改路徑 -->
+            <!-- <form id="reportForm" action="../home.php" method="POST"> --> 
                 <label for="start_report_id" style="text-align:right;font-size:14px;">請輸入報告編號區間：</label>
                 <input type="text" id="start_report_id" name="start_report_id" style="font-weight:bold;font-size:14px;">
 
@@ -188,7 +190,7 @@ function content_6704cf53397cc0_39455012 (Smarty_Internal_Template $_smarty_tpl)
                             var url = URL.createObjectURL(blob);
                             var a = document.createElement('a');
                             a.href = url;
-                            a.download = 'report_data.json';
+                            a.download = startReportId + '-' + endReportId + '.json';
                             document.body.appendChild(a);
                             a.click();
                             document.body.removeChild(a);

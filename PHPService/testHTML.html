@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample Data Entry</title>
+</head>
+
+<body>
+    <h1>Sample Data Entry Form</h1>
+    <form action="insert_sample.php" name="Addsample" method="post">
+        <!-- 系統流水號 (id) 自動遞增，無需輸入 -->
+        <label for="ReportID">實驗室編號 (ReportID):</label>
+        <input type="text" id="ReportID" name="ReportID" required><br><br>
+
+        <!-- Nucleic acid -->
+        <div id="Nucleic acid" class="collapse">
+            <label for="Nanodrop_Conc">Nanodrop:</label>
+            <input type="text" id="Nanodrop_Conc" name="Nanodrop_Conc"><br><br>
+
+            <label for="Qubit_Conc">Qubit:</label>
+            <input type="text" id="Qubit_Conc" name="Qubit_Conc"><br><br>
+
+            <label for="Volumn">volumn:</label>
+            <input type="text" id="Volumn" name="Volumn"><br><br>
+
+            <label for="Yield">Yield:</label>
+            <input type="text" id="Yield" name="Yield"><br><br>
+
+            <label for="OD280">OD 260/280:</label>
+            <input type="text" id="OD280" name="OD280"><br><br>
+
+            <label for="OD230">OD 260/230:</label>
+            <input type="text" id="OD230" name="OD230"><br><br>
+
+            <label for="Length">Length:</label>
+            <input type="text" id="Length" name="Length"><br><br>
+
+            <label for="Storage">儲存位置:</label>
+            <input type="text" id="Storage" name="Storage"><br><br>
+
+            <label for="ChipID">Run Name(PGM)/晶片ID(WES,PFI):</label>
+            <input type="text" id="ChipID" name="ChipID"><br><br>
+        </div>
+        <!-- Fragmentation -->
+        <div id="Fragmentation" class="collapse">
+            <label for="F_Method">Method:</label>
+            <input type="text" id="F_Method" name="F_Method"><br><br>
+
+            <label for="F_Conc">Fragment Conc.:</label>
+            <input type="text" id="F_Conc" name="F_Conc"><br><br>
+
+            <label for="F_Length">Bioanalyzer Length(bp):</label>
+            <input type="text" id="F_Length" name="F_Length"><br><br>
+
+            <label for="BarcodeNo">Barcode No.:</label>
+            <input type="text" id="BarcodeNo" name="BarcodeNo"><br><br>
+
+        </div>
+
+        <!-- Library -->
+        <div id="Library" class="collapse">
+            <label for="Library_Conc">Library_Conc:</label>
+            <input type="text" id="Library_Conc" name="Library_Conc"><br><br>
+
+            <label for="Library_Volumn">Library_Volumn:</label>
+            <input type="text" id="Library_Volumn" name="Library_Volumn"><br><br>
+
+            <label for="Library_Yield">Library_Yield:</label>
+            <input type="text" id="Library_Yield" name="Library_Yield"><br><br>
+
+            <label for="Library_Meansize">Library_Meansize:</label>
+            <input type="text" id="Library_Meansize" name="Library_Meansize"><br><br>
+        </div>
+
+        <button type="submit">確認送出</button>
+    </form>
+</body>
+
+</html>

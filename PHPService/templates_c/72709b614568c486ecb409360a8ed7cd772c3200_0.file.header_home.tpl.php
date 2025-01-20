@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-12-09 14:28:01
+/* Smarty version 4.3.4, created on 2024-12-26 16:03:29
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\header_home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_67568df11efe35_46708707',
+  'unifunc' => 'content_676d0dd1695032_75183908',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '72709b614568c486ecb409360a8ed7cd772c3200' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\header_home.tpl',
-      1 => 1733725671,
+      1 => 1735200207,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_67568df11efe35_46708707 (Smarty_Internal_Template $_smarty_tpl) {
+function content_676d0dd1695032_75183908 (Smarty_Internal_Template $_smarty_tpl) {
 ?><header style="border-bottom: 1px solid #ccc; display: flex; padding: 0.5em 1em; justify-content: space-between;">
     <div class="member-site-identity">
         <?php echo $_smarty_tpl->tpl_vars['Logo']->value;?>
@@ -163,9 +163,9 @@ function content_67568df11efe35_46708707 (Smarty_Internal_Template $_smarty_tpl)
                     <!-- <h3>新增基本資料</h3> -->
                 </a></li>
 
-            <li style="display: inline-block;"><a id="ImportReport" name="ImportReport" href="<?php echo $_smarty_tpl->tpl_vars['ImportReport']->value;?>
+            <li style="display: inline-block;"><a id="update_report_status" name="update_report_status" href="<?php echo $_smarty_tpl->tpl_vars['update_report_status']->value;?>
 ">
-                    <h3>批次匯入基本資料</h3>
+                    <h3>修改報告狀態</h3>
                 </a></li>
 
             <li style="display: inline-block;">

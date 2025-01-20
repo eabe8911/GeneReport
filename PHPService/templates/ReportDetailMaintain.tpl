@@ -145,7 +145,8 @@
                                             <option value="48" {if $HospitalListSelect==48}selected{/if}>嘉義基督教醫院</option>
                                             <option value="49" {if $HospitalListSelect==49}selected{/if}>衛生福利部嘉義醫院</option>
                                             <option value="50" {if $HospitalListSelect==50}selected{/if}>彰化基督教醫院</option>
-
+                                            <option value="51" {if $HospitalListSelect==51}selected{/if}>北秀健康管理診所</option>
+                                            <option value="52" {if $HospitalListSelect==52}selected{/if}>台中榮總嘉義分院</option>
 
                                         </select>
 
@@ -232,8 +233,6 @@
                                 </div>
 
                                 <!---- 報告樣板 ---->
-                                {if $Permission eq 1 or $Permission eq 2 or $Permission eq 4 or $Permission eq 5 or
-                                $Permission eq 9 }
                                 <div class="form-group">
                                     <label for="TemplateID" class="col-md-3 control-label">報告樣板:</label>
                                     <div class="col-md-8">
@@ -243,7 +242,7 @@
                                         selected=$TemplateSelect class="form-control" required="required"}
                                     </div>
                                 </div>
-                                {/if}
+
                                 <!---- 採集日期 ---->
                                 <div class="form-group">
                                     <label for="scdate" class="col-md-3 control-label">採集日期:</label>
@@ -820,7 +819,7 @@
                                     <i class="fa fa-edit"></i> 修 改</button>
 
                             </p>
-                            {elseif $Permission == 4 }
+                            {elseif $Permission == 4 or $Permission == 50}
                             <p id="ReportQueryButton">
                                 <button type="button" class="btn btn-danger btn-md" id="BtnReportExit"
                                     style="font-weight:bold;font-size:20px;margin:30px;">
@@ -853,16 +852,6 @@
                                     style="font-weight:bold;font-size:20px;margin:30px;">
                                     <i class="fa fa-eject"></i> 離 開</button>
                             </p>
-
-
-                            <!-- {elseif $Permission == 4}
-                            <p id="ReportQueryButton">
-                                <button type="button" class="btn btn-danger btn-md" id="BtnReportExit"
-                                    style="font-weight:bold;font-size:20px;margin:30px;">
-                                    <i class="fa fa-eject"></i> 離 開</button>
-                                <button type="button" class="btn btn-danger btn-md" id="BtnReportEditccemail"
-                                    style="font-weight:bold;font-size:20px;margin:30px;">
-                                    <i class="fa fa-edit"></i> 修改郵件</button> -->
 
                             {/if}
                             <!--SUBMIT BUTTON IS CONNECTED TO HOME.PHP-->

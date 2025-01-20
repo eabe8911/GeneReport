@@ -1855,4 +1855,55 @@ class Report implements ReportInterface
         return true;
     }
 
+    // public function getDueDates()
+    // {
+    //     $sql = "SELECT ReportID, DueDate FROM Report";
+    //     $stmt = $this->_conn->prepare($sql);
+    //     $stmt->execute();
+    //     return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    // }
+
+    // public function sendNotificationToTeams($message)
+    // {
+    //     $webhookUrl = 'https://outlook.office.com/webhook/YOUR_WEBHOOK_URL'; // 替换为你的 Microsoft Teams Webhook URL
+
+    //     $ch = curl_init($webhookUrl);
+    //     curl_setopt($ch, CURLOPT_POST, 1);
+    //     curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode(['text' => $message]));
+    //     curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
+    //     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+    //     $response = curl_exec($ch);
+    //     if ($response === false) {
+    //         $error = curl_error($ch);
+    //         // 处理错误
+    //         error_log("Failed to send Teams notification: $error");
+    //     } else {
+    //         // 处理成功响应
+    //         error_log("Teams notification sent successfully: $response");
+    //     }
+
+    //     curl_close($ch);
+    // }
+
+    // public function checkAndSendNotifications()
+    // {
+    //     $dueDates = $this->getDueDates();
+    //     $currentDate = new DateTime();
+    //     $currentDateFormatted = $currentDate->format('Y-m-d');
+
+    //     foreach ($dueDates as $dueDate) {
+    //         $dueDateTime = new DateTime($dueDate['DueDate']);
+    //         $dueDateTime->modify('-3 days');
+    //         $threeDaysBeforeDueDate = $dueDateTime->format('Y-m-d');
+
+    //         if ($currentDateFormatted === $threeDaysBeforeDueDate) {
+    //             $message = "提醒：報告的截止日期是 {$dueDate['DueDate']}，請在截止日期前完成相關工作。";
+    //             $this->sendNotificationToTeams($message);
+    //         }
+    //     }
+    // }
+
+
+
 }

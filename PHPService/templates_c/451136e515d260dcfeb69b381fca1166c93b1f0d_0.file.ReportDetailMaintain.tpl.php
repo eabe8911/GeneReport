@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-12-23 17:34:06
+/* Smarty version 4.3.4, created on 2025-01-13 11:11:22
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\ReportDetailMaintain.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_67692e8e8fbc05_98665866',
+  'unifunc' => 'content_6784845a05fec5_47422131',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '451136e515d260dcfeb69b381fca1166c93b1f0d' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\ReportDetailMaintain.tpl',
-      1 => 1734946349,
+      1 => 1736237031,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_67692e8e8fbc05_98665866 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6784845a05fec5_47422131 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\vendor\\smarty\\smarty\\libs\\plugins\\function.html_options.php','function'=>'smarty_function_html_options',),));
 ?>
 <!--POP UP MODAL TO VIEW MEMBER DETAILS AND RESULTS FOR Member Information-->
@@ -179,6 +179,7 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                             <option value="48" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 48) {?>selected<?php }?>>嘉義基督教醫院</option>
                                             <option value="49" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 49) {?>selected<?php }?>>衛生福利部嘉義醫院</option>
                                             <option value="50" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 50) {?>selected<?php }?>>彰化基督教醫院</option>
+                                            <option value="51" <?php if ($_smarty_tpl->tpl_vars['HospitalListSelect']->value == 51) {?>selected<?php }?>>北秀健康管理診所</option>
 
 
                                         </select>
@@ -269,7 +270,6 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                 </div>
 
                                 <!---- 報告樣板 ---->
-                                <?php if ($_smarty_tpl->tpl_vars['Permission']->value == 1 || $_smarty_tpl->tpl_vars['Permission']->value == 2 || $_smarty_tpl->tpl_vars['Permission']->value == 4 || $_smarty_tpl->tpl_vars['Permission']->value == 5 || $_smarty_tpl->tpl_vars['Permission']->value == 9) {?>
                                 <div class="form-group">
                                     <label for="TemplateID" class="col-md-3 control-label">報告樣板:</label>
                                     <div class="col-md-8">
@@ -278,7 +278,7 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
 
                                     </div>
                                 </div>
-                                <?php }?>
+
                                 <!---- 採集日期 ---->
                                 <div class="form-group">
                                     <label for="scdate" class="col-md-3 control-label">採集日期:</label>
@@ -849,7 +849,7 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                     <i class="fa fa-edit"></i> 修 改</button>
 
                             </p>
-                            <?php } elseif ($_smarty_tpl->tpl_vars['Permission']->value == 4) {?>
+                            <?php } elseif ($_smarty_tpl->tpl_vars['Permission']->value == 4 || $_smarty_tpl->tpl_vars['Permission']->value == 50) {?>
                             <p id="ReportQueryButton">
                                 <button type="button" class="btn btn-danger btn-md" id="BtnReportExit"
                                     style="font-weight:bold;font-size:20px;margin:30px;">
@@ -882,16 +882,6 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield6']->value;?>
                                     style="font-weight:bold;font-size:20px;margin:30px;">
                                     <i class="fa fa-eject"></i> 離 開</button>
                             </p>
-
-
-                            <!-- <?php } elseif ($_smarty_tpl->tpl_vars['Permission']->value == 4) {?>
-                            <p id="ReportQueryButton">
-                                <button type="button" class="btn btn-danger btn-md" id="BtnReportExit"
-                                    style="font-weight:bold;font-size:20px;margin:30px;">
-                                    <i class="fa fa-eject"></i> 離 開</button>
-                                <button type="button" class="btn btn-danger btn-md" id="BtnReportEditccemail"
-                                    style="font-weight:bold;font-size:20px;margin:30px;">
-                                    <i class="fa fa-edit"></i> 修改郵件</button> -->
 
                             <?php }?>
                             <!--SUBMIT BUTTON IS CONNECTED TO HOME.PHP-->

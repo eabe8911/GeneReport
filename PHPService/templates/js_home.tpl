@@ -159,6 +159,7 @@
             case '4':
             case '5':
             case '9':
+            case '50':
                 var link = "<button class='btn btn-primary' onclick='ReportEdit(" + ID + ");'>檢視報告</button>";
                 break;
             case 'Delete':

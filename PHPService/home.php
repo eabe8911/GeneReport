@@ -37,6 +37,7 @@ $smarty->assign("addReport", "ReportDetailMaintain.php?ReportMode=ADD");
 $smarty->assign("RejectReport", "ReportDetailApprove.php?ApproveMode=REJECT");
 $smarty->assign("ApproveReport", "ReportDetailApprove.php?ApproveMode=PASS");
 $smarty->assign("ImportReport", "ReportImportData.php");
+$smarty->assign("update_report_status", "update_report_status.php");
 $smarty->assign("log_table", "log_table.php");
 // $smarty->assign("addTemplate", "ReportDetailMaintain.php?ReportMode=ADDT");
 
@@ -48,11 +49,15 @@ $smarty->assign("jqGridPager", "jqGridPager", true);
 $smarty->assign("jqGrid_Log", "jqGrid_Log", true);
 $smarty->assign("jqGridPager_Log", "jqGridPager_Log", true);
 
+
+
 // 处理 AJAX 请求
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && strpos($_SERVER['CONTENT_TYPE'], 'application/json') !== false) {
     header('Content-Type: application/json');
-
+    $Username = $_SESSION['DisplayName'];
+    $ReportMode = "JSON";
     try {
+        
         $log = new Log();
         // 获取原始 POST 数据
         $data = file_get_contents('php://input');
@@ -71,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && strpos($_SERVER['CONTENT_TYPE'], 'a
         // 查詢資料庫
         if ($startReportId > $endReportId) {
             throw new Exception('Start report ID must be less than or equal to end report ID');
-            // $log->SaveLog("ERROR", $DisplayName, "JSON", date("Y-m-d H:i:s"), "Start report ID must be less than or equal to end report ID");
+            $log->SaveLog("ERROR", $DisplayName, "JSON", date("Y-m-d H:i:s"), "Start report ID must be less than or equal to end report ID");
         }
 
         $Report = new Report();
@@ -83,7 +88,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && strpos($_SERVER['CONTENT_TYPE'], 'a
         if (empty($response)) {
             throw new Exception('No report found');
         }
+
+
+        $log->SaveLog("下載JSON", $Username, $ReportMode, date("Y-m-d H:i:s"), $startReportId.'-'.$endReportId. "下載成功");
+
         echo json_encode($response);
+
 
 
     } catch (Exception $e) {
@@ -93,6 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && strpos($_SERVER['CONTENT_TYPE'], 'a
         echo json_encode($errorResponse);
     }
     exit;
+
 }
 
 

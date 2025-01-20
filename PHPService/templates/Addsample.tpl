@@ -271,7 +271,7 @@
                                 <div class="form-group">
                                     <label for="Remark" class="col-md-3 control-label">備註:</label>
                                     <div class="col-md-8">
-                                        <textarea id="Remark" name="Remark" class="form-control" required></textarea>
+                                        <textarea id="Remark" name="Remark" class="form-control" >{$Remark}</textarea>
                                     </div>
                                 </div>
 
@@ -294,7 +294,7 @@
             <div>
                 <div id="ds1" align="center">
                     <p id="ReportQueryButton">
-                        <button type="button" class="btn btn-danger btn-md" id="BtnReportExit"
+                        <button type="button" class="btn btn-danger btn-md" id="BtnSampleExit"
                             style="font-weight:bold;font-size:20px;margin:30px;">
                             <i class="fa fa-eject"></i> 離 開</button>
                         {if $Nanodrop_Conc == ''}

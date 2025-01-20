@@ -36,7 +36,7 @@ $F_Method = $F_Conc = $F_Length ="";
 $Library_Conc = $Library_Volumn = $Library_Yield = $Library_Meansize = $BarcodeNo = $Library_date = $Platform = $ChipID = $On_date = "";
 $ErrorMessage = '';
 $LogoName = "";
-
+$previousPage = $_SERVER['HTTP_REFERER'] ?? 'home.php';
 $ReportID = "";
 $sampleData = array();
 $sample = new Report($_POST);
@@ -52,7 +52,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
         switch ($ReportMode) {
             case 'ADDsample':
                 $sample->AddSample($_POST);
-                $ReportMode = "UpdateSample";
+                // $ReportMode = "UpdateSample";
 
                 //get ReportID
                 $ReportID = $sample->ReportInfo('ReportID');
@@ -83,6 +83,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
                 $ReportTemplate = '1';
                 $Message = "新增成功";
                 $log->SaveLog("新增實驗數據", $Username, $ReportMode, date("Y-m-d H:i:s"), $ReportID . "新增成功");    
+
+
+                break;
             
             case 'UpdateSample':
                 $sample->UpdateSample($_POST);
@@ -111,14 +114,22 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
                 $Platform = filter_input(INPUT_POST, 'Platform');
                 $ChipID = filter_input(INPUT_POST, 'ChipID');
                 $On_date = filter_input(INPUT_POST, 'On_date');
+                $Remark = filter_input(INPUT_POST, 'Remark');
                 $ReportStatus = '1';
                 $ReportTemplate = '1';
                 $Message = "修改成功";
                 $log->SaveLog("修改實驗數據", $Username, $ReportMode, date("Y-m-d H:i:s"), $ReportID . "修改成功");
+
+
+
                 break;
         default:
+            header("Location: home.php");
             break;
         }
+        header("Location: $previousPage");
+        ob_end_flush();
+
     } catch (Exception $e) {
         $ErrorMessage = $e->getMessage();
         $log->SaveLog("ERROR", $Username, $ReportMode, date("Y-m-d H:i:s"), $ReportID . $ErrorMessage);
@@ -176,6 +187,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
         $smarty->assign("Platform", $sampleData['Platform'] ?? '');
         $smarty->assign("ChipID", $sampleData['ChipID'] ?? '');
         $smarty->assign("On_date", $sampleData['On_date'] ?? '');
+        $smarty->assign("Remark", $sampleData['Remark'] ?? '');
 
 
 }
@@ -229,6 +241,7 @@ $smarty->assign("Library_date", $sampleData['Library_date'] ?? '');
 $smarty->assign("Platform", $sampleData['Platform'] ?? '');
 $smarty->assign("ChipID", $sampleData['ChipID'] ?? '');
 $smarty->assign("On_date", $sampleData['On_date'] ?? '');
+$smarty->assign("Remark", $sampleData['Remark'] ?? '');
 
 // Error Message
 $smarty->assign("ErrorMessage", $ErrorMessage);

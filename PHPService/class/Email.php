@@ -65,7 +65,7 @@ class Email
 
         $log = new Log();
         try {
-            $_mail->SMTPDebug = 0;
+            $_mail->SMTPDebug = 2;
 
             // Init Office 365 email setting
             $_mail->isSMTP();
@@ -185,12 +185,11 @@ class Email
             $_mail->isSMTP();
             $_mail->Host = 'smtp.office365.com';
             $_mail->Port = 587;
-            $_mail->SMTPSecure = 'tls';
+            $_mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $_mail->SMTPAuth = true;
             // sender email setting
             $_mail->Username = 'liboreport@libobio.com';
             $_mail->Password = 'Xu41l3libo';
-
 
             // Set sender alias based on user permission
 

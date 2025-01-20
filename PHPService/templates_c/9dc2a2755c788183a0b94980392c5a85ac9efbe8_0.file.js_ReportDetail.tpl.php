@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-12-24 11:42:09
+/* Smarty version 4.3.4, created on 2024-12-26 15:41:33
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\js_ReportDetail.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_676a2d91c3a870_52511899',
+  'unifunc' => 'content_676d08addcfe72_38717516',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '9dc2a2755c788183a0b94980392c5a85ac9efbe8' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\js_ReportDetail.tpl',
-      1 => 1735011728,
+      1 => 1735198890,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_676a2d91c3a870_52511899 (Smarty_Internal_Template $_smarty_tpl) {
+function content_676d08addcfe72_38717516 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
  type="text/javascript">
   
@@ -167,6 +167,12 @@ echo '<script'; ?>
         $('#ReportMode').val('EXIT');
         window.location.replace('home.php');
       });
+
+      $('#BtnSampleExit').click(function() {
+        $('#ReportMode').val('EXIT');
+        window.history.back();
+      });
+
 
       // Delete Report using ReportID
       $('#BtnReportDelete').click(function() {

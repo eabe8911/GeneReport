@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-05-28 15:53:10
+/* Smarty version 4.3.4, created on 2025-01-03 10:23:18
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\permission.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_66558d667aad35_69916369',
+  'unifunc' => 'content_67774a16583f36_29659383',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c0bead8964d83d593ec47afe0cbcbaceb56fab50' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\permission.tpl',
-      1 => 1716882788,
+      1 => 1733820525,
       2 => 'file',
     ),
   ),
@@ -23,7 +23,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:indexheader.tpl' => 1,
   ),
 ),false)) {
-function content_66558d667aad35_69916369 (Smarty_Internal_Template $_smarty_tpl) {
+function content_67774a16583f36_29659383 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <title>麗寶基因報告系統</title>
@@ -80,10 +80,12 @@ function content_66558d667aad35_69916369 (Smarty_Internal_Template $_smarty_tpl)
                             <select class="form-control" name="Permission" id="Permission" required>
                                 <option value="">請選擇權限</option>
                                 <option value="0">0 唯讀</option>
-                                <option value="1">1 管理者(新增、刪除、修改報告)</option>
-                                <option value="2">2 醫檢師(簽核、退回報告)</option>
+                                <option value="1">1 生資人員(上傳報告)</option>
+                                <option value="21">21 ISO簽核醫檢師(簽核、退回報告)</option>
+                                <option value="22">22 LDTS簽核醫師(簽核、退回報告)</option>
                                 <option value="3">3 醫師(簽核、退回報告)</option>
                                 <option value="4">4 實驗室專人(寄送報告)</option>
+                                <option value="5">5 收檢人員(新增、修改、上傳申請單)</option>
                                 <option value="6">6 監控查核(查看紀錄)</option>
                             </select>
                         </div>

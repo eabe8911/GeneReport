@@ -144,6 +144,12 @@
         window.location.replace('home.php');
       });
 
+      $('#BtnSampleExit').click(function() {
+        $('#ReportMode').val('EXIT');
+        window.history.back();
+      });
+
+
       // Delete Report using ReportID
       $('#BtnReportDelete').click(function() {
         $.confirm({

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-12-24 11:41:44
+/* Smarty version 4.3.4, created on 2024-12-26 15:41:37
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\Addsample.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_676a2d78181502_61033184',
+  'unifunc' => 'content_676d08b18d4462_76073723',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '79a487a3027a6fe3570d05f01ec6e9d73b741b66' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\Addsample.tpl',
-      1 => 1735011674,
+      1 => 1735198861,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:js_ReportImportData.tpl' => 1,
   ),
 ),false)) {
-function content_676a2d78181502_61033184 (Smarty_Internal_Template $_smarty_tpl) {
+function content_676d08b18d4462_76073723 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <title>麗寶基因報告系統</title>
 <html>
@@ -324,7 +324,8 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield5']->value;?>
                                 <div class="form-group">
                                     <label for="Remark" class="col-md-3 control-label">備註:</label>
                                     <div class="col-md-8">
-                                        <textarea id="Remark" name="Remark" class="form-control" required></textarea>
+                                        <textarea id="Remark" name="Remark" class="form-control" ><?php echo $_smarty_tpl->tpl_vars['Remark']->value;?>
+</textarea>
                                     </div>
                                 </div>
 
@@ -347,7 +348,7 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield5']->value;?>
             <div>
                 <div id="ds1" align="center">
                     <p id="ReportQueryButton">
-                        <button type="button" class="btn btn-danger btn-md" id="BtnReportExit"
+                        <button type="button" class="btn btn-danger btn-md" id="BtnSampleExit"
                             style="font-weight:bold;font-size:20px;margin:30px;">
                             <i class="fa fa-eject"></i> 離 開</button>
                         <?php if ($_smarty_tpl->tpl_vars['Nanodrop_Conc']->value == '') {?>
