@@ -137,6 +137,22 @@ class Report implements ReportInterface
         $this->_ReportInfo[$key] = $value;
     }
 
+    public function getMethod($ReportID)
+    {
+        try {
+            $sql = "SELECT method FROM Report WHERE ReportID=:ReportID";
+            $stmt = $this->_conn->prepare($sql);
+            $stmt->bindParam(':ReportID', $ReportID);
+            $stmt->execute();
+            $method = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        } catch (PDOException | Exception $th) {
+            throw new Exception($th->getMessage(), $th->getCode());
+        }
+        return $method;
+
+    }
+
     /**
      * Summary of getReport
      * @param mixed $ID

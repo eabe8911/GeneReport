@@ -86,7 +86,7 @@
                                         <!-- {html_options name=HospitalList id=HospitalList options=['' => '請選擇...'] +
                                                                         $HospitalListOptions
                                                                         selected=$HospitalListSelect class="form-control" required="required"} -->
-                                        <select id="HospitalList" name="HospitalList" class="form-control"
+                                        <!-- <select id="HospitalList" name="HospitalList" class="form-control"
                                             onchange="hospitalSubmenu(this, document.getElementById('CustomerName'))">
                                             <option value="">Select a category</option>
                                             <option value="1" {if $HospitalListSelect==1}selected{/if}>輔大醫院</option>
@@ -164,8 +164,12 @@
                                             </option>
                                             <option value="52" {if $HospitalListSelect==52}selected{/if}>台中榮總嘉義分院
                                             </option>
-                                        </select>
+                                            <option value="53" {if $HospitalListSelect==53}selected{/if}>花蓮慈濟醫院</option>
 
+                                        </select> -->
+                                        <select id="HospitalList" name="HospitalList" class="form-control" >
+                                            <option value="">Select a category</option>
+                                        </select>
 
                                     </div>
 
@@ -870,5 +874,31 @@
 
     // 初始化时检查一次
     checkTestUnit();
+</script>
+<script>
+    // AJAX 請求動態獲取資料
+    function loadHospitalList() {
+        fetch('getHospitals.php') // 假設後端 API 是 getHospitals.php
+            .then(response => response.json())
+            .then(data => {
+                const hospitalList = document.getElementById('HospitalList');
+                // 清空現有選項
+                hospitalList.innerHTML = '<option value="">Select a category</option>';
+
+                // 動態添加選項
+                data.forEach(hospital => {
+                    const option = document.createElement('option');
+                    option.value = hospital.id; // 假設返回的資料有 id 欄位
+                    option.textContent = hospital.Name; // 假設返回的資料有 name 欄位
+                    hospitalList.appendChild(option);
+                });
+            })
+            .catch(error => {
+                console.error('Error loading hospital list:', error);
+            });
+    }
+
+    // 在頁面加載完成後執行
+    document.addEventListener('DOMContentLoaded', loadHospitalList);
 </script>
 <!---------------------------End----------------------------->

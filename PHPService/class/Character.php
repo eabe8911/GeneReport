@@ -18,6 +18,7 @@ class Character
                 ;
                 $_SESSION['AUTH'] = true;
                 $_SESSION['Permission'] = $UserData['permission'];
+                $_SESSION['tech'] = $UserData['tech_permission'];
                 $_SESSION['Role'] = $UserData['role'];
                 $_SESSION['Character'] = "User";
             } else if ($member->Login($Account, $Password)) {

@@ -51,7 +51,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
 
         switch ($ReportMode) {
             case 'ADDsample':
-                $sample->AddSample($_POST);
+                $sample->AddSample3($_POST);
                 // $ReportMode = "UpdateSample";
 
                 //get ReportID
@@ -83,6 +83,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
                 $ReportTemplate = '1';
                 $Message = "新增成功";
                 $log->SaveLog("新增實驗數據", $Username, $ReportMode, date("Y-m-d H:i:s"), $ReportID . "新增成功");    
+
 
                 break;
             
@@ -119,6 +120,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
                 $Message = "修改成功";
                 $log->SaveLog("修改實驗數據", $Username, $ReportMode, date("Y-m-d H:i:s"), $ReportID . "修改成功");
 
+
+
                 break;
         default:
             header("Location: home.php");
@@ -141,8 +144,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
         if ($sampleData === false) {
             $sampleData = [];
         }
-        $method = $sample->getMethod($ReportID) ;
-        $Method = $method !== false && isset($method["method"]) ? $method["method"] : '';
         $smarty = new Smarty;
         // $smarty->assign('樣板標籤名稱', $變數值);   將變數送至樣板檔
         $smarty->assign("Logo", $Logo);
@@ -160,8 +161,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
         $smarty->assign("Hiddenfield5", "<input type='hidden' id='ID' name='ID' value=" . $ID . ">");
         $smarty->assign("Hiddenfield6", "<input type='hidden' id='Account' name='Account' value=" . $Account . ">");
         $smarty->assign("Hiddenfield7", "<input type='hidden' id='ApplyFile' name='ApplyFile' value=" . $ApplyFile . ">");
-        $smarty->assign("Method", "<input type='hidden' id='method' name='method' value='" . htmlspecialchars($Method, ENT_QUOTES, 'UTF-8') . "'>");
-
+        $smarty->assign("Hiddenfield8", "<input type='hidden' id='LogoFile' name='LogoFile' value=" . $LogoFile . ">");
 
         // Form Fields
         $smarty->assign("ReportID", $ReportID);
@@ -194,9 +194,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
     
 $ReportID = filter_input(INPUT_GET, 'ReportID');
 $sample = new Report();
-$method = $sample->getMethod($ReportID) ;
-$Method = $method !== false && isset($method["method"]) ? $method["method"] : '';
-
 $sampleData = $sample->getSampleData($ReportID);
 if ($sampleData === false) {
     $sampleData = [];
@@ -218,10 +215,7 @@ $smarty->assign("Hiddenfield4", "<input type='hidden' id='Permission' name='Perm
 $smarty->assign("Hiddenfield5", "<input type='hidden' id='ID' name='ID' value=" . $ID . ">");
 $smarty->assign("Hiddenfield6", "<input type='hidden' id='Account' name='Account' value=" . $Account . ">");
 $smarty->assign("Hiddenfield7", "<input type='hidden' id='ApplyFile' name='ApplyFile' value=" . $ApplyFile . ">");
-// $smarty->assign("Method", "<input type='text' id='method' name='method' value='" . htmlspecialchars($Method, ENT_QUOTES, 'UTF-8') . "'>");
-$smarty->assign("Method", $Method);
-$smarty->assign("ReportName", $ReportName);
-$smarty->assign("sample_type_r1", $sample_type_r1);
+$smarty->assign("Hiddenfield8", "<input type='hidden' id='LogoFile' name='LogoFile' value=" . $LogoFile . ">");
 
 // Form Fields
 $smarty->assign("ReportID", $ReportID);
@@ -257,7 +251,7 @@ if ($ErrorMessage == '') {
     $smarty->assign("ShowErrorMessage", '');
 }
 
-$smarty->assign("IncludePage", "Addsample.tpl");
+$smarty->assign("IncludePage", "Addsample3.tpl");
 $smarty->display("ViewSample.tpl");
 
 

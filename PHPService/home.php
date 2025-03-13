@@ -29,6 +29,8 @@ $smarty->assign("Title", "麗寶生醫");
 $smarty->assign("DisplayName", $_SESSION['DisplayName']);
 $smarty->assign("UserID", $_SESSION['UserID']);
 $smarty->assign("Permission", $_SESSION['Permission']);
+$smarty->assign("tech", $_SESSION['tech']);
+
 $smarty->assign("Role", $_SESSION['Role']);
 $smarty->assign("Character", $_SESSION['Character']);
 $smarty->assign("AgentPhoto", "assets/images/users/avatar-1.jpg");

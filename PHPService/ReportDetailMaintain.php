@@ -34,6 +34,7 @@ $Account = $_SESSION['Account'];
 $DisplayName = $_SESSION['DisplayName'];
 $Permission = $_SESSION['Permission'];
 $Role = $_SESSION['Role'];
+$tech = $_SESSION['tech'];
 $FormName = filter_input(INPUT_POST, 'FormName');
 $ReportMode = $ReportID = $PDFFile = $ApplyFile = $LogoFile = $ID = $ReportStatus = $ReportTemplate = $proband_name = "";
 $Receiving = $Receiving2 = $Submitdate = $SampleType_1 = $SampleQuantity_1 = $SampleUnit_1 = $TemplateID = $method = $Diseases = $Tumor_percentage = $Department="";
@@ -43,7 +44,7 @@ $result1 = $resultID = array();
 if ($_SERVER["REQUEST_METHOD"] == "POST" && $FormName == "ViewReportDetail") {
     try {
         $report = new Report($_POST);
-        $report->checkAndSendNotifications();
+        // $report->checkAndSendNotifications();
         $ccemail = filter_input(INPUT_POST, 'ccemail');
         $ReportMode = filter_input(INPUT_POST, 'ReportMode');
         $ReportID = filter_input(INPUT_POST, 'ReportID');
@@ -420,7 +421,7 @@ $smarty->assign("Hiddenfield4", "<input type='hidden' id='Permission' name='Perm
 $smarty->assign("Hiddenfield5", "<input type='hidden' id='ID' name='ID' value=" . $ID . ">");
 $smarty->assign("Hiddenfield6", "<input type='hidden' id='Account' name='Account' value=" . $Account . ">");
 $smarty->assign("Hiddenfield7", "<input type='hidden' id='ApplyFile' name='ApplyFile' value=" . $ApplyFile . ">");
-$smarty->assign("Hiddenfield8", "<input type='hidden' id='LogoFile' name='LogoFile' value=" . $LogoFile . ">");
+$smarty->assign("Hiddenfield8", "<input type='hidden' id='tech' name='tech' value=" . $tech . ">");
 // Error Message
 $smarty->assign("ErrorMessage", $ErrorMessage);
 if ($ErrorMessage == '') {
@@ -505,6 +506,7 @@ $smarty->assign("ccemail", $report->ReportInfo('ccemail'), true);
 $smarty->assign("CustomerPhone", $report->ReportInfo('CustomerPhone'), true);
 $smarty->assign("ReportStatus", $ReportStatus, true);
 $smarty->assign("Permission", $Permission, true);
+$smarty->assign("tech", $tech, true);
 $smarty->assign("RejectReason", $report->ReportInfo('RejectReason'), true);
 $smarty->assign("SampleNo", $report->ReportInfo('SampleNo'), true);
 $smarty->assign("PatientID", $report->ReportInfo('PatientID'), true);

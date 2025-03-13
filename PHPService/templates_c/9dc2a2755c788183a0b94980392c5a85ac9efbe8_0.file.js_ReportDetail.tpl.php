@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-12-26 15:41:33
+/* Smarty version 4.3.4, created on 2025-01-20 16:43:49
   from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\js_ReportDetail.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_676d08addcfe72_38717516',
+  'unifunc' => 'content_678e0cc5602cd3_49851526',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '9dc2a2755c788183a0b94980392c5a85ac9efbe8' => 
     array (
       0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\js_ReportDetail.tpl',
-      1 => 1735198890,
+      1 => 1737342599,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_676d08addcfe72_38717516 (Smarty_Internal_Template $_smarty_tpl) {
+function content_678e0cc5602cd3_49851526 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
  type="text/javascript">
   
@@ -294,8 +294,9 @@ echo '<script'; ?>
       $('#SampleQuantity_3').prop('disabled', state);
       $('#SampleQuantity_4').prop('disabled', state);
       $('#SampleQuantity_5').prop('disabled', state);
+
       $('#Diseases').prop('disabled', state);
-      $('#Tumor_percentage').prop('disabled', state);
+      $('#Tumor_percentae').prop('disabled', state);
       $('#Receiving').prop('disabled', state);
       $('#Receiving2').prop('disabled', state);
       $('#DisplayUploadButton').prop('hidden', state);

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2025-02-18 16:20:20
-  from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\Addsample.tpl' */
+/* Smarty version 4.3.4, created on 2025-02-08 10:59:06
+  from 'C:\Users\tina.xue\Documents\Tina\projects\GeneReport\PHPService\templates\Addsample2.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_67b442c48f09f7_44264316',
+  'unifunc' => 'content_67a6c87a239537_29019796',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '79a487a3027a6fe3570d05f01ec6e9d73b741b66' => 
+    '60c9b3ca18b4ac8cb874059db4a5668783b74ff1' => 
     array (
-      0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\Addsample.tpl',
-      1 => 1739866817,
+      0 => 'C:\\Users\\tina.xue\\Documents\\Tina\\projects\\GeneReport\\PHPService\\templates\\Addsample2.tpl',
+      1 => 1738983479,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:js_ReportImportData.tpl' => 1,
   ),
 ),false)) {
-function content_67b442c48f09f7_44264316 (Smarty_Internal_Template $_smarty_tpl) {
+function content_67a6c87a239537_29019796 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <title>麗寶基因報告系統</title>
 <html>
@@ -50,7 +50,7 @@ function content_67b442c48f09f7_44264316 (Smarty_Internal_Template $_smarty_tpl)
 <body>
 
     <!--header.tpl THIS PAGE IS FOR HEADER OF HOME.PHP (LOGO AND AGENT NAME)--->
-    <form action="Addsample.php" name="Addsample" onsubmit="return validateQubitYield()" method="post">
+    <form action="Addsample2.php" name="Addsample2" method="post">
         <?php echo $_smarty_tpl->tpl_vars['Hiddenfield1']->value;
 echo $_smarty_tpl->tpl_vars['Hiddenfield2']->value;
 echo $_smarty_tpl->tpl_vars['Hiddenfield3']->value;
@@ -62,9 +62,8 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield5']->value;?>
             <div class="row">
                 <input type="hidden" id="uuid">
                 <div class="col-sm-12">
-
                     <!-- Page 1 -->
-                    <div class="card-box" style="height: 800px;">
+                    <div class="card-box" style="height: 700px;">
                         <div class="form-horizontal" role="form">
                             <!---- 第一排 ---->
                             <div class="col-md-4">
@@ -101,14 +100,14 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield5']->value;?>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="Volumn" class="col-md-3 control-label">Volumn<br> <small>(㎕)</small>:</label>
+                                    <label for="Volumn" class="col-md-3 control-label">Volumn(㎕):</label>
                                     <div class="col-md-8">
                                         <input type="text" id="Volumn" name="Volumn" class="form-control" required
                                             value="<?php echo $_smarty_tpl->tpl_vars['Volumn']->value;?>
 ">
                                     </div>
                                 </div>
-<!-- 
+
                                 <div class="form-group">
                                     <label for="Nanodrop_Yield"
                                         class="col-md-3 control-label">Nanodrop_Yield<br>(ng):</label>
@@ -117,44 +116,14 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield5']->value;?>
                                             class="form-control" required value="<?php echo $_smarty_tpl->tpl_vars['Nanodrop_Yield']->value;?>
 ">
                                     </div>
-                                </div> -->
-
-                                <div class="form-group row mb-3">
-                                    <label for="Nanodrop_Yield" class="col-md-3 control-label">
-                                        Nanodrop Yield <br> <small>(ng)</small>
-                                    </label>
-                                    <div class="col-md-8">
-                                        <input type="text" id="Nanodrop_Yield" name="Nanodrop_Yield"
-                                            class="form-control" required value="<?php echo $_smarty_tpl->tpl_vars['Nanodrop_Yield']->value;?>
-" placeholder="輸入濃度">
-                                    </div>
                                 </div>
-                                
 
-                                <!-- <div class="form-group">
+                                <div class="form-group">
                                     <label for="Qubit_Yield" class="col-md-3 control-label">Qubit_Yield<br>(ng):</label>
                                     <div class="col-md-8">
                                         <input type="text" id="Qubit_Yield" name="Qubit_Yield" class="form-control"
                                             required value="<?php echo $_smarty_tpl->tpl_vars['Qubit_Yield']->value;?>
 ">
-                                    </div>
-                                </div> -->
-
-                                <div class="form-group row mb-3">
-                                    <?php echo $_smarty_tpl->tpl_vars['Method']->value;?>
-
-                                    <?php echo $_smarty_tpl->tpl_vars['ReportName']->value;?>
-
-                                    <?php echo $_smarty_tpl->tpl_vars['sample_type_r1']->value;?>
-
-
-                                    <label for="Qubit_Yield" class="col-md-3 col-form-label text-md-right">Qubit Yield <br><small>(ng)</small>:</label>
-                                    <div class="col-md-8">
-                                        <input type="number" id="Qubit_Yield" name="Qubit_Yield" class="form-control" required value="<?php echo $_smarty_tpl->tpl_vars['Qubit_Yield']->value;?>
-" min="0" step="any">
-                                        <div class="invalid-feedback" id="Qubit_Yield_Error" style="display:none;">
-                                            Qubit_Yield 需大於 500 ng。
-                                        </div>
                                     </div>
                                 </div>
 
@@ -177,6 +146,15 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield5']->value;?>
                                 </div>
 
                                 <div class="form-group">
+                                    <label for="Length" class="col-md-3 control-label">Length<br>(bp) > 15kb:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="Length" name="Length" class="form-control" required
+                                            value="<?php echo $_smarty_tpl->tpl_vars['Length']->value;?>
+">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
                                     <label for="Storage" class="col-md-3 control-label">儲存位置:</label>
                                     <div class="col-md-8">
                                         <input type="text" id="Storage" name="Storage" class="form-control" required
@@ -194,19 +172,10 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield5']->value;?>
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <label for="Nucleic_acid_person" class="col-md-3 control-label">操作人員</label>
-                                    <div class="col-md-8">
-                                        <input type="text" id="Nucleic_acid_person" name="Nucleic_acid_person" class="form-control"
-                                        value="" required>
-                                    </div>
-                                </div>
-
 
                             </div> <!-- /.col-md-4 -->
+                            <!-- Fragmentation -->
 
-                            <?php if ($_smarty_tpl->tpl_vars['Method']->value == 'NGS') {?>
-                            <!-- Fragmentation & Library -->
                             <div class="col-md-4">
                                 <h3 style="text-align:center;">Fragmentation</h3>
 
@@ -241,27 +210,11 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield5']->value;?>
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <label for="Fragmentation_person" class="col-md-3 control-label">操作人員</label>
-                                    <div class="col-md-8">
-                                        <input type="text" id="Fragmentation_person" name="Fragmentation_person" class="form-control"
-                                        value="" required>
-                                    </div>
-                                </div>
-
-
 
 
                                 <!-- Library -->
                                 <h3 style="text-align:center;">Library</h3>
-                                <div class="form-group">
-                                    <label for="BarcodeNo" class="col-md-3 control-label">Barcode No.:</label>
-                                    <div class="col-md-8">
-                                        <input type="text" id="BarcodeNo" name="BarcodeNo" class="form-control" required
-                                            value="<?php echo $_smarty_tpl->tpl_vars['BarcodeNo']->value;?>
-">
-                                    </div>
-                                </div>
+
                                 <div class="form-group">
                                     <label for="Library_Conc" class="col-md-3 control-label">Conc<br>(ng/㎕):</label>
                                     <div class="col-md-8">
@@ -290,7 +243,7 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield5']->value;?>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="Library_Meansize" class="col-md-3 control-label">Size:</label>
+                                    <label for="Library_Meansize" class="col-md-3 control-label">Mean size:</label>
                                     <div class="col-md-8">
                                         <input type="text" id="Library_Meansize" name="Library_Meansize"
                                             class="form-control" required value="<?php echo $_smarty_tpl->tpl_vars['Library_Meansize']->value;?>
@@ -298,7 +251,14 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield5']->value;?>
                                     </div>
                                 </div>
 
-
+                                <div class="form-group">
+                                    <label for="BarcodeNo" class="col-md-3 control-label">Barcode No.:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="BarcodeNo" name="BarcodeNo" class="form-control" required
+                                            value="<?php echo $_smarty_tpl->tpl_vars['BarcodeNo']->value;?>
+">
+                                    </div>
+                                </div>
 
                                 <div class="form-group">
                                     <label for="Library_date" class="col-md-3 control-label">建庫時間:</label>
@@ -306,18 +266,11 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield5']->value;?>
                                         <input type="date" id="Library_date" name="Library_date" class="form-control"
                                             value="<?php echo $_smarty_tpl->tpl_vars['Library_date']->value;?>
 " required>
-                                    </div>
-                                </div>
 
-                                <div class="form-group">
-                                    <label for="Library_person" class="col-md-3 control-label">操作人員</label>
-                                    <div class="col-md-8">
-                                        <input type="text" id="Library_person" name="Library_person" class="form-control"
-                                        value="" required>
                                     </div>
                                 </div>
-                            </div> 
-                            <!-- 上機資訊 -->
+                            </div> <!-- /.col-md-4 -->
+
                             <div class="col-md-4">
                                 <h3 style="text-align:center;">上機資訊</h3>
                                 <div class="form-group">
@@ -325,13 +278,10 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield5']->value;?>
                                     <div class="col-md-8">
                                         <select id="Platform" name="Platform" class="form-control" required>
                                             <option value="0" <?php if ($_smarty_tpl->tpl_vars['Platform']->value == '0') {?>selected<?php }?>>請選擇</option>
-                                            <option value="MGI-G400" <?php if ($_smarty_tpl->tpl_vars['Platform']->value == 'MGI-G400') {?>selected<?php }?>>MGI-G400</option>
-                                            <option value="MGI-G50" <?php if ($_smarty_tpl->tpl_vars['Platform']->value == 'MGI-G50') {?>selected<?php }?>>MGI-G50</option>
-                                            <option value="S5" <?php if ($_smarty_tpl->tpl_vars['Platform']->value == 'S5') {?>selected<?php }?>>S5
+                                            <option value="MGI" <?php if ($_smarty_tpl->tpl_vars['Platform']->value == 'MGI') {?>selected<?php }?>>MGI</option>
+                                            <option value="S5" <?php if ($_smarty_tpl->tpl_vars['Platform']->value == 'S5') {?>selected<?php }?>>S5</option>
+                                            <option value="illumina" <?php if ($_smarty_tpl->tpl_vars['Platform']->value == 'illumina') {?>selected<?php }?>>illumina
                                             </option>
-                                            <option value="NS500" <?php if ($_smarty_tpl->tpl_vars['Platform']->value == 'NS500') {?>selected<?php }?>>NS500
-                                            </option>
-
                                         </select>
                                     </div>
                                 </div>
@@ -353,14 +303,6 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield5']->value;?>
 " required>
                                     </div>
                                 </div>
-
-                                <div class="form-group">
-                                    <label for="Platform_person" class="col-md-3 control-label">操作人員</label>
-                                    <div class="col-md-8">
-                                        <input type="text" id="Platform_person" name="Platform_person" class="form-control"
-                                        value="" required>
-                                    </div>
-                                </div>
                                 <!-- <div class="form-group">
                                     <label for="Remark" class="col-md-3 control-label">Capture:</label>
                                     <div class="col-md-8">
@@ -386,84 +328,18 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield5']->value;?>
 </textarea>
                                     </div>
                                 </div>
-                            </div>
 
-                            <?php } elseif ($_smarty_tpl->tpl_vars['Method']->value == 'qPCR') {?>
-                            <!-- 上機資訊 -->
-                            <div class="col-md-4">
-                                <h3 style="text-align:center;">上機資訊</h3>
-                                <div class="form-group">
-                                    <label for="Platform" class="col-md-3 control-label">上機平台:</label>
-                                    <div class="col-md-8">
-                                        <select id="Platform" name="Platform" class="form-control" required>
-                                            <option value="0" <?php if ($_smarty_tpl->tpl_vars['Platform']->value == '0') {?>selected<?php }?>>請選擇</option>
-                                            <option value="7500 Fast" <?php if ($_smarty_tpl->tpl_vars['Platform']->value == '7500 Fast') {?>selected<?php }?>>7500 Fast</option>
-                                            <option value="QS5" <?php if ($_smarty_tpl->tpl_vars['Platform']->value == 'QS5') {?>selected<?php }?>>QS5</option>
-                                            <option value="LC480" <?php if ($_smarty_tpl->tpl_vars['Platform']->value == 'LC480') {?>selected<?php }?>>LC480
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
 
-                                <div class="form-group">
-                                    <label for="On_date" class="col-md-3 control-label">上機時間:</label>
-                                    <div class="col-md-8">
-                                        <input type="date" id="On_date" name="On_date" class="form-control"
-                                            value="<?php echo $_smarty_tpl->tpl_vars['On_date']->value;?>
-" required>
-                                    </div>
-                                </div>
 
-                                <div class="form-group">
-                                    <label for="Platform_person" class="col-md-3 control-label">操作人員</label>
-                                    <div class="col-md-8">
-                                        <input type="text" id="Platform_person" name="Platform_person" class="form-control"
-                                        value="" required>
-                                    </div>
-                                </div>
                                 <!-- <div class="form-group">
-                                    <label for="Remark" class="col-md-3 control-label">Capture:</label>
+                                    <label for="Analysis_date" class="col-md-3 control-label">分析時間:</label>
                                     <div class="col-md-8">
-                                        <input type="text" id="Remark" name="Remark" class="form-control"
+                                        <input type="date" id="Analysis_date" name="Analysis_date" class="form-control"
                                             required>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="Clean  reads Q30 (%)" class="col-md-3 control-label">Clean reads
-                                        Q30(%):</label>
-                                    <div class="col-md-8">
-                                        <input type="text" id="Clean_reads"
-                                            name="Clean_reads" class="form-control" required>
                                     </div>
                                 </div> -->
 
-                                <br><br>
-                                <h3 style="text-align:center;">備註說明</h3>
-                                <div class="form-group">
-                                    <label for="Remark" class="col-md-3 control-label">備註:</label>
-                                    <div class="col-md-8">
-                                        <textarea id="Remark" name="Remark" class="form-control" ><?php echo $_smarty_tpl->tpl_vars['Remark']->value;?>
-</textarea>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <?php } elseif ($_smarty_tpl->tpl_vars['Method']->value == 'Sanger') {?>
-                            <!-- 上機資訊 -->
-                            <div class="col-md-4">
-
-                                <h3 style="text-align:center;">備註說明</h3>
-                                <div class="form-group">
-                                    <label for="Remark" class="col-md-3 control-label">備註:</label>
-                                    <div class="col-md-8">
-                                        <textarea id="Remark" name="Remark" class="form-control" ><?php echo $_smarty_tpl->tpl_vars['Remark']->value;?>
-</textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <?php } else { ?>
-                            其他
-                            <?php }?>
+                            </div> <!-- /.col-md-4 -->
 
                         </div> <!-- /.form-horizontal -->
                     </div> <!-- /.card-box -->
@@ -499,50 +375,7 @@ echo $_smarty_tpl->tpl_vars['Hiddenfield5']->value;?>
         </div> <!-- /.container-fluid -->
 
     </form> <!-- /form -->
-<?php echo '<script'; ?>
->
-    function validateQubitYield() {
-        const qubitInput = document.getElementById('Qubit_Yield');
-        const errorDiv = document.getElementById('Qubit_Yield_Error');
 
-        // 模擬你的條件，實際上這些變數可以用後端輸出進來
-        const ReportName = "<?php echo $_smarty_tpl->tpl_vars['ReportName']->value;?>
-";
-        const Method = "<?php echo $_smarty_tpl->tpl_vars['Method']->value;?>
-";
-        const sample_type_r1 = "<?php echo $_smarty_tpl->tpl_vars['sample_type_r1']->value;?>
-";
-
-        // 驗證條件：ReportName 以 W 或 P 開頭，Method = NGS，sample_type_r1 屬於指定範圍
-        const isTargetCondition =
-            (ReportName.startsWith('W') || ReportName.startsWith('P')) &&
-            Method === 'NGS' &&
-            (sample_type_r1 === '血液檢體' || sample_type_r1 === '口腔黏膜');
-
-        if (isTargetCondition) {
-            if (parseFloat(qubitInput.value) <= 500 || isNaN(qubitInput.value)) {
-                qubitInput.classList.add('is-invalid');
-                errorDiv.style.display = 'block';
-                return false;
-            } else {
-                qubitInput.classList.remove('is-invalid');
-                errorDiv.style.display = 'none';
-            }
-        } else {
-            // 條件不符時，無需檢查，確保清除錯誤狀態
-            qubitInput.classList.remove('is-invalid');
-            errorDiv.style.display = 'none';
-        }
-        return true;
-    }
-
-    // 事件綁定：輸入變化時驗證
-    document.getElementById('Qubit_Yield').addEventListener('input', validateQubitYield);
-
-    // 可在表單提交時調用這個函式進行最後驗證，例如：
-    // <form onsubmit="return validateQubitYield()">
-<?php echo '</script'; ?>
->
 </body>
 
 </html><?php }
